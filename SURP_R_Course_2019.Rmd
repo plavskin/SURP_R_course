@@ -1,0 +1,193 @@
+---
+title: "NYU SURP 2019 R course"
+author: "Eugene Plavskin"
+date: "07-18-2019"
+output:
+  html_notebook:
+    code_folding: hide
+    depth: 3
+    tidy: yes
+    toc: yes
+---
+
+# Class 1 (06-18-19): Introduction
+
+## Downloading, installing, and navigating Rstudio
+
+## Download and installation instructions
+
+## The parts of Rstudio
+
+1. Editor
+2. Console
+3. Environment
+4. Plots/Help/Etc
+
+## What will we learn?
+
+* Show example of Janessa's data
+  
+    + lots of data (too much to analyze in excel)
+  
+    + different categories
+  
+    + want to split data by categories and compare categories (e.g. stats, plots)
+
+## Trying some coding: R-ithmetic
+
+* addition, subtraction, multiplication, division
+* powers and remainders: StackOverflow!!!
+
+## What are students working on? What do they want to learn?
+
+Discussion
+
+# Class 2 (06-20-19): Basics of programming: variables and functions
+
+## Reproducible research, notebooks, learning
+
+* Code chunks vs not code chunks
+
+* Packages
+
+## Variables
+
+* Numerics
+
+* Character
+
+## Functions
+
+* examples of functions
+* how to look at documentation
+* more stackoverflow
+
+# Class 3 (06-25-19): Vectors: doing stuff to numbers and characters
+
+## Introduction to vectors
+
+Show number vectors and character vectors
+
+## Operations on vectors of numbers
+
+* Adding a single number to vector
+
+* Adding two vectors of same size
+
+* Warning: adding two vectors of different sizes
+
+## Operations on vectors of characters
+
+Paste function
+
+## length()
+
+## Indexing
+
+## Converting between numeric and character types
+
+# Class 4 (06-27-19): Missing values and logical operations
+
+## When we get missing values
+
+* Try dividing two vectors by each other that both have a 0
+* Unmeasured data in experiment, etc
+
+## Logicals
+
+* is.na()
+* vectors of logicals
+* 1s and 0s as logicals, sum()
+* selecting and replacing values from vectors based on logicals
+* operations on logicals (AND, OR)
+* which()
+* mean() with na.rm = T
+
+## if() / else() ???
+
+# Class 5 (07-02-19): Data Frames: Reading in and manipulating data, writing data
+
+## Reading in tables from excel
+
+Teach them about csv format
+
+## Selecting data from data frames: row numbers and column numbers and $
+  
+## Creating new columns from operations on other columns
+
+## Creating new data frames from scratch and writing them
+
+## Watch out for factors!
+
+# Class 6 (07-09-19): basic stats on data frames + base plot
+
+## Calculate column means, standard deviations, standard errors
+
+## scatter-plot some columns against each other
+
+## Discuss more of what we'd like to do (hints at subsetting, ggplot)
+
+# Class 7 (07-11-19): Practice with data frames: read in and process example data
+
+* Need some good examples for them to work with--at least incl. single-cell data
+
+# Class 8 (07-16-19): Practice with data frames: present example data
+
+# Class 9 (07-18-19): Subsetting data
+
+## Subset data frames using indices
+
+## Subset data frames using logical operations
+
+## subset()
+
+# Class 10 (07-23-19): Aggregating data and generating summary tables
+
+## table() for counting elements
+
+## examples with aggregate()
+
+## summarise() from dplyr???
+
+## summary() ???
+
+# Class 11 (07-25-19): Introduction to ggplot: point plots
+
+## Install package, load library
+
+## Scatterplot some e.g. iris data
+
+* Show scatterplot as we did it earlier in the class, but with ggplot
+* Color by species
+* shape by species
+
+## Point plot aggregate data (e.g. means across categories)
+
+# Class 12 (07-30-19): Doing basic stats on data
+
+## t-tests
+
+## standard error (in the context of aggregate() )
+
+## linear regression
+
+# Class 13 (08-01-19): Fancier ggplots
+
+## summary plot with error bars
+
+## scatterplot with regression line
+
+## Box plots
+
+## Bar plots
+
+## Line graphs
+
+## Density plots?
+
+## HOW do you present what kind of data?!
+
+# OPTIONAL: LOOPS AND FUNCTIONS
+
+
+
