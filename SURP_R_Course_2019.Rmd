@@ -18,9 +18,14 @@ output:
 
 In this series of workshops, we will be using the R programming language. In order to be able to complete the exercises in the workshops, you will need to download R onto your computer. You will also need to download RStudio, a programming environment that will make it easier to visualize what we are doing.
 
-To download R, go [here](https://cran.rstudio.com/), and select to download R for Linux, Windows, or Mac, depending on what system your computer uses.
+R is available for **free** at
+[r-project.org](cran.rstudio.com).
+There's versions for Windows, Mac, \*nix. Download and install it. You can open it to see if it worked.
+You enter commands by typing them and pressing enter. R should 
+spit back a response of some kind. One thing you can do is type
+`version` and hit enter. It'll respond with the version. You should have downloaded the latest version, around 3.5.1 or later.
 
-To download Rstudio, go [here](https://www.rstudio.com/products/rstudio/download/#download), and again download the version of Rstudio appropriate for your computer.
+R itself is pretty minimal, so we'll want to download [RStudio](https://www.rstudio.com/products/rstudio/download/) as well. RStudio is a graphical user interface (GUI) integrated development environment (IDE) for using R. RStudio will make it easier for us to write and edit our code, view plots, and make documents like this one. RStudio Desktop is also free.
 
 ## What will we learn?
 
@@ -104,7 +109,23 @@ To download this lecture's R notebook, scroll to the top of this website, click 
 
 ## Reproducible research, notebooks, learning
 
+
+Starting a new notebook! 
+```{r echo = F}
+include_graphics('new_nb.png')
+```
+ 
+Elements of a notebook:
+```{r echo=F}
+include_graphics('nb_elements.png')
+```
+Previewing/knitting:
+```{r}
+include_graphics('preview_knit.png')
+```
+
 * Code chunks vs not code chunks
+
 
 * Packages
 
@@ -126,6 +147,11 @@ To download this lecture's R notebook, scroll to the top of this website, click 
 
 Show number vectors and character vectors
 
+```{r}
+include_graphics('vector_illustration1.png')
+```
+
+
 ## Operations on vectors of numbers
 
 * Adding a single number to vector
@@ -141,6 +167,11 @@ Paste function
 ## length()
 
 ## Indexing
+Using position names instead of numerical position indices
+```{r}
+include_graphics('vector_illustration_names.png')
+```
+
 
 ## Converting between numeric and character types
 
@@ -164,6 +195,11 @@ Paste function
 ## if() / else() ???
 
 # Class 5 (07-02-19): Data Frames: Reading in and manipulating data, writing data
+
+```{r}
+include_graphics('df_illustration.png')
+```
+
 
 ## Reading in tables from excel
 
