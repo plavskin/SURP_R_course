@@ -1,10 +1,12 @@
 ---
 title: "NYU SURP 2019 R course"
-author: "Eugene Plavskin"
-date: "07-18-2019"
+author:
+- Eugene Plavskin
+- Grace Avecilla
+date: "Summer 2019"
 output:
   html_notebook:
-    code_folding: hide
+    code_folding: show
     depth: 3
     tidy: yes
     toc: yes
@@ -14,24 +16,80 @@ output:
 
 ## Downloading, installing, and navigating Rstudio
 
-## Download and installation instructions
+In this series of workshops, we will be using the R programming language. In order to be able to complete the exercises in the workshops, you will need to download R onto your computer. You will also need to download RStudio, a programming environment that will make it easier to visualize what we are doing.
 
-## The parts of Rstudio
+To download R, go [here](https://cran.rstudio.com/), and select to download R for Linux, Windows, or Mac, depending on what system your computer uses.
 
-1. Editor
-2. Console
-3. Environment
-4. Plots/Help/Etc
+To download Rstudio, go [here](https://www.rstudio.com/products/rstudio/download/#download), and again download the version of Rstudio appropriate for your computer.
 
 ## What will we learn?
 
-* Show example of Janessa's data
-  
-    + lots of data (too much to analyze in excel)
-  
-    + different categories
-  
-    + want to split data by categories and compare categories (e.g. stats, plots)
+This class will give you an introduction into how to code in the context of asking questions about data. We're going to learn how to read in data; how to use R to perform computations on this data that would be difficult (or impossible, depending on how much data you're working with) to perform otherwise, such as simultaneously computing averages of various categories of data points that you select; and how to plot your data and the results of the analyses you perform.
+
+We hope that by the end of the class, you will feel relatively comfortable using R to perform some analysis on data that you have collected (or even data someone else has collected!) and to plot the results. These are practical skills that you will find useful in a wide range of fields, not just biology.
+
+This class is *not* a comprehensive introduction to coding. There will be lots more to learn after you are done with the SURP program if you're interested in pursuing computational work more seriously. But in our experience, learning the first bits of coding can present a huge barrier to students (it certainly did for us and many of our colleagues). We hope that we'll be able to break this barrier down for you over the course of the summer.
+
+Here is an example of some work that was done by a SURP student last summer, Janessa Vail
+
+```{r}
+# First, we load in the data
+
+# get Rstudio to figure out the directory in which this file is
+current_path <- dirname(rstudioapi::getSourceEditorContext()$path)
+# Look for Janessa's data in that directory
+load(file.path(current_path, 'Janessa_GR_data.Rdata'))
+# Show Janessa's data table
+View(Janessa_growth_rate_data)
+```
+
+We can immediately see why Janessa's data would be hard to try to analyze by hand or, let's say, in excel.
+
+1. There's LOTS of data. If you look in the 'Environment' box on the right side of your screen, you will see that it says something like 'Janessa_growth...|54491 obs of 16 variables'. This is telling you that the data contains ~55,000 observations (in this case, measurements of growth rate and other things for individual yeast colonies)
+
+2. The data can be subdivided into many categories that might be of interest to our analysis, and the data are not sorted by those categories. For example, let's take a look at the different strains whose growth rates Janessa measured in this data:
+```{r}
+Janessa_strain_list <- unique(Janessa_growth_rate_data$Strain)
+print(paste("The unique strains from Janessa's experiment are:",
+            paste(Janessa_strain_list, collapse = ', ')))
+```
+
+In your data, you may have measurements made in different strains, across different conditions, etc. If you want to easily calculate the means of different combinations of these categories, it can prove difficult in excel, especially with lots of data. We can make tables that summarize the mean and sample size for each strain in Janessa's experiment:
+```{r}
+Janessa_means <- aggregate(data = Janessa_growth_rate_data,
+                                  GR ~ Strain,
+                                  FUN = mean)
+Janessa_sample_sizes <- aggregate(data = Janessa_growth_rate_data,
+                                  GR ~ Strain,
+                                  FUN = length)
+print('Table of growth rate means')
+print(Janessa_means)
+
+print('Table of growth rate sample sizes')
+print(Janessa_sample_sizes)
+
+```
+
+We also probably want to be able to plot the data, automatically splitting it into whatever categories you're interested in. Once you know a little bit about how to use it, R makes this very easy! Since Janessa was interested in comparing growth rates between strains, she plotted these:
+
+```{r}
+ggplot(data = Janessa_growth_rate_data) +
+  geom_boxplot(aes(x = Strain, y = GR, color = Strain))
+```
+
+
+
+## Using R notebooks
+
+R notebooks are a great way to keep track of a project. They provide a space where code, its output (e.g. plots) and clearly formatted explanations can be kept in one place. Think of it as a lab notebook for your code.
+
+Just like lab notebooks, R notebooks make it much easier to reproduce your own--or another scientist's--analysis. They can be viewed as formatted both html files (what you are seeing right now) and as an editable pieces of code that can be opened in RStudio. If you email a collaborator an html file of a notebook containing your analysis (together with the underlying data), they can open it up, re-run any part they are interested in, and easily tweak any anylysis you did to check something you may not have thought of.
+
+In this class, every lesson will come with a pre-prepared R notebook. It is critical that you download each lesson's R notebook at the beginning of class and write your code inside the notebook as we go along. Most of programming is recycling and repurposing code (either code you wrote, or code someone else wrote), and these notebooks will make sure that during the class, you always have access to your old code for repurposing.
+
+To download this lecture's R notebook, scroll to the top of this website, click 'Code', and select 'Download Rmd'.
+
+**NEED A SECTION ON R NOTEBOOK SYNTAX**
 
 ## Trying some coding: R-ithmetic
 
@@ -40,7 +98,7 @@ output:
 
 ## What are students working on? What do they want to learn?
 
-Discussion
+*Fill in during class*
 
 # Class 2 (06-20-19): Basics of programming: variables and functions
 
