@@ -67,6 +67,9 @@ Janessa_means <- aggregate(data = Janessa_growth_rate_data,
 Janessa_sample_sizes <- aggregate(data = Janessa_growth_rate_data,
                                   GR ~ Strain,
                                   FUN = length)
+```
+
+```{r echo = F}
 print('Table of growth rate means')
 print(Janessa_means)
 
@@ -82,8 +85,6 @@ ggplot(data = Janessa_growth_rate_data) +
   geom_boxplot(aes(x = Strain, y = GR, color = Strain))
 ```
 
-
-
 ## Using R notebooks
 
 R notebooks are a great way to keep track of a project. They provide a space where code, its output (e.g. plots) and clearly formatted explanations can be kept in one place. Think of it as a lab notebook for your code.
@@ -94,7 +95,24 @@ In this class, every lesson will come with a pre-prepared R notebook. It is crit
 
 To download this lecture's R notebook, scroll to the top of this website, click 'Code', and select 'Download Rmd'.
 
-**NEED A SECTION ON R NOTEBOOK SYNTAX**
+Starting a new notebook! 
+```{r echo = F}
+include_graphics(file.path(current_path, 'new_nb.png'))
+```
+ 
+Elements of a notebook:
+```{r echo=F}
+include_graphics(file.path(current_path, 'nb_elements.png'))
+```
+Previewing/knitting:
+```{r}
+include_graphics(file.path(current_path, 'preview_knit.png'))
+```
+
+* Code chunks vs not code chunks
+
+
+* Packages
 
 ## Trying some coding: R-ithmetic
 
@@ -109,25 +127,6 @@ To download this lecture's R notebook, scroll to the top of this website, click 
 
 ## Reproducible research, notebooks, learning
 
-
-Starting a new notebook! 
-```{r echo = F}
-include_graphics('new_nb.png')
-```
- 
-Elements of a notebook:
-```{r echo=F}
-include_graphics('nb_elements.png')
-```
-Previewing/knitting:
-```{r}
-include_graphics('preview_knit.png')
-```
-
-* Code chunks vs not code chunks
-
-
-* Packages
 
 ## Variables
 
