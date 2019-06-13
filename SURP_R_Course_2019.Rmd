@@ -27,6 +27,24 @@ spit back a response of some kind. One thing you can do is type
 
 R itself is pretty minimal, so we'll want to download [RStudio](https://www.rstudio.com/products/rstudio/download/) as well. RStudio is a graphical user interface (GUI) integrated development environment (IDE) for using R. RStudio will make it easier for us to write and edit our code, view plots, and make documents like this one. RStudio Desktop is also free.
 
+## Packages
+
+One of the best things about R is that there is a huge community of scientists and programming constantly developing new things and making them available (for free!) for everyone else to use. One of the most common ways these new functionalities are shared is in *packages*. These are essentially collections of various related functionalities--for example, for reshuffling data, doing some special statistical analysis, or plotting. For now, we will use two special R packages besides what automatically comes with the programming language: **knitr**, which is what makes R notebooks into the pretty HTML documents you're reading now, and **ggplot2**, which allows you to beautifully and easily plot your data.
+
+If you find a new package you like online, in most cases, R will automatically install it for you. Below is a piece of code that will install **knitr** and **ggplot2** for you. If you run the code for this lesson in Rstudio, it will automatically install the packages.
+
+```{r}
+#install.packages('knitr')
+#install.packages('ggplot2')
+```
+
+You don't have to re-install packages every time you open R. However, you *do* have to tell R that you're planning to use some function from a particular package and want R to look there when you're asking it to do things:
+
+```{r}
+library(ggplot2)
+library(knitr)
+```
+
 ## What will we learn?
 
 This class will give you an introduction into how to code in the context of asking questions about data. We're going to learn how to read in data; how to use R to perform computations on this data that would be difficult (or impossible, depending on how much data you're working with) to perform otherwise, such as simultaneously computing averages of various categories of data points that you select; and how to plot your data and the results of the analyses you perform.
@@ -104,20 +122,73 @@ Elements of a notebook:
 ```{r echo=F}
 include_graphics(file.path(current_path, 'nb_elements.png'))
 ```
-Previewing/knitting:
-```{r}
-include_graphics(file.path(current_path, 'preview_knit.png'))
+The notebook contains 3 major parts:
+
+* __YAML__: title, author, date; also, any special options about how you'd like Rstudio to display things in the html document (e.g.: do you want the code to show up?)
+
+* __Markdown Text__: Your descriptions of what you're doing! This is pretty straightforward. Just type here, and skip lines between paragraphs. You can use asterisks to do special formatting: put a single asterisk on each side of a piece of text for *\*italic\**, two asterisks on each side for **\*\*bold\*\***. Other things, like bulletpoints, hyperlinks, etc are also possible.
+
+* __Code Chunks__: These are the parts of your notebook where you include the actual code you want to run! By marking these, you are telling R to read the code and execute it. By default, this code will also show up in your html document, but in specially formatted section so it can be easily seen as being separate from the main text. Mark code chunks by starting with three backticks ( **\`**, on the top left of your keyboard, under the **~** ). Then type **{r}**, and start coding on the next line. At the end of your code chunk, on a new line, add 3 more backticks to let R know that the code chunk is over. In Rstudio, these code chunks should show up with gray background shading.
+
+There are a couple of ways to run code from your code chunks inside the notebook. You can press the **Run** button at the top right of your editor window in Rstudio to see the options:
+```{r echo=F}
+include_graphics(file.path(current_path, 'code_running_options.png'))
 ```
+You can highlight specific line (or lines of code) and just run those; you can run an entire code chunk at a time; or you run all the code in the current notebook.
 
-* Code chunks vs not code chunks
-
-
-* Packages
+Once you've run your code, save your notebook in Rstudio. This will automatically update the formatted html file.
 
 ## Trying some coding: R-ithmetic
 
-* addition, subtraction, multiplication, division
-* powers and remainders: StackOverflow!!!
+It's time to try some coding! Take a look at the code chunk below: if you run the first line, you'll see that we can use R as a fancy calculator. Let's practice that: run the line in the code chunk below
+
+```{r}
+5 + 3
+```
+
+Easy! Try some more math in the code chunk below:
+
+```{r}
+# Often, you may want to write a note for yourseld (and anyone else who may read
+# your code!) about what each piece of code is doing
+
+# But R interprets anything inside a code chunk as something it has to execute!
+
+# Putting a pound sign in front of a line of code tells R to ignore anything you
+# type there, which allows you to make notes for yourself 
+# These lines are called comments. Comments are *REALLY* important to make code
+# readable, write tons of them!
+
+# Below, write a line of code that will add 1 and 5, and run it
+
+# Write a line of code that will subtract 4 from 7, and run it
+
+```
+
+Now let's level up
+```{r}
+# In programming, division is usually written using the slash ( / ), and
+# multiplication using the asterisk ( * )
+
+# Try multiplying 8 by 7
+
+# Try dividing 4589 by 124
+
+```
+
+One of the *most* important skills in programming is knowing how to find information. No amount of experience will teach you how to do *everything*, and it's incredibly easy to forget how to do things that you've done many times before but haven't had to use in a while. Fortunately, we have google!
+
+Try searching online to find out how to do the exercises in the code chunk below:
+```{r}
+# Take 3 to the 5th power
+
+# Find the remainder when 8 is divided by 3
+
+```
+
+You may have seen some answers on a website called *StackOverflow*. This is a great site that allows people to ask questions and they are answered by members of the R community. In most cases, there was already someone who had your question at some point, which is why a clever google search can usually help you figure out how to do most things. There are also a ton of blogs online that teach you specific skills in R.
+
+Finally, R has a built-in help for every function. You can access it by typing a question mark, followed by the name of the function. We will use this a lot more later in the course. For now, try typing **?Arithmetic** (capitalization matters!) into your Rstudio 'console', right below your editor, and pressing *enter*. You will see the help text pop up in the bottom right Help box in Rstudio. In practice, this information can sometimes be a bit dense and technical. I usually find it most useful to read the 'description' on top, and then scroll all the way down to the 'examples' section at the bottom of the help function. Don't worry if you don't understand the examples in the arithmetic help section yet--we're going to cover a lot of those in our next class.
 
 ## What are students working on? What do they want to learn?
 
