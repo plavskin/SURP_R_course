@@ -205,15 +205,107 @@ Finally, R has a built-in help for every function. You can access it by typing a
 
 ## Variables
 
-* Numerics
+Last class, you saw that R can be used as a fancy calculator. 
+```{r}
+3+4
+```
 
-* Character
+Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
+You define variables using the `<-` operator, which means "store the value on the right in the variable on the left", like so. You can then call it back by saying the variable name.
+```{r}
+variable1 <- 3
+variable2 <- 4
+variable1
+```
+
+You can use variables in the place of numbers, and perform mathematical operations on them.
+```{r}
+variable1 + variable2
+```
+
+As their name implies, variables can take on many values, and can change, so be careful with naming and assignment.
+```{r}
+variable1 <- variable1 + variable2
+variable1
+variable1 <- variable1 + variable2
+variable1
+```
+
+
+These types of variables are numeric. However, R can also store text. These are in the form of characters. Surround characters in quote marks to have them be character and not variable names.
+
+```{r}
+char <- "a"
+char
+```
+
+Characters variables can store strings, such as words and sentences. One string (everything between the quotation marks) is stored as a single unit.
+```{r}
+char_sentence <- "My favorite food is ice cream"
+char_sentence
+char_variable1 <- "variable1"
+char_variable1
+char_variable2 <- variable1
+char_variable2
+```
+
+You can identify the type of variable (numeric, character) using `is()`. 
+```{r}
+# Try identifying the type of variable for char_variable1
+
+# How about char_variable2?
+
+# What is going on?
+```
+
+
+Finally, you can find out what variables you have loaded in your environment at anytime using `ls()`.
+```{r}
+ls()
+```
 
 ## Functions
 
 * examples of functions
 * how to look at documentation
 * more stackoverflow
+
+A function is something that wraps a whole set of operations so that you can invoke those operations in a single command.
+
+You have already used some functions. Functions are always followed by `()` when you use them. 
+```{r}
+is(ls)
+is(is)
+```
+
+When you use a function, often you are telling it to perform an operation on something else. That something else is called an argument, and passed to the function inside the parenthesis.
+```{r}
+var <- 1
+is(var)
+```
+
+MORE EXAMPLES???
+
+You can learn about a function by reading its documentation. You can access the documentation with `?`, for example, type `?seq` into your console.
+
+`?` is one of the more important keys for you to know. Seriously, many issues are averted by first checking the documentation. Documentation usually has: 
+
+* A description of the intention of the function
+* How to use it, ie where to put what arguments
+* A description of what those arguments should be
+* Details, and what value they return
+* And if you're lucky, examples of usage
+
+```{r}
+# Based on the documentation from of seq, make the sequence: 1, 2, 3, 4
+
+# Now make the sequence: 2, 2.5, 3, 3.5
+
+# Identify what values are corresponding to what arguments
+
+```
+
+??Stack overflow??
 
 # Class 3 (06-25-19): Vectors: doing stuff to numbers and characters
 
