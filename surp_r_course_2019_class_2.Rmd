@@ -1,0 +1,176 @@
+---
+title: |
+  | NYU SURP 2019 R course
+  | Class 2: Basics of programming: variables and functions
+author:
+- Eugene Plavskin
+- Grace Avecilla
+date: "06/25/2019"
+output:
+  html_notebook:
+    code_folding: show
+    depth: 3
+    tidy: yes
+    toc: yes
+---
+# The power of google
+
+Last class, you saw that R can be used as a fancy calculator. 
+```{r}
+3+4
+```
+
+Let's use R to do some more math.
+
+In most programming languages, division is written using the slash ( __/__ ), and multiplication using the asterisk ( * )
+```{r}
+# Try multiplying 8 by 7
+
+# Try dividing 4589 by 124
+
+```
+
+One of the *most* important skills in programming is knowing how to find information. No amount of experience will teach you how to do *everything*, and it's incredibly easy to forget how to do things that you've done many times before but haven't had to use in a while. Fortunately, we have google!
+
+Try searching online to find out how to do the exercises in the code chunk below:
+```{r}
+# Take 3 to the 5th power
+
+# Find the remainder when 8 is divided by 3
+
+```
+
+You may have seen some answers on a website called *StackOverflow*. This is a great site that allows people to ask questions and they are answered by members of the R community. In most cases, there was already someone who had your question at some point, which is why a clever google search can usually help you figure out how to do most things. There are also a ton of blogs online that teach you specific skills in R.
+
+# Variables
+## Variables hold information
+Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
+You define variables using the `<-` operator, which means "store the value on the right in the variable on the left", like so. You can then call it back by saying the variable name.
+```{r}
+variable1 <- 3
+variable2 <- 4
+variable1
+```
+
+You can use variables in the place of the numbers they hold, and perform mathematical operations on them.
+```{r}
+variable1 + variable2
+```
+
+As their name implies, variables can take on many values, and can change, so be careful with naming and assignment.
+```{r}
+variable1 <- variable1 + variable2
+variable1
+variable1 <- variable1 + variable2
+variable1
+```
+
+## Variable *types*
+These types of variables are *numeric*. However, R can also store text. These are in the form of *characters*. Surround characters in quotation marks to have them be character and not variable names.
+```{r}
+char <- "a"
+char
+
+# In your console, try typing 'char <- a' (no quotes) and seeing what happens
+```
+
+Characters variables can store *strings*, such as words and sentences. In R, one string (everything between the quotation marks) is stored as a single unit.
+```{r}
+char_sentence <- "My favorite food is ice cream"
+char_sentence
+char_variable1 <- "variable1"
+char_variable1
+char_variable2 <- variable1
+char_variable2
+```
+
+You can identify the type of variable (numeric, character) using `is()`. 
+```{r}
+# Using is()
+is(5)
+
+# Try identifying the type of variable for char_variable1
+
+# How about char_variable2?
+
+# What is going on?
+```
+
+Strings can also hold numbers: just put a quote around them!
+```{r}
+num_string <- '4'
+actual_num <- 4
+
+# Try identifying the types of num_string and actual_num
+
+```
+
+You need to be very careful about the types of your variables. It may look like *actual_num* and *num_string* are holding the same thing, but because we've implicitly told R that they are of different types, they behave very differently. In the **Console**, try adding *num_string* to *actual_num*. What happens, and why? What is R's cryptic message trying to tell you?
+
+# Functions
+## Adding with functions
+We saw above that you can do basic arithmetic in R by just using mathematical symbols, e.g. __+__. But for more complicated things, programming languages use things called *functions*. A function is something that wraps a whole set of operations so that you can invoke those operations in a single command. You have already used another function earlier in this class, `is()`. Let's take a look at another example: there's a function, `sum()`, that can add numbers, just like __+__ can. Let's try it:
+```{r}
+variable1
+variable2
+sum(variable1, variable2)
+```
+
+Functions are their own type! You can try using `is()` to check this:
+```{r}
+is(sum)
+is(is)
+```
+
+Functions are always followed by `()` when you use them. When you use a function, often you are telling it to perform an operation on something else (e.g. a variable); in the examples above, we're performing the `sum()` function on *variable1* and *variable2*, and we're performing the `is()` function on `sum` and on itself. These are called arguments, and are *passed* to the function inside the parentheses.
+
+## Looking at the **Environment**
+Some functions don't need to take any arguments. For example, you can find out what variables you have loaded in your *environment* at anytime using `ls()`. This will list all your variables, any custom functions you may have written, etc.
+```{r}
+ls()
+```
+
+Check out the **Environment** window on the top right! You can actually also see all your variables loaded in there, with a short summary of what's in them. This is a super convenient feature of programming in Rstudio.
+
+## Combining strings
+Another really useful function is the `paste` function; this function allows you to combine *strings*.
+```{r}
+research_program <- 'SURP'
+year <- '2019'
+
+current_program <- paste(research_program, year)
+```
+
+Notice that the code above didn't print anything out. That's because we directed the output of the `paste` function into a variable, *current_program*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
+```{r}
+# Find an R function to print out a variable, and use it to print whatever
+# the current_program variable is storing
+
+```
+
+You can learn about a function by reading its documentation. You can access the documentation with `?`, for example, type `?paste` into your console. You will see the help text pop up in the bottom right Help box in Rstudio.
+
+`?` is one of the more important keys for you to know. Seriously, many issues are averted by first checking the documentation. Documentation usually has: 
+
+* A description of the intention of the function
+* How to use it, ie where to put what arguments
+* A description of what those arguments should be
+* Details, and what value they return
+* And if you're lucky, examples of usage
+
+In practice, this information can sometimes be a bit dense and technical. I usually find it most useful to read the 'description' on top, and then scroll all the way down to the 'examples' section at the bottom of the help function.
+
+Notice that when we used paste above, the function automatically put a space between our two strings. It's often really useful to combine strings with a different character, for example, a hyphen. Try to read the documentation for `paste()` to figure out how to do this.
+```{r}
+# Combine the research_program and year variables using just a hyphen between
+# them instead of a space
+
+```
+
+# Things we hope you've learned today (and will hopefully remember next time)
+
+* *variables* hold information
+* Basic types: *numeric*, *character*, and *function*
+* How to use functions, and what *arguments* are
+* How to use `sum()`, `paste()`, `is()`
+* How to look at your **Environment**
