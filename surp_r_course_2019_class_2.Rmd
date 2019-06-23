@@ -74,7 +74,7 @@ char
 # In your console, try typing 'char <- a' (no quotes) and seeing what happens
 ```
 
-Characters variables can store *strings*, such as words and sentences. In R, one string (everything between the quotation marks) is stored as a single unit.
+Characters variables can store *strings*, such as words and sentences (in fact, in R, *string* and *character* are basically interchangeable). In R, one string (everything between the quotation marks) is stored as a single unit.
 ```{r}
 char_sentence <- "My favorite food is ice cream"
 char_sentence
@@ -96,7 +96,7 @@ is(5)
 # What is going on?
 ```
 
-Strings can also hold numbers: just put a quote around them!
+You can also make numbers into strings: just put a quote around them!
 ```{r}
 num_string <- '4'
 actual_num <- 4
@@ -160,9 +160,9 @@ You can learn about a function by reading its documentation. You can access the 
 
 In practice, this information can sometimes be a bit dense and technical. I usually find it most useful to read the 'description' on top, and then scroll all the way down to the 'examples' section at the bottom of the help function.
 
-Notice that when we used paste above, the function automatically put a space between our two strings. It's often really useful to combine strings with a different character, for example, a hyphen. Try to read the documentation for `paste()` to figure out how to do this.
+Notice that when we used paste above, the function automatically put a space between our two strings. It's often really useful to combine strings with a different character, for example, a dash. Try to read the documentation for `paste()` to figure out how to do this.
 ```{r}
-# Combine the research_program and year variables using just a hyphen between
+# Combine the research_program and year variables using just a dash between
 # them instead of a space
 
 ```
