@@ -338,7 +338,7 @@ Notice that when we used paste above, the function automatically put a space bet
 * How to use `sum()`, `paste()`, `is()`
 * How to look at your **Environment**
 
-# Class 3 (06-25-19): Vectors: doing stuff to numbers and characters
+# Class 3 (06-27-19): Vectors: doing stuff to numbers and characters
 
 ```{r}
 # Based on the documentation from of seq, make the sequence: 1, 2, 3, 4
@@ -381,7 +381,7 @@ include_graphics('vector_illustration_names.png')
 
 ## Converting between numeric and character types
 
-# Class 4 (06-27-19): Missing values and logical operations
+# Class 4 (07-02-19): Missing values and logical operations
 
 ## When we get missing values
 
@@ -400,7 +400,7 @@ include_graphics('vector_illustration_names.png')
 
 ## if() / else() ???
 
-# Class 5 (07-02-19): Data Frames: Reading in and manipulating data, writing data
+# Class 5 (07-09-19): Data Frames: Reading in and manipulating data, writing data
 
 ```{r}
 include_graphics('df_illustration.png')
@@ -419,7 +419,7 @@ Teach them about csv format
 
 ## Watch out for factors!
 
-# Class 6 (07-09-19): basic stats on data frames + base plot
+# Class 6 (07-11-19): basic stats on data frames + base plot
 
 ## Calculate column means, standard deviations, standard errors
 
@@ -427,13 +427,13 @@ Teach them about csv format
 
 ## Discuss more of what we'd like to do (hints at subsetting, ggplot)
 
-# Class 7 (07-11-19): Practice with data frames: read in and process example data
+# Class 7 (07-16-19): Practice with data frames: read in and process example data
 
 * Need some good examples for them to work with--at least incl. single-cell data
 
-# Class 8 (07-16-19): Practice with data frames: present example data
+# Class 8 (07-18-19): Practice with data frames: present example data
 
-# Class 9 (07-18-19): Subsetting data
+# Class 9 (07-23-19): Subsetting data
 
 ## Subset data frames using indices
 
@@ -441,7 +441,7 @@ Teach them about csv format
 
 ## subset()
 
-# Class 10 (07-23-19): Aggregating data and generating summary tables
+# Class 10 (07-25-19): Aggregating data and generating summary tables
 
 ## table() for counting elements
 
@@ -451,7 +451,7 @@ Teach them about csv format
 
 ## summary() ???
 
-# Class 11 (07-25-19): Introduction to ggplot: point plots
+# Class 11 (07-30-19): Introduction to ggplot: point plots
 
 ## Install package, load library
 
@@ -463,7 +463,7 @@ Teach them about csv format
 
 ## Point plot aggregate data (e.g. means across categories)
 
-# Class 12 (07-30-19): Doing basic stats on data
+# Class 12 (08-01-19): Doing basic stats on data
 
 ## t-tests
 
@@ -471,7 +471,7 @@ Teach them about csv format
 
 ## linear regression
 
-# Class 13 (08-01-19): Fancier ggplots
+# Class 13 (**currently off the schedule, need to integrate into prev classes**): Fancier ggplots
 
 ## summary plot with error bars
 
