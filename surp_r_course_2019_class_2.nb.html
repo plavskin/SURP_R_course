@@ -206,17 +206,18 @@ Class 2: Basics of programming: variables and functions</div></h1>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuMys0XG5gYGAifQ== -->
 <pre class="r"><code>3+4</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
+<pre><code>[1] 7</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Let’s use R to do some more math.</p>
 <p>In most programming languages, division is written using the slash ( <strong>/</strong> ), and multiplication using the asterisk ( * )</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUcnkgbXVsdGlwbHlpbmcgOCBieSA3XG5cbiMgVHJ5IGRpdmlkaW5nIDQ1ODkgYnkgMTI0XG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUcnkgbXVsdGlwbHlpbmcgOCBieSA3XG4jIFRyeSBkaXZpZGluZyA0NTg5IGJ5IDEyNFxuYGBgIn0= -->
 <pre class="r"><code># Try multiplying 8 by 7
-
-# Try dividing 4589 by 124
-</code></pre>
+# Try dividing 4589 by 124</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -224,11 +225,9 @@ Class 2: Basics of programming: variables and functions</div></h1>
 <p>Try searching online to find out how to do the exercises in the code chunk below:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUYWtlIDMgdG8gdGhlIDV0aCBwb3dlclxuXG4jIEZpbmQgdGhlIHJlbWFpbmRlciB3aGVuIDggaXMgZGl2aWRlZCBieSAzXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUYWtlIDMgdG8gdGhlIDV0aCBwb3dlclxuIyBGaW5kIHRoZSByZW1haW5kZXIgd2hlbiA4IGlzIGRpdmlkZWQgYnkgM1xuYGBgIn0= -->
 <pre class="r"><code># Take 3 to the 5th power
-
-# Find the remainder when 8 is divided by 3
-</code></pre>
+# Find the remainder when 8 is divided by 3</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -247,6 +246,9 @@ You define variables using the <code>&lt;-</code> operator, which means “store
 variable2 &lt;- 4
 variable1</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbiJ9 -->
+<pre><code>[1] 3</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can use variables in the place of the numbers they hold, and perform mathematical operations on them.</p>
@@ -255,17 +257,28 @@ variable1</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxICsgdmFyaWFibGUyXG5gYGAifQ== -->
 <pre class="r"><code>variable1 + variable2</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
+<pre><code>[1] 7</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>As their name implies, variables can take on many values, and can change, so be careful with naming and assignment.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxIDwtIHZhcmlhYmxlMSArIHZhcmlhYmxlMlxudmFyaWFibGUxXG52YXJpYWJsZTEgPC0gdmFyaWFibGUxICsgdmFyaWFibGUyXG52YXJpYWJsZTFcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxIDwtIHZhcmlhYmxlMSArIHZhcmlhYmxlMlxudmFyaWFibGUxXG5gYGAifQ== -->
 <pre class="r"><code>variable1 &lt;- variable1 + variable2
-variable1
-variable1 &lt;- variable1 + variable2
 variable1</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDdcbiJ9 -->
+<pre><code>[1] 7</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxIDwtIHZhcmlhYmxlMSArIHZhcmlhYmxlMlxudmFyaWFibGUxXG5gYGAifQ== -->
+<pre class="r"><code>variable1 &lt;- variable1 + variable2
+variable1</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExXG4ifQ== -->
+<pre><code>[1] 11</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -274,38 +287,57 @@ variable1</code></pre>
 <p>These types of variables are <em>numeric</em>. However, R can also store text. These are in the form of <em>characters</em>. Surround characters in quotation marks to have them be character and not variable names.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhciA8LSBcImFcIlxuY2hhclxuXG4jIEluIHlvdXIgY29uc29sZSwgdHJ5IHR5cGluZyAnY2hhciA8LSBhJyAobm8gcXVvdGVzKSBhbmQgc2VlaW5nIHdoYXQgaGFwcGVuc1xuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhciA8LSBcImFcIlxuY2hhclxuYGBgIn0= -->
 <pre class="r"><code>char &lt;- &quot;a&quot;
-char
-
-# In your console, try typing 'char &lt;- a' (no quotes) and seeing what happens</code></pre>
+char</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYVwiXG4ifQ== -->
+<pre><code>[1] &quot;a&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbiB5b3VyIGNvbnNvbGUsIHRyeSB0eXBpbmcgJ2NoYXIgPC0gYScgKG5vIHF1b3RlcykgYW5kIHNlZWluZyB3aGF0IGhhcHBlbnNcbmBgYCJ9 -->
+<pre class="r"><code># In your console, try typing 'char &lt;- a' (no quotes) and seeing what happens</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Characters variables can store <em>strings</em>, such as words and sentences (in fact, in R, <em>string</em> and <em>character</em> are basically interchangeable). In R, one string (everything between the quotation marks) is stored as a single unit.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhcl9zZW50ZW5jZSA8LSBcIk15IGZhdm9yaXRlIGZvb2QgaXMgaWNlIGNyZWFtXCJcbmNoYXJfc2VudGVuY2VcbmNoYXJfdmFyaWFibGUxIDwtIFwidmFyaWFibGUxXCJcbmNoYXJfdmFyaWFibGUxXG5jaGFyX3ZhcmlhYmxlMiA8LSB2YXJpYWJsZTFcbmNoYXJfdmFyaWFibGUyXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhcl9zZW50ZW5jZSA8LSBcIk15IGZhdm9yaXRlIGZvb2QgaXMgaWNlIGNyZWFtXCJcbmNoYXJfc2VudGVuY2VcbmBgYCJ9 -->
 <pre class="r"><code>char_sentence &lt;- &quot;My favorite food is ice cream&quot;
-char_sentence
-char_variable1 &lt;- &quot;variable1&quot;
-char_variable1
-char_variable2 &lt;- variable1
+char_sentence</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiTXkgZmF2b3JpdGUgZm9vZCBpcyBpY2UgY3JlYW1cIlxuIn0= -->
+<pre><code>[1] &quot;My favorite food is ice cream&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhcl92YXJpYWJsZTEgPC0gXCJ2YXJpYWJsZTFcIlxuY2hhcl92YXJpYWJsZTFcbmBgYCJ9 -->
+<pre class="r"><code>char_variable1 &lt;- &quot;variable1&quot;
+char_variable1</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwidmFyaWFibGUxXCJcbiJ9 -->
+<pre><code>[1] &quot;variable1&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hhcl92YXJpYWJsZTIgPC0gdmFyaWFibGUxXG5jaGFyX3ZhcmlhYmxlMlxuYGBgIn0= -->
+<pre class="r"><code>char_variable2 &lt;- variable1
 char_variable2</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExXG4ifQ== -->
+<pre><code>[1] 11</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can identify the type of variable (numeric, character) using <code>is()</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2luZyBpcygpXG5pcyg1KVxuXG4jIFRyeSBpZGVudGlmeWluZyB0aGUgdHlwZSBvZiB2YXJpYWJsZSBmb3IgY2hhcl92YXJpYWJsZTFcblxuIyBIb3cgYWJvdXQgY2hhcl92YXJpYWJsZTI/XG5cbiMgV2hhdCBpcyBnb2luZyBvbj9cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2luZyBpcygpXG5pcyg1KVxuYGBgIn0= -->
 <pre class="r"><code># Using is()
-is(5)
-
-# Try identifying the type of variable for char_variable1
-
+is(5)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibnVtZXJpY1wiIFwidmVjdG9yXCIgXG4ifQ== -->
+<pre><code>[1] &quot;numeric&quot; &quot;vector&quot; </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUcnkgaWRlbnRpZnlpbmcgdGhlIHR5cGUgb2YgdmFyaWFibGUgZm9yIGNoYXJfdmFyaWFibGUxXG4jIEhvdyBhYm91dCBjaGFyX3ZhcmlhYmxlMj9cbiMgV2hhdCBpcyBnb2luZyBvbj9cbmBgYCJ9 -->
+<pre class="r"><code># Try identifying the type of variable for char_variable1
 # How about char_variable2?
-
 # What is going on?</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -313,12 +345,10 @@ is(5)
 <p>You can also make numbers into strings: just put a quote around them!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtX3N0cmluZyA8LSAnNCdcbmFjdHVhbF9udW0gPC0gNFxuXG4jIFRyeSBpZGVudGlmeWluZyB0aGUgdHlwZXMgb2YgbnVtX3N0cmluZyBhbmQgYWN0dWFsX251bVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtX3N0cmluZyA8LSAnNCdcbmFjdHVhbF9udW0gPC0gNFxuIyBUcnkgaWRlbnRpZnlpbmcgdGhlIHR5cGVzIG9mIG51bV9zdHJpbmcgYW5kIGFjdHVhbF9udW1cbmBgYCJ9 -->
 <pre class="r"><code>num_string &lt;- '4'
 actual_num &lt;- 4
-
-# Try identifying the types of num_string and actual_num
-</code></pre>
+# Try identifying the types of num_string and actual_num</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -332,20 +362,41 @@ actual_num &lt;- 4
 <p>We saw above that you can do basic arithmetic in R by just using mathematical symbols, e.g. <strong>+</strong>. But for more complicated things, programming languages use things called <em>functions</em>. A function is something that wraps a whole set of operations so that you can invoke those operations in a single command. You have already used another function earlier in this class, <code>is()</code>. Let’s take a look at another example: there’s a function, <code>sum()</code>, that can add numbers, just like <strong>+</strong> can. Let’s try it:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxXG52YXJpYWJsZTJcbnN1bSh2YXJpYWJsZTEsIHZhcmlhYmxlMilcbmBgYCJ9 -->
-<pre class="r"><code>variable1
-variable2
-sum(variable1, variable2)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxXG5gYGAifQ== -->
+<pre class="r"><code>variable1</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDExXG4ifQ== -->
+<pre><code>[1] 11</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUyXG5gYGAifQ== -->
+<pre class="r"><code>variable2</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDRcbiJ9 -->
+<pre><code>[1] 4</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtKHZhcmlhYmxlMSwgdmFyaWFibGUyKVxuYGBgIn0= -->
+<pre class="r"><code>sum(variable1, variable2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDE1XG4ifQ== -->
+<pre><code>[1] 15</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Functions are their own type! You can try using <code>is()</code> to check this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaXMoc3VtKVxuaXMoaXMpXG5gYGAifQ== -->
-<pre class="r"><code>is(sum)
-is(is)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaXMoc3VtKVxuYGBgIn0= -->
+<pre class="r"><code>is(sum)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZnVuY3Rpb25cIiAgICAgICAgIFwiT3B0aW9uYWxGdW5jdGlvblwiIFwiUG9zc2libGVNZXRob2RcIiAgXG4ifQ== -->
+<pre><code>[1] &quot;function&quot;         &quot;OptionalFunction&quot; &quot;PossibleMethod&quot;  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaXMoaXMpXG5gYGAifQ== -->
+<pre class="r"><code>is(is)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZnVuY3Rpb25cIiAgICAgICAgIFwiT3B0aW9uYWxGdW5jdGlvblwiIFwiUG9zc2libGVNZXRob2RcIiAgXG4ifQ== -->
+<pre><code>[1] &quot;function&quot;         &quot;OptionalFunction&quot; &quot;PossibleMethod&quot;  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Functions are always followed by <code>()</code> when you use them. When you use a function, often you are telling it to perform an operation on something else (e.g. a variable); in the examples above, we’re performing the <code>sum()</code> function on <em>variable1</em> and <em>variable2</em>, and we’re performing the <code>is()</code> function on <code>sum</code> and on itself. These are called arguments, and are <em>passed</em> to the function inside the parentheses.</p>
@@ -358,6 +409,10 @@ is(is)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHMoKVxuYGBgIn0= -->
 <pre class="r"><code>ls()</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiYWN0dWFsX251bVwiICAgICBcImNoYXJcIiAgICAgICAgICAgXCJjaGFyX3NlbnRlbmNlXCIgIFwiY2hhcl92YXJpYWJsZTFcIiBcImNoYXJfdmFyaWFibGUyXCJcbls2XSBcIm51bV9zdHJpbmdcIiAgICAgXCJ2YXJpYWJsZTFcIiAgICAgIFwidmFyaWFibGUyXCIgICAgIFxuIn0= -->
+<pre><code>[1] &quot;actual_num&quot;     &quot;char&quot;           &quot;char_sentence&quot;  &quot;char_variable1&quot; &quot;char_variable2&quot;
+[6] &quot;num_string&quot;     &quot;variable1&quot;      &quot;variable2&quot;     </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Check out the <strong>Environment</strong> window on the top right! You can actually also see all your variables loaded in there, with a short summary of what’s in them. This is a super convenient feature of programming in Rstudio.</p>
@@ -367,10 +422,9 @@ is(is)</code></pre>
 <p>Another really useful function is the <code>paste</code> function; this function allows you to combine <em>strings</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzZWFyY2hfcHJvZ3JhbSA8LSAnU1VSUCdcbnllYXIgPC0gJzIwMTknXG5cbmN1cnJlbnRfcHJvZ3JhbSA8LSBwYXN0ZShyZXNlYXJjaF9wcm9ncmFtLCB5ZWFyKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzZWFyY2hfcHJvZ3JhbSA8LSAnU1VSUCdcbnllYXIgPC0gJzIwMTknXG5jdXJyZW50X3Byb2dyYW0gPC0gcGFzdGUocmVzZWFyY2hfcHJvZ3JhbSwgeWVhcilcbmBgYCJ9 -->
 <pre class="r"><code>research_program &lt;- 'SURP'
 year &lt;- '2019'
-
 current_program &lt;- paste(research_program, year)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -378,10 +432,9 @@ current_program &lt;- paste(research_program, year)</code></pre>
 <p>Notice that the code above didn’t print anything out. That’s because we directed the output of the <code>paste</code> function into a variable, <em>current_program</em>. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaW5kIGFuIFIgZnVuY3Rpb24gdG8gcHJpbnQgb3V0IGEgdmFyaWFibGUsIGFuZCB1c2UgaXQgdG8gcHJpbnQgd2hhdGV2ZXJcbiMgdGhlIGN1cnJlbnRfcHJvZ3JhbSB2YXJpYWJsZSBpcyBzdG9yaW5nXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaW5kIGFuIFIgZnVuY3Rpb24gdG8gcHJpbnQgb3V0IGEgdmFyaWFibGUsIGFuZCB1c2UgaXQgdG8gcHJpbnQgd2hhdGV2ZXJcbiMgdGhlIGN1cnJlbnRfcHJvZ3JhbSB2YXJpYWJsZSBpcyBzdG9yaW5nXG5gYGAifQ== -->
 <pre class="r"><code># Find an R function to print out a variable, and use it to print whatever
-# the current_program variable is storing
-</code></pre>
+# the current_program variable is storing</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -398,10 +451,9 @@ current_program &lt;- paste(research_program, year)</code></pre>
 <p>Notice that when we used paste above, the function automatically put a space between our two strings. It’s often really useful to combine strings with a different character, for example, a dash. Try to read the documentation for <code>paste()</code> to figure out how to do this.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb21iaW5lIHRoZSByZXNlYXJjaF9wcm9ncmFtIGFuZCB5ZWFyIHZhcmlhYmxlcyB1c2luZyBqdXN0IGEgZGFzaCBiZXR3ZWVuXG4jIHRoZW0gaW5zdGVhZCBvZiBhIHNwYWNlXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb21iaW5lIHRoZSByZXNlYXJjaF9wcm9ncmFtIGFuZCB5ZWFyIHZhcmlhYmxlcyB1c2luZyBqdXN0IGEgZGFzaCBiZXR3ZWVuXG4jIHRoZW0gaW5zdGVhZCBvZiBhIHNwYWNlXG5gYGAifQ== -->
 <pre class="r"><code># Combine the research_program and year variables using just a dash between
-# them instead of a space
-</code></pre>
+# them instead of a space</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
