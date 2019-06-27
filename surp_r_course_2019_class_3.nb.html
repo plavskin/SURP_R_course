@@ -174,7 +174,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore"><div style="white-space: pre-line;">NYU SURP 2019 R course
-Class 3: Vectors: doing stuff to numbers and characters</div></h1>
+Class 3: Functions and Vectors</div></h1>
 <h4 class="author"><em>Eugene Plavskin</em></h4>
 <h4 class="author"><em>Grace Avecilla</em></h4>
 <h4 class="date"><em>06/27/2019</em></h4>
@@ -184,36 +184,132 @@ Class 3: Vectors: doing stuff to numbers and characters</div></h1>
 <div id="TOC">
 <ul>
 <li><a href="#review-from-last-time">Review from last time</a></li>
-<li><a href="#introduction-to-vectors">Introduction to vectors</a></li>
-<li><a href="#making-consecutive-sequences">Making consecutive sequences</a><ul>
-<li><a href="#operations-on-vectors-of-numbers">Operations on vectors of numbers</a></li>
-<li><a href="#operations-on-vectors-of-characters">Operations on vectors of characters</a></li>
-<li><a href="#length">length()</a></li>
-<li><a href="#indexing">Indexing</a></li>
-<li><a href="#converting-between-numeric-and-character-types">Converting between numeric and character types</a></li>
+<li><a href="#functions">Functions</a><ul>
+<li><a href="#adding-with-functions">Adding with functions</a></li>
+<li><a href="#looking-at-the-environment">Looking at the <strong>Environment</strong></a></li>
+<li><a href="#combining-strings">Combining strings</a></li>
 </ul></li>
+<li><a href="#introduction-to-vectors">Introduction to vectors</a></li>
+<li><a href="#making-consecutive-sequences">Making consecutive sequences</a></li>
+<li><a href="#operations-on-vectors-of-numbers">Operations on vectors of numbers</a></li>
+<li><a href="#things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time">Things we hope you’ve learned today (and will hopefully remember next time)</a></li>
 </ul>
 </div>
 
 <!-- rnb-text-begin -->
 <div id="review-from-last-time" class="section level1">
 <h1>Review from last time</h1>
-<p>Let’s use R to combine variables holding each of our names into a third variable that holds the combined name</p>
+<p>Let’s review variables and types</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgdHdvIHZhcmlhYmxlczogbGFzdF9uYW1lIGFuZCBmaXJzdF9uYW1lLCBob2xkaW5nIHlvdXIgbGFzdCBhbmQgeW91clxuIyBmaXJzdCBuYW1lLCByZXNwZWN0aXZlbHlcblxuIyBDb21iaW5lIHRoZXNlIHR3byB2YXJpYWJsZXMgaW50byBhIHRoaXJkIHZhcmlhYmxlLCBmdWxsX25hbWUsIHRoYXQgY29udGFpbnNcbiMgeW91ciBsYXN0IG5hbWUgZm9sbG93ZWQgYnkgeW91ciBmaXJzdCBuYW1lLCB3aXRoIGEgc2VtaWNvbG9uIGFuZCBzcGFjZSBpblxuIyBiZXR3ZWVlblxuXG4jIEdldCBSIHRvIHByaW50IG91dCBmdWxsX25hbWUgb24gdGhlIHNjcmVlblxuYGBgIn0= -->
-<pre class="r"><code># Create two variables: last_name and first_name, holding your last and your
-# first name, respectively
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2YXJpYWJsZSB0aGF0IGhvbGRzIHRoZSBudW1iZXIgNTNcblxuIyBDcmVhdGUgYSB2YXJpYWJsZSB0aGF0IGhvbGRzIHR3byB0aW1lcyB0aGUgdmFsdWUgb2YgdGhlIGZpcnN0IHZhcmlhYmxlXG5cbiMgQ3JlYXRlIGEgdmFyaWFibGUgdGhhdCBob2xkcyB0aGUgd29yZCBcImJpb2xvZ3lcIlxuXG4jIEdldCBSIHRvIHRlbGwgeW91IHRoZSBcInR5cGVcIiBvZiB0aGUgbGFzdCB2YXJpYWJsZSB5b3UgY3JlYXRlZFxuXG4jIFdoYXQgaGFwcGVucyBpZiB5b3UgdHJ5IHRvIGFkZCB0aGUgdHdvIFwiYmlvbG9neVwiIHZhcmlhYmxlcyB0b2dldGhlcj8gV2h5P1xuXG5gYGAifQ== -->
+<pre class="r"><code># Create a variable that holds the number 53
 
-# Combine these two variables into a third variable, full_name, that contains
-# your last name followed by your first name, with a semicolon and space in
-# betweeen
+# Create a variable that holds two times the value of the first variable
 
-# Get R to print out full_name on the screen</code></pre>
+# Create a variable that holds the word &quot;biology&quot;
+
+# Get R to tell you the &quot;type&quot; of the last variable you created
+
+# What happens if you try to add the two &quot;biology&quot; variables together? Why?
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Write a code chunk below this line to find out what variables are in your environment using a function, and compare them to the variables listed in the <strong>Environment</strong> window in Rstudio</p>
+</div>
+<div id="functions" class="section level1">
+<h1>Functions</h1>
+<div id="adding-with-functions" class="section level2">
+<h2>Adding with functions</h2>
+<p>We’ve seen that you can do basic arithmetic in R by just using mathematical symbols, e.g. <strong>+</strong>. But for more complicated things, programming languages use things called <em>functions</em>. A function is something that wraps a whole set of operations so that you can invoke those operations in a single command. You have already used another function in the last class, <code>is()</code>. Let’s take a look at another example: there’s a function, <code>sum()</code>, that can add numbers, just like <strong>+</strong> can. Let’s try it:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmFyaWFibGUxIDwtIDVcbnZhcmlhYmxlMiA8LSAzXG5zdW0odmFyaWFibGUxLCB2YXJpYWJsZTIpXG5gYGAifQ== -->
+<pre class="r"><code>variable1 &lt;- 5
+variable2 &lt;- 3
+sum(variable1, variable2)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Functions are their own type! You can try using <code>is()</code> to check this:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaXMoc3VtKVxuaXMoaXMpXG5gYGAifQ== -->
+<pre class="r"><code>is(sum)
+is(is)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Functions are always followed by <code>()</code> when you use them. When you use a function, often you are telling it to perform an operation on something else (e.g. a variable); in the examples above, we’re performing the <code>sum()</code> function on <em>variable1</em> and <em>variable2</em>, and we’re performing the <code>is()</code> function on <code>sum</code> and on itself. These are called arguments, and are <em>passed</em> to the function inside the parentheses.</p>
+</div>
+<div id="looking-at-the-environment" class="section level2">
+<h2>Looking at the <strong>Environment</strong></h2>
+<p>Some functions don’t need to take any arguments. For example, you can find out what variables you have loaded in your <em>environment</em> at anytime using <code>ls()</code>. This will list all your variables, any custom functions you may have written, etc.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubHMoKVxuYGBgIn0= -->
+<pre class="r"><code>ls()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Check out the <strong>Environment</strong> window on the top right! You can actually also see all your variables loaded in there, with a short summary of what’s in them. This is a super convenient feature of programming in Rstudio.</p>
+</div>
+<div id="combining-strings" class="section level2">
+<h2>Combining strings</h2>
+<p>Another really useful function is the <code>paste</code> function; this function allows you to combine <em>strings</em>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzZWFyY2hfcHJvZ3JhbSA8LSAnU1VSUCdcbnllYXIgPC0gJzIwMTknXG5cbmN1cnJlbnRfcHJvZ3JhbSA8LSBwYXN0ZShyZXNlYXJjaF9wcm9ncmFtLCB5ZWFyKVxuYGBgIn0= -->
+<pre class="r"><code>research_program &lt;- 'SURP'
+year &lt;- '2019'
+
+current_program &lt;- paste(research_program, year)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Notice that the code above didn’t print anything out. That’s because we directed the output of the <code>paste</code> function into a variable, <em>current_program</em>. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGaW5kIGFuIFIgZnVuY3Rpb24gdG8gcHJpbnQgb3V0IGEgdmFyaWFibGUsIGFuZCB1c2UgaXQgdG8gcHJpbnQgd2hhdGV2ZXJcbiMgdGhlIGN1cnJlbnRfcHJvZ3JhbSB2YXJpYWJsZSBpcyBzdG9yaW5nXG5cbmBgYCJ9 -->
+<pre class="r"><code># Find an R function to print out a variable, and use it to print whatever
+# the current_program variable is storing
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>You can learn about a function by reading its documentation. You can access the documentation with <code>?</code>, for example, type <code>?paste</code> into your console. You will see the help text pop up in the bottom right Help box in Rstudio.</p>
+<p><code>?</code> is one of the more important keys for you to know. Seriously, many issues are averted by first checking the documentation. Documentation usually has:</p>
+<ul>
+<li>A description of the intention of the function</li>
+<li>How to use it, ie where to put what arguments</li>
+<li>A description of what those arguments should be</li>
+<li>Details, and what value they return</li>
+<li>And if you’re lucky, examples of usage</li>
+</ul>
+<p>In practice, this information can sometimes be a bit dense and technical. It can be sometimes helpful to just read the ‘description’ on top, and then scroll all the way down to the ‘examples’ section at the bottom of the help function.</p>
+<p>Notice that when we used <code>paste</code> above, the function automatically put a space between our two strings. It’s often really useful to combine strings using a different character between them, for example, a dash. Try to read the documentation for <code>paste()</code> to figure out how to do this.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb21iaW5lIHRoZSByZXNlYXJjaF9wcm9ncmFtIGFuZCB5ZWFyIHZhcmlhYmxlcyB1c2luZyBqdXN0IGEgZGFzaCBiZXR3ZWVuXG4jIHRoZW0gaW5zdGVhZCBvZiBhIHNwYWNlXG5cbmBgYCJ9 -->
+<pre class="r"><code># Combine the research_program and year variables using just a dash between
+# them instead of a space
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Finally, paste and sum can actually both take more than two inputs!</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUcnkgdXNpbmcgc3VtIHRvIGdldCB0aGUgc3VtIG9mIDMsIDQsIGFuZCA1XG5cbiMgVHJ5IHVzaW5nIHBhc3RlIHRvIGNvbWJpbmUgdGhlIHJlc2VhcmNoIHByb2dyYW0gYW5kIHllYXIgdmFyaWFibGVzLCBhcyB3ZWxsIGFzXG4jIGEgc3RyaW5nIHRoYXQgc2F5cyBcIk5ZVVwiLCBzZXBhcmF0aW5nIHRoZSAzIHN0cmluZ3Mgd2l0aCBhIHBlcmlvZFxuXG5gYGAifQ== -->
+<pre class="r"><code># Try using sum to get the sum of 3, 4, and 5
+
+# Try using paste to combine the research program and year variables, as well as
+# a string that says &quot;NYU&quot;, separating the 3 strings with a period
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
 </div>
 <div id="introduction-to-vectors" class="section level1">
 <h1>Introduction to vectors</h1>
@@ -226,9 +322,6 @@ Class 3: Vectors: doing stuff to numbers and characters</div></h1>
 vector_1 &lt;- c(1, 4, 3, 18)
 print(vector_1)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdICAxICA0ICAzIDE4XG4ifQ== -->
-<pre><code>[1]  1  4  3 18</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can use variables to define vectors too! Try it below:</p>
@@ -248,8 +341,8 @@ print(vector_1)</code></pre>
 <p>Vectors can also hold character types!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3IsIGNoYXJfdmVjdG9yXzEgY29udGFpbmluZyBib3RoIHN0cmluZ3MgYW5kIG51bWJlcnMsIGFuZCBwcmludCBpdCBvdXRcblxuYGBgIn0= -->
-<pre class="r"><code># Create a vector, char_vector_1 containing both strings and numbers, and print it out
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3IsIGNoYXJfdmVjdG9yXzEgY29udGFpbmluZyBtdWx0aXBsZSBzdHJpbmdzLCBhbmQgcHJpbnQgaXQgb3V0XG5cbmBgYCJ9 -->
+<pre class="r"><code># Create a vector, char_vector_1 containing multiple strings, and print it out
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -257,12 +350,12 @@ print(vector_1)</code></pre>
 <p>Let’s check the <em>types</em> that these vectors belong to</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjayB0aGUgdHlwZSBvZiBib2JfdGhlX3ZlY3RvclxuXG4jIGNoZWNrIHRoZSB0eXBlIG9mIGNoYXJfdmVjdG9yXzFcblxuIyBieSB0aGUgd2F5Li4uIHdoYXQgaXMgdGhlIHR5cGUgb2YgYygpP1xuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjayB0aGUgdHlwZSBvZiBib2JfdGhlX3ZlY3RvclxuXG4jIGNoZWNrIHRoZSB0eXBlIG9mIGNoYXJfdmVjdG9yXzFcblxuIyBieSB0aGUgd2F5Li4uIHdoYXQgaXMgdGhlIHR5cGUgb2YgYywgYXMgaW4sIHRoZSB0aGluZyB5b3UgcHV0IGJlZm9yZSB5b3VyIHZlY3Rvcj9cblxuYGBgIn0= -->
 <pre class="r"><code># check the type of bob_the_vector
 
 # check the type of char_vector_1
 
-# by the way... what is the type of c()?
+# by the way... what is the type of c, as in, the thing you put before your vector?
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -295,46 +388,89 @@ print(vector_1)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>There are three things that make seq really powerful compared to just typing out vectors of numbers by hand: 1. It can generate reaaaaaally long sequences of numbers 2. Like all functions, it can use variables as inputs, which means you don’t have to change your whole code every time you change your mind about what numbers you’re interested in working with 3. When you want to make a vector of a certain length, it will do the math for you of what the spacing between your numbers needs to look like</p>
-<div id="operations-on-vectors-of-numbers" class="section level2">
-<h2>Operations on vectors of numbers</h2>
+<p>Let’s try using some of this!</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBNYWtlIGEgdmFyaWFibGUgbnVtYmVyX2VsZW1lbnRzLCB3aGljaCB3aWxsIHRlbGwgeW91IGhvdyBtYW55IG51bWJlcnMgeW91IHdhbnRcbiMgaW4geW91ciBmaW5hbCB2ZWN0b3JcblxuIyBNYWtlIGEgdmFyaWFibGUgZmlyc3RfbnVtYmVyLCBjb250YWluaW5nIGFueSBudW1iZXIgeW91IHdhbnQgeW91ciB2ZWN0b3IgdG9cbiMgc3RhcnQgd2l0aFxuXG4jIE1ha2UgYSB2YXJpYWJsZSBsYXN0X251bWJlciwgY29udGFpbmluZyBhbnkgbnVtYmVyIHlvdSB3YW50IHlvdXIgdmVjdG9yIHRvXG4jIGVuZCB3aXRoXG5cbiMgVXNlIGZpcnN0X251bWJlciwgbGFzdF9udW1iZXIsIGFuZCBudW1iZXJfZWxlbWVudHMgYXMgYXJndW1lbnRzIHRvIHNlcSB0b1xuIyBjcmVhdGUgeW91ciB2ZWN0b3IsIGZpbmFsX3ZlY3RvclxuXG5gYGAifQ== -->
+<pre class="r"><code># Make a variable number_elements, which will tell you how many numbers you want
+# in your final vector
+
+# Make a variable first_number, containing any number you want your vector to
+# start with
+
+# Make a variable last_number, containing any number you want your vector to
+# end with
+
+# Use first_number, last_number, and number_elements as arguments to seq to
+# create your vector, final_vector
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Relatedly, a really useful function in R is <code>length()</code>. It can tell you how long your vector is (how many elements are in your vector)</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2UgbGVuZ3RoKCkgdG8gZmluZCBvdXQgaG93IGxvbmcgbnVtYmVyX2VsZW1lbnRzIGlzXG5cbiMgVXNlIGxlbmd0aCgpIHRvIGZpbmQgb3V0IGhvdyBsb25nIGZpbmFsX3ZlY3RvciBpc1xuXG4jIERvZXMgdGhpcyBtYWtlIHNlbnNlP1xuXG5gYGAifQ== -->
+<pre class="r"><code># Use length() to find out how long number_elements is
+
+# Use length() to find out how long final_vector is
+
+# Does this make sense?
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="operations-on-vectors-of-numbers" class="section level1">
+<h1>Operations on vectors of numbers</h1>
+<p>One of the best things about vectors that will come up again and again soon is that you can do operations on them, just like with numbers. Here’s one example:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2YXJpYWJsZSBob2xkaW5nIGEgdmVjdG9yIHRoYXQgY29udGFpbnMgYW4gZXZlbmx5IHNwYWNlZCBzZXF1ZW5jZSBvZlxuIyBmaXZlIG51bWJlcnMsIGZyb20gMiB0byA0XG5cbiMgQWRkIDMgdG8gdGhlIHZlY3Rvci4gV2hhdCBoYXBwZW5zP1xuXG5gYGAifQ== -->
+<pre class="r"><code># Create a variable holding a vector that contains an evenly spaced sequence of
+# five numbers, from 2 to 4
+
+# Add 3 to the vector. What happens?
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>You can also add vectors together!</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmVjdG9yX2EgPC0gYygxLDIsMylcbnZlY3Rvcl9iIDwtIGMoNCw1LDYpXG5cbiMgQWRkIHZlY3Rvcl9hIGFuZCB2ZWN0b3JfYlxuYGBgIn0= -->
+<pre class="r"><code>vector_a &lt;- c(1,2,3)
+vector_b &lt;- c(4,5,6)
+
+# Add vector_a and vector_b</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>And finally… many math-related functions can work on vectors! <code>sum()</code> is a great example of this.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3Igb2YgY29uc2VjdXRpdmUgbnVtYmVycyBiZXR3ZWVuIDEgYW5kIDEwMFxuXG4jIFVzZSBzdW0oKSB0byBhZGQgdXAgdGhvc2UgbnVtYmVyc1xuXG5gYGAifQ== -->
+<pre class="r"><code># Create a vector of consecutive numbers between 1 and 100
+
+# Use sum() to add up those numbers
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
+<div id="things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time" class="section level1">
+<h1>Things we hope you’ve learned today (and will hopefully remember next time)</h1>
 <ul>
-<li><p>Adding a single number to vector</p></li>
-<li><p>Adding two vectors of same size</p></li>
-<li><p>Warning: adding two vectors of different sizes</p></li>
+<li>How to look at your <strong>Environment</strong></li>
+<li>How to use functions, and what <em>arguments</em> are</li>
+<li>How to use <code>sum()</code>, <code>paste()</code>, <code>seq()</code></li>
+<li>Vectors are lists of either numeric or character type</li>
+<li>You can do math on numeric vectors</li>
 </ul>
-</div>
-<div id="operations-on-vectors-of-characters" class="section level2">
-<h2>Operations on vectors of characters</h2>
-<p>Paste function</p>
-</div>
-<div id="length" class="section level2">
-<h2>length()</h2>
-</div>
-<div id="indexing" class="section level2">
-<h2>Indexing</h2>
-<p>Using position names instead of numerical position indices</p>
 <!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5jbHVkZV9ncmFwaGljcygndmVjdG9yX2lsbHVzdHJhdGlvbl9uYW1lcy5wbmcnKVxuYGBgIn0= -->
-<pre class="r"><code>include_graphics('vector_illustration_names.png')</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5jbHVkZV9ncmFwaGljcygndmVjdG9yX2lsbHVzdHJhdGlvbjEucG5nJylcbmBgYCJ9 -->
-<pre class="r"><code>include_graphics('vector_illustration1.png')</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="converting-between-numeric-and-character-types" class="section level2">
-<h2>Converting between numeric and character types</h2>
-<!-- rnb-text-end -->
-</div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiB8CiAgfCBOWVUgU1VSUCAyMDE5IFIgY291cnNlCiAgfCBDbGFzcyAzOiBWZWN0b3JzOiBkb2luZyBzdHVmZiB0byBudW1iZXJzIGFuZCBjaGFyYWN0ZXJzCmF1dGhvcjoKLSBFdWdlbmUgUGxhdnNraW4KLSBHcmFjZSBBdmVjaWxsYQpkYXRlOiAiMDYvMjcvMjAxOSIKb3V0cHV0OgogIGh0bWxfbm90ZWJvb2s6CiAgICBjb2RlX2ZvbGRpbmc6IHNob3cKICAgIGRlcHRoOiAzCiAgICB0aWR5OiB5ZXMKICAgIHRvYzogeWVzCi0tLQojIFJldmlldyBmcm9tIGxhc3QgdGltZQpMZXQncyB1c2UgUiB0byBjb21iaW5lIHZhcmlhYmxlcyBob2xkaW5nIGVhY2ggb2Ygb3VyIG5hbWVzIGludG8gYSB0aGlyZCB2YXJpYWJsZSB0aGF0IGhvbGRzIHRoZSBjb21iaW5lZCBuYW1lCmBgYHtyfQojIENyZWF0ZSB0d28gdmFyaWFibGVzOiBsYXN0X25hbWUgYW5kIGZpcnN0X25hbWUsIGhvbGRpbmcgeW91ciBsYXN0IGFuZCB5b3VyCiMgZmlyc3QgbmFtZSwgcmVzcGVjdGl2ZWx5CgojIENvbWJpbmUgdGhlc2UgdHdvIHZhcmlhYmxlcyBpbnRvIGEgdGhpcmQgdmFyaWFibGUsIGZ1bGxfbmFtZSwgdGhhdCBjb250YWlucwojIHlvdXIgbGFzdCBuYW1lIGZvbGxvd2VkIGJ5IHlvdXIgZmlyc3QgbmFtZSwgd2l0aCBhIHNlbWljb2xvbiBhbmQgc3BhY2UgaW4KIyBiZXR3ZWVlbgoKIyBHZXQgUiB0byBwcmludCBvdXQgZnVsbF9uYW1lIG9uIHRoZSBzY3JlZW4KYGBgCgpXcml0ZSBhIGNvZGUgY2h1bmsgYmVsb3cgdGhpcyBsaW5lIHRvIGZpbmQgb3V0IHdoYXQgdmFyaWFibGVzIGFyZSBpbiB5b3VyIGVudmlyb25tZW50IHVzaW5nIGEgZnVuY3Rpb24sIGFuZCBjb21wYXJlIHRoZW0gdG8gdGhlIHZhcmlhYmxlcyBsaXN0ZWQgaW4gdGhlICoqRW52aXJvbm1lbnQqKiB3aW5kb3cgaW4gUnN0dWRpbwoKIyBJbnRyb2R1Y3Rpb24gdG8gdmVjdG9ycwoKU28gZmFyLCB3ZSd2ZSBiZWVuIHVzaW5nIFIgdG8gZG8gdGhpbmdzIHdlIGNhbiBlYXNpbHkgZG8gb24gb3VyIG93biwgb3Igd2l0aCBhIHNpbXBsZSBjYWxjdWxhdG9yLiBXZSBkb24ndCBuZWVkIFIgdG8gYWRkIHR3byBudW1iZXJzLiBCdXQgd2hlcmUgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2VzIHN0YXJ0IHRvIGdldCByZWFsbHkgcG93ZXJmdWwgaXMgd2hlbiB5b3UgaGF2ZSB0byBkbyB0aGUgc2FtZSB0aGluZyBvdmVyIGFuZCBvdmVyLiBUb2RheSwgd2UncmUgZ29pbmcgdG8gbGVhcm4gaG93IFIgZGVhbHMgd2l0aCBsaXN0cyBvZiBtdWx0aXBsZSBudW1iZXJzIG9yIHN0cmluZ3MuIFRoZXNlIGxpc3RzIGFyZSBjYWxsZWQgKnZlY3RvcnMqLiAoQWN0dWFsbHksIGEgJ2xpc3QnIGlzIGFsc28gYSB0aGluZyBpbiBSLCBidXQgaXQgbWVhbnMgc29tZXRoaW5nIHNsaWdodGx5IGRpZmZlcmVudC4uLiB2ZXJ5IGNvbmZ1c2luZy4gU28gbGV0J3Mgc3RpY2sgd2l0aCBjYWxsaW5nIHRoZXNlIHRoaW5ncyB2ZWN0b3JzLikKCldlIGNhbiBjcmVhdGUgYSB2ZWN0b3IgYnkgdXNpbmcgYGMoKWAsIHdpdGggdGhlIHRoaW5ncyB3ZSB3YW50IHRvIHB1dCBpbnNpZGUgdGhlIHZlY3RvciBnb2luZyBpbiBwYXJlbnRoZXNlcy4gRm9yIGV4YW1wbGU6CmBgYHtyfQojIENyZWF0ZSBhIHZlY3Rvcgp2ZWN0b3JfMSA8LSBjKDEsIDQsIDMsIDE4KQpwcmludCh2ZWN0b3JfMSkKYGBgCgpZb3UgY2FuIHVzZSB2YXJpYWJsZXMgdG8gZGVmaW5lIHZlY3RvcnMgdG9vISBUcnkgaXQgYmVsb3c6CmBgYHtyfQojIENyZWF0ZSAzIHZhcmlhYmxlcywgbmFtZWQgdmFyaWFibGVfMSwgdmFyaWFibGVfMiwgYW5kIGJvYiwgYW5kIGhhdmUgZWFjaCBvZgojIHRoZW0gaG9sZCBhIHNpbmdsZSBudW1iZXIKCiMgQ29tYmluZSB0aGVzZSB2YXJpYWJsZXMgaW4gYW55IG9yZGVyIHlvdSB3YW50IGludG8gYSB2ZWN0b3IgbmFtZWQgYm9iX3RoZV92ZWN0b3IKCiMgcHJpbnQgb3V0IGJvYl90aGVfdmVjdG9yCgpgYGAKClZlY3RvcnMgY2FuIGFsc28gaG9sZCBjaGFyYWN0ZXIgdHlwZXMhCmBgYHtyfQojIENyZWF0ZSBhIHZlY3RvciwgY2hhcl92ZWN0b3JfMSBjb250YWluaW5nIGJvdGggc3RyaW5ncyBhbmQgbnVtYmVycywgYW5kIHByaW50IGl0IG91dAoKYGBgCgpMZXQncyBjaGVjayB0aGUgKnR5cGVzKiB0aGF0IHRoZXNlIHZlY3RvcnMgYmVsb25nIHRvCmBgYHtyfQojIGNoZWNrIHRoZSB0eXBlIG9mIGJvYl90aGVfdmVjdG9yCgojIGNoZWNrIHRoZSB0eXBlIG9mIGNoYXJfdmVjdG9yXzEKCiMgYnkgdGhlIHdheS4uLiB3aGF0IGlzIHRoZSB0eXBlIG9mIGMoKT8KCmBgYAoKIyBNYWtpbmcgY29uc2VjdXRpdmUgc2VxdWVuY2VzCgpPbmUgcmVhbGx5IHVzZWZ1bCB0aGluZyB3ZSBjYW4gZG8gaW4gUiBpcyBtYWtlIHZlY3RvcnMgb2YgZXZlbmx5IHNwYWNlZCBudW1iZXJzLiBUbyBkbyB0aGlzLCB3ZSBjYW4gdXNlIHRoZSBgc2VxKClgIGZ1bmN0aW9uLiBMZXQncyB0cnkgdG8gdXNlIHRoZSBidWlsdC1pbiBSIGRvY3VtZW50YXRpb24gb2YgYHNlcSgpYCB0byBmaWd1cmUgb3V0IGhvdyB0byB1c2UgaXQuCmBgYHtyfQojIE9uIHlvdXIgb3duOgojIEJhc2VkIG9uIHRoZSBkb2N1bWVudGF0aW9uIGZyb20gb2Ygc2VxLCBtYWtlIHRoZSBzZXF1ZW5jZTogMSwgMiwgMywgNAoKIyBJbiBwYWlyczoKIyBOb3cgbWFrZSB0aGUgc2VxdWVuY2U6IDIsIDIuNSwgMywgMy41CgojIElkZW50aWZ5IHdoYXQgdmFsdWVzIGFyZSBjb3JyZXNwb25kaW5nIHRvIHdoYXQgYXJndW1lbnRzCgpgYGAKClNlcSBjYW4gd29yayBpbiBib3RoIGRpcmVjdGlvbnMgKGkuZS4sIHRoZSBudW1iZXJzIGRvbid0IGhhdmUgdG8gYmUgZ29pbmcgdXApCmBgYHtyfQojIFVzZSBzZXEgdG8gbWFrZSB0aGUgZm9sbG93aW5nIHNlcXVlbmNlOiA1LCAzLCAxLCAtMQoKYGBgCgpUaGVyZSBhcmUgdGhyZWUgdGhpbmdzIHRoYXQgbWFrZSBzZXEgcmVhbGx5IHBvd2VyZnVsIGNvbXBhcmVkIHRvIGp1c3QgdHlwaW5nIG91dCB2ZWN0b3JzIG9mIG51bWJlcnMgYnkgaGFuZDoKMS4gSXQgY2FuIGdlbmVyYXRlIHJlYWFhYWFhbGx5IGxvbmcgc2VxdWVuY2VzIG9mIG51bWJlcnMKMi4gTGlrZSBhbGwgZnVuY3Rpb25zLCBpdCBjYW4gdXNlIHZhcmlhYmxlcyBhcyBpbnB1dHMsIHdoaWNoIG1lYW5zIHlvdSBkb24ndCBoYXZlIHRvIGNoYW5nZSB5b3VyIHdob2xlIGNvZGUgZXZlcnkgdGltZSB5b3UgY2hhbmdlIHlvdXIgbWluZCBhYm91dCB3aGF0IG51bWJlcnMgeW91J3JlIGludGVyZXN0ZWQgaW4gd29ya2luZyB3aXRoCjMuIFdoZW4geW91IHdhbnQgdG8gbWFrZSBhIHZlY3RvciBvZiBhIGNlcnRhaW4gbGVuZ3RoLCBpdCB3aWxsIGRvIHRoZSBtYXRoIGZvciB5b3Ugb2Ygd2hhdCB0aGUgc3BhY2luZyBiZXR3ZWVuIHlvdXIgbnVtYmVycyBuZWVkcyB0byBsb29rIGxpa2UKCgojIyBPcGVyYXRpb25zIG9uIHZlY3RvcnMgb2YgbnVtYmVycwoKKiBBZGRpbmcgYSBzaW5nbGUgbnVtYmVyIHRvIHZlY3RvcgoKKiBBZGRpbmcgdHdvIHZlY3RvcnMgb2Ygc2FtZSBzaXplCgoqIFdhcm5pbmc6IGFkZGluZyB0d28gdmVjdG9ycyBvZiBkaWZmZXJlbnQgc2l6ZXMKCiMjIE9wZXJhdGlvbnMgb24gdmVjdG9ycyBvZiBjaGFyYWN0ZXJzCgpQYXN0ZSBmdW5jdGlvbgoKIyMgbGVuZ3RoKCkKCiMjIEluZGV4aW5nClVzaW5nIHBvc2l0aW9uIG5hbWVzIGluc3RlYWQgb2YgbnVtZXJpY2FsIHBvc2l0aW9uIGluZGljZXMKYGBge3J9CmluY2x1ZGVfZ3JhcGhpY3MoJ3ZlY3Rvcl9pbGx1c3RyYXRpb25fbmFtZXMucG5nJykKYGBgCgpgYGB7cn0KaW5jbHVkZV9ncmFwaGljcygndmVjdG9yX2lsbHVzdHJhdGlvbjEucG5nJykKYGBgCgojIyBDb252ZXJ0aW5nIGJldHdlZW4gbnVtZXJpYyBhbmQgY2hhcmFjdGVyIHR5cGVz</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiB8CiAgfCBOWVUgU1VSUCAyMDE5IFIgY291cnNlCiAgfCBDbGFzcyAzOiBGdW5jdGlvbnMgYW5kIFZlY3RvcnMKYXV0aG9yOgotIEV1Z2VuZSBQbGF2c2tpbgotIEdyYWNlIEF2ZWNpbGxhCmRhdGU6ICIwNi8yNy8yMDE5IgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCiMgUmV2aWV3IGZyb20gbGFzdCB0aW1lCgpMZXQncyByZXZpZXcgdmFyaWFibGVzIGFuZCB0eXBlcwoKYGBge3J9CiMgQ3JlYXRlIGEgdmFyaWFibGUgdGhhdCBob2xkcyB0aGUgbnVtYmVyIDUzCgojIENyZWF0ZSBhIHZhcmlhYmxlIHRoYXQgaG9sZHMgdHdvIHRpbWVzIHRoZSB2YWx1ZSBvZiB0aGUgZmlyc3QgdmFyaWFibGUKCiMgQ3JlYXRlIGEgdmFyaWFibGUgdGhhdCBob2xkcyB0aGUgd29yZCAiYmlvbG9neSIKCiMgR2V0IFIgdG8gdGVsbCB5b3UgdGhlICJ0eXBlIiBvZiB0aGUgbGFzdCB2YXJpYWJsZSB5b3UgY3JlYXRlZAoKIyBXaGF0IGhhcHBlbnMgaWYgeW91IHRyeSB0byBhZGQgdGhlIHR3byAiYmlvbG9neSIgdmFyaWFibGVzIHRvZ2V0aGVyPyBXaHk/CgpgYGAKCiMgRnVuY3Rpb25zCiMjIEFkZGluZyB3aXRoIGZ1bmN0aW9ucwpXZSd2ZSBzZWVuIHRoYXQgeW91IGNhbiBkbyBiYXNpYyBhcml0aG1ldGljIGluIFIgYnkganVzdCB1c2luZyBtYXRoZW1hdGljYWwgc3ltYm9scywgZS5nLiBfXytfXy4gQnV0IGZvciBtb3JlIGNvbXBsaWNhdGVkIHRoaW5ncywgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2VzIHVzZSB0aGluZ3MgY2FsbGVkICpmdW5jdGlvbnMqLiBBIGZ1bmN0aW9uIGlzIHNvbWV0aGluZyB0aGF0IHdyYXBzIGEgd2hvbGUgc2V0IG9mIG9wZXJhdGlvbnMgc28gdGhhdCB5b3UgY2FuIGludm9rZSB0aG9zZSBvcGVyYXRpb25zIGluIGEgc2luZ2xlIGNvbW1hbmQuIFlvdSBoYXZlIGFscmVhZHkgdXNlZCBhbm90aGVyIGZ1bmN0aW9uIGluIHRoZSBsYXN0IGNsYXNzLCBgaXMoKWAuIExldCdzIHRha2UgYSBsb29rIGF0IGFub3RoZXIgZXhhbXBsZTogdGhlcmUncyBhIGZ1bmN0aW9uLCBgc3VtKClgLCB0aGF0IGNhbiBhZGQgbnVtYmVycywganVzdCBsaWtlIF9fK19fIGNhbi4gTGV0J3MgdHJ5IGl0OgpgYGB7cn0KdmFyaWFibGUxIDwtIDUKdmFyaWFibGUyIDwtIDMKc3VtKHZhcmlhYmxlMSwgdmFyaWFibGUyKQpgYGAKCkZ1bmN0aW9ucyBhcmUgdGhlaXIgb3duIHR5cGUhIFlvdSBjYW4gdHJ5IHVzaW5nIGBpcygpYCB0byBjaGVjayB0aGlzOgpgYGB7cn0KaXMoc3VtKQppcyhpcykKYGBgCgpGdW5jdGlvbnMgYXJlIGFsd2F5cyBmb2xsb3dlZCBieSBgKClgIHdoZW4geW91IHVzZSB0aGVtLiBXaGVuIHlvdSB1c2UgYSBmdW5jdGlvbiwgb2Z0ZW4geW91IGFyZSB0ZWxsaW5nIGl0IHRvIHBlcmZvcm0gYW4gb3BlcmF0aW9uIG9uIHNvbWV0aGluZyBlbHNlIChlLmcuIGEgdmFyaWFibGUpOyBpbiB0aGUgZXhhbXBsZXMgYWJvdmUsIHdlJ3JlIHBlcmZvcm1pbmcgdGhlIGBzdW0oKWAgZnVuY3Rpb24gb24gKnZhcmlhYmxlMSogYW5kICp2YXJpYWJsZTIqLCBhbmQgd2UncmUgcGVyZm9ybWluZyB0aGUgYGlzKClgIGZ1bmN0aW9uIG9uIGBzdW1gIGFuZCBvbiBpdHNlbGYuIFRoZXNlIGFyZSBjYWxsZWQgYXJndW1lbnRzLCBhbmQgYXJlICpwYXNzZWQqIHRvIHRoZSBmdW5jdGlvbiBpbnNpZGUgdGhlIHBhcmVudGhlc2VzLgoKIyMgTG9va2luZyBhdCB0aGUgKipFbnZpcm9ubWVudCoqClNvbWUgZnVuY3Rpb25zIGRvbid0IG5lZWQgdG8gdGFrZSBhbnkgYXJndW1lbnRzLiBGb3IgZXhhbXBsZSwgeW91IGNhbiBmaW5kIG91dCB3aGF0IHZhcmlhYmxlcyB5b3UgaGF2ZSBsb2FkZWQgaW4geW91ciAqZW52aXJvbm1lbnQqIGF0IGFueXRpbWUgdXNpbmcgYGxzKClgLiBUaGlzIHdpbGwgbGlzdCBhbGwgeW91ciB2YXJpYWJsZXMsIGFueSBjdXN0b20gZnVuY3Rpb25zIHlvdSBtYXkgaGF2ZSB3cml0dGVuLCBldGMuCmBgYHtyfQpscygpCmBgYAoKQ2hlY2sgb3V0IHRoZSAqKkVudmlyb25tZW50Kiogd2luZG93IG9uIHRoZSB0b3AgcmlnaHQhIFlvdSBjYW4gYWN0dWFsbHkgYWxzbyBzZWUgYWxsIHlvdXIgdmFyaWFibGVzIGxvYWRlZCBpbiB0aGVyZSwgd2l0aCBhIHNob3J0IHN1bW1hcnkgb2Ygd2hhdCdzIGluIHRoZW0uIFRoaXMgaXMgYSBzdXBlciBjb252ZW5pZW50IGZlYXR1cmUgb2YgcHJvZ3JhbW1pbmcgaW4gUnN0dWRpby4KCiMjIENvbWJpbmluZyBzdHJpbmdzCkFub3RoZXIgcmVhbGx5IHVzZWZ1bCBmdW5jdGlvbiBpcyB0aGUgYHBhc3RlYCBmdW5jdGlvbjsgdGhpcyBmdW5jdGlvbiBhbGxvd3MgeW91IHRvIGNvbWJpbmUgKnN0cmluZ3MqLgpgYGB7cn0KcmVzZWFyY2hfcHJvZ3JhbSA8LSAnU1VSUCcKeWVhciA8LSAnMjAxOScKCmN1cnJlbnRfcHJvZ3JhbSA8LSBwYXN0ZShyZXNlYXJjaF9wcm9ncmFtLCB5ZWFyKQpgYGAKCk5vdGljZSB0aGF0IHRoZSBjb2RlIGFib3ZlIGRpZG4ndCBwcmludCBhbnl0aGluZyBvdXQuIFRoYXQncyBiZWNhdXNlIHdlIGRpcmVjdGVkIHRoZSBvdXRwdXQgb2YgdGhlIGBwYXN0ZWAgZnVuY3Rpb24gaW50byBhIHZhcmlhYmxlLCAqY3VycmVudF9wcm9ncmFtKi4gVG8gZ2V0IFIgdG8gcHJpbnQgb3V0IHRoZSBjdXJyZW50IHByb2dyYW0gdmFyaWFibGUsIHlvdSBjb3VsZCBqdXN0IHR5cGUgaXQgaW50byB5b3VyIGNvbnNvbGUsIG9yIHlvdSBjb3VsZCB1c2UgYSBmdW5jdGlvbiEgVHJ5IGdvb2dsaW5nIHRvIGZpbmQgYW4gUiBmdW5jdGlvbiB0aGF0IHByaW50cyBvdXQgYSB2YXJpYWJsZS4KYGBge3J9CiMgRmluZCBhbiBSIGZ1bmN0aW9uIHRvIHByaW50IG91dCBhIHZhcmlhYmxlLCBhbmQgdXNlIGl0IHRvIHByaW50IHdoYXRldmVyCiMgdGhlIGN1cnJlbnRfcHJvZ3JhbSB2YXJpYWJsZSBpcyBzdG9yaW5nCgpgYGAKCllvdSBjYW4gbGVhcm4gYWJvdXQgYSBmdW5jdGlvbiBieSByZWFkaW5nIGl0cyBkb2N1bWVudGF0aW9uLiBZb3UgY2FuIGFjY2VzcyB0aGUgZG9jdW1lbnRhdGlvbiB3aXRoIGA/YCwgZm9yIGV4YW1wbGUsIHR5cGUgYD9wYXN0ZWAgaW50byB5b3VyIGNvbnNvbGUuIFlvdSB3aWxsIHNlZSB0aGUgaGVscCB0ZXh0IHBvcCB1cCBpbiB0aGUgYm90dG9tIHJpZ2h0IEhlbHAgYm94IGluIFJzdHVkaW8uCgpgP2AgaXMgb25lIG9mIHRoZSBtb3JlIGltcG9ydGFudCBrZXlzIGZvciB5b3UgdG8ga25vdy4gU2VyaW91c2x5LCBtYW55IGlzc3VlcyBhcmUgYXZlcnRlZCBieSBmaXJzdCBjaGVja2luZyB0aGUgZG9jdW1lbnRhdGlvbi4gRG9jdW1lbnRhdGlvbiB1c3VhbGx5IGhhczogCgoqIEEgZGVzY3JpcHRpb24gb2YgdGhlIGludGVudGlvbiBvZiB0aGUgZnVuY3Rpb24KKiBIb3cgdG8gdXNlIGl0LCBpZSB3aGVyZSB0byBwdXQgd2hhdCBhcmd1bWVudHMKKiBBIGRlc2NyaXB0aW9uIG9mIHdoYXQgdGhvc2UgYXJndW1lbnRzIHNob3VsZCBiZQoqIERldGFpbHMsIGFuZCB3aGF0IHZhbHVlIHRoZXkgcmV0dXJuCiogQW5kIGlmIHlvdSdyZSBsdWNreSwgZXhhbXBsZXMgb2YgdXNhZ2UKCkluIHByYWN0aWNlLCB0aGlzIGluZm9ybWF0aW9uIGNhbiBzb21ldGltZXMgYmUgYSBiaXQgZGVuc2UgYW5kIHRlY2huaWNhbC4gSXQgY2FuIGJlIHNvbWV0aW1lcyBoZWxwZnVsIHRvIGp1c3QgcmVhZCB0aGUgJ2Rlc2NyaXB0aW9uJyBvbiB0b3AsIGFuZCB0aGVuIHNjcm9sbCBhbGwgdGhlIHdheSBkb3duIHRvIHRoZSAnZXhhbXBsZXMnIHNlY3Rpb24gYXQgdGhlIGJvdHRvbSBvZiB0aGUgaGVscCBmdW5jdGlvbi4KCk5vdGljZSB0aGF0IHdoZW4gd2UgdXNlZCBgcGFzdGVgIGFib3ZlLCB0aGUgZnVuY3Rpb24gYXV0b21hdGljYWxseSBwdXQgYSBzcGFjZSBiZXR3ZWVuIG91ciB0d28gc3RyaW5ncy4gSXQncyBvZnRlbiByZWFsbHkgdXNlZnVsIHRvIGNvbWJpbmUgc3RyaW5ncyB1c2luZyBhIGRpZmZlcmVudCBjaGFyYWN0ZXIgYmV0d2VlbiB0aGVtLCBmb3IgZXhhbXBsZSwgYSBkYXNoLiBUcnkgdG8gcmVhZCB0aGUgZG9jdW1lbnRhdGlvbiBmb3IgYHBhc3RlKClgIHRvIGZpZ3VyZSBvdXQgaG93IHRvIGRvIHRoaXMuCmBgYHtyfQojIENvbWJpbmUgdGhlIHJlc2VhcmNoX3Byb2dyYW0gYW5kIHllYXIgdmFyaWFibGVzIHVzaW5nIGp1c3QgYSBkYXNoIGJldHdlZW4KIyB0aGVtIGluc3RlYWQgb2YgYSBzcGFjZQoKYGBgCgpGaW5hbGx5LCBwYXN0ZSBhbmQgc3VtIGNhbiBhY3R1YWxseSBib3RoIHRha2UgbW9yZSB0aGFuIHR3byBpbnB1dHMhCmBgYHtyfQojIFRyeSB1c2luZyBzdW0gdG8gZ2V0IHRoZSBzdW0gb2YgMywgNCwgYW5kIDUKCiMgVHJ5IHVzaW5nIHBhc3RlIHRvIGNvbWJpbmUgdGhlIHJlc2VhcmNoIHByb2dyYW0gYW5kIHllYXIgdmFyaWFibGVzLCBhcyB3ZWxsIGFzCiMgYSBzdHJpbmcgdGhhdCBzYXlzICJOWVUiLCBzZXBhcmF0aW5nIHRoZSAzIHN0cmluZ3Mgd2l0aCBhIHBlcmlvZAoKYGBgCgojIEludHJvZHVjdGlvbiB0byB2ZWN0b3JzCgpTbyBmYXIsIHdlJ3ZlIGJlZW4gdXNpbmcgUiB0byBkbyB0aGluZ3Mgd2UgY2FuIGVhc2lseSBkbyBvbiBvdXIgb3duLCBvciB3aXRoIGEgc2ltcGxlIGNhbGN1bGF0b3IuIFdlIGRvbid0IG5lZWQgUiB0byBhZGQgdHdvIG51bWJlcnMuIEJ1dCB3aGVyZSBwcm9ncmFtbWluZyBsYW5ndWFnZXMgc3RhcnQgdG8gZ2V0IHJlYWxseSBwb3dlcmZ1bCBpcyB3aGVuIHlvdSBoYXZlIHRvIGRvIHRoZSBzYW1lIHRoaW5nIG92ZXIgYW5kIG92ZXIuIFRvZGF5LCB3ZSdyZSBnb2luZyB0byBsZWFybiBob3cgUiBkZWFscyB3aXRoIGxpc3RzIG9mIG11bHRpcGxlIG51bWJlcnMgb3Igc3RyaW5ncy4gVGhlc2UgbGlzdHMgYXJlIGNhbGxlZCAqdmVjdG9ycyouIChBY3R1YWxseSwgYSAnbGlzdCcgaXMgYWxzbyBhIHRoaW5nIGluIFIsIGJ1dCBpdCBtZWFucyBzb21ldGhpbmcgc2xpZ2h0bHkgZGlmZmVyZW50Li4uIHZlcnkgY29uZnVzaW5nLiBTbyBsZXQncyBzdGljayB3aXRoIGNhbGxpbmcgdGhlc2UgdGhpbmdzIHZlY3RvcnMuKQoKV2UgY2FuIGNyZWF0ZSBhIHZlY3RvciBieSB1c2luZyBgYygpYCwgd2l0aCB0aGUgdGhpbmdzIHdlIHdhbnQgdG8gcHV0IGluc2lkZSB0aGUgdmVjdG9yIGdvaW5nIGluIHBhcmVudGhlc2VzLiBGb3IgZXhhbXBsZToKYGBge3J9CiMgQ3JlYXRlIGEgdmVjdG9yCnZlY3Rvcl8xIDwtIGMoMSwgNCwgMywgMTgpCnByaW50KHZlY3Rvcl8xKQpgYGAKCllvdSBjYW4gdXNlIHZhcmlhYmxlcyB0byBkZWZpbmUgdmVjdG9ycyB0b28hIFRyeSBpdCBiZWxvdzoKYGBge3J9CiMgQ3JlYXRlIDMgdmFyaWFibGVzLCBuYW1lZCB2YXJpYWJsZV8xLCB2YXJpYWJsZV8yLCBhbmQgYm9iLCBhbmQgaGF2ZSBlYWNoIG9mCiMgdGhlbSBob2xkIGEgc2luZ2xlIG51bWJlcgoKIyBDb21iaW5lIHRoZXNlIHZhcmlhYmxlcyBpbiBhbnkgb3JkZXIgeW91IHdhbnQgaW50byBhIHZlY3RvciBuYW1lZCBib2JfdGhlX3ZlY3RvcgoKIyBwcmludCBvdXQgYm9iX3RoZV92ZWN0b3IKCmBgYAoKVmVjdG9ycyBjYW4gYWxzbyBob2xkIGNoYXJhY3RlciB0eXBlcyEKYGBge3J9CiMgQ3JlYXRlIGEgdmVjdG9yLCBjaGFyX3ZlY3Rvcl8xIGNvbnRhaW5pbmcgbXVsdGlwbGUgc3RyaW5ncywgYW5kIHByaW50IGl0IG91dAoKYGBgCgpMZXQncyBjaGVjayB0aGUgKnR5cGVzKiB0aGF0IHRoZXNlIHZlY3RvcnMgYmVsb25nIHRvCmBgYHtyfQojIGNoZWNrIHRoZSB0eXBlIG9mIGJvYl90aGVfdmVjdG9yCgojIGNoZWNrIHRoZSB0eXBlIG9mIGNoYXJfdmVjdG9yXzEKCiMgYnkgdGhlIHdheS4uLiB3aGF0IGlzIHRoZSB0eXBlIG9mIGMsIGFzIGluLCB0aGUgdGhpbmcgeW91IHB1dCBiZWZvcmUgeW91ciB2ZWN0b3I/CgpgYGAKCiMgTWFraW5nIGNvbnNlY3V0aXZlIHNlcXVlbmNlcwoKT25lIHJlYWxseSB1c2VmdWwgdGhpbmcgd2UgY2FuIGRvIGluIFIgaXMgbWFrZSB2ZWN0b3JzIG9mIGV2ZW5seSBzcGFjZWQgbnVtYmVycy4gVG8gZG8gdGhpcywgd2UgY2FuIHVzZSB0aGUgYHNlcSgpYCBmdW5jdGlvbi4gTGV0J3MgdHJ5IHRvIHVzZSB0aGUgYnVpbHQtaW4gUiBkb2N1bWVudGF0aW9uIG9mIGBzZXEoKWAgdG8gZmlndXJlIG91dCBob3cgdG8gdXNlIGl0LgpgYGB7cn0KIyBPbiB5b3VyIG93bjoKIyBCYXNlZCBvbiB0aGUgZG9jdW1lbnRhdGlvbiBmcm9tIG9mIHNlcSwgbWFrZSB0aGUgc2VxdWVuY2U6IDEsIDIsIDMsIDQKCiMgSW4gcGFpcnM6CiMgTm93IG1ha2UgdGhlIHNlcXVlbmNlOiAyLCAyLjUsIDMsIDMuNQoKIyBJZGVudGlmeSB3aGF0IHZhbHVlcyBhcmUgY29ycmVzcG9uZGluZyB0byB3aGF0IGFyZ3VtZW50cwoKYGBgCgpTZXEgY2FuIHdvcmsgaW4gYm90aCBkaXJlY3Rpb25zIChpLmUuLCB0aGUgbnVtYmVycyBkb24ndCBoYXZlIHRvIGJlIGdvaW5nIHVwKQpgYGB7cn0KIyBVc2Ugc2VxIHRvIG1ha2UgdGhlIGZvbGxvd2luZyBzZXF1ZW5jZTogNSwgMywgMSwgLTEKCmBgYAoKVGhlcmUgYXJlIHRocmVlIHRoaW5ncyB0aGF0IG1ha2Ugc2VxIHJlYWxseSBwb3dlcmZ1bCBjb21wYXJlZCB0byBqdXN0IHR5cGluZyBvdXQgdmVjdG9ycyBvZiBudW1iZXJzIGJ5IGhhbmQ6CjEuIEl0IGNhbiBnZW5lcmF0ZSByZWFhYWFhYWxseSBsb25nIHNlcXVlbmNlcyBvZiBudW1iZXJzCjIuIExpa2UgYWxsIGZ1bmN0aW9ucywgaXQgY2FuIHVzZSB2YXJpYWJsZXMgYXMgaW5wdXRzLCB3aGljaCBtZWFucyB5b3UgZG9uJ3QgaGF2ZSB0byBjaGFuZ2UgeW91ciB3aG9sZSBjb2RlIGV2ZXJ5IHRpbWUgeW91IGNoYW5nZSB5b3VyIG1pbmQgYWJvdXQgd2hhdCBudW1iZXJzIHlvdSdyZSBpbnRlcmVzdGVkIGluIHdvcmtpbmcgd2l0aAozLiBXaGVuIHlvdSB3YW50IHRvIG1ha2UgYSB2ZWN0b3Igb2YgYSBjZXJ0YWluIGxlbmd0aCwgaXQgd2lsbCBkbyB0aGUgbWF0aCBmb3IgeW91IG9mIHdoYXQgdGhlIHNwYWNpbmcgYmV0d2VlbiB5b3VyIG51bWJlcnMgbmVlZHMgdG8gbG9vayBsaWtlCgpMZXQncyB0cnkgdXNpbmcgc29tZSBvZiB0aGlzIQpgYGB7cn0KIyBNYWtlIGEgdmFyaWFibGUgbnVtYmVyX2VsZW1lbnRzLCB3aGljaCB3aWxsIHRlbGwgeW91IGhvdyBtYW55IG51bWJlcnMgeW91IHdhbnQKIyBpbiB5b3VyIGZpbmFsIHZlY3RvcgoKIyBNYWtlIGEgdmFyaWFibGUgZmlyc3RfbnVtYmVyLCBjb250YWluaW5nIGFueSBudW1iZXIgeW91IHdhbnQgeW91ciB2ZWN0b3IgdG8KIyBzdGFydCB3aXRoCgojIE1ha2UgYSB2YXJpYWJsZSBsYXN0X251bWJlciwgY29udGFpbmluZyBhbnkgbnVtYmVyIHlvdSB3YW50IHlvdXIgdmVjdG9yIHRvCiMgZW5kIHdpdGgKCiMgVXNlIGZpcnN0X251bWJlciwgbGFzdF9udW1iZXIsIGFuZCBudW1iZXJfZWxlbWVudHMgYXMgYXJndW1lbnRzIHRvIHNlcSB0bwojIGNyZWF0ZSB5b3VyIHZlY3RvciwgZmluYWxfdmVjdG9yCgpgYGAKClJlbGF0ZWRseSwgYSByZWFsbHkgdXNlZnVsIGZ1bmN0aW9uIGluIFIgaXMgYGxlbmd0aCgpYC4gSXQgY2FuIHRlbGwgeW91IGhvdyBsb25nIHlvdXIgdmVjdG9yIGlzIChob3cgbWFueSBlbGVtZW50cyBhcmUgaW4geW91ciB2ZWN0b3IpCmBgYHtyfQojIFVzZSBsZW5ndGgoKSB0byBmaW5kIG91dCBob3cgbG9uZyBudW1iZXJfZWxlbWVudHMgaXMKCiMgVXNlIGxlbmd0aCgpIHRvIGZpbmQgb3V0IGhvdyBsb25nIGZpbmFsX3ZlY3RvciBpcwoKIyBEb2VzIHRoaXMgbWFrZSBzZW5zZT8KCmBgYAoKIyBPcGVyYXRpb25zIG9uIHZlY3RvcnMgb2YgbnVtYmVycwoKT25lIG9mIHRoZSBiZXN0IHRoaW5ncyBhYm91dCB2ZWN0b3JzIHRoYXQgd2lsbCBjb21lIHVwIGFnYWluIGFuZCBhZ2FpbiBzb29uIGlzIHRoYXQgeW91IGNhbiBkbyBvcGVyYXRpb25zIG9uIHRoZW0sIGp1c3QgbGlrZSB3aXRoIG51bWJlcnMuIEhlcmUncyBvbmUgZXhhbXBsZToKYGBge3J9CiMgQ3JlYXRlIGEgdmFyaWFibGUgaG9sZGluZyBhIHZlY3RvciB0aGF0IGNvbnRhaW5zIGFuIGV2ZW5seSBzcGFjZWQgc2VxdWVuY2Ugb2YKIyBmaXZlIG51bWJlcnMsIGZyb20gMiB0byA0CgojIEFkZCAzIHRvIHRoZSB2ZWN0b3IuIFdoYXQgaGFwcGVucz8KCmBgYAoKWW91IGNhbiBhbHNvIGFkZCB2ZWN0b3JzIHRvZ2V0aGVyIQpgYGB7cn0KdmVjdG9yX2EgPC0gYygxLDIsMykKdmVjdG9yX2IgPC0gYyg0LDUsNikKCiMgQWRkIHZlY3Rvcl9hIGFuZCB2ZWN0b3JfYgpgYGAKCkFuZCBmaW5hbGx5Li4uIG1hbnkgbWF0aC1yZWxhdGVkIGZ1bmN0aW9ucyBjYW4gd29yayBvbiB2ZWN0b3JzISBgc3VtKClgIGlzIGEgZ3JlYXQgZXhhbXBsZSBvZiB0aGlzLgpgYGB7cn0KIyBDcmVhdGUgYSB2ZWN0b3Igb2YgY29uc2VjdXRpdmUgbnVtYmVycyBiZXR3ZWVuIDEgYW5kIDEwMAoKIyBVc2Ugc3VtKCkgdG8gYWRkIHVwIHRob3NlIG51bWJlcnMKCmBgYAoKIyBUaGluZ3Mgd2UgaG9wZSB5b3UndmUgbGVhcm5lZCB0b2RheSAoYW5kIHdpbGwgaG9wZWZ1bGx5IHJlbWVtYmVyIG5leHQgdGltZSkKCiogSG93IHRvIGxvb2sgYXQgeW91ciAqKkVudmlyb25tZW50KioKKiBIb3cgdG8gdXNlIGZ1bmN0aW9ucywgYW5kIHdoYXQgKmFyZ3VtZW50cyogYXJlCiogSG93IHRvIHVzZSBgc3VtKClgLCBgcGFzdGUoKWAsIGBzZXEoKWAKKiBWZWN0b3JzIGFyZSBsaXN0cyBvZiBlaXRoZXIgbnVtZXJpYyBvciBjaGFyYWN0ZXIgdHlwZQoqIFlvdSBjYW4gZG8gbWF0aCBvbiBudW1lcmljIHZlY3RvcnMKCgo=</div>
 
 
 
