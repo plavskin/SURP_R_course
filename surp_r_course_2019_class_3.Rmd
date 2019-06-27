@@ -1,7 +1,5 @@
 ---
-title: |
-  | NYU SURP 2019 R course
-  | Class 3: Functions and Vectors
+title: "NYU SURP 2019 R course Class 3: Functions and Vectors"
 author:
 - Eugene Plavskin
 - Grace Avecilla
