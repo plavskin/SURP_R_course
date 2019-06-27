@@ -64,12 +64,16 @@ year <- '2019'
 current_program <- paste(research_program, year)
 ```
 
-Notice that the code above didn't print anything out. That's because we directed the output of the `paste` function into a variable, *current_program*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
+Notice that the code above didn't print anything out. That's because we directed the output of the `paste` function into a variable, *current_program*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! 
+
+***
+*Skip if behind*: 
+Try googling to find an R function that prints out a variable.
 ```{r}
 # Find an R function to print out a variable, and use it to print whatever
 # the current_program variable is storing
-
 ```
+***
 
 You can learn about a function by reading its documentation. You can access the documentation with `?`, for example, type `?paste` into your console. You will see the help text pop up in the bottom right Help box in Rstudio.
 
@@ -90,6 +94,8 @@ Notice that when we used `paste` above, the function automatically put a space b
 
 ```
 
+*** 
+*Skip if behind*
 Finally, paste and sum can actually both take more than two inputs!
 ```{r}
 # Try using sum to get the sum of 3, 4, and 5
@@ -98,12 +104,13 @@ Finally, paste and sum can actually both take more than two inputs!
 # a string that says "NYU", separating the 3 strings with a period
 
 ```
+***
 
 # Introduction to vectors
 
 So far, we've been using R to do things we can easily do on our own, or with a simple calculator. We don't need R to add two numbers. But where programming languages start to get really powerful is when you have to do the same thing over and over. Today, we're going to learn how R deals with lists of multiple numbers or strings. These lists are called *vectors*. (Actually, a 'list' is also a thing in R, but it means something slightly different... very confusing. So let's stick with calling these things vectors.)
 
-We can create a vector by using `c()`, with the things we want to put inside the vector going in parentheses. For example:
+We can create a vector by using `c()`, with the things we want to put inside the vector going in parentheses. (c stands for concatenate/combine.) For example:
 ```{r}
 # Create a vector
 vector_1 <- c(1, 4, 3, 18)
@@ -137,6 +144,16 @@ Let's check the *types* that these vectors belong to
 
 ```
 
+What if we wanted to store the number 3 and the character "3" together in a vector?
+```{r}
+# Create a vector, mix_vector, with 3 and "3"
+
+# check the type of mix_vector
+
+# why is this happening (check the documentation of c)
+```
+
+
 # Making consecutive sequences
 
 One really useful thing we can do in R is make vectors of evenly spaced numbers. To do this, we can use the `seq()` function. Let's try to use the built-in R documentation of `seq()` to figure out how to use it.
@@ -162,6 +179,8 @@ There are three things that make seq really powerful compared to just typing out
 2. Like all functions, it can use variables as inputs, which means you don't have to change your whole code every time you change your mind about what numbers you're interested in working with
 3. When you want to make a vector of a certain length, it will do the math for you of what the spacing between your numbers needs to look like
 
+***
+*Skip (all or part) if behind*
 Let's try using some of this!
 ```{r}
 # Make a variable number_elements, which will tell you how many numbers you want
@@ -177,6 +196,7 @@ Let's try using some of this!
 # create your vector, final_vector
 
 ```
+***
 
 Relatedly, a really useful function in R is `length()`. It can tell you how long your vector is (how many elements are in your vector)
 ```{r}
