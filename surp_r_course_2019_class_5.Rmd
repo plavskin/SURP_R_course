@@ -1,7 +1,5 @@
 ---
-title: |
-  | NYU SURP 2019 R course
-  | Class 5: Vectors cont'd, missing values, and logical operations
+title: "NYU SURP 2019 R course Class 5: Vectors cont'd, missing values, and logical operations"
 author:
   - Eugene Plavskin
   - Grace Avecilla
