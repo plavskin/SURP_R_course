@@ -18,11 +18,11 @@ toc: yes
 # Review: vectors cont, missing values
 
 ```{r}
-# Create a vector of numbers from -5 to 5 increasing in increments of 0.5
+# Create a vector of numbers from -5 to 5 increasing in increments of 0.5 called review_vec
 
-# find the value of the 11th position in the vector
+# find the value of the 11th position in the vector 
 
-# divide that by zero, what do you get?
+# divide that by zero, and save it as a new variable called review_var what do you get?
 ```
 
 ## Logicals
@@ -50,18 +50,16 @@ char == 'a'
 char = 'b'
 char == 'a'
 ```
-* is.na()
+
+One useful function that results in a logical value is `is.na()`
+```{r}
+# try using is.na() on position 11 in review_vec
+
+# try using is.na() on review_var
+```
+
 * vectors of logicals
 * 1s and 0s as logicals, sum()
-
-Numbers can be treated like logical values, especially with 
-`as.logical()`. 0 is false, everything else is true.
-
-```{r}
-0==FALSE
-1==TRUE
-as.logical(-1:1)
-```
 
 * selecting and replacing values from vectors based on logicals
 
