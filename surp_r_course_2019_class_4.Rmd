@@ -69,6 +69,7 @@ Seq can work in both directions (i.e., the numbers don't have to be going up)
 ***
 
 There are three things that make seq really powerful compared to just typing out vectors of numbers by hand:
+
 1. It can generate reaaaaaally long sequences of numbers
 2. Like all functions, it can use variables as inputs, which means you don't have to change your whole code every time you change your mind about what numbers you're interested in working with
 3. When you want to make a vector of a certain length, it will do the math for you of what the spacing between your numbers needs to look like
@@ -147,7 +148,8 @@ print(long_vector[c(4,5,6)])
 ```
 
 ***
-* skip if running low on time*
+*skip if running low on time*
+
 Actually, we can get even more creative here. Let's say you wanted to create a vector that had inside it *every other number* from *long_vector* (*i.e.* the 1st, 3rd, 5th, etc numbers that are in *long_vector*). Let's try this.
 Hint: you can use `seq()` to create a vector of positions (*indices*) that you then use to get the positions you want from long_vector
 ```{r}
@@ -190,6 +192,7 @@ num_vector <- c(81, 243, 729)
 # When we get missing values
 
 A **HUGE** part of analyzing real scientific data is dealing with missing values. There are lots of ways we can get missing values; these are probably the most common:
+
 * When we try to get R to do a nonsensical thing
 * When we perform some super taboo math operation
 * When we are using real data and we didn't collect every observation (*eg* you measured the height of a bunch of plants every week but by the third week, some of them died)
@@ -234,12 +237,3 @@ Lots of functions in R, including `sum()`, have a way of dealing with missing da
 
 ```
 
-## Logicals
-
-* is.na()
-* vectors of logicals
-* 1s and 0s as logicals, sum()
-* selecting and replacing values from vectors based on logicals
-* operations on logicals (AND, OR)
-* which()
-* mean() with na.rm = T
