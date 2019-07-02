@@ -53,11 +53,14 @@ One really useful thing we can do in R is make vectors of evenly spaced numbers.
 
 ```
 
+***
+*Skip if behind*: 
 Seq can work in both directions (i.e., the numbers don't have to be going up)
 ```{r}
 # Use seq to make the following sequence: 5, 3, 1, -1
 
 ```
+***
 
 There are three things that make seq really powerful compared to just typing out vectors of numbers by hand:
 1. It can generate reaaaaaally long sequences of numbers
@@ -88,6 +91,7 @@ vector_b <- c(4,5,6)
 
 # Add vector_a and vector_b
 
+# What is happening? How is this different from adding 3 to a vector?
 ```
 
 ***
@@ -124,11 +128,17 @@ print(long_vector[1])
 
 # Now check what the 32nd number in long_vector is
 
+```
+
+
+***
+*Skip if low on time*
+```{r}
 # Now check what the last number in long_vector is
 # (bonus: do this using a variable you've already created, rather than just
 # typing out 100)
-
 ```
+***
 
 You don't have to just provide a single number as in index (the thing inside the square brackets); vectors work too!
 ```{r}
