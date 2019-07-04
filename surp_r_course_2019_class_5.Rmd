@@ -56,8 +56,33 @@ One useful function that results in a logical value is `is.na()`
 # try using is.na() on review_var
 ```
 
-* vectors of logicals
-* 1s and 0s as logicals, sum()
+Just like you can make a vector of characters or a vector of numeric values, you can also make a vector of logicals.
+```{r}
+# Make a vector with 3 TRUEs and 2 FALSEs, save it as logical_vec1
+
+# Make a vector called num_vec that starts at 2 and ends at 10
+
+logical_vec2 <- t%%3 == 2 #what is this line of code doing?
+```
+
+
+In R, FALSE is also encoded as 0, and TRUE is encoded as 1. 
+
+```{r}
+0==FALSE
+1==TRUE
+# How do you think we could easily figure out how many TRUEs there are in logical_vec2?
+
+```
+
+Numbers can be treated like logical values, especially with 
+`as.logical()`. 0 is false, everything else is true.
+
+```{r}
+as.logical(-2:2)
+
+sum(as.logical(-2:2)) # what is going on here?
+```
 
 * selecting and replacing values from vectors based on logicals
 
