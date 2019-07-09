@@ -123,6 +123,8 @@ Let's create a really long vector and ask R to tell us about specific points alo
 
 To access the number at a specific position, we can use square brackets!
 ```{r}
+# Make a vector called Long_vector that goes from -1 to 50 and has 100 numbers inside
+
 # Let's check what the first number in long_vector is
 print(long_vector[1])
 
@@ -155,6 +157,7 @@ Hint: you can use `seq()` to create a vector of positions (*indices*) that you t
 ```{r}
 # Create position_vector, which will hold the positions you want to get out of
 # long_vector (i.e. c(1,3,5,....))
+long_vector <- seq(-1,50,length.out = 100)
 
 # Use long_vector together with position_vector to create shorter_vector, which
 # will hold every othern number from long_vector

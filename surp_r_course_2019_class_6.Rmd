@@ -1,0 +1,33 @@
+---
+title: "NYU SURP 2019 R course Class 6: Introduction to data frames"
+author:
+  - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
+date: "07/11/2019"
+output:
+  html_notebook:
+  code_folding: show
+depth: 3
+tidy: yes
+toc: yes
+---
+
+##Data Frames: Reading in and manipulating data, writing data
+
+```{r}
+include_graphics('./class_1_figures/df_illustration.png')
+```
+
+
+## Reading in tables from excel
+
+Teach them about csv format
+
+## Selecting data from data frames: row numbers and column numbers and $
+  
+## Creating new columns from operations on other columns
+
+## Creating new data frames from scratch and writing them
+
+## Watch out for factors!

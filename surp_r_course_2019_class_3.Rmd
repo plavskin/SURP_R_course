@@ -24,7 +24,7 @@ Let's review variables and types
 
 # Get R to tell you the "type" of the last variable you created
 
-# What happens if you try to add the two "biology" variables together? Why?
+# What happens if you try to add two of the "biology" variables together? Why?
 
 ```
 
@@ -119,27 +119,29 @@ You can use variables to define vectors too! Try it below:
 ```{r}
 # Create 3 variables, named variable_1, variable_2, and bob, and have each of
 # them hold a single number
-
+variable_1 <- 1
+variable_2 <- 2
+bob <- 9
 # Combine these variables in any order you want into a vector named bob_the_vector
-
+bob_the_vector <- c(variable_1, variable_2, bob)
 # print out bob_the_vector
-
+print(bob_the_vector)
 ```
 
 Vectors can also hold character types!
 ```{r}
 # Create a vector, char_vector_1 containing multiple strings, and print it out
-
+char_vector_1 = c('stuff', 'things')
+char_vector_1
 ```
 
 Let's check the *types* that these vectors belong to
 ```{r}
 # check the type of bob_the_vector
-
+is(bob_the_vector)
 # check the type of char_vector_1
-
+is(char_vector_1)
 # by the way... what is the type of c, as in, the thing you put before your vector?
-
 ```
 
 What if we wanted to store the number 3 and the character "3" together in a vector?
@@ -237,7 +239,7 @@ And finally... many math-related functions can work on vectors! `sum()` is a gre
 
 * How to look at your **Environment**
 * How to use functions, and what *arguments* are
-* How to use `sum()`, `paste()`, `seq()`
+* How to use `sum()`, `paste()`
 * Vectors are lists of either numeric or character type
 * You can do math on numeric vectors
 
