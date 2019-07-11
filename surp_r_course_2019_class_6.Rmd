@@ -1,5 +1,5 @@
 ---
-title: "NYU SURP 2019 R course Class 6: Introduction to data frames"
+title: "NYU SURP 2019 R course Class 6: Logicals (continued) Introduction to data frames"
 author:
   - Eugene Plavskin
   - Grace Avecilla
@@ -13,21 +13,175 @@ tidy: yes
 toc: yes
 ---
 
-##Data Frames: Reading in and manipulating data, writing data
+# Review
+
+```{r}
+review_vector <- c(1, 2.6, NA, 4.98, 1.5, NA)
+
+# run a function that will determine which of the values in review_vector is a
+# missing value
+
+# run an operation that will determine which of the numbers in review_vector is
+# greater than 2
+
+```
+
+# Logicals (continued)
+
+## Treating numbers as logicals
+
+In R, FALSE is also encoded as 0, and TRUE is encoded as 1. 
+
+```{r}
+0==FALSE
+1==TRUE
+
+# How do you think we could easily figure out how many TRUEs there are in
+# review_vector?
+
+# How can you get R to tell you the number of missing values in review_vec?
+
+```
+
+## Exercise
+
+Imagine that you're doing an experiment measuring plant height, but some of the plants didn't grow. You decide those should be considered missing values, so you entered `NA` for those plants. Let's count the number of plants that DID grow in your experiment.
+
+```{r}
+plant_heights <- c(1.9, 0.1, NA, 0.8, 0.4, 0.2, 7.9, NA, 16.8, 3.5)
+
+# create a logical vector, plant_NA_vector, that contains information on whether
+# each value in plant_heights is missing (NA)
+
+# use plant_NA_vector to figure out how many plants total didn't grow
+
+# use plant_NA_vector to figure out how many plants DID grow
+
+# bonus:figure out what PROPORTION of plants grew
+
+```
+
+# Selecting and replacing values from vectors based on logicals
+
+In addition to using indices to get R to tell us a specific position in a vector, we can also use them to replace specific values. Take a look at this example.
+```{r}
+vector_to_sub <- c(12, 13, 14, 15, NA, 17, 18, 19)
+
+# replace the 2nd value in vector_to_sub with 54
+vector_to_sub[2] <- 54
+print(vector_to_sub)
+
+# now, try replacing the 1st, 3rd, and 8th values in vector_to_sub with 28,
+# using only one line of code (i.e. do it all at once; hint: use a vector)
+
+```
+
+One really powerful way to use this vector substitution is to combine it with logical vectors. Take a look at the example below:
+```{r}
+vector_to_sub2 <- 1:3
+vector_to_sub2[c(TRUE, FALSE, TRUE)] <- 42
+
+# What do you think vector_to_sub2 looks like now? Print it out to check
+
+```
+
+Try this for yourself. Lots of times, we want to replace missing values in vectors. Let's say that, when you do your analysis on the plant example above, you want to treat the plants that didn't grow as having a height of 0 rather than being missing.
+```{r}
+# use plant_NA_vector to replace every missing value in plant_heights with a 0
+
+# print the modified plant_heights vector
+
+```
+
+# Operations on logicals (AND, OR)
+
+We can also do "and" (`&`) and "or" (`|`, all the way on the right side of your keyboard). "And" only returns true if both things are true. "Or" returns true if at least one thing is true.
+
+Try predicting what all the operations below will return
+```{r}
+TRUE & TRUE
+TRUE & FALSE
+FALSE & FALSE
+
+FALSE | TRUE
+TRUE | TRUE
+FALSE | FALSE
+
+# bonus: perform some operations on the following variables (unicorns and
+# rainbows) that will result in a TRUE value being returns
+unicorns <- FALSE
+rainbows <- FALSE
+
+```
+
+# Data Frames: Reading in and manipulating data, writing data
+
+So far, everything we've been doing in R has involved vectors. However, we haven't yet learned about the most useful data structure in R: data frames.
+
+Data frames are essentially just tables. They have rows and columns, and if you set your data up right, they make it *incredibly* easy to explore your data. R has a ton of operations that are specialized in reading data frames and either plotting them in an easy way, or summarizing the data inside, and we're going to be spending the next couple of weeks learning about those.
 
 ```{r}
 include_graphics('./class_1_figures/df_illustration.png')
 ```
 
-
 ## Reading in tables from excel
 
-Teach them about csv format
+A lot of times, it's not really convenient to enter your data in R. When collecting data by hand, it can be really convenient to type it into excel (or google sheets). Although there is a special package in R that can read excel format files (**.xlsx**), this is not commonly used. Instead, we usually save files in **.csv** format, which throws out all of the special formatting excel does and just keeps the data itself.
+
+**csv** stands for *comma-separated values*, and that's just what they are. These files can be easily opened in excel or google sheets, but if you open them in notepad, you can see that they're really just rows of numbers and words separated by... you guessed it, commas.
+
+
+You should have a dataset in csv format called *iris.csv*. This is a set of information on flower structure collected from plants of 3 iris species. Follow along with this file as we go through the rules. The code below will only work if you have iris.csv saved in the same folder as this file.
+
+First, let's get R to read in the iris data.
+```{r}
+iris_df <- read.csv('iris.csv')
+View(iris_df)
+```
+
+There are some good practices for how to organize and record your data, and following these will make your life *MUCH* easier when you try to analyze your data. Following these rules means that R will be able to easily read you data, and that the data is immediately set up in such a way that the built-in R functions for processing data can easily work with it.
+
+* Give each column a short, informative title. Avoid spaces and weird symbols/punctuation. You can use letters, numbers, periods, underscores ( _ ) and hyphens. *NEVER* use commas in your data entry.
+* You can also name rows, but I suggest avoiding this for now, since you will need to provide a special argument to `read.csv` if you do this.
+* Keep a single column as one data type (e.g. a column can contain strings, or numbers, or logicals). R will usually know which is which, and treat the data accordingly.
+* Notice that in the iris dataframe, every row holds a single observation. That is, data on each single data point (plant) is one row, and each individual piece of information about it is one column (e.g. how wide were its petals? What species did this plant belong to?)
+
+The last point on this list involves thinking about what constitutes an 'observation' in your data. This can seem subjective! Let's say you're tracking plant growth over time: is a single observation one plant, or one timepoint? As you program, you'll start getting an intuitive feeling for better and worse ways to organize data. But remember that data can always be re-organized in R if you don't like how you originally did it (or if someone else collected the data!) These principles of data organization are called *tidy* data, and there is *hugely* useful package, **tidyr** that contains functions to re-organize and tidy up your data. We won't cover it in this class, but I want to share a [link](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) with some info in case you continue programming in the future and find that you need it.
 
 ## Selecting data from data frames: row numbers and column numbers and $
-  
-## Creating new columns from operations on other columns
 
-## Creating new data frames from scratch and writing them
+Let's say we wanted to calculate the mean petal width of all the irises measured in the iris dataset. How can we do this? We need to select the petal width column. There are a couple of ways to do this. The easiest and most common one is using `$`.
 
-## Watch out for factors!
+```{r}
+# print out all the sepal lengths
+print(iris_df$Sepal.Length)
+
+# get the mean of the petal widths
+
+```
+
+We can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).
+
+When using indices to specify position in a data frame, **rows first, columns second**
+
+```{r}
+# Get the value in the second row and third column in the iris dataset
+print(iris_df[2, 3])
+
+# Get the values in the 2nd to 5th rows in the fifth column in iris_df
+
+```
+
+In addition to using numeric indices, you can also use names of columns (or rows, if they're named!)
+```{r}
+print(iris_df[2, 'Petal.Length'])
+```
+
+Finally, if you want to get *every* row or *every* column, just leave that index blank.
+```{r}
+# get every element from 2nd column (same as iris_df$Sepal.Width)
+print(iris_df[ , 2])
+
+# get every value in the 6th row of iris_df
+
+```

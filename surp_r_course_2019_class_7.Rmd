@@ -1,0 +1,21 @@
+---
+title: "NYU SURP 2019 R course Class 7: Processing data in data frames"
+author:
+  - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
+date: "07/16/2019"
+output:
+  html_notebook:
+  code_folding: show
+depth: 3
+tidy: yes
+toc: yes
+---
+
+## Creating new columns from operations on other columns
+
+## Creating new data frames from scratch and writing them
+
+## Watch out for factors!
+
