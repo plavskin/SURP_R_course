@@ -7,10 +7,10 @@ author:
 date: "07/11/2019"
 output:
   html_notebook:
-  code_folding: show
-depth: 3
-tidy: yes
-toc: yes
+    code_folding: show
+    depth: 3
+    tidy: yes
+    toc: yes
 ---
 
 # Review
