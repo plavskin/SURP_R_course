@@ -8,9 +8,9 @@ date: "07/16/2019"
 output:
   html_notebook:
   code_folding: show
-depth: 3
-tidy: yes
-toc: yes
+  depth: 3
+  tidy: yes
+  toc: yes
 ---
 
 ## Creating new columns from operations on other columns
