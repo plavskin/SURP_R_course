@@ -13,9 +13,131 @@ tidy: yes
 toc: yes
 ---
 
+# Review
+```{r}
+# read in iris.csv and save it as the variable iris_df
+
+# use logicals operators to find out how many rows in column Petal.Length are less than or equal to 5
+```
+
 ## Creating new columns from operations on other columns
+
+
+
 
 ## Creating new data frames from scratch and writing them
 
+Sometimes, you will want to create a brand new data frame from scratch. There are several ways to do this. One way is to create vectors for each column, and then combine them together in a data frame. For example, let's imagine we have investigated the populations of squirrels and pigeons in 4 parks in NYC.
+
+We can make 3 vectors, one with the names of the parks, one with the population of squirrels, and one with the population of pigeons. 
+```{r}
+park <- c("WashingtonSq", "CentralPark", "ProspectPark", "BatteryPark")
+pigeons <- c(8.62e3, 1.5e4, 1939, 276)
+squirrels<- c("358", "546", "439", "344")
+```
+Then, we can use the function `data.frame()` to turn these into a single data frame. The positions in the vectors will correspond to rows, and the names of the vectors will become the column names.
+```{r}
+parks_df <- data.frame(park, squirrels, pigeons)
+parks_df
+```
+
+```{r}
+#try accessing the values rows 1, 2, and 3 of column 1
+```
+
+What if you wanted to share this data with a colleague, so they could do their own calculations? The nicest way would be to send them a csv. We can make csvs from data frames in R using `write.csv()`. Take a look at the documentation for this function.
+
+```{r}
+# write a csv called 'parks.csv' with the data in parks_df
+```
+
+
 ## Watch out for factors!
+You may have noticed that accessing the park column gave us something that involved "levels". These are because they're actually not characters, but something called factors. Factors are categorical variables. These are very important for some types of statistical models, but they can be a problem if you are expecting characters or numbers.
+
+Let's look at the `data.frame` again.
+```{r}
+str(parks_df)
+```
+
+Let's try to access the population of squirrels as a number.
+
+```{r}
+parks_df[,3]
+as.numeric(parks_df[,3])
+```
+
+As you can see, the character numbers are being converted not to the numbers they should be, but to their factor levels. I'm sure you can imagine how this could be a huge problem.
+
+When something is a factor and your want it to be a number, do this:
+
+```{r}
+as.numeric(as.character(parks_df[,3])) 
+```
+
+By first going through `as.character` and THEN `as.numeric`, you
+preserve your entries as intended.
+
+Finally, if you want to change the values in the data frame, you must remember to reassign that column
+
+```{r}
+str(parks_df)
+parks_df[,3] <- as.numeric(as.character(parks_df[,3])) 
+str(parks_df)
+```
+
+## Calculate column means, standard deviations, standard errors
+
+Now, maybe we want to use these columns to find out something about parks in NYC. Maybe we want to find the average number of squirrels and pigeons in NYC parks.
+
+```{r}
+# find the mean number of squirrels and pigeons for parks in NYC
+```
+
+We also want to know the amount of variation in pigeon and squirrel populations.
+
+```{r}
+# calculate the standard deviation - use google to help you find functions
+```
+
+If we have many columns with numeric data, finding the mean of each of them individually could take a while. We can use the function `colMeans()` instead. Take a look at the documentation for `colMeans()`
+
+```{r}
+# try using colMeans() to find the mean number of squirrels and pigeons for parks in NYC
+
+# do you run into problems? why? how could we get what we want using this function?
+```
+
+
+# Visualizing data in R
+
+Do you think there is a relationship between the number of squirrels and the number of pigeons found in a park?
+What is a way you could start to investigate this?  
+
+
+One of the first things many scientists do when dealing with a new data set is to plot it in a few different ways. It is an important part of exploratory data analysis and understanding the data you are working with. Of course, final results are important to plot as well, and often a plot is easier to interpret than numerical statistics alone.
+
+##Plotting
+
+R is great for representing data graphically. This summer,
+we'll learn a little about the basic graphics plotting tools, but later we will learn to use a more elaborate plotting library called ggplot.
+
+Let's return to our question. Is there a relationship between the number of squirrels and the number of pigeons found in a park?   
+
+We can make what is called a scatter plot. If we pass the column squirrel to the the argument x, the number of squirrels will be on the x axis. We can pass the column pigeons to the argument y to put pigeon population on the y axis.
+
+```{r}
+plot(x=parks_df$squirrels, y=parks_df$pigeons)
+```
+
+Based on your plot, what is the answer to our question?
+
+Let's use the iris data set. Let's try to make a scatter plot with sepal length on the x axis and sepal width on the y axis.
+```{r}
+plot(x = iris_df$Sepal.Length, y = iris_df$Sepal.Width)
+```
+
+Based on this plot, does it seem like there is a relationship between sepal length and sepal width?  
+
+What might be complicating this plot? What other analyses might we want to do?
 
