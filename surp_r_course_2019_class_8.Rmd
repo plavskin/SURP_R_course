@@ -1,0 +1,105 @@
+---
+title: "NYU SURP 2019 R course Class 8: Data visualization in R"
+author:
+  - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
+date: "07/18/2019"
+output:
+  html_notebook:
+  code_folding: show
+  depth: 3
+  tidy: yes
+  toc: yes
+---
+
+# Review
+```{r}
+
+```
+
+# Visualizing data in R
+
+Do you think there is a relationship between the number of squirrels and the number of pigeons found in a park?
+What is a way you could start to investigate this?  
+
+
+One of the first things many scientists do when dealing with a new data set is to plot it in a few different ways. It is an important part of exploratory data analysis and understanding the data you are working with. Of course, final results are important to plot as well, and often a plot is easier to interpret than numerical statistics alone.
+
+# Plotting in Base R
+
+R is great for representing data graphically. This summer,
+we'll learn a little about the basic graphics plotting tools, but later we will learn to use a more elaborate plotting library called ggplot.
+
+Let's return to our question. Is there a relationship between the number of squirrels and the number of pigeons found in a park?   
+
+We can make what is called a scatter plot. If we pass the column squirrel to the the argument x, the number of squirrels will be on the x axis. We can pass the column pigeons to the argument y to put pigeon population on the y axis.
+
+```{r}
+plot(x=parks_df$squirrels, y=parks_df$pigeons)
+```
+
+Based on your plot, what is the answer to our question?
+
+Let's use the iris data set. Let's try to make a scatter plot with Sepal length on the x axis and Sepal width on the y axis.
+```{r}
+plot(x = iris_df$Sepal.Length, y = iris_df$Sepal.Width)
+```
+
+Based on this plot, does it seem like there is a relationship between Sepal length and Sepal width?  
+
+What might be complicating this plot? What other analyses might we want to do?
+
+# Plotting with ggplot
+
+## some kind of intro to ggplot/why we use it here ##
+
+To use ggplot, we need to install the package and load the library.
+```{r}
+# install.packages('ggplot2')
+library(ggplot2)
+```
+
+
+We can make the same kind of scatter plot we made in base R in ggplot. The basic way you specify something in a call to the ggplot function has two parts. First, you specify the data frame where the data you want to plot is located. Then, inside `aes()` you specify the "aesthetics". Aesthetics here include the variables to plot on the x and y axes.
+
+We can try this for Sepal length and Sepal width, like we already plotted.
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width)) 
+```
+
+You can see that nothing is actually plotted, even though the axes are labelled. That is because there is one more part that needs to be specified, which is the type of plot you want to make. We add this layer using a `+` after the main ggplot call, and specifying what we want. To make a scatter plot, we can use `geom_point()`. 
+
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point()
+```
+
+In addition to the x and y axes, there are other aesthetics we can specify, such as the color of the data. Here we are saying to color the data according to species.
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point()
+```
+
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, shape = Species)) +
+  geom_point()
+```
+
+
+
+```{r}
+ggplot(iris_df, aes(x = Species, y = Sepal.Width)) +
+  geom_boxplot()
+```
+
+ ## Scatterplot some e.g. iris data
+        * Show scatterplot as we did it earlier in the class, but with ggplot
+        * Color by species
+        * shape by species
+    ## Box plot e.g. Sepal width by species
+    ## Read in students' data, plot
+
+
+You can find examples of plots made using ggplot [here](http://gencore.bio.nyu.edu/badas/ggplot_notebook.html#ggplot-is-part-of-the-tidyverse-package). There are many more examples and tutorials online as well.
+
