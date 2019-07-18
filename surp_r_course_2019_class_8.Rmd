@@ -1,10 +1,10 @@
 ---
-title: "NYU SURP 2019 R course Class 8: Visualizing data"
+title: "NYU SURP 2019 R course Class 8: Data visualization in R"
 author:
   - Eugene Plavskin
   - Grace Avecilla
   - Tobi Shraink
-date: "07/16/2019"
+date: "07/18/2019"
 output:
   html_notebook:
   code_folding: show
@@ -17,23 +17,17 @@ output:
 
 ## Review
 ```{r}
-# read in the iris data frame
-```
+# read in the iris data frame into a variable called iris_df
 
+# inspect iris_df inside Rstudio using the View function
+
+# Find the mean of the petal length column
+
+```
 
 ## Selecting data from data frames: row numbers and column numbers and $
 
-Let's say we wanted to calculate the mean petal width of all the irises measured in the iris dataset. How can we do this? We need to select the petal width column. There are a couple of ways to do this. The easiest and most common one is using `$`.
-
-```{r}
-# print out all the sepal lengths
-print(iris_df$Sepal.Length)
-
-# get the mean of the petal widths
-mean(iris_df$Petal.Width)
-```
-
-We can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).
+In addition to calling columns using `$`, we can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).
 
 When using indices to specify position in a data frame, **rows first, columns second**
 
@@ -69,6 +63,7 @@ A lot of times, we need to process the data we have in order for it to be intere
 iris_df$Petal.Ratio <- iris_df$Petal.Length / iris_df$Petal.Width
 
 ```
+After running the code above, use Rstudio to view iris_df again, and check that the new column seems to have the right values.
 
 ## Creating new data frames from scratch and writing them
 
@@ -88,12 +83,14 @@ parks_df
 
 ```{r}
 #try accessing the values rows 1, 2, and 3 of column 1
+
 ```
 
 What if you wanted to share this data with a colleague, so they could do their own calculations? The nicest way would be to send them a csv. We can make csvs from data frames in R using `write.csv()`. Take a look at the documentation for this function.
 
 ```{r}
 # write a csv called 'parks.csv' with the data in parks_df
+
 ```
 
 ## Watch out for factors!
@@ -136,12 +133,14 @@ Now, maybe we want to use these columns to find out something about parks in NYC
 
 ```{r}
 # find the mean number of squirrels and pigeons for parks in NYC
+
 ```
 
 We also want to know the amount of variation in pigeon and squirrel populations.
 
 ```{r}
 # calculate the standard deviation - use google to help you find functions
+
 ```
 
 If we have many columns with numeric data, finding the mean of each of them individually could take a while. We can use the function `colMeans()` instead. Take a look at the documentation for `colMeans()`
@@ -150,17 +149,18 @@ If we have many columns with numeric data, finding the mean of each of them indi
 # try using colMeans() to find the mean number of squirrels and pigeons for parks in NYC
 
 # do you run into problems? why? how could we get what we want using this function?
-```
 
+```
 
 # Visualizing data in R
 
 Do you think there is a relationship between the number of squirrels and the number of pigeons found in a park?
 What is a way you could start to investigate this?  
 
+
 One of the first things many scientists do when dealing with a new data set is to plot it in a few different ways. It is an important part of exploratory data analysis and understanding the data you are working with. Of course, final results are important to plot as well, and often a plot is easier to interpret than numerical statistics alone.
 
-##Plotting
+# Plotting in Base R
 
 R is great for representing data graphically. This summer,
 we'll learn a little about the basic graphics plotting tools, but later we will learn to use a more elaborate plotting library called ggplot.
@@ -171,17 +171,18 @@ We can make what is called a scatter plot. If we pass the column squirrel to the
 
 ```{r}
 plot(x=parks_df$squirrels, y=parks_df$pigeons)
+
 ```
 
 Based on your plot, what is the answer to our question?
 
-Let's use the iris data set. Let's try to make a scatter plot with sepal length on the x axis and sepal width on the y axis.
+Let's use the iris data set. Let's try to make a scatter plot with Sepal length on the x axis and Sepal width on the y axis.
 ```{r}
 plot(x = iris_df$Sepal.Length, y = iris_df$Sepal.Width)
+
 ```
 
-Based on this plot, does it seem like there is a relationship between sepal length and sepal width?  
+Based on this plot, does it seem like there is a relationship between Sepal length and Sepal width?  
 
 What might be complicating this plot? What other analyses might we want to do?
-
 

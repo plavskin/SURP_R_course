@@ -1,0 +1,66 @@
+---
+title: "NYU SURP 2019 R course Class 9: Summarizing and visualizing data in R"
+author:
+  - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
+date: "07/23/2019"
+output:
+  html_notebook:
+  code_folding: show
+  depth: 3
+  tidy: yes
+  toc: yes
+---
+
+# Plotting with ggplot
+
+## some kind of intro to ggplot/why we use it here ##
+
+To use ggplot, we need to install the package and load the library.
+```{r}
+# install.packages('ggplot2')
+library(ggplot2)
+```
+
+We can make the same kind of scatter plot we made in base R in ggplot. The basic way you specify something in a call to the ggplot function has two parts. First, you specify the data frame where the data you want to plot is located. Then, inside `aes()` you specify the "aesthetics". Aesthetics here include the variables to plot on the x and y axes.
+
+We can try this for Sepal length and Sepal width, like we already plotted.
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width)) 
+```
+
+You can see that nothing is actually plotted, even though the axes are labelled. That is because there is one more part that needs to be specified, which is the type of plot you want to make. We add this layer using a `+` after the main ggplot call, and specifying what we want. To make a scatter plot, we can use `geom_point()`. 
+
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point()
+```
+
+In addition to the x and y axes, there are other aesthetics we can specify, such as the color of the data. Here we are saying to color the data according to species.
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point()
+```
+
+```{r}
+ggplot(iris_df, aes(x = Sepal.Length, y = Sepal.Width, shape = Species)) +
+  geom_point()
+```
+
+
+```{r}
+ggplot(iris_df, aes(x = Species, y = Sepal.Width)) +
+  geom_boxplot()
+```
+
+ ## Scatterplot some e.g. iris data
+        * Show scatterplot as we did it earlier in the class, but with ggplot
+        * Color by species
+        * shape by species
+    ## Box plot e.g. Sepal width by species
+    ## Read in students' data, plot
+
+
+You can find examples of plots made using ggplot [here](http://gencore.bio.nyu.edu/badas/ggplot_notebook.html#ggplot-is-part-of-the-tidyverse-package). There are many more examples and tutorials online as well.
+
