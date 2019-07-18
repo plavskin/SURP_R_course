@@ -1,0 +1,111 @@
+---
+title: "NYU SURP 2019 R course Class 7: Processing data in data frames"
+author:
+  - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
+date: "07/16/2019"
+output:
+  html_notebook:
+  code_folding: show
+  depth: 3
+  tidy: yes
+  toc: yes
+---
+
+# Review
+```{r}
+leaf_number <- c(5, 8, 5, 11, 4, 5, 8, 13, 10, 4, 7)
+
+# make a logical vector called many_leaves that tells you whether each position
+# in leaf_number is greater than 10
+many_leaves <- leaf_number > 10
+print(many_leaves)
+
+# use many_leaves to set each value of leaf_number over 10 to infinity (Inf)
+leaf_number[many_leaves] <- Inf
+print(leaf_number)
+```
+
+# Operations on logicals (AND, OR)
+
+We can also do "and" (`&`) and "or" (`|`, all the way on the right side of your keyboard). "And" only returns true if both things are true. "Or" returns true if at least one thing is true.
+
+Try predicting what all the operations below will return
+```{r}
+TRUE & TRUE
+TRUE & FALSE
+FALSE & FALSE
+
+FALSE | TRUE
+TRUE | TRUE
+FALSE | FALSE
+
+# bonus: perform some operations on the following variables (unicorns and
+# rainbows) that will result in a TRUE value being returns
+unicorns <- FALSE
+rainbows <- FALSE
+!(unicorns & rainbows)
+# or
+unicorns | !rainbows
+
+```
+
+Let's try using this on a slightly more complex example:
+```{r}
+# make a logical vector that tells you whether each position in leaf_number is
+# greater than 10 OR less than 6
+very_few_leaves <- leaf_number < 6
+many_leaves | very_few_leaves
+# or, faster
+leaf_number > 10 | leaf_number < 6
+```
+Remember that `&` and `|` take *logical* type arguments. So the things on both sides of the sign have to be a valid logical (this is why `leaf_number > 10 | leaf_number < 6` works, but `leaf_number > 10 | < 6` doesn't; in the second example, `< 6` on its own is not a logical type).
+
+# Data Frames: Reading in and manipulating data, writing data
+
+So far, everything we've been doing in R has involved vectors. However, we haven't yet learned about the most useful data structure in R: data frames.
+
+Data frames are essentially just tables. They have rows and columns, and if you set your data up right, they make it *incredibly* easy to explore your data. R has a ton of operations that are specialized in reading data frames and either plotting them in an easy way, or summarizing the data inside, and we're going to be spending the next couple of weeks learning about those.
+
+```{r}
+include_graphics('./class_1_figures/df_illustration.png')
+```
+
+## Reading in tables from excel
+
+A lot of times, it's not really convenient to enter your data in R. When collecting data by hand, it can be really convenient to type it into excel (or google sheets). Although there is a special package in R that can read excel format files (**.xlsx**), this is not commonly used. Instead, we usually save files in **.csv** format, which throws out all of the special formatting excel does and just keeps the data itself.
+
+**csv** stands for *comma-separated values*, and that's just what they are. These files can be easily opened in excel or google sheets, but if you open them in notepad, you can see that they're really just rows of numbers and words separated by... you guessed it, commas.
+
+
+You should have a dataset in csv format called *iris.csv*. This is a set of information on flower structure collected from plants of 3 iris species. Follow along with this file as we go through the rules. The code below will only work if you have iris.csv saved in the same folder as this file.
+
+First, let's get R to read in the iris data.
+```{r}
+iris_df <- read.csv('iris.csv')
+View(iris_df)
+```
+
+There are some good practices for how to organize and record your data, and following these will make your life *MUCH* easier when you try to analyze your data. Following these rules means that R will be able to easily read you data, and that the data is immediately set up in such a way that the built-in R functions for processing data can easily work with it.
+
+* Give each column a short, informative title. Avoid spaces and weird symbols/punctuation. You can use letters, numbers, periods, underscores ( _ ) and hyphens. *NEVER* use commas in your data entry.
+* You can also name rows, but I suggest avoiding this for now, since you will need to provide a special argument to `read.csv` if you do this.
+* Keep a single column as one data type (e.g. a column can contain strings, or numbers, or logicals). R will usually know which is which, and treat the data accordingly.
+* Notice that in the iris dataframe, every row holds a single observation. That is, data on each single data point (plant) is one row, and each individual piece of information about it is one column (e.g. how wide were its petals? What species did this plant belong to?)
+
+The last point on this list involves thinking about what constitutes an 'observation' in your data. This can seem subjective! Let's say you're tracking plant growth over time: is a single observation one plant, or one timepoint? As you program, you'll start getting an intuitive feeling for better and worse ways to organize data. But remember that data can always be re-organized in R if you don't like how you originally did it (or if someone else collected the data!) These principles of data organization are called *tidy* data, and there is *hugely* useful package, **tidyr** that contains functions to re-organize and tidy up your data. We won't cover it in this class, but I want to share a [link](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) with some info in case you continue programming in the future and find that you need it.
+
+## Selecting data from data frames: row numbers and column numbers and $
+
+Let's say we wanted to calculate the mean petal width of all the irises measured in the iris dataset. How can we do this? We need to select the petal width column. There are a couple of ways to do this. The easiest and most common one is using `$`.
+
+```{r}
+# print out all the sepal lengths
+print(iris_df$Sepal.Length)
+
+# get the mean of the petal widths
+mean(iris_df$Petal.Width)
+```
+
+
