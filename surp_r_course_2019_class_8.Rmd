@@ -14,7 +14,6 @@ output:
 ---
 
 # Date frames continued
-
 ## Review
 ```{r}
 # read in the iris data frame into a variable called iris_df
