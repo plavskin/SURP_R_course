@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 4: Missing values and Logical operations"
+title: "Workshop 4: Missing values and Logical operations"
 subtitle: |
     |   - creating, storing, and working with missing values
     |   - logical (boolean) types

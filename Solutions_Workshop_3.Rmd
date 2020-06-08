@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Solutions to Workshop 3: Vectors"
+title: "Solutions to Workshop 3: Vectors"
 subtitle: |
     |   - creating vectors (lists of things)
     |   - consecutive sequences of numbers

@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 0: Introduction"
+title: "Workshop 0: Introduction"
 subtitle: |
     |   - downloading and installing R and Rstudio
     |   - what we will cover

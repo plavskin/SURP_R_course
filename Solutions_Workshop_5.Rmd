@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 5: Dataframes"
+title: "Workshop 5: Dataframes"
 subtitle: |
     |   - formatting data for analysis and reading excel data into R dataframes
     |   - selecting rows and columns of interest

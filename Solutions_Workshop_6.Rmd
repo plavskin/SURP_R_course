@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 6: Plotting (with ggplot2)"
+title: "Workshop 6: Plotting (with ggplot2)"
 subtitle: |
     |   - plotting with base R
     |   - introduction to ggplot

@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 8: Basics of programming, and simulation in biology (Part I)"
+title: "Workshop 8: Basics of programming, and simulation in biology (Part I)"
 subtitle: |
     |   - conditional statements
     |   - simulating biological data (intro)

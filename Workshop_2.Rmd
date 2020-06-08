@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 2: Variables, Types, and Functions"
+title: "Workshop 2: Variables, Types, and Functions"
 subtitle: |
     |   - variables
     |   - types

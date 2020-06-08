@@ -1,9 +1,9 @@
 ---
-title: "Intro R Course, Workshop 1: Introduction"
+title: "Workshop 1: Introduction"
 subtitle: |
-    |   - downloading and installing R and Rstudio
     |   - learning your way around Rstudio
     |   - packages
+    |   - using R notebooks
     |   - simple math in R
 author:
 - Eugene Plavskin

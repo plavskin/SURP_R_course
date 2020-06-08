@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 7: Summarizing data and doing basic stats"
+title: "Workshop 7: Summarizing data and doing basic stats"
 subtitle: |
     |   - subsetting data
     |   - summarizing your data

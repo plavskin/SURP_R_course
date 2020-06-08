@@ -1,5 +1,5 @@
 ---
-title: "Intro R Course, Workshop 9: Basics of programming, and simulation in biology (Part II)"
+title: "Workshop 9: Basics of programming, and simulation in biology (Part II)"
 subtitle: |
     |   - simulating biological data (continued)
     |   - testing functions
