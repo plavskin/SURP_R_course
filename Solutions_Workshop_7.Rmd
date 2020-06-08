@@ -1,0 +1,344 @@
+---
+title: "Intro R Course, Workshop 7: Summarizing data and doing basic stats"
+subtitle: |
+    |   - subsetting data
+    |   - summarizing your data
+    |   - splitting data by categories to calculate stats
+    |   - ttests, anova, linear models
+    |   - resources for learning to do statistics in R
+author:
+  - Eugene Plavskin
+output:
+  html_notebook:
+    code_folding: show
+    depth: 3
+    tidy: yes
+    toc: yes
+---
+**Solutions to this workshop can be found [here](Solutions_Workshop_7.nb.html)**
+
+# Review
+```{r}
+# use ggplot to make a histogram of iris sepal width across all species
+ggplot(data = iris) +
+  geom_histogram(mapping = aes(x = Sepal.Width))
+# use ggplot to make a plot of iris petal length vs sepal length, colored by
+# Species
+scatterplot <- ggplot(data = iris) +
+  geom_point(mapping = aes(x = Petal.Length, y = Sepal.Length, color = Species))
+print(scatterplot)
+# repeat the scatterplot above, but have the species label appear on every point
+labeled_scatterplot <- scatterplot +
+  geom_text(mapping = aes(x = Petal.Length, y = Sepal.Length + .1, label = Species))
+print(labeled_scatterplot)
+
+```
+
+# Subsetting data
+
+One of the most powerful things R can do easily and quickly is to select part of your data based on some criteria you provide using the `subset()` function. This can be immensely useful. Let's say we're interested in iris data, but don't really care about the *Iris setosa* plants. Let's create a subset of our data that excludes those plants. To set the conditions for subsetting, you will have to remember something from our lesson on logicals.
+```{r}
+# create a subset with data on all species *except* setosa
+iris_no_setosa <- subset(iris, Species != 'setosa')
+View(iris_no_setosa)
+```
+Look at this new dataframe. Notice that in the code above, subset (like ggplot) knows what we mean by `Species`; because we already tell is which dataframe to work with, it figures that Species is just one of the columns in this dataframe. Recall that `!=` means 'not equal to'.
+
+Try this on your own. Create a data frame of all the plants where sepal width is greater than 3.5.
+```{r}
+# create a subset of the data, iris_wide_sepal, that includes all plants for
+# which sepal width is greater than 3.5
+iris_wide_sepal <- subset(iris, Sepal.Width > 3.5)
+# look at the data frame. what do you notice about these plants (esp their species)?
+print(iris_wide_sepal)
+```
+Most of these plants are from the *setosa* species.
+
+### sidenote: %in%
+
+A really useful logical operator in R is `%in%`; it checks that the thing before it is a member of the list of things after it.
+```{r}
+# TRUE statement
+'a' %in% c('a', 'b', 'c')
+
+# FALSE statement
+'e' %in% c('a', 'b', 'c')
+```
+
+`%in%` can be incredibly useful in subsetting.
+```{r}
+# another way to subset data with non-setosa species
+iris_no_setosa_2 <- subset(iris, Species %in% c('versicolor', 'virginica'))
+```
+
+# Getting useful info about your data
+
+It can be incredibly helpful to quickly get summary info for your data in an accessible, R-readable format. We've already calculated some 'summary statistics' (`mean`) for every column, and we saw how ggplot easily lets us split our plot up by categories (*eg* through using different colors for each one). Now let's do the same with summary statistics.
+
+## Using the summary function
+
+A really useful function for quickly learning about the properties of your data is `summary()`. It shows you the mean, median, and quantiles of your numeric data, as well as counts for each data category. Try this:
+```{r}
+iris_summary <- summary(iris)
+print(iris_summary)
+```
+
+One reason `summary()` is often not particularly useful is that it summarizes *all* the data in your dataframe. Notice that it's not splitting the summaries by species, which is probably what we would want to happen.
+
+One way to get around this is through subsetting. Make a subset of the iris data that only contains data for the *setosa* species, and then run the `summary` function on this subset.
+```{r}
+# use subset() to make a dataframe, setosa_df, that contains only the data where
+# Species is setosa
+# (hint: you want the Species column to equal 'setosa')
+setosa_df <- subset(iris, Species == 'setosa')
+# pass the summary data for setosa_df into a new variable called setosa_summary
+setosa_summary <- summary(setosa_df)
+# print out setosa_summary
+print(setosa_summary)
+```
+
+There are a couple of important limitations to the approach we just used. First of all, we have to do this to one category at a time. This may not be so bad for 3 species, but imagine we had a dataset containing 50 species (or other categories we were interested in). Second, if you look in your **Environment** window, you'll notice that neither iris_summary or setosa_summary are dataframes. The `summary` function produces a weird R data type called a *table*, which is easy to look at but a pain to do anything with.
+```{r}
+View(iris_summary)
+```
+For example, if you wanted to plot the results of the summary functions for a bunch of species using ggplot, it would be very annoying to do.
+
+# Summarizing data with plyr
+
+## The problem
+Ideally, we want to summarize complicated data in a compact, readable, graphable way, probably as a dataframe. We also don't want to have to subset the data individually for every member of every category we want to split by in our analysis (e.g. subset for every iris species and then find the mean of some column); this may be simply annoying for 3 irises, but becomes impossible for many datasets (e.g. imagine trying to get the mean and standard deviation of the expression level of every gene in a single-cell RNAseq experiment).
+
+One of the things that made ggplot so helpful was its ability to automatically split data by category. We don't have to say "Plot this species in red, this other one in blue, etc..." We just specify the columns of the dataframe that we want the data grouped by, and R does the rest. If any stats need to be calculated (e.g. in **geom_smooth** or **geom_boxplot**), they are calculated within the separate groups specified by the columns that we want to categorize data by.
+
+Although R has built-in functions that do this, we're going to turn to yet another package, **plyr**, which makes this process simpler.
+
+```{r}
+# uncomment the line below and install plyr if you haven't already done so
+#install.packages('plyr')
+
+# load the plyr library into the current R session
+library(plyr)
+```
+
+## *split-apply-combine* and basic **plyr** functionality
+The basic philosophy behind **plyr** is the idea that for many problems, the solution falls into the pattern of *split-apply-combine*: you want to *split* the data based on some categories, apply a function (usually calculating some kind of summary statistic) to each resulting dataset, and *combine* the results back together.
+
+There are various ways to use **plyr**'s `__ply` functions, and the built-in documentation doesn't offer much help here. If you're interested in diving deeper into this, I can't recommend this tutorial strongly enough:
+[**plyr** class from Jenny Bryan's UBC's STAT545 course](https://www.stat.ubc.ca/~jenny/STAT545A/block04_dataAggregation.html)
+
+The application I'm showing you here is the one that makes the most sense to me; it looks something like this:
+```{}
+output_df <-
+  ddply(<input_df>,
+        ~ <column names to sort by>,
+        summarize,
+        <output_column> = <output_function(input_column)>)
+```
+Here, the `~` represents "as a function of"; this is common to many R functions, as you will see below!
+
+**plyr** command names are based on the data they take as input and output; there are lots of options here, but I don't want to go into too many of them. For now, let's work with the iris data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (*d*) to dataframe (*d*), the function we want to use is `ddply()` (if we were using a dataframe as an output and an array as output, we'd use `daply()`, etc).
+
+For example, let's try to create a dataframe that contains the mean petal length of each iris species:
+```{r}
+iris_petal_length_summary <-
+  ddply(iris, ~ Species, summarize, mean_Petal_Length = mean(Petal.Length))
+print(iris_petal_length_summary)
+```
+Our summary is now a dataframe, and we can easily retrieve the mean petal length for any species
+
+## Creating multiple columns of summary data
+
+You can use this format to create multiple new columns using multiple functions; just separate these by commas, like so:
+```{r}
+iris_petal_length_summary_2 <-
+  ddply(iris,
+        ~ Species,
+        summarize,
+        mean_Petal_Length = mean(Petal.Length),
+        sd_Petal_Length = sd(Petal.Length))
+print(iris_petal_length_summary_2)
+```
+
+Let's try a challenge:
+```{r}
+# Use ddply to create a dataframe, iris_sepal_width_summary, that contains the
+# mean and standard error (SE) of each species' sepal width
+# SE = standard deviation / sqrt(count - 1)
+iris_sepal_width_summary <-
+  ddply(iris,
+        ~ Species,
+        summarize,
+        mean_Petal_Length = mean(Petal.Length),
+        se_Petal_Length = sd(Petal.Length)/sqrt(length(Petal.Length)-1))
+print(iris_sepal_width_summary)
+```
+I think what helps me think about the solution to the above is that, in effect, `ddply` treats each Species as its own little dataframe, as if you were manually subsetting the iris dataframe by Species one-by-one and calculating the output column values. This is *split-apply-combine* in action.
+
+## Splitting by multiple categories
+
+Another really great thing about summarizing data this way is that we don't need to limit ourselves to splitting it by a single category. Imagine we had a new dataset that included flower color for each plant, and we were interested in looking at flower color alongside species in our summary statistics.
+
+```{r}
+# create new iris df
+color_iris <- iris
+
+# add flower color as alternating 'blue' and 'purple'
+color_iris$Flower.Color <- rep(c('blue', 'purple'), times = nrow(iris)/2)
+```
+
+We can now use ddply just as before, but splitting by a list of categories separated by `+`, rather than by a single category:
+```{r}
+iris_petal_length_summary_3 <-
+  ddply(color_iris,
+        ~ Species + Flower.Color,
+        summarize,
+        mean_Petal_Length = mean(Petal.Length),
+        sd_Petal_Length = sd(Petal.Length))
+print(iris_petal_length_summary_3)
+```
+
+# Doing stats in R
+
+R provides a ton of built-in functions that make simple statistics very easy to calculate. However, the really amazing thing is the huge number of additional packages that allow R users to perform complex statistical analysis on their data. I hope that learning the basics of R will help break down the barriers that prevent many researchers from accessing and performing this more sophisticated statistical analysis. You will likely find if you keep learning R that, past a certain point, you're learning more about the statistics behind some of these packages than about the programming; that's exactly the idea. Once you get past the steep learning curve in the beginning, R makes the coding easy, and you're freed up to think carefully about data analysis without the constraints of whether or not there's a built-in excel function to perform a specific comparison, test, etc.
+
+We're going to look at a few built-in R functions for statistical tests that are commonly done in R, but I encourage you to look into some of the resources at the end of this section on your own time to go beyond these.
+
+## t-tests
+
+Remember that t-tests compare two groups to determine whether their means are significantly different. As with all statistical tests, there are a ton of assumptions that go into these tests, and you should always learn about these before running the test. Nevertheless, let's try to perform a t-test to compare Petal Length between two species in our iris data.
+
+### Running t-tests on vectors of data
+
+The simplest way to run a t-test in R looks like `t.test(<vector_1>, <vector_2>)` where *vector_1* and *vector_2* contain the data we want to compare.
+
+```{r}
+data_1 <- c(1, 2, 4, 6)
+data_2 <- c(8, 3, 4, 5)
+t.test(data_1, data_2)
+```
+Lots of useful info here: we get a p-value (the different between the two datasets is not statistically significant at a *p = 0.05* cutoff), the means, the confidence interval for the true difference between the means, etc.
+
+I **STRONGLY** encourage you to dig into the documentation for this test (and any other statistical test you run in R) before using it. For example, if you run `?t.test`, you'll see that the default for this function is to assume unequal variance between the two samples (this is different from other statistical software). You can also see that you can change lots of parameters, including running a paired t-test, changing the "confidence level" for the reported interval of the true difference between the means, etc.
+
+```{r}
+# Run a paired t-test to compare sepal width to petal width across all the iris
+# data
+t.test(iris$Sepal.Width, iris$Petal.Width)
+```
+
+### Running t-tests on tidy dataframes
+
+Running t.test this way is great if your data is originally in vectors (or if you're comparing columns in a dataframe), but can be a pain if your data is in a 'tidy' data frame, like the iris data. Fortunately, R has your back; you can also run
+```{}
+t.test(<data to compare column> ~ <category column>, data = <input_dataframe>)
+```
+
+Let's try this:
+```{r}
+# t.test(Petal.Width ~ Species, data = iris)
+```
+Ooops... what happened?
+
+This code doesn't work because there are three species categories, and t-tests can only compare two things at a time.
+
+```{r}
+# Run t.test as above, but correctly, in order to perform a t-test comparing
+# mean petal width between two species in the iris dataframe
+t.test(Petal.Width ~ Species, data = subset(iris, Species != 'setosa'))
+```
+(Again, note the use of `~` to mean "as a function of" here.)
+
+### Extracting data from t-tests
+
+The printouts that running `t.test()` produces are great if you want to just run a single t-test and get a value, but that is often not the case. In a lot of situations, we want some of the values that are being printed out here saved as variables of then own for future use. Or maybe you want to get fancy and use ddply to run lots of t-tests at once. R allows us to do this for any statistical test we run, although figuring out how to do this often requires digging a bit through the documentation and/or online blogs. If you're trying to figure out how to extract info from commonly used test functions and packages, I recommend google before anything else.
+
+The first step is to save the results of t.test to a variable.
+```{r}
+#  Re-run our example t-test from above.
+t_test_results <- t.test(data_1, data_2)
+```
+
+So, what is this thing? If you look over in the **Environment** box, you can see that it shows up as a "List"; this is basically a special kind of vector, where every element has its own name, and can be a numeric type, a character type, or something more complicated (you can even have a list of dataframes). We can get some help from either the `View` or the `summary` functions.
+```{r}
+View(t_test_results)
+summary(t_test_results)
+```
+This gives us a list of the names of the variables that the t_test_results list holds. Elements of a list can be accessed via $, just like columns in a data frame! So now that we know what the different items in this list are called, we can save the ones we want.
+
+```{r}
+# save the p-value of this comparison into a variable
+diff_p_val <- t_test_results$p.value
+print(diff_p_val)
+# save the 95% confidence interval of the true difference between the means into
+# a variable
+diff_CI <- t_test_results$conf.int
+print(diff_CI)
+```
+
+## Performing anova
+
+Another really common statistical test in biology is Analysis of Variance (ANOVA), which tests whether the means of multiple populations differ significantly (so it can be thought of as a t-test for multiple populations at once). ANOVA can be run using the `aov()` function in R.
+
+**NB**: In addition to `aov()`, R also has a function called `anova()`, which does *not* run ANOVA (but can instead be used for model comparison). Make sure you're running the correct function.
+
+To run ANOVA on a tidy dataframe in R, we simply have to run:
+```{r}
+aov(Petal.Width ~ Species, data = iris)
+```
+
+However, unlike the output for `t.test()`, the default output of `aov()` is missing some key info (e.g. a p-value). This is the case for a lot of statistical tests in R, and in those situations, the `summary()` function comes to the rescue:
+```{r}
+anova_results <- aov(Petal.Width ~ Species, data = iris)
+summary(anova_results)
+```
+
+As with t-tests above, you can extract attributes of interest from `anova_results` with a little bit of work.
+
+## Linear models
+
+Fitting linear models is also very straightforward in R. Let's say we wanted to know whether Petal Length depended on Sepal Width in irises. (Note that this is *not* a good way to frame this question: these variables may be correlated, but it is probably silly to think as one of them as being "independent", and the other being "dependent" on it; nevertheless, let's frame the problem this way for demonstration purposes.)
+
+We can easily model Petal Length as a function of Sepal Width using the `lm()` function; note the structure of this function call is identical to `aov()` and `t.test()` above.
+```{r}
+silly_model <- lm(Petal.Length ~ Sepal.Width, data = iris)
+summary(silly_model)
+```
+You can see that both the intercept (corresponding to Petal.Width when Sepal.Width is 0) and slope (here corresponding to the effect on Petal.Length of a 1-centimeter increase in Sepal.Width) are statistically significant, although the R-squared value is not great. (By the way, we can extract a vector containing the intercept and slope using `silly_model$coefficients`, and the R-squared value using `summary(silly_model)$r.squared`).
+
+Notice that although we performed this linear model knowing it didn't really make sense, R had no issue running it. R will basically let you calculate whatever, but it's up to you to decide whether or not what you're calculating makes sense.
+
+Let's take this silly example one step further and look at this data and the fit. **Always plot things when possible!**.
+
+Reminder: you can plot a linear regression to your data in ggplot, with a confidence interval, using `geom_smooth(method = 'lm')`
+```{r}
+# Use ggplot to create a plot of Sepal.Width on the x-axis, and Petal.Width on
+# the y-axis; include all datapoints, colored by Species, and a *single*
+# trendline, generated using method = lm, across all the samples
+# (regardless of species)
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point(mapping = aes(color = Species)) +
+  geom_smooth(method = lm)
+```
+Does the strong negative slope here make sense? What's going on? (This is a very common problem called [**Simpson's Paradox**](https://en.wikipedia.org/wiki/Simpson%27s_paradox), which often confounds correlations and linear models.)
+
+Maybe we can do a better job within the confines of our silly example by including terms for Species in our linear model?
+```{r}
+# create a new variable, silly_model_with_species, containing a linear model
+# that models Petal.Width as a function of Sepal.Width and Species, and print
+# out its summary
+# Hint: see how we split data by multiple categories in ddply earlier
+silly_model_with_species <- lm(Petal.Length ~ Sepal.Width + Species, data = iris)
+summary(silly_model_with_species)
+```
+What is the "Intercept" here? If we look at the slope terms, we can see that the first Species in the list (*setosa*) is treated as the "Intercept" Species. Therefore, the Intercept is what the model calculates the petal width of a *setosa* flower would be if its sepal width were 0. The rest of the terms here are considered slopes: each extra centimeter of sepal width increases petal width by ~0.5cm (the relationship between sepal width and petal length is now positive, which I think makes more sense considering the plot we just made). The petal length for a given sepal width is ~3cm higher in *versicolor* than in *setosa*, and ~4cm higher in *virginica* than *setosa*.
+
+**NB**: If you try to make ggplot fit a smooth line for every species individually, you'll notice that it's actually fitting a different slope for Sepal.Width for every species, rather than a common slope across all species, as we are here. This is also possible when running `lm()`, and if you're interested in doing this kind of analysis, I strongly recommend reading some online tutorials, especially the one from Coding Club below.
+
+# More complex statistical analysis
+
+There are a ton of really great R packages for statistical analysis. Some are specialized for particular types of data (e.g. FACS, RNA-seq, etc), while others are more general (e.g. **lme4** and **brms**, which allow you to run mixed-effect linear models, accounting for nested structures of sources of experimental noise).
+
+In addition to "just googling" things, here are two resources for learning statistical programming in R that I love:
+
+* [University of Edinburgh Coding Club](https://ourcodingclub.github.io/tutorials): Great 1-2 hour tutorials on everything from basics of coding to complex statistical analysis, mostly in R and Python. These are amazing resources for getting an introduction to understanding and coding one-off statistical approaches.
+* [Richard McElreath's *Statistical Rethinking*](https://xcelab.net/rm/statistical-rethinking/): An intermediate-level statistics book that I really enjoyed. It walks through statistical analysis mostly from scratch, framing everything in a bayesian context and with constant examples that can be run in R. If you are interested in gaining a deeper understanding of statistics, this is a great resource (and all the lectures from his course associated with this book are [free online](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA/videos)!)

@@ -1,0 +1,261 @@
+---
+title: "Intro R Course, Workshop 9: Basics of programming, and simulation in biology (Part II)"
+subtitle: |
+    |   - simulating biological data (continued)
+    |   - testing functions
+    |   - loops
+    |   - using simulations to plan experiments
+    |   - additional resources
+author:
+  - Eugene Plavskin
+output:
+  html_notebook:
+    code_folding: show
+    depth: 3
+    tidy: yes
+    toc: yes
+---
+
+# Testing functions
+
+One really critical point is that you really need test any new functions extensively. It is **incredibly** easy to make a mistake in coding (think about all the typos you've ever made, except this time they can critically affect the results of your data analysis). The solution to this is testing any code you write extensively, and if possible, having another coder familiar with what you're doing look over it (which means always including tons of comments!)
+
+Before we do anything else, we'll need to load in the function we created last time to grow plants, since we're going to be re-using this. To do this, run the `source()` command, with the full path to *grow_plants.R* as the argument
+```{r}
+# something like this
+source('~/Documents/Teaching/Intro_R_Course/grow_plants.R')
+```
+
+Now, let's run some tests.
+```{r}
+# set the variables you'll use for plant growth
+# (sample_size, plant_growth_per_day, plant_growth_sd)
+sample_size <- 3
+plant_growth_per_day <- 0.5
+plant_growth_sd <- 0.1
+# re-initialize plant_growth_df at day 0, as yesterday
+day_0_df <- data.frame(height = rep(0, sample_size),
+                       day = 0,
+                       plant.id = 1:sample_size)
+# Test your function on plant_growth_df, adding a day of growth and
+# checking that the results look like you'd expect
+# First, test what happens if you set the mean and standard deviation of the
+# daily growth amount to 0
+plant_growth_df <-
+  grow_plants(day_0_df, 1, 0, 0)
+print(plant_growth_df)
+# Next, set the mean to a non-0 number, but the standard deviation to 0
+plant_growth_df <-
+  grow_plants(day_0_df, 1, plant_growth_per_day, 0)
+print(plant_growth_df)
+# Finally, try growing the plants with a non-0 mean and standard deviation
+# (e.g. plant_growth_per_day and plant_growth_sd from above)
+plant_growth_df <-
+  grow_plants(day_0_df, 1, plant_growth_per_day, plant_growth_sd)
+print(plant_growth_df)
+```
+
+Another great sanity check in coding anything related to data is plotting. Try making a plot of your data, plotting height vs day for all the plants.
+```{r}
+# Plot plant_growth_df
+plant_growth_plot <-
+  ggplot(data = plant_growth_df, mapping = aes(x = day, y = height)) +
+  geom_point()
+print(plant_growth_plot)
+# If you want to include lines on your plot, you will have to include a "group"
+# parameter in your mapping (i.e. "group = plant.id"); this separates the data
+# by the category (or categories) you specify, without giving it a special color,
+# shape, or associated legend
+plant_growth_plot_lines <- plant_growth_plot +
+  geom_line(mapping = aes(group = plant.id))
+print(plant_growth_plot_lines)
+```
+
+# Loops
+
+## Introduction to loops
+
+We now have a function that allows us to 'grow' the plants in our dataframe in a single line, just by providing the growth parameters. However, this doesn't actually solve our problem of trying to model the growth of these plants over long periods of time. We ideally want to avoid running this model by hand 30+ times.
+
+Instead, we can use something called a "loop". These are an incredibly fundamental idea in programming, and they allow you to easily repeat a task multiple times.
+
+### `for` loops
+The most commonly used type of loop is a 'for' loop. Imagine we have some list (e.g. a consecutive list of days). The loop takes a variable and takes turns assigning every value from the list to it, in order, and then doing something with the variable. Here's how they look in R:
+```{}
+for (variable_from_list in some_list){
+  # do some stuff using variable_from_list
+}
+```
+Note that unlike functions, loops are *not* closed-off boxes: in addition to variable_from_list, they have access to all the previously specified variables in R, and they can modify these variables.
+
+Let's try an example: we can write a loop that starts with a vector of numbers, and produces an output vector of those numbers squared.
+```{r}
+# numbers to loop through
+initial_vector <- c(0, 3, -2, 4, 15)
+
+# need to initialize an empty vector into which we will put the solutions in
+# each loop round
+squares_vector <- c()
+
+# loop over initial_vector, and populate square_vector
+for(current_number in initial_vector){
+  # print current_number, just so we can see what values it takes on
+  print(current_number)
+  # notice that current_number will take turns holding every value of initial_vector
+  current_number_squared <- current_number^2
+  # add current_number_squared to the end of squares_vector
+  squares_vector <- c(squares_vector, current_number_squared)
+}
+print(squares_vector)
+```
+Of course, you don't need a loop to do the above; simply running `initial_vector^2` would have worked. In fact, running this kind of operation in the loop we wrote takes *much* longer than the alternative. However, there are many cases (like our plant growth problem) where loops are the only way to do something.
+
+### `while` loops
+
+There's also another kind of loop, a 'while' loop. Rather than going through a vector of pre-defined length, while loops check that some condition is true, and only continue *while* that is the case.
+
+Here's a while loop that subtracts 2 from a number and prints the result, stopping only when the result is equal to 0.
+```{r}
+# initialize the while loop
+number <- 8
+while (number != 0){
+  number <- number - 2
+  print(number)
+}
+```
+`while()` loops are tricky, however. If you don't think carefully about your starting condition, you can end up in an endless loop. For example, try changing the initial value of `number` to 7 in the loop above.
+
+**Hint**: You can press inside your console and hold down `ctrl-c` or `Esc` to end the execution of any R code.
+
+(Running the loop after setting *number* to 7 results in an "infinite loop", because number never ends up equaling 0.)
+
+## Coding plant growth in a loop
+
+Now that we know how to write loops, try to write some code that makes a new dataframe, plant_growth_df_2, and then uses a loop running the grow_plants function to loop through 30 days of plant growth.
+```{r}
+# Initialize plant_growth_df_2 for day 0
+plant_growth_df_2 <- 
+  data.frame(height = rep(0, sample_size),
+             day = 0,
+             plant.id = 1:sample_size)
+# Loop through days 1-30, adding to plant growth
+for (current_day in 1:30){
+  plant_growth_df_2 <-
+    grow_plants(plant_growth_df_2, current_day, plant_growth_per_day, plant_growth_sd)
+}
+# plot plant growth over time
+ggplot(data = plant_growth_df_2, mapping = aes(x = day, y = height)) +
+  geom_point() +
+  geom_line(mapping = aes(group = plant.id))
+```
+
+# Putting it all together: Using simulations to plan experiments
+
+Let's come back to our initial problem. We want to figure out whether salt affects plant growth. To do this, we plan to compare two conditions: plants grown without salt, and plants grown with some standard concentration of salt added to the soil.
+
+Imagine we suspect, based on previous literature, that salt decreases plant growth rate by 20%. How large of an experiment would we have to do to see this change? How long do we need to run this experiment for?
+
+We can try to get ballpark answers to these questions with simulations.
+
+First, let's convert our plant dataframe-creating loop from above into a function. In addition to all the plant growth parameters, we may want to pass the number of individual plants we're growing, as well as the duration of growth, into this function.
+```{r}
+# Write a function, simulate_growth, that takes in mean and s.d. of daily plant
+# growth, the number of plants to simulate, and the number of days to 'grow'
+# the plants for
+# Output should be a dataframe of plant heights over time
+simulate_growth <-
+  function(plants_to_sim, growth_days, mean_plant_growth, sd_plant_growth){
+    # Takes in number of plants to simulate, number of days to grow plants,
+    # the mean plant growth per day, and the standard of deviation of plant growth
+    # Starts all plant sizes at 0 and simulates growth over growth_days
+    # initialize the dataframe at day 0
+    plant_df <- 
+      data.frame(height = rep(0, plants_to_sim),
+                 day = 0,
+                 plant.id = 1:plants_to_sim)
+    # Loop through the rest of growth_days, adding to plant growth
+    for (current_day in 1:growth_days){
+      plant_df <-
+        grow_plants(plant_df, current_day, plant_growth_per_day, plant_growth_sd)
+    }
+    # return plant_df
+    return(plant_df)
+  }
+```
+
+Now we can use our new `simulate_growth()` function to simulate plant growth with and without salt.
+```{r}
+# Create variables for mean daily growth amoung with and without salt, s.d. of
+# daily growth, # of plants to simulate, and number of days to grow the plants
+sample_size <- 3
+days_to_grow_plants <- 10
+plant_growth_sd <- 0.1
+plant_growth_per_day_no_salt <- 0.5
+plant_growth_per_day_with_salt <- plant_growth_per_day_no_salt * 0.8
+# Use the variables above to create two dataframes: growth_with_salt, and
+# growth_no_salt
+growth_no_salt <-
+  simulate_growth(sample_size, days_to_grow_plants,
+                  plant_growth_per_day_no_salt, plant_growth_sd)
+growth_with_salt <-
+  simulate_growth(sample_size, days_to_grow_plants,
+                  plant_growth_per_day_with_salt, plant_growth_sd)
+# Add a 'Condition' column to each of the new dataframes that will say whether
+# or not salt was used
+growth_no_salt$Condition <- 'no_salt'
+growth_with_salt$Condition <- 'salt'
+# Use rbind to combine the two dataframes into a new dataframe, combined_plant_df
+combined_plant_df <- rbind(growth_no_salt, growth_with_salt)
+```
+
+Now that we've simulated our data, we can do some plotting and statistical analysis on it!
+```{r}
+# Plot the timecourse data from combined_plant_df in a useful way
+# (coloring by Condition, with an individual line for each plant)
+ggplot(data = combined_plant_df,
+       mapping = aes(x = day, y = height, color = Condition)) +
+  geom_point() +
+  geom_line(mapping = aes(group = plant.id))
+
+# This may not have worked as you expected because as far as ggplot is concerned,
+# the individuals labeled "1" are all the same individual, regardless of whether
+# they come from the salt condition or not. We have to tell ggplot this is not
+# the case
+combined_plant_df$plant.id.full <-
+  paste(combined_plant_df$Condition, combined_plant_df$plant.id)
+View(combined_plant_df)
+# This is a *very* common problem with data that comes from multiple experiments
+# (e.g. well location is unique within a 96-well plate, but you run into
+# problems when combining data from multiple plates)
+
+# repeat the plot, using the plant.id.full column
+ggplot(data = combined_plant_df,
+       mapping = aes(x = day, y = height, color = Condition)) +
+  geom_point() +
+  geom_line(mapping = aes(group = plant.id.full))
+```
+
+```{r}
+# Use lm to model the effect of Condition on plant growth, and check the output
+# Is the observed change significant?
+plant_growth_model <-
+  lm(height ~ day + Condition,
+     data = combined_plant_df)
+summary(plant_growth_model)
+```
+What would you do if you wanted to repeat this simulation and comparison 1000 times, saving the p-value associated with the effect of Condition each time?
+
+# Using coding in science
+
+I wanted to share some final resources that I think are great places to look to keep going with learning to code.
+
+* [SoftwareCarpentry](https://software-carpentry.org/lessons/): Sets of lessons on the coding, mostly at an introductory/early intermediate level. Lots of overlap with this course in the R sections, but presented in a different way; also courses in Python, Unix, and really useful tools like GitHub
+
+* [Jenny Bryan's UBC's STAT545 course](https://stat545.com/): walks you through intro- and intermediate-level R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want a more in-depth course about R in general, I highly recommend this.
+
+If you're planning to spend a lot of time coding (i.e. not just a one-off analysis, but more long-term projects), the following articles are great sources for thinking about what to aspire to. They can be daunting if you try to achieve all their suggestions at once, but I think as they both try to point out, a better idea is understanding what good, reproducible coding looks like and then slowly building more and more of these practices into your work as you grow. Few coding projects in biology manage to achieve *everything* outlined here, but these articles provide an excellent long-term roadmap as you become a better coder.
+
+* [Parker, Hillary. (2017) Opinionated Analaysis Development *PeerJ Preprints 5:e3210v1*](https://peerj.com/preprints/3210/)
+
+* [Wilson, Greg *et al.* (2017) Good enough practices in scientific computing. *PLOS Computational Biology 13(6): e1005510*](https://doi.org/10.1371/journal.pcbi.1005510)
+
