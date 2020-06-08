@@ -33,12 +33,14 @@ variable1 + variable2
 ```
 
 As their name implies, variables can take on many values, and can change, so be careful with naming and assignment.
+
 ```{r}
 variable1 <- variable1 + variable2
 variable1
 variable1 <- variable1 + variable2
 variable1
 ```
+
 
 ## Variable *types*
 These types of variables are *numeric*. However, R can also store text. These are in the form of *characters*. Surround characters in quotation marks to have them be character and not variable names.
@@ -80,6 +82,7 @@ actual_num <- 4
 
 ```
 
+
 You need to be very careful about the types of your variables. It may look like *actual_num* and *num_string* are holding the same thing, but because we've implicitly told R that they are of different types, they behave very differently. In the **Console**, try adding *num_string* to *actual_num*. What happens, and why? What is R's cryptic message trying to tell you?
 
 # Functions
@@ -90,6 +93,7 @@ variable1
 variable2
 sum(variable1, variable2)
 ```
+
 
 `sum()` can also take more than two inputs!
 ```{r}
@@ -103,6 +107,7 @@ is(sum)
 is(is)
 ```
 
+
 Functions are always followed by `()` when you use them. When you use a function, often you are telling it to perform an operation on something else (e.g. a variable); in the examples above, we're performing the `sum()` function on *variable1* and *variable2*, and we're performing the `is()` function on `sum` and on itself. These are called arguments, and are *passed* to the function inside the parentheses.
 
 ## Looking at the **Environment**
@@ -110,6 +115,7 @@ Some functions don't need to take any arguments. For example, you can find out w
 ```{r}
 ls()
 ```
+
 
 Check out the **Environment** window on the top right! You can actually also see all your variables loaded in there, with a short summary of what's in them. This is a super convenient feature of programming in Rstudio.
 
@@ -123,12 +129,14 @@ subject_rank <- '1'
 biology_quality <- paste(favorite_subject, statement_about_subject, subject_rank)
 ```
 
+
 Notice that the code above didn't print anything out. That's because we directed the output of the `paste()` function into a variable, *biology_quality*. To get R to print out the current program variable, you could just type it into your console, or you could use a function! Try googling to find an R function that prints out a variable.
 ```{r}
 # Find an R function to print out a variable, and use it to print whatever
 # the current_program variable is storing
 
 ```
+
 
 You can learn about a function by reading its documentation. You can access the documentation with `?`, for example, type `?paste` into your console. You will see the help text pop up in the bottom right Help box in Rstudio.
 
@@ -149,6 +157,7 @@ Notice that when we used paste above, the function automatically put a space bet
 # variables, using a dash between them instead of a space
 
 ```
+
 
 # Things we hope you've learned today (and will hopefully remember next time)
 
