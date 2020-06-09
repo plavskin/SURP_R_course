@@ -17,6 +17,9 @@ output:
 ---
 **Solutions to this workshop can be found [here](Solutions_Workshop_2.nb.html)**
 
+# Review from last time
+Add a code chunk below this text, and in that chunk use R to add your age to the age of your review partner.
+
 # Variables
 ## Variables hold information
 Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
