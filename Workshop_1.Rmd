@@ -17,11 +17,15 @@ output:
 ---
 **Solutions to this workshop can be found [here](Solutions_Workshop_1.nb.html)**
 
+```{r echo=F}
+# check if knitr package installed, load it if it is
+knitr_installed = require(knitr)
+```
+
 # Using Rstudio
 
 ```{r echo=F}
-library(knitr)
-if (dir.exists('class_1_figures')){
+if (dir.exists('class_1_figures') & knitr_installed){
   include_graphics('class_1_figures/RStudio_screen.png')
 }
 ```
@@ -66,14 +70,14 @@ To download this lecture's R notebook, scroll to the top of this website, click 
 
 ## Starting a new notebook
 ```{r echo = F}
-if (dir.exists('class_1_figures')){
+if (dir.exists('class_1_figures') & knitr_installed){
   include_graphics('class_1_figures/new_nb.png')
 }
 ```
  
 Elements of a notebook:
 ```{r echo=F}
-if (dir.exists('class_1_figures')){
+if (dir.exists('class_1_figures') & knitr_installed){
   include_graphics('class_1_figures/nb_elements.png')
 }
 ```
@@ -87,7 +91,7 @@ The notebook contains 3 major parts:
 
 There are a couple of ways to run code from your code chunks inside the notebook. You can press the **Run** button at the top right of your editor window in Rstudio to see the options:
 ```{r echo=F}
-if (dir.exists('class_1_figures')){
+if (dir.exists('class_1_figures') & knitr_installed){
   include_graphics('class_1_figures/code_running_options.png')
 }
 ```
