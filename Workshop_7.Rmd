@@ -1,11 +1,10 @@
 ---
-title: "Workshop 7: Summarizing data and doing basic stats"
+title: "Workshop 7: Summarizing data"
 subtitle: |
     |   - subsetting data
     |   - summarizing your data
     |   - splitting data by categories to calculate stats
-    |   - ttests, anova, linear models
-    |   - resources for learning to do statistics in R
+    |   - resources for learning R
 author:
   - Eugene Plavskin
 output:
@@ -184,142 +183,10 @@ iris_petal_length_summary_3 <-
         sd_Petal_Length = sd(Petal.Length))
 ```
 
-# Doing stats in R
+# Resources for learning R
 
-R provides a ton of built-in functions that make simple statistics very easy to calculate. However, the really amazing thing is the huge number of additional packages that allow R users to perform complex statistical analysis on their data. I hope that learning the basics of R will help break down the barriers that prevent many researchers from accessing and performing this more sophisticated statistical analysis. You will likely find if you keep learning R that, past a certain point, you're learning more about the statistics behind some of these packages than about the programming; that's exactly the idea. Once you get past the steep learning curve in the beginning, R makes the coding easy, and you're freed up to think carefully about data analysis without the constraints of whether or not there's a built-in excel function to perform a specific comparison, test, etc.
+We wanted to share some final resources that I think are great places to look to keep going with learning to code.
 
-We're going to look at a few built-in R functions for statistical tests that are commonly done in R, but I encourage you to look into some of the resources at the end of this section on your own time to go beyond these.
+* [SoftwareCarpentry](https://software-carpentry.org/lessons/): Sets of lessons on the coding, mostly at an introductory/early intermediate level. Lots of overlap with this course in the R sections, but presented in a different way; also courses in Python, Unix, and really useful tools like GitHub
 
-## t-tests
-
-Remember that t-tests compare two groups to determine whether their means are significantly different. As with all statistical tests, there are a ton of assumptions that go into these tests, and you should always learn about these before running the test. Nevertheless, let's try to perform a t-test to compare Petal Length between two species in our iris data.
-
-### Running t-tests on vectors of data
-
-The simplest way to run a t-test in R looks like `t.test(<vector_1>, <vector_2>)` where *vector_1* and *vector_2* contain the data we want to compare.
-
-```{r}
-data_1 <- c(1, 2, 4, 6)
-data_2 <- c(8, 3, 4, 5)
-t.test(data_1, data_2)
-```
-Lots of useful info here: we get a p-value (the different between the two datasets is not statistically significant at a *p = 0.05* cutoff), the means, the confidence interval for the true difference between the means, etc.
-
-I **STRONGLY** encourage you to dig into the documentation for this test (and any other statistical test you run in R) before using it. For example, if you run `?t.test`, you'll see that the default for this function is to assume unequal variance between the two samples (this is different from other statistical software). You can also see that you can change lots of parameters, including running a paired t-test, changing the "confidence level" for the reported interval of the true difference between the means, etc.
-
-```{r}
-# Run a paired t-test to compare sepal width to petal width across all the iris
-# data
-
-```
-
-### Running t-tests on tidy dataframes
-
-Running t.test this way is great if your data is originally in vectors (or if you're comparing columns in a dataframe), but can be a pain if your data is in a 'tidy' data frame, like the iris data. Fortunately, R has your back; you can also run
-```{}
-t.test(<data to compare column> ~ <category column>, data = <input_dataframe>)
-```
-
-Let's try this:
-```{r}
-t.test(Petal.Width ~ Species, data = iris)
-```
-Ooops... what happened?
-
-```{r}
-# Run t.test as above, but correctly, in order to perform a t-test comparing
-# mean petal width between two species in the iris dataframe
-
-```
-(Again, note the use of `~` to mean "as a function of" here.)
-
-### Extracting data from t-tests
-
-The printouts that running `t.test()` produces are great if you want to just run a single t-test and get a value, but that is often not the case. In a lot of situations, we want some of the values that are being printed out here saved as variables of then own for future use. Or maybe you want to get fancy and use ddply to run lots of t-tests at once. R allows us to do this for any statistical test we run, although figuring out how to do this often requires digging a bit through the documentation and/or online blogs. If you're trying to figure out how to extract info from commonly used test functions and packages, I recommend google before anything else.
-
-The first step is to save the results of t.test to a variable.
-```{r}
-#  Re-run our example t-test from above.
-t_test_results <- t.test(data_1, data_2)
-```
-
-So, what is this thing? If you look over in the **Environment** box, you can see that it shows up as a "List"; this is basically a special kind of vector, where every element has its own name, and can be a numeric type, a character type, or something more complicated (you can even have a list of dataframes). We can get some help from either the `View` or the `summary` functions.
-```{r}
-View(t_test_results)
-summary(t_test_results)
-```
-This gives us a list of the names of the variables that the t_test_results list holds. Elements of a list can be accessed via $, just like columns in a data frame! So now that we know what the different items in this list are called, we can save the ones we want.
-
-```{r}
-# save the p-value of this comparison into a variable
-diff_p_val <- t_test_results$p.value
-
-# save the 95% confidence interval of the true difference between the means into
-# a variable
-
-```
-
-## Performing anova
-
-Another really common statistical test in biology is Analysis of Variance (ANOVA), which tests whether the means of multiple populations differ significantly (so it can be thought of as a t-test for multiple populations at once). ANOVA can be run using the `aov()` function in R.
-
-**NB**: In addition to `aov()`, R also has a function called `anova()`, which does *not* run ANOVA (but can instead be used for model comparison). Make sure you're running the correct function.
-
-To run ANOVA on a tidy dataframe in R, we simply have to run:
-```{r}
-aov(Petal.Width ~ Species, data = iris)
-```
-
-However, unlike the output for `t.test()`, the default output of `aov()` is missing some key info (e.g. a p-value). This is the case for a lot of statistical tests in R, and in those situations, the `summary()` function comes to the rescue:
-```{r}
-anova_results <- aov(Petal.Width ~ Species, data = iris)
-summary(anova_results)
-```
-
-As with t-tests above, you can extract attributes of interest from `anova_results` with a little bit of work.
-
-## Linear models
-
-Fitting linear models is also very straightforward in R. Let's say we wanted to know whether Petal Length depended on Sepal Width in irises. (Note that this is *not* a good way to frame this question: these variables may be correlated, but it is probably silly to think as one of them as being "independent", and the other being "dependent" on it; nevertheless, let's frame the problem this way for demonstration purposes.)
-
-We can easily model Petal Length as a function of Sepal Width using the `lm()` function; note the structure of this function call is identical to `aov()` and `t.test()` above.
-```{r}
-silly_model <- lm(Petal.Length ~ Sepal.Width, data = iris)
-summary(silly_model)
-```
-You can see that both the intercept (corresponding to Petal.Width when Sepal.Width is 0) and slope (here corresponding to the effect on Petal.Length of a 1-centimeter increase in Sepal.Width) are statistically significant, although the R-squared value is not great. (By the way, we can extract a vector containing the intercept and slope using `silly_model$coefficients`, and the R-squared value using `summary(silly_model)$r.squared`).
-
-Notice that although we performed this linear model knowing it didn't really make sense, R had no issue running it. R will basically let you calculate whatever, but it's up to you to decide whether or not what you're calculating makes sense.
-
-Let's take this silly example one step further and look at this data and the fit. **Always plot things when possible!**.
-
-Reminder: you can plot a linear regression to your data in ggplot, with a confidence interval, using `geom_smooth(method = 'lm')`
-```{r}
-# Use ggplot to create a plot of Sepal.Width on the x-axis, and Petal.Width on
-# the y-axis; include all datapoints, colored by Species, and a *single*
-# trendline, generated using method = lm, across all the samples
-# (regardless of species)
-
-```
-Does the strong negative slope here make sense? What's going on? (This is a very common problem called [**Simpson's Paradox**](https://en.wikipedia.org/wiki/Simpson%27s_paradox), which often confounds correlations and linear models.)
-
-Maybe we can do a better job within the confines of our silly example by including terms for Species in our linear model?
-```{r}
-# create a new variable, silly_model_with_species, containing a linear model
-# that models Petal.Width as a function of Sepal.Width and Species, and print
-# out its summary
-# Hint: see how we split data by multiple categories in ddply earlier
-
-```
-What is the "Intercept" here? If we look at the slope terms, we can see that the first Species in the list (*setosa*) is treated as the "Intercept" Species. Therefore, the Intercept is what the model calculates the petal width of a *setosa* flower would be if its sepal width were 0. The rest of the terms here are considered slopes: each extra centimeter of sepal width increases petal width by ~0.5cm (the relationship between sepal width and petal length is now positive, which I think makes more sense considering the plot we just made). The petal length for a given sepal width is ~3cm higher in *versicolor* than in *setosa*, and ~4cm higher in *virginica* than *setosa*.
-
-**NB**: If you try to make ggplot fit a smooth line for every species individually, you'll notice that it's actually fitting a different slope for Sepal.Width for every species, rather than a common slope across all species, as we are here. This is also possible when running `lm()`, and if you're interested in doing this kind of analysis, I strongly recommend reading some online tutorials, especially the one from Coding Club below.
-
-# More complex statistical analysis
-
-There are a ton of really great R packages for statistical analysis. Some are specialized for particular types of data (e.g. FACS, RNA-seq, etc), while others are more general (e.g. **lme4** and **brms**, which allow you to run mixed-effect linear models, accounting for nested structures of sources of experimental noise).
-
-In addition to "just googling" things, here are two resources for learning statistical programming in R that I love:
-
-* [University of Edinburgh Coding Club](https://ourcodingclub.github.io/tutorials): Great 1-2 hour tutorials on everything from basics of coding to complex statistical analysis, mostly in R and Python. These are amazing resources for getting an introduction to understanding and coding one-off statistical approaches.
-* [Richard McElreath's *Statistical Rethinking*](https://xcelab.net/rm/statistical-rethinking/): An intermediate-level statistics book that I really enjoyed. It walks through statistical analysis mostly from scratch, framing everything in a bayesian context and with constant examples that can be run in R. If you are interested in gaining a deeper understanding of statistics, this is a great resource (and all the lectures from his course associated with this book are [free online](https://www.youtube.com/channel/UCNJK6_DZvcMqNSzQdEkzvzA/videos)!)
+* [Jenny Bryan's UBC's STAT545 course](https://stat545.com/): walks you through intro- and intermediate-level R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want a more in-depth course about R in general, I highly recommend this.
