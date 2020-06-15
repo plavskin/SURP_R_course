@@ -19,6 +19,7 @@ output:
 ## Variables hold information
 Defining variables, or giving a name to values, such as the numbers you added together, allows you to store information.  
 You define variables using the `<-` operator, which means "store the value on the right in the variable on the left", like so. You can then call it back by saying the variable name.
+
 ```{r}
 variable1 <- 3
 variable2 <- 4
