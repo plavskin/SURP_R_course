@@ -1760,33 +1760,14 @@ summary {
 <li><a href="#operations-on-vectors-of-numbers">Operations on vectors of numbers</a></li>
 <li><a href="#review-vectors-functions-and-types">Review: vectors, functions, and types</a><ul>
 <li><a href="#vectors-and-functions">Vectors and functions</a></li>
-</ul></li>
-<li><a href="#calculate-the-sum-of-vect_1-and-print-it-out-on-the-screen">Calculate the sum of vect_1 and print it out on the screen</a></li>
-<li><a href="#create-a-new-variable-vect_2-that-contains-each-value-of-vect_1-squared">Create a new variable, vect_2, that contains each value of vect_1 squared</a></li>
-<li><a href="#dont-manually-enter-the-numbers-use-vect_1-to-calculate-this">(Don’t manually enter the numbers, use vect_1 to calculate this)</a><ul>
 <li><a href="#sequences-of-numbers">Sequences of numbers</a></li>
 </ul></li>
 <li><a href="#getting-specific-elements-from-vectors">Getting specific elements from vectors</a></li>
-<li><a href="#use-the-function-we-learned-during-the-last-class-to-make-a-sequence-of-length">Use the function we learned during the last class to make a sequence of length</a></li>
-<li><a href="#num_of_elements-starting-at-first_num-and-going-to-last_num-and-put-that-in-a">num_of_elements starting at first_num and going to last_num, and put that in a</a></li>
-<li><a href="#vector-called-new_vector">vector called new_vector</a></li>
-<li><a href="#check-the-length-of-the-vector-you-just-created">Check the length of the vector you just created</a></li>
-<li><a href="#lets-check-what-the-first-number-in-long_vector-is">Let’s check what the first number in long_vector is</a></li>
-<li><a href="#now-check-what-the-32nd-number-in-long_vector-is">Now check what the 32nd number in long_vector is</a></li>
-<li><a href="#use-long_vector-together-with-position_vector-to-create-shorter_vector-which">Use long_vector together with position_vector to create shorter_vector, which</a></li>
-<li><a href="#will-hold-every-othern-number-from-long_vector">will hold every othern number from long_vector</a></li>
-<li><a href="#print-out-long_vector_2-then-shorter_vector">print out long_vector_2, then shorter_vector</a></li>
 <li><a href="#when-we-get-missing-values">When we get missing values</a><ul>
 <li><a href="#performing-nonsensical-operations">Performing nonsensical operations</a></li>
-</ul></li>
-<li><a href="#convert-weird_number_vector-to-numeric-type-and-print-out-the-result">Convert weird_number_vector to numeric type, and print out the result</a><ul>
 <li><a href="#taboo-math-operations">Taboo math operations</a></li>
-</ul></li>
-<li><a href="#what-do-you-think-youll-get-if-you-divide-vector_1-by-vector_2">What do you think you’ll get if you divide vector_1 by vector_2?</a></li>
-<li><a href="#try-it">Try it</a><ul>
 <li><a href="#real-missing-data">Real missing data</a></li>
 </ul></li>
-<li><a href="#what-happens-if-you-take-the-sum-of-data_vector">What happens if you take the sum of data_vector?</a></li>
 <li><a href="#things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time">Things we hope you’ve learned today (and will hopefully remember next time)</a></li>
 </ul>
 </div>
@@ -1837,30 +1818,25 @@ vector_b &lt;- c(4,5,6)
 <h2>Vectors and functions</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDcmVhdGUgYSB2YXJpYWJsZSwgdmVjdF8xIHRoYXQgaG9sZHMgYSB2ZWN0b3IgY29udGFpbmluZyBhbnkgNCBudW1iZXJzXG5cbiMgQ2FsY3VsYXRlIHRoZSBzdW0gb2YgdmVjdF8xIGFuZCBwcmludCBpdCBvdXQgb24gdGhlIHNjcmVlblxuXG4jIENyZWF0ZSBhIG5ldyB2YXJpYWJsZSwgdmVjdF8yLCB0aGF0IGNvbnRhaW5zIGVhY2ggdmFsdWUgb2YgdmVjdF8xIHNxdWFyZWRcbiMgKERvbid0IG1hbnVhbGx5IGVudGVyIHRoZSBudW1iZXJzLCB1c2UgdmVjdF8xIHRvIGNhbGN1bGF0ZSB0aGlzKVxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Create a variable, vect_1 that holds a vector containing any 4 numbers</p>
-</div>
-</div>
-<div id="calculate-the-sum-of-vect_1-and-print-it-out-on-the-screen" class="section level1">
-<h1>Calculate the sum of vect_1 and print it out on the screen</h1>
-</div>
-<div id="create-a-new-variable-vect_2-that-contains-each-value-of-vect_1-squared" class="section level1">
-<h1>Create a new variable, vect_2, that contains each value of vect_1 squared</h1>
-</div>
-<div id="dont-manually-enter-the-numbers-use-vect_1-to-calculate-this" class="section level1">
-<h1>(Don’t manually enter the numbers, use vect_1 to calculate this)</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2YXJpYWJsZSwgdmVjdF8xIHRoYXQgaG9sZHMgYSB2ZWN0b3IgY29udGFpbmluZyBhbnkgNCBudW1iZXJzXG5cbiMgQ2FsY3VsYXRlIHRoZSBzdW0gb2YgdmVjdF8xIGFuZCBwcmludCBpdCBvdXQgb24gdGhlIHNjcmVlblxuXG4jIENyZWF0ZSBhIG5ldyB2YXJpYWJsZSwgdmVjdF8yLCB0aGF0IGNvbnRhaW5zIGVhY2ggdmFsdWUgb2YgdmVjdF8xIHNxdWFyZWRcbiMgKERvbid0IG1hbnVhbGx5IGVudGVyIHRoZSBudW1iZXJzLCB1c2UgdmVjdF8xIHRvIGNhbGN1bGF0ZSB0aGlzKVxuYGBgIn0= -->
+<pre class="r"><code># Create a variable, vect_1 that holds a vector containing any 4 numbers
+
+# Calculate the sum of vect_1 and print it out on the screen
+
+# Create a new variable, vect_2, that contains each value of vect_1 squared
+# (Don't manually enter the numbers, use vect_1 to calculate this)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Notice that lots of functions work on vectors!</p>
+</div>
 <div id="sequences-of-numbers" class="section level2">
 <h2>Sequences of numbers</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3Igb2YgbnVtYmVycyBmcm9tIC01IHRvIDUgY29udGFpbmluZyAyMSBlbGVtZW50cyBjYWxsZWQgcmV2aWV3X3ZlY1xuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Create a vector of numbers from -5 to 5 containing 21 elements called review_vec</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3Igb2YgbnVtYmVycyBmcm9tIC01IHRvIDUgY29udGFpbmluZyAyMSBlbGVtZW50cyBjYWxsZWQgcmV2aWV3X3ZlY1xuXG5gYGAifQ== -->
+<pre class="r"><code># Create a vector of numbers from -5 to 5 containing 21 elements called review_vec
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1879,72 +1855,73 @@ vector_b &lt;- c(4,5,6)
 <p>Let’s create a really long vector and ask R to tell us about specific points along that vector.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDcmVhdGUgdGhyZWUgdmFyaWFibGVzLCBmaXJzdF9udW0sIGxhc3RfbnVtLCBhbmQgbnVtX29mX2VsZW1lbnRzXG4jIFRoZSBmaXJzdCB0d28gY2FuIGJlIHdoYXRldmVyIG51bWJlcnMgeW91IHdhbnQsIG51bV9vZl9lbGVtZW50cyBzaG91bGQgYmUgMTAwXG4jIERPTidUIHVzZSAxIGZvciBmaXJzdF9udW0sIGFuZCBkb24ndCB1c2UgMTAwIGZvciBsYXN0X251bS4gQmUgY3JlYXRpdmUuXG5cbiMgVXNlIHRoZSBmdW5jdGlvbiB3ZSBsZWFybmVkIGR1cmluZyB0aGUgbGFzdCBjbGFzcyB0byBtYWtlIGEgc2VxdWVuY2Ugb2YgbGVuZ3RoXG4jIG51bV9vZl9lbGVtZW50cyBzdGFydGluZyBhdCBmaXJzdF9udW0gYW5kIGdvaW5nIHRvIGxhc3RfbnVtLCBhbmQgcHV0IHRoYXQgaW4gYVxuIyB2ZWN0b3IgY2FsbGVkIG5ld192ZWN0b3JcblxuIyBDaGVjayB0aGUgbGVuZ3RoIG9mIHRoZSB2ZWN0b3IgeW91IGp1c3QgY3JlYXRlZFxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Create three variables, first_num, last_num, and num_of_elements # The first two can be whatever numbers you want, num_of_elements should be 100 # DON’T use 1 for first_num, and don’t use 100 for last_num. Be creative.</p>
-</div>
-<div id="use-the-function-we-learned-during-the-last-class-to-make-a-sequence-of-length" class="section level1">
-<h1>Use the function we learned during the last class to make a sequence of length</h1>
-</div>
-<div id="num_of_elements-starting-at-first_num-and-going-to-last_num-and-put-that-in-a" class="section level1">
-<h1>num_of_elements starting at first_num and going to last_num, and put that in a</h1>
-</div>
-<div id="vector-called-new_vector" class="section level1">
-<h1>vector called new_vector</h1>
-</div>
-<div id="check-the-length-of-the-vector-you-just-created" class="section level1">
-<h1>Check the length of the vector you just created</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgdGhyZWUgdmFyaWFibGVzLCBmaXJzdF9udW0sIGxhc3RfbnVtLCBhbmQgbnVtX29mX2VsZW1lbnRzXG4jIFRoZSBmaXJzdCB0d28gY2FuIGJlIHdoYXRldmVyIG51bWJlcnMgeW91IHdhbnQsIG51bV9vZl9lbGVtZW50cyBzaG91bGQgYmUgMTAwXG4jIERPTidUIHVzZSAxIGZvciBmaXJzdF9udW0sIGFuZCBkb24ndCB1c2UgMTAwIGZvciBsYXN0X251bS4gQmUgY3JlYXRpdmUuXG5cbiMgVXNlIHRoZSBmdW5jdGlvbiB3ZSBsZWFybmVkIGR1cmluZyB0aGUgbGFzdCBjbGFzcyB0byBtYWtlIGEgc2VxdWVuY2Ugb2YgbGVuZ3RoXG4jIG51bV9vZl9lbGVtZW50cyBzdGFydGluZyBhdCBmaXJzdF9udW0gYW5kIGdvaW5nIHRvIGxhc3RfbnVtLCBhbmQgcHV0IHRoYXQgaW4gYVxuIyB2ZWN0b3IgY2FsbGVkIG5ld192ZWN0b3JcblxuIyBDaGVjayB0aGUgbGVuZ3RoIG9mIHRoZSB2ZWN0b3IgeW91IGp1c3QgY3JlYXRlZFxuXG5gYGAifQ== -->
+<pre class="r"><code># Create three variables, first_num, last_num, and num_of_elements
+# The first two can be whatever numbers you want, num_of_elements should be 100
+# DON'T use 1 for first_num, and don't use 100 for last_num. Be creative.
+
+# Use the function we learned during the last class to make a sequence of length
+# num_of_elements starting at first_num and going to last_num, and put that in a
+# vector called new_vector
+
+# Check the length of the vector you just created
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>To access the number at a specific position, we can use square brackets!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBNYWtlIGEgdmVjdG9yIGNhbGxlZCBsb25nX3ZlY3RvciB0aGF0IGdvZXMgZnJvbSAtMSB0byA1MCBhbmQgaGFzIDEwMCBudW1iZXJzIGluc2lkZVxuXG4jIExldCdzIGNoZWNrIHdoYXQgdGhlIGZpcnN0IG51bWJlciBpbiBsb25nX3ZlY3RvciBpc1xucHJpbnQobG9uZ192ZWN0b3JbMV0pXG5cbiMgTm93IGNoZWNrIHdoYXQgdGhlIDMybmQgbnVtYmVyIGluIGxvbmdfdmVjdG9yIGlzXG5cbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # Make a vector called long_vector that goes from -1 to 50 and has 100 numbers inside</p>
-</div>
-<div id="lets-check-what-the-first-number-in-long_vector-is" class="section level1">
-<h1>Let’s check what the first number in long_vector is</h1>
-<p>print(long_vector[1])</p>
-</div>
-<div id="now-check-what-the-32nd-number-in-long_vector-is" class="section level1">
-<h1>Now check what the 32nd number in long_vector is</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBNYWtlIGEgdmVjdG9yIGNhbGxlZCBsb25nX3ZlY3RvciB0aGF0IGdvZXMgZnJvbSAtMSB0byA1MCBhbmQgaGFzIDEwMCBudW1iZXJzIGluc2lkZVxuXG4jIExldCdzIGNoZWNrIHdoYXQgdGhlIGZpcnN0IG51bWJlciBpbiBsb25nX3ZlY3RvciBpc1xucHJpbnQobG9uZ192ZWN0b3JbMV0pXG5cbiMgTm93IGNoZWNrIHdoYXQgdGhlIDMybmQgbnVtYmVyIGluIGxvbmdfdmVjdG9yIGlzXG5cbmBgYCJ9 -->
+<pre class="r"><code># Make a vector called long_vector that goes from -1 to 50 and has 100 numbers inside
+
+# Let's check what the first number in long_vector is
+print(long_vector[1])
+
+# Now check what the 32nd number in long_vector is
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBOb3cgY2hlY2sgd2hhdCB0aGUgbGFzdCBudW1iZXIgaW4gbG9uZ192ZWN0b3IgaXNcbiMgKGJvbnVzOiBkbyB0aGlzIHVzaW5nIGEgdmFyaWFibGUgeW91J3ZlIGFscmVhZHkgY3JlYXRlZCwgcmF0aGVyIHRoYW4ganVzdFxuIyB0eXBpbmcgb3V0IDEwMClcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # Now check what the last number in long_vector is # (bonus: do this using a variable you’ve already created, rather than just # typing out 100)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBOb3cgY2hlY2sgd2hhdCB0aGUgbGFzdCBudW1iZXIgaW4gbG9uZ192ZWN0b3IgaXNcbiMgKGJvbnVzOiBkbyB0aGlzIHVzaW5nIGEgdmFyaWFibGUgeW91J3ZlIGFscmVhZHkgY3JlYXRlZCwgcmF0aGVyIHRoYW4ganVzdFxuIyB0eXBpbmcgb3V0IDEwMClcblxuYGBgIn0= -->
+<pre class="r"><code># Now check what the last number in long_vector is
+# (bonus: do this using a variable you've already created, rather than just
+# typing out 100)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You don’t have to just provide a single number as in index (the thing inside the square brackets); vectors work too!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBQcmludCBvdXQgdGhlIDR0aCwgNXRoLCA2dGgsIDd0aCwgYW5kIDh0aCBudW1iZXIgaW4gbG9uZ192ZWN0b3JcbnByaW50KGxvbmdfdmVjdG9yW2MoNCw1LDYsNyw4KV0pXG4jIE5vdyBkbyB0aGUgc2FtZSB0aGluZyBhcyBhYm92ZSwgYnV0IHVzaW5nIGEgZnVuY3Rpb24gd2UgaGF2ZSBsZWFybmVkIHRvZGF5IHRvXG4jIHNwZWNpZmljeSB0aGUgaW5kaWNlcyAoNCwgNSwgNiwgNywgOClcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # Print out the 4th, 5th, 6th, 7th, and 8th number in long_vector print(long_vector[c(4,5,6,7,8)]) # Now do the same thing as above, but using a function we have learned today to # specificy the indices (4, 5, 6, 7, 8)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBQcmludCBvdXQgdGhlIDR0aCwgNXRoLCA2dGgsIDd0aCwgYW5kIDh0aCBudW1iZXIgaW4gbG9uZ192ZWN0b3JcbnByaW50KGxvbmdfdmVjdG9yW2MoNCw1LDYsNyw4KV0pXG4jIE5vdyBkbyB0aGUgc2FtZSB0aGluZyBhcyBhYm92ZSwgYnV0IHVzaW5nIGEgZnVuY3Rpb24gd2UgaGF2ZSBsZWFybmVkIHRvZGF5IHRvXG4jIHNwZWNpZmljeSB0aGUgaW5kaWNlcyAoNCwgNSwgNiwgNywgOClcblxuYGBgIn0= -->
+<pre class="r"><code># Print out the 4th, 5th, 6th, 7th, and 8th number in long_vector
+print(long_vector[c(4,5,6,7,8)])
+# Now do the same thing as above, but using a function we have learned today to
+# specificy the indices (4, 5, 6, 7, 8)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Actually, we can get even more creative here. Let’s say you wanted to create a vector that had inside it <em>every other number</em> from a vector (<em>i.e.</em> the 1st, 3rd, 5th, etc numbers that are in that vector). Let’s try this. Hint: you can use <code>seq()</code> to create a vector of positions (<em>indices</em>) that you then use to get the positions you want from that vector</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubG9uZ192ZWN0b3JfMl9zdGFydCA8LSAtMVxubG9uZ192ZWN0b3JfMl9lbmQgPC0gNTBcbmxvbmdfdmVjdG9yXzJfbGVuZ3RoIDwtIDIwXG5sb25nX3ZlY3Rvcl8yIDwtXG4gIHNlcShsb25nX3ZlY3Rvcl8yX3N0YXJ0LCBsb25nX3ZlY3Rvcl8yX2VuZCwgbGVuZ3RoLm91dCA9IGxvbmdfdmVjdG9yXzJfbGVuZ3RoKVxuIyBDcmVhdGUgcG9zaXRpb25fdmVjdG9yLCB3aGljaCB3aWxsIGhvbGQgdGhlIHBvc2l0aW9ucyB5b3Ugd2FudCB0byBnZXQgb3V0IG9mXG4jIGxvbmdfdmVjdG9yXzIgKGkuZS4gYygxLDMsNSwuLi4uKSlcblxuIyBVc2UgbG9uZ192ZWN0b3IgdG9nZXRoZXIgd2l0aCBwb3NpdGlvbl92ZWN0b3IgdG8gY3JlYXRlIHNob3J0ZXJfdmVjdG9yLCB3aGljaFxuIyB3aWxsIGhvbGQgZXZlcnkgb3RoZXJuIG51bWJlciBmcm9tIGxvbmdfdmVjdG9yXG5cbiMgcHJpbnQgb3V0IGxvbmdfdmVjdG9yXzIsIHRoZW4gc2hvcnRlcl92ZWN0b3JcblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r long_vector_2_start &lt;- -1 long_vector_2_end &lt;- 50 long_vector_2_length &lt;- 20 long_vector_2 &lt;- seq(long_vector_2_start, long_vector_2_end, length.out = long_vector_2_length) # Create position_vector, which will hold the positions you want to get out of # long_vector_2 (i.e. c(1,3,5,….))</p>
-</div>
-<div id="use-long_vector-together-with-position_vector-to-create-shorter_vector-which" class="section level1">
-<h1>Use long_vector together with position_vector to create shorter_vector, which</h1>
-</div>
-<div id="will-hold-every-othern-number-from-long_vector" class="section level1">
-<h1>will hold every othern number from long_vector</h1>
-</div>
-<div id="print-out-long_vector_2-then-shorter_vector" class="section level1">
-<h1>print out long_vector_2, then shorter_vector</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG9uZ192ZWN0b3JfMl9zdGFydCA8LSAtMVxubG9uZ192ZWN0b3JfMl9lbmQgPC0gNTBcbmxvbmdfdmVjdG9yXzJfbGVuZ3RoIDwtIDIwXG5sb25nX3ZlY3Rvcl8yIDwtXG4gIHNlcShsb25nX3ZlY3Rvcl8yX3N0YXJ0LCBsb25nX3ZlY3Rvcl8yX2VuZCwgbGVuZ3RoLm91dCA9IGxvbmdfdmVjdG9yXzJfbGVuZ3RoKVxuIyBDcmVhdGUgcG9zaXRpb25fdmVjdG9yLCB3aGljaCB3aWxsIGhvbGQgdGhlIHBvc2l0aW9ucyB5b3Ugd2FudCB0byBnZXQgb3V0IG9mXG4jIGxvbmdfdmVjdG9yXzIgKGkuZS4gYygxLDMsNSwuLi4uKSlcblxuIyBVc2UgbG9uZ192ZWN0b3IgdG9nZXRoZXIgd2l0aCBwb3NpdGlvbl92ZWN0b3IgdG8gY3JlYXRlIHNob3J0ZXJfdmVjdG9yLCB3aGljaFxuIyB3aWxsIGhvbGQgZXZlcnkgb3RoZXJuIG51bWJlciBmcm9tIGxvbmdfdmVjdG9yXG5cbiMgcHJpbnQgb3V0IGxvbmdfdmVjdG9yXzIsIHRoZW4gc2hvcnRlcl92ZWN0b3JcblxuYGBgIn0= -->
+<pre class="r"><code>long_vector_2_start &lt;- -1
+long_vector_2_end &lt;- 50
+long_vector_2_length &lt;- 20
+long_vector_2 &lt;-
+  seq(long_vector_2_start, long_vector_2_end, length.out = long_vector_2_length)
+# Create position_vector, which will hold the positions you want to get out of
+# long_vector_2 (i.e. c(1,3,5,....))
+
+# Use long_vector together with position_vector to create shorter_vector, which
+# will hold every othern number from long_vector
+
+# print out long_vector_2, then shorter_vector
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1964,58 +1941,55 @@ vector_b &lt;- c(4,5,6)
 <p>Let’s try to see what R does when we ask it to do something that clearly doesn’t make sense. Remember that we can ask R to convert a list of characters to numbers. Let’s try that again.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud2VpcmRfbnVtYmVyX3ZlY3RvciA8LSBjKCcxJywgJzQnLCAna29hbGEnLCAnMTgnKVxuXG4jIENvbnZlcnQgd2VpcmRfbnVtYmVyX3ZlY3RvciB0byBudW1lcmljIHR5cGUsIGFuZCBwcmludCBvdXQgdGhlIHJlc3VsdFxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r weird_number_vector &lt;- c(‘1’, ‘4’, ‘koala’, ‘18’)</p>
-</div>
-</div>
-<div id="convert-weird_number_vector-to-numeric-type-and-print-out-the-result" class="section level1">
-<h1>Convert weird_number_vector to numeric type, and print out the result</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud2VpcmRfbnVtYmVyX3ZlY3RvciA8LSBjKCcxJywgJzQnLCAna29hbGEnLCAnMTgnKVxuXG4jIENvbnZlcnQgd2VpcmRfbnVtYmVyX3ZlY3RvciB0byBudW1lcmljIHR5cGUsIGFuZCBwcmludCBvdXQgdGhlIHJlc3VsdFxuXG5gYGAifQ== -->
+<pre class="r"><code>weird_number_vector &lt;- c('1', '4', 'koala', '18')
+
+# Convert weird_number_vector to numeric type, and print out the result
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 <div id="taboo-math-operations" class="section level2">
 <h2>Taboo math operations</h2>
 <p>Another way to get missing values is to perform a math operation that R doesn’t like. Let’s try doing this. Remember that we can perform operations on vectors, e.g. adding two vectors to each other. Let’s try dividing vectors this way.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxudmVjdG9yXzEgPC0gYygxLCAyLCAwLCAzLCAwLCAtNSlcbnZlY3Rvcl8yIDwtIGMoMCwgLTMsIDEsIDYsIDAsIDApXG5cbiMgV2hhdCBkbyB5b3UgdGhpbmsgeW91J2xsIGdldCBpZiB5b3UgZGl2aWRlIHZlY3Rvcl8xIGJ5IHZlY3Rvcl8yP1xuXG4jIFRyeSBpdFxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r vector_1 &lt;- c(1, 2, 0, 3, 0, -5) vector_2 &lt;- c(0, -3, 1, 6, 0, 0)</p>
-</div>
-</div>
-<div id="what-do-you-think-youll-get-if-you-divide-vector_1-by-vector_2" class="section level1">
-<h1>What do you think you’ll get if you divide vector_1 by vector_2?</h1>
-</div>
-<div id="try-it" class="section level1">
-<h1>Try it</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudmVjdG9yXzEgPC0gYygxLCAyLCAwLCAzLCAwLCAtNSlcbnZlY3Rvcl8yIDwtIGMoMCwgLTMsIDEsIDYsIDAsIDApXG5cbiMgV2hhdCBkbyB5b3UgdGhpbmsgeW91J2xsIGdldCBpZiB5b3UgZGl2aWRlIHZlY3Rvcl8xIGJ5IHZlY3Rvcl8yP1xuXG4jIFRyeSBpdFxuXG5gYGAifQ== -->
+<pre class="r"><code>vector_1 &lt;- c(1, 2, 0, 3, 0, -5)
+vector_2 &lt;- c(0, -3, 1, 6, 0, 0)
+
+# What do you think you'll get if you divide vector_1 by vector_2?
+
+# Try it
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 <div id="real-missing-data" class="section level2">
 <h2>Real missing data</h2>
 <p>Finally, you can enter NA into your vector, just like you would any other value</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3IsIGRhdGFfdmVjdG9yLCB3aGljaCBoYXMgc29tZSBudW1iZXJzIGFuZCBhdCBsZWFzdCBvbmUgTkEgdmFsdWVcblxuIyBXaGF0IGhhcHBlbnMgaWYgeW91IHRha2UgdGhlIHN1bSBvZiBkYXRhX3ZlY3Rvcj9cblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # Create a vector, data_vector, which has some numbers and at least one NA value</p>
-</div>
-</div>
-<div id="what-happens-if-you-take-the-sum-of-data_vector" class="section level1">
-<h1>What happens if you take the sum of data_vector?</h1>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgYSB2ZWN0b3IsIGRhdGFfdmVjdG9yLCB3aGljaCBoYXMgc29tZSBudW1iZXJzIGFuZCBhdCBsZWFzdCBvbmUgTkEgdmFsdWVcblxuIyBXaGF0IGhhcHBlbnMgaWYgeW91IHRha2UgdGhlIHN1bSBvZiBkYXRhX3ZlY3Rvcj9cblxuYGBgIn0= -->
+<pre class="r"><code># Create a vector, data_vector, which has some numbers and at least one NA value
+
+# What happens if you take the sum of data_vector?
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Lots of functions in R, including <code>sum()</code>, have a way of dealing with missing data automatically. There are lots of times when we may want to just ignore the missing values and work with the rest of the data we have. Take a look at the documentation for <code>sum()</code>; do you see anything in there that might suggest how you could get the function to ignore missing values and take the sum of <em>data_vector</em> anyways?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBUcnkgdXNpbmcgc3VtKCkgdG8gZ2V0IHRoZSBzdW0gb2YgdGhlIG5vbi1taXNzaW5nIHZhbHVlcyBpbiBkYXRhX3ZlY3RvclxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Try using sum() to get the sum of the non-missing values in data_vector</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUcnkgdXNpbmcgc3VtKCkgdG8gZ2V0IHRoZSBzdW0gb2YgdGhlIG5vbi1taXNzaW5nIHZhbHVlcyBpbiBkYXRhX3ZlY3RvclxuXG5gYGAifQ== -->
+<pre class="r"><code># Try using sum() to get the sum of the non-missing values in data_vector
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 </div>
 <div id="things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time" class="section level1">
 <h1>Things we hope you’ve learned today (and will hopefully remember next time)</h1>
@@ -2026,7 +2000,7 @@ vector_b &lt;- c(4,5,6)
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgNDogSW5kZXhpbmcgYW5kIE1pc3NpbmcgdmFsdWVzIgpzdWJ0aXRsZTogfAogICAgfCAgIC0gcHVsbGluZyBzcGVjaWZpYyBlbGVtZW50cyBvdXQgb2YgdmVjdG9ycwogICAgfCAgIC0gY3JlYXRpbmcsIHN0b3JpbmcsIGFuZCB3b3JraW5nIHdpdGggbWlzc2luZyB2YWx1ZXMKYXV0aG9yOgogIC0gRXVnZW5lIFBsYXZza2luCiAgLSBHcmFjZSBBdmVjaWxsYQogIC0gVG9iaSBTaHJhaW5rCm91dHB1dDoKICBodG1sX25vdGVib29rOgogICAgY29kZV9mb2xkaW5nOiBzaG93CiAgICBkZXB0aDogMwogICAgdGlkeTogeWVzCiAgICB0b2M6IHllcwotLS0KKipTb2x1dGlvbnMgdG8gdGhpcyB3b3Jrc2hvcCBjYW4gYmUgZm91bmQgW2hlcmVdKFNvbHV0aW9uc19Xb3Jrc2hvcF80Lm5iLmh0bWwpKioKCiMgT3BlcmF0aW9ucyBvbiB2ZWN0b3JzIG9mIG51bWJlcnMKCk9uZSBvZiB0aGUgYmVzdCB0aGluZ3MgYWJvdXQgdmVjdG9ycyB0aGF0IHdpbGwgY29tZSB1cCBhZ2FpbiBhbmQgYWdhaW4gc29vbiBpcyB0aGF0IHlvdSBjYW4gZG8gb3BlcmF0aW9ucyBvbiB0aGVtLCBqdXN0IGxpa2Ugd2l0aCBudW1iZXJzLiBIZXJlJ3Mgb25lIGV4YW1wbGU6CmBgYHtyfQojIENyZWF0ZSBhIHZhcmlhYmxlIGhvbGRpbmcgYSB2ZWN0b3IgdGhhdCBjb250YWlucyBhbiBldmVubHkgc3BhY2VkIHNlcXVlbmNlIG9mCiMgZml2ZSBudW1iZXJzLCBmcm9tIDIgdG8gNAoKIyBBZGQgMyB0byB0aGUgdmVjdG9yLiBXaGF0IGhhcHBlbnM/CgpgYGAKCllvdSBjYW4gYWxzbyBhZGQgdmVjdG9ycyB0b2dldGhlciEKYGBge3J9CnZlY3Rvcl9hIDwtIGMoMSwyLDMpCnZlY3Rvcl9iIDwtIGMoNCw1LDYpCgojIEFkZCB2ZWN0b3JfYSBhbmQgdmVjdG9yX2IKCmBgYAoKQW5kIGZpbmFsbHkuLi4gbWFueSBtYXRoLXJlbGF0ZWQgZnVuY3Rpb25zIGNhbiB3b3JrIG9uIHZlY3RvcnMhIGBzdW0oKWAgaXMgYSBncmVhdCBleGFtcGxlIG9mIHRoaXMuCmBgYHtyfQojIENyZWF0ZSBhIHZlY3RvciBvZiBjb25zZWN1dGl2ZSBudW1iZXJzIGJldHdlZW4gMSBhbmQgMTAwCgojIFVzZSBzdW0oKSB0byBhZGQgdXAgdGhvc2UgbnVtYmVycwoKYGBgCgojIFJldmlldzogdmVjdG9ycywgZnVuY3Rpb25zLCBhbmQgdHlwZXMKCiMjIFZlY3RvcnMgYW5kIGZ1bmN0aW9ucwpgYGB7cn0KIyBDcmVhdGUgYSB2YXJpYWJsZSwgdmVjdF8xIHRoYXQgaG9sZHMgYSB2ZWN0b3IgY29udGFpbmluZyBhbnkgNCBudW1iZXJzCgojIENhbGN1bGF0ZSB0aGUgc3VtIG9mIHZlY3RfMSBhbmQgcHJpbnQgaXQgb3V0IG9uIHRoZSBzY3JlZW4KCiMgQ3JlYXRlIGEgbmV3IHZhcmlhYmxlLCB2ZWN0XzIsIHRoYXQgY29udGFpbnMgZWFjaCB2YWx1ZSBvZiB2ZWN0XzEgc3F1YXJlZAojIChEb24ndCBtYW51YWxseSBlbnRlciB0aGUgbnVtYmVycywgdXNlIHZlY3RfMSB0byBjYWxjdWxhdGUgdGhpcykKCmBgYAoKTm90aWNlIHRoYXQgbG90cyBvZiBmdW5jdGlvbnMgd29yayBvbiB2ZWN0b3JzIQoKIyMgU2VxdWVuY2VzIG9mIG51bWJlcnMKYGBge3J9CiMgQ3JlYXRlIGEgdmVjdG9yIG9mIG51bWJlcnMgZnJvbSAtNSB0byA1IGNvbnRhaW5pbmcgMjEgZWxlbWVudHMgY2FsbGVkIHJldmlld192ZWMKCmBgYAoKIyBHZXR0aW5nIHNwZWNpZmljIGVsZW1lbnRzIGZyb20gdmVjdG9ycwoKT2Z0ZW4sIGl0J3MgcmVhbGx5IHVzZWZ1bCB0byBmaW5kIG91dCB3aGF0IHRoZSB2YWx1ZSBvZiBhIHNwZWNpZmljIHBvc2l0aW9uIChvciAqaW5kZXgqKSBpbiBhIHZlY3RvciBpcy4gUiBtYWtlcyB0aGlzIGVhc3kuCmBgYHtyIGVjaG89RkFMU0V9CiMgVGhpcyBqdXN0IG1ha2VzIHN1cmUgdGhlIGdyYXBoaWMgaXMgaW5jbHVkZWQKaWYgKGRpci5leGlzdHMoJ2NsYXNzXzFfZmlndXJlcycpKXsKICBsaWJyYXJ5KGtuaXRyKQogIGluY2x1ZGVfZ3JhcGhpY3MoJ2NsYXNzXzFfZmlndXJlcy92ZWN0b3JfaWxsdXN0cmF0aW9uMS5wbmcnKQp9CmBgYAoKTGV0J3MgY3JlYXRlIGEgcmVhbGx5IGxvbmcgdmVjdG9yIGFuZCBhc2sgUiB0byB0ZWxsIHVzIGFib3V0IHNwZWNpZmljIHBvaW50cyBhbG9uZyB0aGF0IHZlY3Rvci4KYGBge3J9CiMgQ3JlYXRlIHRocmVlIHZhcmlhYmxlcywgZmlyc3RfbnVtLCBsYXN0X251bSwgYW5kIG51bV9vZl9lbGVtZW50cwojIFRoZSBmaXJzdCB0d28gY2FuIGJlIHdoYXRldmVyIG51bWJlcnMgeW91IHdhbnQsIG51bV9vZl9lbGVtZW50cyBzaG91bGQgYmUgMTAwCiMgRE9OJ1QgdXNlIDEgZm9yIGZpcnN0X251bSwgYW5kIGRvbid0IHVzZSAxMDAgZm9yIGxhc3RfbnVtLiBCZSBjcmVhdGl2ZS4KCiMgVXNlIHRoZSBmdW5jdGlvbiB3ZSBsZWFybmVkIGR1cmluZyB0aGUgbGFzdCBjbGFzcyB0byBtYWtlIGEgc2VxdWVuY2Ugb2YgbGVuZ3RoCiMgbnVtX29mX2VsZW1lbnRzIHN0YXJ0aW5nIGF0IGZpcnN0X251bSBhbmQgZ29pbmcgdG8gbGFzdF9udW0sIGFuZCBwdXQgdGhhdCBpbiBhCiMgdmVjdG9yIGNhbGxlZCBuZXdfdmVjdG9yCgojIENoZWNrIHRoZSBsZW5ndGggb2YgdGhlIHZlY3RvciB5b3UganVzdCBjcmVhdGVkCgpgYGAKClRvIGFjY2VzcyB0aGUgbnVtYmVyIGF0IGEgc3BlY2lmaWMgcG9zaXRpb24sIHdlIGNhbiB1c2Ugc3F1YXJlIGJyYWNrZXRzIQpgYGB7cn0KIyBNYWtlIGEgdmVjdG9yIGNhbGxlZCBsb25nX3ZlY3RvciB0aGF0IGdvZXMgZnJvbSAtMSB0byA1MCBhbmQgaGFzIDEwMCBudW1iZXJzIGluc2lkZQoKIyBMZXQncyBjaGVjayB3aGF0IHRoZSBmaXJzdCBudW1iZXIgaW4gbG9uZ192ZWN0b3IgaXMKcHJpbnQobG9uZ192ZWN0b3JbMV0pCgojIE5vdyBjaGVjayB3aGF0IHRoZSAzMm5kIG51bWJlciBpbiBsb25nX3ZlY3RvciBpcwoKYGBgCgoKYGBge3J9CiMgTm93IGNoZWNrIHdoYXQgdGhlIGxhc3QgbnVtYmVyIGluIGxvbmdfdmVjdG9yIGlzCiMgKGJvbnVzOiBkbyB0aGlzIHVzaW5nIGEgdmFyaWFibGUgeW91J3ZlIGFscmVhZHkgY3JlYXRlZCwgcmF0aGVyIHRoYW4ganVzdAojIHR5cGluZyBvdXQgMTAwKQoKYGBgCgpZb3UgZG9uJ3QgaGF2ZSB0byBqdXN0IHByb3ZpZGUgYSBzaW5nbGUgbnVtYmVyIGFzIGluIGluZGV4ICh0aGUgdGhpbmcgaW5zaWRlIHRoZSBzcXVhcmUgYnJhY2tldHMpOyB2ZWN0b3JzIHdvcmsgdG9vIQpgYGB7cn0KIyBQcmludCBvdXQgdGhlIDR0aCwgNXRoLCA2dGgsIDd0aCwgYW5kIDh0aCBudW1iZXIgaW4gbG9uZ192ZWN0b3IKcHJpbnQobG9uZ192ZWN0b3JbYyg0LDUsNiw3LDgpXSkKIyBOb3cgZG8gdGhlIHNhbWUgdGhpbmcgYXMgYWJvdmUsIGJ1dCB1c2luZyBhIGZ1bmN0aW9uIHdlIGhhdmUgbGVhcm5lZCB0b2RheSB0bwojIHNwZWNpZmljeSB0aGUgaW5kaWNlcyAoNCwgNSwgNiwgNywgOCkKCmBgYAoKQWN0dWFsbHksIHdlIGNhbiBnZXQgZXZlbiBtb3JlIGNyZWF0aXZlIGhlcmUuIExldCdzIHNheSB5b3Ugd2FudGVkIHRvIGNyZWF0ZSBhIHZlY3RvciB0aGF0IGhhZCBpbnNpZGUgaXQgKmV2ZXJ5IG90aGVyIG51bWJlciogZnJvbSBhIHZlY3RvciAoKmkuZS4qIHRoZSAxc3QsIDNyZCwgNXRoLCBldGMgbnVtYmVycyB0aGF0IGFyZSBpbiB0aGF0IHZlY3RvcikuIExldCdzIHRyeSB0aGlzLgpIaW50OiB5b3UgY2FuIHVzZSBgc2VxKClgIHRvIGNyZWF0ZSBhIHZlY3RvciBvZiBwb3NpdGlvbnMgKCppbmRpY2VzKikgdGhhdCB5b3UgdGhlbiB1c2UgdG8gZ2V0IHRoZSBwb3NpdGlvbnMgeW91IHdhbnQgZnJvbSB0aGF0IHZlY3RvcgpgYGB7cn0KbG9uZ192ZWN0b3JfMl9zdGFydCA8LSAtMQpsb25nX3ZlY3Rvcl8yX2VuZCA8LSA1MApsb25nX3ZlY3Rvcl8yX2xlbmd0aCA8LSAyMApsb25nX3ZlY3Rvcl8yIDwtCiAgc2VxKGxvbmdfdmVjdG9yXzJfc3RhcnQsIGxvbmdfdmVjdG9yXzJfZW5kLCBsZW5ndGgub3V0ID0gbG9uZ192ZWN0b3JfMl9sZW5ndGgpCiMgQ3JlYXRlIHBvc2l0aW9uX3ZlY3Rvciwgd2hpY2ggd2lsbCBob2xkIHRoZSBwb3NpdGlvbnMgeW91IHdhbnQgdG8gZ2V0IG91dCBvZgojIGxvbmdfdmVjdG9yXzIgKGkuZS4gYygxLDMsNSwuLi4uKSkKCiMgVXNlIGxvbmdfdmVjdG9yIHRvZ2V0aGVyIHdpdGggcG9zaXRpb25fdmVjdG9yIHRvIGNyZWF0ZSBzaG9ydGVyX3ZlY3Rvciwgd2hpY2gKIyB3aWxsIGhvbGQgZXZlcnkgb3RoZXJuIG51bWJlciBmcm9tIGxvbmdfdmVjdG9yCgojIHByaW50IG91dCBsb25nX3ZlY3Rvcl8yLCB0aGVuIHNob3J0ZXJfdmVjdG9yCgpgYGAKCiMgV2hlbiB3ZSBnZXQgbWlzc2luZyB2YWx1ZXMKCkEgKipIVUdFKiogcGFydCBvZiBhbmFseXppbmcgcmVhbCBzY2llbnRpZmljIGRhdGEgaXMgZGVhbGluZyB3aXRoIG1pc3NpbmcgdmFsdWVzLiBUaGVyZSBhcmUgbG90cyBvZiB3YXlzIHdlIGNhbiBnZXQgbWlzc2luZyB2YWx1ZXM7IHRoZXNlIGFyZSBwcm9iYWJseSB0aGUgbW9zdCBjb21tb246CgoqIFdoZW4gd2UgdHJ5IHRvIGdldCBSIHRvIGRvIGEgbm9uc2Vuc2ljYWwgdGhpbmcKKiBXaGVuIHdlIHBlcmZvcm0gc29tZSBzdXBlciB0YWJvbyBtYXRoIG9wZXJhdGlvbgoqIFdoZW4gd2UgYXJlIHVzaW5nIHJlYWwgZGF0YSBhbmQgd2UgZGlkbid0IGNvbGxlY3QgZXZlcnkgb2JzZXJ2YXRpb24gKCplZyogeW91IG1lYXN1cmVkIHRoZSBoZWlnaHQgb2YgYSBidW5jaCBvZiBwbGFudHMgZXZlcnkgd2VlayBidXQgYnkgdGhlIHRoaXJkIHdlZWssIHNvbWUgb2YgdGhlbSBkaWVkKQoKRXZlcnkgcHJvZ3JhbW1pbmcgbGFuZ3VhZ2UgaGFzIGl0cyBvd24gc3BlY2lhbCB3YXkgb2YgcmVwcmVzZW50aW5nICdtaXNzaW5nJyBkYXRhOyBSLCBldmVyIHNvIHNwZWNpYWwsIHVzZXMgdHdvOiAqTkEqIG9yICpOYU4qLCBkZXBlbmRpbmcgb24gdGhlIHNpdHVhdGlvbjsgZG9uJ3Qgd29ycnkgYWJvdXQgdGhlIGRpZmZlcmVuY2UsIEkgKEV1Z2VuZSkgbGl0ZXJhbGx5IGxlYXJuZWQgaXQgd2hpbGUgcHJlcGFyaW5nIHRoaXMgY2xhc3MsIGFmdGVyIDUgeWVhcnMgb2YgcHJvZ3JhbW1pbmcgaW4gUi4KCkxldCdzIHRha2UgYSBsb29rIGF0IGhvdyB0aGVzZSBtaXNzaW5nIHZhbHVlcyB3b3JrLgoKIyMgUGVyZm9ybWluZyBub25zZW5zaWNhbCBvcGVyYXRpb25zCgpMZXQncyB0cnkgdG8gc2VlIHdoYXQgUiBkb2VzIHdoZW4gd2UgYXNrIGl0IHRvIGRvIHNvbWV0aGluZyB0aGF0IGNsZWFybHkgZG9lc24ndCBtYWtlIHNlbnNlLiBSZW1lbWJlciB0aGF0IHdlIGNhbiBhc2sgUiB0byBjb252ZXJ0IGEgbGlzdCBvZiBjaGFyYWN0ZXJzIHRvIG51bWJlcnMuIExldCdzIHRyeSB0aGF0IGFnYWluLgpgYGB7cn0Kd2VpcmRfbnVtYmVyX3ZlY3RvciA8LSBjKCcxJywgJzQnLCAna29hbGEnLCAnMTgnKQoKIyBDb252ZXJ0IHdlaXJkX251bWJlcl92ZWN0b3IgdG8gbnVtZXJpYyB0eXBlLCBhbmQgcHJpbnQgb3V0IHRoZSByZXN1bHQKCmBgYAoKIyMgVGFib28gbWF0aCBvcGVyYXRpb25zCgpBbm90aGVyIHdheSB0byBnZXQgbWlzc2luZyB2YWx1ZXMgaXMgdG8gcGVyZm9ybSBhIG1hdGggb3BlcmF0aW9uIHRoYXQgUiBkb2Vzbid0IGxpa2UuIExldCdzIHRyeSBkb2luZyB0aGlzLiBSZW1lbWJlciB0aGF0IHdlIGNhbiBwZXJmb3JtIG9wZXJhdGlvbnMgb24gdmVjdG9ycywgZS5nLiBhZGRpbmcgdHdvIHZlY3RvcnMgdG8gZWFjaCBvdGhlci4gTGV0J3MgdHJ5IGRpdmlkaW5nIHZlY3RvcnMgdGhpcyB3YXkuCmBgYHtyfQp2ZWN0b3JfMSA8LSBjKDEsIDIsIDAsIDMsIDAsIC01KQp2ZWN0b3JfMiA8LSBjKDAsIC0zLCAxLCA2LCAwLCAwKQoKIyBXaGF0IGRvIHlvdSB0aGluayB5b3UnbGwgZ2V0IGlmIHlvdSBkaXZpZGUgdmVjdG9yXzEgYnkgdmVjdG9yXzI/CgojIFRyeSBpdAoKYGBgCgojIyBSZWFsIG1pc3NpbmcgZGF0YQpGaW5hbGx5LCB5b3UgY2FuIGVudGVyIE5BIGludG8geW91ciB2ZWN0b3IsIGp1c3QgbGlrZSB5b3Ugd291bGQgYW55IG90aGVyIHZhbHVlCmBgYHtyfQojIENyZWF0ZSBhIHZlY3RvciwgZGF0YV92ZWN0b3IsIHdoaWNoIGhhcyBzb21lIG51bWJlcnMgYW5kIGF0IGxlYXN0IG9uZSBOQSB2YWx1ZQoKIyBXaGF0IGhhcHBlbnMgaWYgeW91IHRha2UgdGhlIHN1bSBvZiBkYXRhX3ZlY3Rvcj8KCmBgYAoKTG90cyBvZiBmdW5jdGlvbnMgaW4gUiwgaW5jbHVkaW5nIGBzdW0oKWAsIGhhdmUgYSB3YXkgb2YgZGVhbGluZyB3aXRoIG1pc3NpbmcgZGF0YSBhdXRvbWF0aWNhbGx5LiBUaGVyZSBhcmUgbG90cyBvZiB0aW1lcyB3aGVuIHdlIG1heSB3YW50IHRvIGp1c3QgaWdub3JlIHRoZSBtaXNzaW5nIHZhbHVlcyBhbmQgd29yayB3aXRoIHRoZSByZXN0IG9mIHRoZSBkYXRhIHdlIGhhdmUuIFRha2UgYSBsb29rIGF0IHRoZSBkb2N1bWVudGF0aW9uIGZvciBgc3VtKClgOyBkbyB5b3Ugc2VlIGFueXRoaW5nIGluIHRoZXJlIHRoYXQgbWlnaHQgc3VnZ2VzdCBob3cgeW91IGNvdWxkIGdldCB0aGUgZnVuY3Rpb24gdG8gaWdub3JlIG1pc3NpbmcgdmFsdWVzIGFuZCB0YWtlIHRoZSBzdW0gb2YgKmRhdGFfdmVjdG9yKiBhbnl3YXlzPwpgYGB7cn0KIyBUcnkgdXNpbmcgc3VtKCkgdG8gZ2V0IHRoZSBzdW0gb2YgdGhlIG5vbi1taXNzaW5nIHZhbHVlcyBpbiBkYXRhX3ZlY3RvcgoKYGBgCgojIFRoaW5ncyB3ZSBob3BlIHlvdSd2ZSBsZWFybmVkIHRvZGF5IChhbmQgd2lsbCBob3BlZnVsbHkgcmVtZW1iZXIgbmV4dCB0aW1lKQoKKiBJbmRleGluZyEhIQoqIFdoZW4gbWlzc2luZyB2YWx1ZXMgYXJpc2UK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgNDogSW5kZXhpbmcgYW5kIE1pc3NpbmcgdmFsdWVzIgpzdWJ0aXRsZTogfAogICAgfCAgIC0gcHVsbGluZyBzcGVjaWZpYyBlbGVtZW50cyBvdXQgb2YgdmVjdG9ycwogICAgfCAgIC0gY3JlYXRpbmcsIHN0b3JpbmcsIGFuZCB3b3JraW5nIHdpdGggbWlzc2luZyB2YWx1ZXMKYXV0aG9yOgogIC0gRXVnZW5lIFBsYXZza2luCiAgLSBHcmFjZSBBdmVjaWxsYQogIC0gVG9iaSBTaHJhaW5rCm91dHB1dDoKICBodG1sX25vdGVib29rOgogICAgY29kZV9mb2xkaW5nOiBzaG93CiAgICBkZXB0aDogMwogICAgdGlkeTogeWVzCiAgICB0b2M6IHllcwotLS0KKipTb2x1dGlvbnMgdG8gdGhpcyB3b3Jrc2hvcCBjYW4gYmUgZm91bmQgW2hlcmVdKFNvbHV0aW9uc19Xb3Jrc2hvcF80Lm5iLmh0bWwpKioKCiMgT3BlcmF0aW9ucyBvbiB2ZWN0b3JzIG9mIG51bWJlcnMKCk9uZSBvZiB0aGUgYmVzdCB0aGluZ3MgYWJvdXQgdmVjdG9ycyB0aGF0IHdpbGwgY29tZSB1cCBhZ2FpbiBhbmQgYWdhaW4gc29vbiBpcyB0aGF0IHlvdSBjYW4gZG8gb3BlcmF0aW9ucyBvbiB0aGVtLCBqdXN0IGxpa2Ugd2l0aCBudW1iZXJzLiBIZXJlJ3Mgb25lIGV4YW1wbGU6CmBgYHtyfQojIENyZWF0ZSBhIHZhcmlhYmxlIGhvbGRpbmcgYSB2ZWN0b3IgdGhhdCBjb250YWlucyBhbiBldmVubHkgc3BhY2VkIHNlcXVlbmNlIG9mCiMgZml2ZSBudW1iZXJzLCBmcm9tIDIgdG8gNAoKIyBBZGQgMyB0byB0aGUgdmVjdG9yLiBXaGF0IGhhcHBlbnM/CgpgYGAKCgpZb3UgY2FuIGFsc28gYWRkIHZlY3RvcnMgdG9nZXRoZXIhCmBgYHtyfQp2ZWN0b3JfYSA8LSBjKDEsMiwzKQp2ZWN0b3JfYiA8LSBjKDQsNSw2KQoKIyBBZGQgdmVjdG9yX2EgYW5kIHZlY3Rvcl9iCgpgYGAKCgpBbmQgZmluYWxseS4uLiBtYW55IG1hdGgtcmVsYXRlZCBmdW5jdGlvbnMgY2FuIHdvcmsgb24gdmVjdG9ycyEgYHN1bSgpYCBpcyBhIGdyZWF0IGV4YW1wbGUgb2YgdGhpcy4KYGBge3J9CiMgQ3JlYXRlIGEgdmVjdG9yIG9mIGNvbnNlY3V0aXZlIG51bWJlcnMgYmV0d2VlbiAxIGFuZCAxMDAKCiMgVXNlIHN1bSgpIHRvIGFkZCB1cCB0aG9zZSBudW1iZXJzCgpgYGAKCgojIFJldmlldzogdmVjdG9ycywgZnVuY3Rpb25zLCBhbmQgdHlwZXMKCiMjIFZlY3RvcnMgYW5kIGZ1bmN0aW9ucwpgYGB7cn0KIyBDcmVhdGUgYSB2YXJpYWJsZSwgdmVjdF8xIHRoYXQgaG9sZHMgYSB2ZWN0b3IgY29udGFpbmluZyBhbnkgNCBudW1iZXJzCgojIENhbGN1bGF0ZSB0aGUgc3VtIG9mIHZlY3RfMSBhbmQgcHJpbnQgaXQgb3V0IG9uIHRoZSBzY3JlZW4KCiMgQ3JlYXRlIGEgbmV3IHZhcmlhYmxlLCB2ZWN0XzIsIHRoYXQgY29udGFpbnMgZWFjaCB2YWx1ZSBvZiB2ZWN0XzEgc3F1YXJlZAojIChEb24ndCBtYW51YWxseSBlbnRlciB0aGUgbnVtYmVycywgdXNlIHZlY3RfMSB0byBjYWxjdWxhdGUgdGhpcykKYGBgCgoKTm90aWNlIHRoYXQgbG90cyBvZiBmdW5jdGlvbnMgd29yayBvbiB2ZWN0b3JzIQoKIyMgU2VxdWVuY2VzIG9mIG51bWJlcnMKYGBge3J9CiMgQ3JlYXRlIGEgdmVjdG9yIG9mIG51bWJlcnMgZnJvbSAtNSB0byA1IGNvbnRhaW5pbmcgMjEgZWxlbWVudHMgY2FsbGVkIHJldmlld192ZWMKCmBgYAoKCiMgR2V0dGluZyBzcGVjaWZpYyBlbGVtZW50cyBmcm9tIHZlY3RvcnMKCk9mdGVuLCBpdCdzIHJlYWxseSB1c2VmdWwgdG8gZmluZCBvdXQgd2hhdCB0aGUgdmFsdWUgb2YgYSBzcGVjaWZpYyBwb3NpdGlvbiAob3IgKmluZGV4KikgaW4gYSB2ZWN0b3IgaXMuIFIgbWFrZXMgdGhpcyBlYXN5LgpgYGB7ciBlY2hvPUZBTFNFfQojIFRoaXMganVzdCBtYWtlcyBzdXJlIHRoZSBncmFwaGljIGlzIGluY2x1ZGVkCmlmIChkaXIuZXhpc3RzKCdjbGFzc18xX2ZpZ3VyZXMnKSl7CiAgbGlicmFyeShrbml0cikKICBpbmNsdWRlX2dyYXBoaWNzKCdjbGFzc18xX2ZpZ3VyZXMvdmVjdG9yX2lsbHVzdHJhdGlvbjEucG5nJykKfQpgYGAKCgpMZXQncyBjcmVhdGUgYSByZWFsbHkgbG9uZyB2ZWN0b3IgYW5kIGFzayBSIHRvIHRlbGwgdXMgYWJvdXQgc3BlY2lmaWMgcG9pbnRzIGFsb25nIHRoYXQgdmVjdG9yLgpgYGB7cn0KIyBDcmVhdGUgdGhyZWUgdmFyaWFibGVzLCBmaXJzdF9udW0sIGxhc3RfbnVtLCBhbmQgbnVtX29mX2VsZW1lbnRzCiMgVGhlIGZpcnN0IHR3byBjYW4gYmUgd2hhdGV2ZXIgbnVtYmVycyB5b3Ugd2FudCwgbnVtX29mX2VsZW1lbnRzIHNob3VsZCBiZSAxMDAKIyBET04nVCB1c2UgMSBmb3IgZmlyc3RfbnVtLCBhbmQgZG9uJ3QgdXNlIDEwMCBmb3IgbGFzdF9udW0uIEJlIGNyZWF0aXZlLgoKIyBVc2UgdGhlIGZ1bmN0aW9uIHdlIGxlYXJuZWQgZHVyaW5nIHRoZSBsYXN0IGNsYXNzIHRvIG1ha2UgYSBzZXF1ZW5jZSBvZiBsZW5ndGgKIyBudW1fb2ZfZWxlbWVudHMgc3RhcnRpbmcgYXQgZmlyc3RfbnVtIGFuZCBnb2luZyB0byBsYXN0X251bSwgYW5kIHB1dCB0aGF0IGluIGEKIyB2ZWN0b3IgY2FsbGVkIG5ld192ZWN0b3IKCiMgQ2hlY2sgdGhlIGxlbmd0aCBvZiB0aGUgdmVjdG9yIHlvdSBqdXN0IGNyZWF0ZWQKCmBgYAoKClRvIGFjY2VzcyB0aGUgbnVtYmVyIGF0IGEgc3BlY2lmaWMgcG9zaXRpb24sIHdlIGNhbiB1c2Ugc3F1YXJlIGJyYWNrZXRzIQpgYGB7cn0KIyBNYWtlIGEgdmVjdG9yIGNhbGxlZCBsb25nX3ZlY3RvciB0aGF0IGdvZXMgZnJvbSAtMSB0byA1MCBhbmQgaGFzIDEwMCBudW1iZXJzIGluc2lkZQoKIyBMZXQncyBjaGVjayB3aGF0IHRoZSBmaXJzdCBudW1iZXIgaW4gbG9uZ192ZWN0b3IgaXMKcHJpbnQobG9uZ192ZWN0b3JbMV0pCgojIE5vdyBjaGVjayB3aGF0IHRoZSAzMm5kIG51bWJlciBpbiBsb25nX3ZlY3RvciBpcwoKYGBgCgoKCmBgYHtyfQojIE5vdyBjaGVjayB3aGF0IHRoZSBsYXN0IG51bWJlciBpbiBsb25nX3ZlY3RvciBpcwojIChib251czogZG8gdGhpcyB1c2luZyBhIHZhcmlhYmxlIHlvdSd2ZSBhbHJlYWR5IGNyZWF0ZWQsIHJhdGhlciB0aGFuIGp1c3QKIyB0eXBpbmcgb3V0IDEwMCkKCmBgYAoKCllvdSBkb24ndCBoYXZlIHRvIGp1c3QgcHJvdmlkZSBhIHNpbmdsZSBudW1iZXIgYXMgaW4gaW5kZXggKHRoZSB0aGluZyBpbnNpZGUgdGhlIHNxdWFyZSBicmFja2V0cyk7IHZlY3RvcnMgd29yayB0b28hCmBgYHtyfQojIFByaW50IG91dCB0aGUgNHRoLCA1dGgsIDZ0aCwgN3RoLCBhbmQgOHRoIG51bWJlciBpbiBsb25nX3ZlY3RvcgpwcmludChsb25nX3ZlY3RvcltjKDQsNSw2LDcsOCldKQojIE5vdyBkbyB0aGUgc2FtZSB0aGluZyBhcyBhYm92ZSwgYnV0IHVzaW5nIGEgZnVuY3Rpb24gd2UgaGF2ZSBsZWFybmVkIHRvZGF5IHRvCiMgc3BlY2lmaWN5IHRoZSBpbmRpY2VzICg0LCA1LCA2LCA3LCA4KQoKYGBgCgoKQWN0dWFsbHksIHdlIGNhbiBnZXQgZXZlbiBtb3JlIGNyZWF0aXZlIGhlcmUuIExldCdzIHNheSB5b3Ugd2FudGVkIHRvIGNyZWF0ZSBhIHZlY3RvciB0aGF0IGhhZCBpbnNpZGUgaXQgKmV2ZXJ5IG90aGVyIG51bWJlciogZnJvbSBhIHZlY3RvciAoKmkuZS4qIHRoZSAxc3QsIDNyZCwgNXRoLCBldGMgbnVtYmVycyB0aGF0IGFyZSBpbiB0aGF0IHZlY3RvcikuIExldCdzIHRyeSB0aGlzLgpIaW50OiB5b3UgY2FuIHVzZSBgc2VxKClgIHRvIGNyZWF0ZSBhIHZlY3RvciBvZiBwb3NpdGlvbnMgKCppbmRpY2VzKikgdGhhdCB5b3UgdGhlbiB1c2UgdG8gZ2V0IHRoZSBwb3NpdGlvbnMgeW91IHdhbnQgZnJvbSB0aGF0IHZlY3RvcgpgYGB7cn0KbG9uZ192ZWN0b3JfMl9zdGFydCA8LSAtMQpsb25nX3ZlY3Rvcl8yX2VuZCA8LSA1MApsb25nX3ZlY3Rvcl8yX2xlbmd0aCA8LSAyMApsb25nX3ZlY3Rvcl8yIDwtCiAgc2VxKGxvbmdfdmVjdG9yXzJfc3RhcnQsIGxvbmdfdmVjdG9yXzJfZW5kLCBsZW5ndGgub3V0ID0gbG9uZ192ZWN0b3JfMl9sZW5ndGgpCiMgQ3JlYXRlIHBvc2l0aW9uX3ZlY3Rvciwgd2hpY2ggd2lsbCBob2xkIHRoZSBwb3NpdGlvbnMgeW91IHdhbnQgdG8gZ2V0IG91dCBvZgojIGxvbmdfdmVjdG9yXzIgKGkuZS4gYygxLDMsNSwuLi4uKSkKCiMgVXNlIGxvbmdfdmVjdG9yIHRvZ2V0aGVyIHdpdGggcG9zaXRpb25fdmVjdG9yIHRvIGNyZWF0ZSBzaG9ydGVyX3ZlY3Rvciwgd2hpY2gKIyB3aWxsIGhvbGQgZXZlcnkgb3RoZXJuIG51bWJlciBmcm9tIGxvbmdfdmVjdG9yCgojIHByaW50IG91dCBsb25nX3ZlY3Rvcl8yLCB0aGVuIHNob3J0ZXJfdmVjdG9yCgpgYGAKCgojIFdoZW4gd2UgZ2V0IG1pc3NpbmcgdmFsdWVzCgpBICoqSFVHRSoqIHBhcnQgb2YgYW5hbHl6aW5nIHJlYWwgc2NpZW50aWZpYyBkYXRhIGlzIGRlYWxpbmcgd2l0aCBtaXNzaW5nIHZhbHVlcy4gVGhlcmUgYXJlIGxvdHMgb2Ygd2F5cyB3ZSBjYW4gZ2V0IG1pc3NpbmcgdmFsdWVzOyB0aGVzZSBhcmUgcHJvYmFibHkgdGhlIG1vc3QgY29tbW9uOgoKKiBXaGVuIHdlIHRyeSB0byBnZXQgUiB0byBkbyBhIG5vbnNlbnNpY2FsIHRoaW5nCiogV2hlbiB3ZSBwZXJmb3JtIHNvbWUgc3VwZXIgdGFib28gbWF0aCBvcGVyYXRpb24KKiBXaGVuIHdlIGFyZSB1c2luZyByZWFsIGRhdGEgYW5kIHdlIGRpZG4ndCBjb2xsZWN0IGV2ZXJ5IG9ic2VydmF0aW9uICgqZWcqIHlvdSBtZWFzdXJlZCB0aGUgaGVpZ2h0IG9mIGEgYnVuY2ggb2YgcGxhbnRzIGV2ZXJ5IHdlZWsgYnV0IGJ5IHRoZSB0aGlyZCB3ZWVrLCBzb21lIG9mIHRoZW0gZGllZCkKCkV2ZXJ5IHByb2dyYW1taW5nIGxhbmd1YWdlIGhhcyBpdHMgb3duIHNwZWNpYWwgd2F5IG9mIHJlcHJlc2VudGluZyAnbWlzc2luZycgZGF0YTsgUiwgZXZlciBzbyBzcGVjaWFsLCB1c2VzIHR3bzogKk5BKiBvciAqTmFOKiwgZGVwZW5kaW5nIG9uIHRoZSBzaXR1YXRpb247IGRvbid0IHdvcnJ5IGFib3V0IHRoZSBkaWZmZXJlbmNlLCBJIChFdWdlbmUpIGxpdGVyYWxseSBsZWFybmVkIGl0IHdoaWxlIHByZXBhcmluZyB0aGlzIGNsYXNzLCBhZnRlciA1IHllYXJzIG9mIHByb2dyYW1taW5nIGluIFIuCgpMZXQncyB0YWtlIGEgbG9vayBhdCBob3cgdGhlc2UgbWlzc2luZyB2YWx1ZXMgd29yay4KCiMjIFBlcmZvcm1pbmcgbm9uc2Vuc2ljYWwgb3BlcmF0aW9ucwoKTGV0J3MgdHJ5IHRvIHNlZSB3aGF0IFIgZG9lcyB3aGVuIHdlIGFzayBpdCB0byBkbyBzb21ldGhpbmcgdGhhdCBjbGVhcmx5IGRvZXNuJ3QgbWFrZSBzZW5zZS4gUmVtZW1iZXIgdGhhdCB3ZSBjYW4gYXNrIFIgdG8gY29udmVydCBhIGxpc3Qgb2YgY2hhcmFjdGVycyB0byBudW1iZXJzLiBMZXQncyB0cnkgdGhhdCBhZ2Fpbi4KYGBge3J9CndlaXJkX251bWJlcl92ZWN0b3IgPC0gYygnMScsICc0JywgJ2tvYWxhJywgJzE4JykKCiMgQ29udmVydCB3ZWlyZF9udW1iZXJfdmVjdG9yIHRvIG51bWVyaWMgdHlwZSwgYW5kIHByaW50IG91dCB0aGUgcmVzdWx0CgpgYGAKCgojIyBUYWJvbyBtYXRoIG9wZXJhdGlvbnMKCkFub3RoZXIgd2F5IHRvIGdldCBtaXNzaW5nIHZhbHVlcyBpcyB0byBwZXJmb3JtIGEgbWF0aCBvcGVyYXRpb24gdGhhdCBSIGRvZXNuJ3QgbGlrZS4gTGV0J3MgdHJ5IGRvaW5nIHRoaXMuIFJlbWVtYmVyIHRoYXQgd2UgY2FuIHBlcmZvcm0gb3BlcmF0aW9ucyBvbiB2ZWN0b3JzLCBlLmcuIGFkZGluZyB0d28gdmVjdG9ycyB0byBlYWNoIG90aGVyLiBMZXQncyB0cnkgZGl2aWRpbmcgdmVjdG9ycyB0aGlzIHdheS4KYGBge3J9CnZlY3Rvcl8xIDwtIGMoMSwgMiwgMCwgMywgMCwgLTUpCnZlY3Rvcl8yIDwtIGMoMCwgLTMsIDEsIDYsIDAsIDApCgojIFdoYXQgZG8geW91IHRoaW5rIHlvdSdsbCBnZXQgaWYgeW91IGRpdmlkZSB2ZWN0b3JfMSBieSB2ZWN0b3JfMj8KCiMgVHJ5IGl0CgpgYGAKCgojIyBSZWFsIG1pc3NpbmcgZGF0YQpGaW5hbGx5LCB5b3UgY2FuIGVudGVyIE5BIGludG8geW91ciB2ZWN0b3IsIGp1c3QgbGlrZSB5b3Ugd291bGQgYW55IG90aGVyIHZhbHVlCmBgYHtyfQojIENyZWF0ZSBhIHZlY3RvciwgZGF0YV92ZWN0b3IsIHdoaWNoIGhhcyBzb21lIG51bWJlcnMgYW5kIGF0IGxlYXN0IG9uZSBOQSB2YWx1ZQoKIyBXaGF0IGhhcHBlbnMgaWYgeW91IHRha2UgdGhlIHN1bSBvZiBkYXRhX3ZlY3Rvcj8KCmBgYAoKCkxvdHMgb2YgZnVuY3Rpb25zIGluIFIsIGluY2x1ZGluZyBgc3VtKClgLCBoYXZlIGEgd2F5IG9mIGRlYWxpbmcgd2l0aCBtaXNzaW5nIGRhdGEgYXV0b21hdGljYWxseS4gVGhlcmUgYXJlIGxvdHMgb2YgdGltZXMgd2hlbiB3ZSBtYXkgd2FudCB0byBqdXN0IGlnbm9yZSB0aGUgbWlzc2luZyB2YWx1ZXMgYW5kIHdvcmsgd2l0aCB0aGUgcmVzdCBvZiB0aGUgZGF0YSB3ZSBoYXZlLiBUYWtlIGEgbG9vayBhdCB0aGUgZG9jdW1lbnRhdGlvbiBmb3IgYHN1bSgpYDsgZG8geW91IHNlZSBhbnl0aGluZyBpbiB0aGVyZSB0aGF0IG1pZ2h0IHN1Z2dlc3QgaG93IHlvdSBjb3VsZCBnZXQgdGhlIGZ1bmN0aW9uIHRvIGlnbm9yZSBtaXNzaW5nIHZhbHVlcyBhbmQgdGFrZSB0aGUgc3VtIG9mICpkYXRhX3ZlY3RvciogYW55d2F5cz8KYGBge3J9CiMgVHJ5IHVzaW5nIHN1bSgpIHRvIGdldCB0aGUgc3VtIG9mIHRoZSBub24tbWlzc2luZyB2YWx1ZXMgaW4gZGF0YV92ZWN0b3IKCmBgYAoKCiMgVGhpbmdzIHdlIGhvcGUgeW91J3ZlIGxlYXJuZWQgdG9kYXkgKGFuZCB3aWxsIGhvcGVmdWxseSByZW1lbWJlciBuZXh0IHRpbWUpCgoqIEluZGV4aW5nISEhCiogV2hlbiBtaXNzaW5nIHZhbHVlcyBhcmlzZQo=</div>
 
 
 

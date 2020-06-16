@@ -27,6 +27,7 @@ One of the best things about vectors that will come up again and again soon is t
 
 ```
 
+
 You can also add vectors together!
 ```{r}
 vector_a <- c(1,2,3)
@@ -36,6 +37,7 @@ vector_b <- c(4,5,6)
 
 ```
 
+
 And finally... many math-related functions can work on vectors! `sum()` is a great example of this.
 ```{r}
 # Create a vector of consecutive numbers between 1 and 100
@@ -43,6 +45,7 @@ And finally... many math-related functions can work on vectors! `sum()` is a gre
 # Use sum() to add up those numbers
 
 ```
+
 
 # Review: vectors, functions, and types
 
@@ -54,8 +57,8 @@ And finally... many math-related functions can work on vectors! `sum()` is a gre
 
 # Create a new variable, vect_2, that contains each value of vect_1 squared
 # (Don't manually enter the numbers, use vect_1 to calculate this)
-
 ```
+
 
 Notice that lots of functions work on vectors!
 
@@ -64,6 +67,7 @@ Notice that lots of functions work on vectors!
 # Create a vector of numbers from -5 to 5 containing 21 elements called review_vec
 
 ```
+
 
 # Getting specific elements from vectors
 
@@ -75,6 +79,7 @@ if (dir.exists('class_1_figures')){
   include_graphics('class_1_figures/vector_illustration1.png')
 }
 ```
+
 
 Let's create a really long vector and ask R to tell us about specific points along that vector.
 ```{r}
@@ -90,6 +95,7 @@ Let's create a really long vector and ask R to tell us about specific points alo
 
 ```
 
+
 To access the number at a specific position, we can use square brackets!
 ```{r}
 # Make a vector called long_vector that goes from -1 to 50 and has 100 numbers inside
@@ -102,12 +108,14 @@ print(long_vector[1])
 ```
 
 
+
 ```{r}
 # Now check what the last number in long_vector is
 # (bonus: do this using a variable you've already created, rather than just
 # typing out 100)
 
 ```
+
 
 You don't have to just provide a single number as in index (the thing inside the square brackets); vectors work too!
 ```{r}
@@ -117,6 +125,7 @@ print(long_vector[c(4,5,6,7,8)])
 # specificy the indices (4, 5, 6, 7, 8)
 
 ```
+
 
 Actually, we can get even more creative here. Let's say you wanted to create a vector that had inside it *every other number* from a vector (*i.e.* the 1st, 3rd, 5th, etc numbers that are in that vector). Let's try this.
 Hint: you can use `seq()` to create a vector of positions (*indices*) that you then use to get the positions you want from that vector
@@ -135,6 +144,7 @@ long_vector_2 <-
 # print out long_vector_2, then shorter_vector
 
 ```
+
 
 # When we get missing values
 
@@ -158,6 +168,7 @@ weird_number_vector <- c('1', '4', 'koala', '18')
 
 ```
 
+
 ## Taboo math operations
 
 Another way to get missing values is to perform a math operation that R doesn't like. Let's try doing this. Remember that we can perform operations on vectors, e.g. adding two vectors to each other. Let's try dividing vectors this way.
@@ -171,6 +182,7 @@ vector_2 <- c(0, -3, 1, 6, 0, 0)
 
 ```
 
+
 ## Real missing data
 Finally, you can enter NA into your vector, just like you would any other value
 ```{r}
@@ -180,11 +192,13 @@ Finally, you can enter NA into your vector, just like you would any other value
 
 ```
 
+
 Lots of functions in R, including `sum()`, have a way of dealing with missing data automatically. There are lots of times when we may want to just ignore the missing values and work with the rest of the data we have. Take a look at the documentation for `sum()`; do you see anything in there that might suggest how you could get the function to ignore missing values and take the sum of *data_vector* anyways?
 ```{r}
 # Try using sum() to get the sum of the non-missing values in data_vector
 
 ```
+
 
 # Things we hope you've learned today (and will hopefully remember next time)
 
