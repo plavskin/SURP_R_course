@@ -113,7 +113,7 @@ char == 'a'
 
 One useful function that results in a logical value is `is.na()`
 ```{r}
-# try using is.na() on data_vector
+# try using is.na() on data_vector (which you created above)
 
 # try using is.na() on position 2 in data_vector
 
