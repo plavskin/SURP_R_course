@@ -1,14 +1,15 @@
 ---
-title: "Workshop 6: Plotting (with ggplot2)"
+title: "Workshop 6:Dataframes"
 subtitle: |
-    |   - plotting with base R
-    |   - introduction to ggplot
-    |   - combining multiple data representations in ggplot
-    |   - changing the appearance of plots
-    |   - organizing data according to "tidy" principles
-    |   - easy, reproducible paper figures with ggplot
+    |   - formatting data for analysis and reading excel data into R dataframes
+    |   - selecting rows and columns of interest
+    |   - adding columns to dataframes
+    |   - exporting data from R
+    |   - performing operations on individual columns of data
 author:
   - Eugene Plavskin
+  - Grace Avecilla
+  - Tobi Shraink
 output:
   html_notebook:
     code_folding: show
@@ -18,413 +19,213 @@ output:
 ---
 **Solutions to this workshop can be found [here](Solutions_Workshop_6.nb.html)**
 
-# Intro to plotting
+# Review
 
-This class will show you a *tiny* bit of plotting using the built-in R functions, but will pretty quickly veer into a very popular R package called **ggplot2**, which is often referred to as just "ggplot". This is likely the first place in this course where you will see things that are *very* easy to do in R that would be much more complicated tasks (or maybe even impossible) in excel.
 
-## The basic structure of a plot
+# Dataframes
 
-Let's load in and consider the *iris* dataset that we played with when learning about dataframes. We had loaded this in from a *.csv* file, but actually this dataframe is a built-in dataset in R: we can refer to it by just typing `iris`.
+So far, everything we've been doing in R has involved vectors. However, we haven't yet learned about the most useful data structure in R: data frames.
 
-```{r}
-print(iris)
-```
+Data frames are essentially just tables. They have rows and columns, and if you set your data up right, they make it *incredibly* easy to explore your data. R has a ton of operations that are specialized in reading data frames and either plotting them in an easy way, or summarizing the data inside, and we're going to be spending the next couple of days learning about those.
 
-Let's use base R to plot the Sepal Length vs Sepal Width for all the data
-```{r}
-plot(iris$Sepal.Length, iris$Sepal.Width)
-```
+# Reading in tables from excel
 
-Pretty straightforward; the command is `plot(x, y)`.
+A lot of times, it's not really convenient to enter your data in R. When collecting data by hand, it can be really convenient to type it into excel (or google sheets). Although there is a special package in R that can read excel format files (**.xlsx**), this is not commonly used. Instead, we usually save files in **.csv** format, which throws out all of the special formatting excel does and just keeps the data itself.
 
-```{r}
-# Try making a plot of iris Sepal Width vs Petal Width
+**csv** stands for *comma-separated values*, and that's just what they are. These files can be easily opened in excel or google sheets, but if you open them in notepad, you can see that they're really just rows of numbers and words separated by... you guessed it, commas.
 
-```
+You should have a dataset in csv format called *penguins.csv*. This is a set of information on measurements collected from birds of 3 penguin species living on 3 different islands. Follow along with this file as we go through the rules. The code below will only work if you have penguins.csv saved in the same folder as this file.
 
-You can further modify the plot if you want to change the way the points look, etc. As I mentioned, we won't be going deep into the details of the regular R plot function.
-
-## Intro to ggplot
-
-Let's try to use ggplot to plot the same data. First, install **ggplot2** (if you haven't already done so) and load it into your R session.
-```{r}
-# uncomment the line below and install ggplot2 only if you haven't already
-#install.packages('ggplot2')
-
-# load the ggplot2 library into the current R session
-library(ggplot2)
-```
-
-The same plot as the one we made above is actually a bit more complicated to put together in ggplot:
-```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width)) +
-  geom_point()
-```
-
-The above contains the components that are the bare minimum of what we need for a ggplot plot; we can add more on later, but let's dissect the parts of this command:
-```{}
-ggplot(data = <DATA>, mapping = aes(<Mapping>)) +
-        <GEOM_FUNCTION>()
-```
-
-* arguments:
-    + **data**: the dataframe you want to plot
-    + **mapping**: Any variables from your data that affect plot output, listed in *aes( )*
-* commands:
-    + **ggplot( )**: required start of every ggplot command. Contains any options that we want to apply to the whole plot (which can be nothing)
-    + **geom_{something}( )**: *how* you're plotting the data. Here, we want to plot points, so we're using **geom_point**; there are *tons* of different geoms available, one for each type of plot you might want to make.
-
-Arguments like *data* and *mapping* can go in the parentheses after the geom, producing the same plot as above:
-```{r}
-ggplot() +
-  geom_point(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width))
-```
-But there are specific situations in which it's better to do this (we'll see them later)
-
-## Modifying **geom** properties
-
-We can also pass additional arguments to the geom: useful ones to know are:
-
-* __color__: line color; for the default shape used in geom_point, this actually colors the inside of the shape as well
-* __fill__: the fill color inside a shape
-* __size__: point size or line thickness
-* __shape__: for points, this is the shape; for lines, this is the line pattern or dashyness
-* __alpha__: transparency level, with 0 being totally transparent and 1 being a solid, opaque color
-
-For example:
-```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width)) +
-  geom_point(color = 'blue', fill = 'yellow', shape = 23, alpha = 0.33, size = 5)
-```
-Why are some of these rhombuses darker than others?
-
-Note that any arguments that universally affect the properties of the points, lines, etc that we're plotting, like the ones we used above, *must* be passed to the relevant geom, not to the ggplot( ) command. **This is because the geom is in charge of making the points!**
+**Note**: these data were collected and made available by Dr. Kristen Gorman and the Palmer Station, Antarctica LTER, a member of the Long Term Ecological Research Network, and put together by Dr. Allison Horst. To read more about the dataset, see Allison Horst's website about it [here](https://github.com/allisonhorst/palmerpenguins).
 
 ```{r}
-# use ggplot to create a plot of iris Sepal Width vs Petal Width, with violet
-# semi-transparent points
-
+if (dir.exists('class_1_figures')){
+  library(knitr)
+  include_graphics('class_1_figures/lter_penguins.png')
+}
 ```
+Artwork by [\@allison_horst](https://github.com/allisonhorst)
 
-## Mapping lots of variables
-
-The plot we made above isn't really all that useful. It's great to see the data across all three species on one plot, but if we're looking at this data, we're probably actually interested in how these species differ from each other. So how do we make ggplot visually separate the points by species?
-
-Remember that the **mapping** argument deals with *any properties of the plot that depend on variables in the supplied data frame*. So we can modify our original code like this:
-```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(alpha = 0.33)
-```
-```{r, eval = FALSE}
-# Can also be written as:
-ggplot(data = iris) +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species), alpha = 0.33)
-```
-Notice that the plot above uses *both* a variable-dependent color (based on the iris dataframe's *Species* column), which goes inside *aes( )*, and a variable-independent alpha value that applies to the whole geom_point command and goes outside *aes( )*
-
-Also, notice that you got a legend for *free*! You didn't have to tell ggplot how to make it, or what info to include in it; it knows automatically based on how you set up your **mapping**.
-
-Depending on context, you can make color, fill, shape, size or alpha variable-dependent. Some of these (color, fill, shape) obviously make more sense for categorical variables, while others (alpha, size) make more sense for continuous variables, but *ggplot* will only rarely stop you from making aesthetically and data representationally questionable choices here.
-
-Let's try an exercise: 
+First, let's get R to read in the penguin data.
 
 ```{r}
-# Based on the code above, make a plot where Sepal.Length is on the x axis,
-# Sepal.Width is on the y axis, all the points are colored red, the shape of the
-# point depends on the Species, and the point size depends on Petal.Width
-
-```
-Questionable usefulness, but hey, it's possible and pretty easy...
-
-## Stacking multiple **geoms**
-
-One of the places where ggplot really shines is when you want to combine multiple data representations on one plot. For example, I *really* like topology-style contour plots, which ggplot can make with **geom_density2d**. Once we know how to make a basic plot, and combining a contour plot with a plot the individual data points is super easy in ggplot:
-```{r}
-# note, the first two lines are just our plot from above
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_density2d() +
-  geom_point(alpha = 0.33)
-```
-Notice that the *alpha* argument we provided only applies to geom_point, so the contour lines don't show any transparency. However, any arguments provided to **mapping** in an aes( ) statement in the **ggplot( )** command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)
-
-One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of sepal length vs width *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
-```{r}
-# Removed alpha for simplicity
-# Made contour plot line color black (default is blue)
-ggplot(data = iris) +
-  geom_density2d(mapping = aes(x = Sepal.Length, y = Sepal.Width), color = 'black') +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species))
-```
-This plot shows that **mapping** actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it's represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they're instead calculated across all the points in the dataset.
-
-Let's try an exercise. A really useful kind of plot you can make while exploring data is a *density* plot, which shows pretty much a normalized, smoothed histogram of your data using **geom_density**. For example, if we want to get an idea of what the distribution of Petal Lengths in our dataset is, we can run:
-```{r}
-# Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = iris) +
-  geom_density(mapping = aes(x = Petal.Length))
+penguin_df <- read.csv('penguins.csv')
+View(penguin_df)
 ```
 
-Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species' data:
-```{r}
-# Make a density plot that shows both the distribution of Petal.Length in all
-# the data together in one color, and the distribution for each species'
-# Petal.Length each in its own color
+There are some good practices for how to organize and record your data, and following these will make your life *MUCH* easier when you try to analyze your data. Following these rules means that R will be able to easily read you data, and that the data is immediately set up in such a way that the built-in R functions for processing data can easily work with it.
 
-# Bonus: Change the linetype of the species' density plots so that each species
-# has the same dashed line, but the line representing results across all the
-# data is solid
-```
+* Give each column a short, informative title. Avoid spaces and weird symbols/punctuation. You can use letters, numbers, periods, underscores ( _ ) and hyphens. *NEVER* use commas in your data entry.
 
-## Aside: ggplot objects
+* You can also name rows, but I suggest avoiding this for now, since you will need to provide a special argument to `read.csv` if you do this.
 
-ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:
-```{r}
-basic_iris_plot <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-print(basic_iris_plot)
-# let's add another geom to this plot
-iris_plot_with_contours <-
-  basic_iris_plot + geom_density2d()
-print(iris_plot_with_contours)
-```
+* Keep a single column as one data type (e.g. a column can contain strings, or numbers, or logicals). R will usually know which is which, and treat the data accordingly.
 
-***
+* Notice that in the penguin dataframe, every row holds a single observation. That is, data on each single data point (penguin) is one row, and each individual piece of information about it is one column (e.g. how long were its flippers? What species did this penguin belong to?)
 
-## themes and other options we can change
+The last point on this list involves thinking about what constitutes an 'observation' in your data. This can seem subjective! Let's say you're tracking the weight of inidividual penguins over time: is a single observation one penguin, or one timepoint? As you program, you'll start getting an intuitive feeling for better and worse ways to organize data. But remember that data can always be re-organized in R if you don't like how you originally did it (or if someone else collected the data!) These principles of data organization are called *tidy* data, and there is *hugely* useful package, **tidyr** that contains functions to re-organize and tidy up your data. We won't cover it in this class, but I want to share a [link](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html) with some info in case you continue programming in the future and find that you need it.
 
-ggplot also allows a huge amount of control over other aspects of the plot (e.g. titles, axis labeling and scale, overall plot look, etc). For most of these, ggplot actually allows multiple equivalent ways to achieve the same effect.
+**In groups, try the following:**
 
-### axes + titles
+* Create a new code chunk
+* Inside it, read in the data we sent each of you into a dataframe
+* What is each observation in your dataframe? What was measured? Tell your group
 
-Adding a title to a plot can be achieved using ggtitle()
-```{r}
-basic_iris_plot +
-  ggtitle('Iris Sepals')
-```
+# Selecting data from data frames: row numbers and column numbers and $
 
-We can also modify the axis properties directly
-```{r}
-basic_iris_plot +
-  ggtitle('Iris Sepals') +
-  scale_x_continuous(name = 'Sepal Length',
-                     limits = c(0,10)) +
-  scale_y_log10(name = 'Sepal Width',
-                breaks = c(2,3,4))
-```
-There's a few things going on here:
-
-* __scale_x_continuous( )__ and __scale_y_log10( )__: set the scale of the x and y axes. For continuous variables, they can also be plotted on a square root scale, reversed, and various other transformations. For discrete variables, use **scale_x_discrete( )** and **scale_y_discrete( )**
-* __name__: the axis label
-* __limits__: the bounds on the axis, must be provided as a 2-number vector
-* __breaks__: manually assign where the tickmarks go
-* __labels__: for discrete variables, this can be used to rename the categories along your axis
-
-### legend
-
-You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to 'color' on our plot is represented, we can use **scale_color_discrete( )**, or, if we want to manually change the values assigned to each category (e.g. the colors), **scale_color_manual( )**:
-```{r}
-basic_iris_plot +
-  scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris"))
-```
-We can also change the position of the legend using **theme( )** (which can actually control nearly every other aesthetic aspect of the plot, such as font size, which axes get labels/tickmarks, etc).
+Let's say we wanted to calculate the mean body mass of all the penguins measured in the penguin dataset. How can we do this? We need to select the body mass column. There are a couple of ways to do this. The easiest and most common one is using `$`.
 
 ```{r}
-basic_iris_plot +
-  scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris")) +
-  theme(legend.position = 'bottom')
+# print out all the body masses
+print(penguin_df$body_mass_g)
 ```
 
-### themes
+We can also use indexing to get a specific row and column position in the data frame. Remember that when we used indexing for vectors, we put the necessary position (or vector of positions) in square brackets after the name of the vector. In a data frame, we need to specify both the row position(s), and the column position(s).
 
-Finally, the overall appearance of the graph can be changed by selecting a custom 'theme'; this is a bit confusing, since these are distinct from the **theme( )** command used above.
 ```{r}
-basic_iris_plot +
-  scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris")) +
-  theme(legend.position = 'bottom') +
-  theme_bw()
+if (dir.exists('class_1_figures')){
+  library(knitr)
+  include_graphics('class_1_figures/df_illustration.png')
+}
 ```
 
-***
+When using indices to specify position in a data frame, **rows first, columns second**
 
-# The structure of data that ggplot can plot
-
-As you've seen, ggplot provides users with the power to easily change the appearance of the plot, and the statistics calculated, based on any single column in the dataframe containing the data to be plotted. But this also results in some pretty rigid rules about how your data needs to be organized. Namely, data for ggplot should be in [tidy format](https://learn.gencore.bio.nyu.edu/tidyverse/):
-
-* each variable must have its own column
-* each observation must have its own row (but what's an observation?)
-* each value must have its own cell
-
-Let's take a look at what that means. Compare the *iris* dataframe we've been using to the *iris3* data, which comes with R and contains the same data:
 ```{r}
-iris_3_df <- data.frame(iris3)
-print(iris_3_df)
+# Get the value in the second row and third column in the penguin dataset
+print(penguin_df[2, 3])
+
+# Get the values in the 2nd to 5th rows in the fifth column in penguin_df
+
 ```
 
-Notice that in this modified version of the iris dataset, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
-
-Here's an attempt to make do with what we have:
+In addition to using numeric indices, you can also use names of columns (or rows, if they're named!)
 ```{r}
-ggplot(data = iris_3_df) +
-  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
-  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
-  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
-  scale_x_continuous(name = 'Sepal Length') +
-  scale_y_continuous(name = 'Sepal Width')
+print(penguin_df[2, 'bill_length_mm'])
 ```
-Some things still work well automatically (e.g. ggplot scales axes for us), but it's a lot more effort to do this, and if we wanted to have a legend on this plot (or had more than a few categories we were interested in), it would be a complete nightmare.
 
-When putting together data to plot, we need to think very carefully about what exactly constitutes a single 'observation', and what the 'variables' are that we want to use for mapping. 
-
-The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** package) has some really great functions for re-organizing data that looks like *iris3* into a 'tidy' dataframe, and if you find yourself facing data that isn't organized the right way for your plot, I really suggest looking over [David Gresham's tidyverse tutorial](https://learn.gencore.bio.nyu.edu/tidyverse/).
-
-# Why ggplot
-
-* __easy exploratory data analysis__: separation of variable mapping from visual representation (e.g. geoms) makes it easy to try different ways of plotting data
-* __automation of the boring stuff__: generation of legends, axis bounds, etc is done very well automatically based on the data and variables you're plotting (but you can have finer control of it if you'd like)
-* __automated stats__: lots of geoms that calculate and display statistics of your data. These statistics are automatically calculated based on your grouping of the data, how you specify your axes (e.g. linear vs log scale), etc.
-    + *geom_density* and *geom_density2d* for density estimation
-    + *geom_smooth* for trendlines with error ribbons
-    + [stat_summary](https://ggplot2.tidyverse.org/reference/stat_summary.html) for other ways to bin and summarize data)
-* __plots as objects__: storing plots as objects allows them to be easily modified and combined into figures
-* __incredibly helpful online examples__: the *tidyverse* website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
-
-## Using ggplot for paper figures
-
-Because ggplot does a great job of separating aesthetic properties of the plot from what is being plotted, we can create a theme that defines how our plots look in e.g. paper figures and apply it to all our plots after generating them.
-
-First, let's set a theme for our plots. Because we want our figures to look nice and consistent for the paper, there's a lot of options we can specify here.
+Finally, if you want to get *every* row or *every* column, just leave that index blank.
 ```{r}
-final_figure_ggplot_theme <- 
-  theme(plot.title=element_text(size=16,face='bold'),
-        plot.margin=unit(c(12,12,12,12),'pt'),
-        panel.background=element_rect(fill='white'),
-        panel.grid.major=element_line(color='grey',size=0.3),
-        axis.line = element_line(color="black", size = 0.5),
-        legend.title=element_blank(),
-        legend.justification=c(0,1),
-        legend.key = element_rect(fill='white'),
-        legend.key.height = unit(2,'line'),
-        legend.text=element_text(size=12,face='bold'),
-        axis.text.x=element_text(size=12,face='bold'),
-        axis.text.y=element_text(size=12,face='bold'),
-        axis.title.x=element_text(size=14,face='bold'),
-        axis.title.y=element_text(size=14,face='bold',angle=90)) +
-  theme_bw()
+# get every element from 6th column (same as penguin_df$body_mass_g)
+print(penguin_df[ , 6])
+
+# get every value in the 6th row of penguin_df
+
 ```
 
-Next, let's create some plots. We don't have to worry about appearances here; let's just make sure the data shows up the way we want it to.
+Try the following:
 ```{r}
-# a figure with the iris data
-sepal_points <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
+# Calculate the mean bill length of all penguins in the dataset
 
-sepal_trends <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_smooth(method = 'lm')
+# Calculate the standard deviation of bill length for all penguins in the dataset
 
-# make boxplot with overlaid points randomly placed off-center and
-# text labels placed at y = 0.75
-petal_boxplot <-
-  ggplot(data = iris, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot() +
-  geom_text(aes(label = Species), y = 0.75) +
-  geom_point(position = 'jitter')
 ```
 
-We can print these figures to look at them:
+# Creating new columns from operations on other columns
+
+A lot of times, we need to process the data we have in order for it to be interesting to us. You can imagine a scenario in which we'd want to do this in the penguin dataset. We have a list of measures bill depths and lengths from various species, and maybe we want to eventually investigate how these vary across species. But the problem is that even within a species, some bills just happen to be larger, by chance. These would have BOTH higher bill lengths and depths, making our dataset noisier. Maybe what we really care about is the ratio of bill length to depth? R makes calculating this easy.
+
 ```{r}
-print(sepal_points)
-print(sepal_trends)
-print(petal_boxplot)
-```
-Useful, but not that neat.
+# remember that to specify a column, we can use $. We can also use this to
+# create a new column, bill_ratio
+penguin_df$bill_ratio <- penguin_df$bill_length_mm/penguin_df$bill_depth_mm
 
-Now, let's apply our figure theme:
+# body mass here is provided in grams
+# Create a new column, body_mass_kg, measuring it in kilograms (1 kg = 1000 g)
+
+```
+
+# Creating new data frames from scratch, writing them, and some tricky points (Factors)
+
+Sometimes, you will want to create a brand new data frame from scratch. There are several ways to do this. One way is to create vectors for each column, and then combine them together in a data frame. For example, let's imagine we have investigated the populations of squirrels and pigeons in 4 parks in NYC.
+
+We can make 3 vectors, one with the names of the parks, one with the population of squirrels, and one with the population of pigeons. 
 ```{r}
-sepal_points_figure <- sepal_points + final_figure_ggplot_theme
-print(sepal_points_figure)
-sepal_trends_figure <- sepal_trends + final_figure_ggplot_theme
-print(sepal_trends_figure)
-petal_boxplot_figure <- petal_boxplot + final_figure_ggplot_theme
-print(petal_boxplot_figure)
+park <- c("WashingtonSq", "CentralPark", "ProspectPark", "BatteryPark")
+pigeons <- c(8.62e3, 1.5e4, 1939, 276)
+rats <- c(1500, 41320, 20003, 4057)
+squirrels<- c("358", "546", "439", "344")
 ```
-
-There are a few ways to save the figure, but this is probably the easiest:
+Then, we can use the function `data.frame()` to turn these into a single data frame. The positions in the vectors will correspond to rows, and the names of the vectors will become the column names.
 ```{r}
-ggsave(file = 'sepal_points_figure.pdf',
-       plot = sepal_points_figure, width = 6.5, height = 4,
-       useDingbats=FALSE)
-```
-(If saving as a pdf, useDingbats=FALSE is a **must** and will prevent a ggplot disaster from unfolding. If you load the cowplot package described below, it replaces *ggsave* with its own function that does this by default)
+parks_df <- data.frame(park, squirrels, rats, pigeons)
+parks_df
 
-Because we specified our font sizes in final_figure_ggplot_theme, they will be consistent across plots, regardless of the size we decide to save them at.
-
-# Other cool things
-
-## combining multiple data frames on one plot
-
-ggplot makes it super easy to combine multiple datasets on one plot, assuming they have the relevant variables (dataframe columns) in common. Let's break up the iris dataframe to see how this works:
-```{r}
-iris_nonvirginca <- subset(iris, Species != 'virginica')
-iris_virginica_petals <- subset(iris, Species == 'virginica')[, c('Petal.Width', 'Species')]
-print(iris_nonvirginca)
-print(iris_virginica_petals)
-```
-We now have two dataframes, containing data on different species, and with only a subset of the data in one that is contained in the other (the petal widths and species). But if petal width and species is what we want to plot, this isn't a problem for ggplot:
-```{r}
-ggplot() +
-  geom_boxplot(data = iris_nonvirginca, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot(data = iris_virginica_petals, aes(x = Species, y = Petal.Width, color = Species))
-```
-
-## facets
-
-Another great tool ggplot provides is faceting. This allows you to separate data into subplots based on a column (or multiple columns):
-```{r}
-basic_iris_plot +
-  facet_wrap( ~ Species)
-```
-Notice that the x-axes are consistent among these plots.
-
-## Lots of additional packages!
-
-Because ggplot is so popular, there's been a ton of additional packages written that build on top of it. Here are two examples.
-
-### gganimate
-
-Add animations to plots
-```{r warning=FALSE, message=FALSE, results = FALSE}
-install.packages('gifski')
-install.packages('gganimate')
-library(gganimate)
-animated_iris_plot <-
-  basic_iris_plot + transition_states(Species)
-# save plot with 3 frames, play at 1 frame per second
-anim_save("animated_iris_plot.gif", animated_iris_plot, nframes = 4, fps = 1)
-# render plot using ![](plot_path) outside of code chunk
-```
-
-### cowplot
-
-Arrange your plots for publication figures
-```{r}
-install.packages('cowplot')
-library(cowplot)
-plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure,
-          labels = "AUTO")
+# another common way to do the same thing
+parks_df_2 <-
+  data.frame(
+    park = c("WashingtonSq", "CentralPark", "ProspectPark", "BatteryPark"),
+    squirrels = c("358", "546", "439", "344"),
+    rats = c(1500, 41320, 20003, 4057),
+    pigeons = c(8.62e3, 1.5e4, 1939, 276)
+    )
+parks_df_2
 ```
 
 ```{r}
-library(cowplot)
-top_row <- plot_grid(sepal_points_figure, labels = 'A')
-bottom_row <- plot_grid(sepal_trends_figure, petal_boxplot_figure, labels = c('B', 'C'))
-plot_grid(top_row, bottom_row, nrow = 2)
+# try accessing the values rows 1, 2, and 4 of column 1 of parks_df
+
 ```
+
+What if you wanted to share this data with a colleague, so they could do their own calculations? The nicest way would be to send them a csv. We can make csvs from data frames in R using `write.csv()`. Take a look at the documentation for this function.
+
+```{r}
+# write a csv called 'parks.csv' with the data in parks_df
+```
+
+## Watch out for factors!
+You may have noticed that accessing the park column gave us something that involved "levels". These are because they're actually not characters, but something called factors. Factors are categorical variables. These are very important for some types of statistical models, but they can be a problem if you are expecting characters or numbers.
+
+Let's look at the `data.frame` again.
+```{r}
+View(parks_df)
+```
+
+Let's try to access the population of squirrels as a number.
+
+```{r}
+parks_df$squirrels
+as.numeric(parks_df$squirrels)
+```
+
+As you can see, the character numbers are being converted not to the numbers they should be, but to their factor levels. I'm sure you can imagine how this could be a huge problem.
+
+When something is a factor and your want it to be a number, do this:
+
+```{r}
+as.numeric(as.character(parks_df$squirrels)) 
+```
+
+By first going through `as.character` and THEN `as.numeric`, you
+preserve your entries as intended.
+
+Finally, if you want to change the values in the data frame, you must remember to reassign that column. We can use the `str()` function to quickly get a preview of all the columns of a dataframe and their type.
+
+```{r}
+as.numeric(as.character(parks_df$squirrels)) 
+str(parks_df)
+parks_df$squirrels <- as.numeric(as.character(parks_df$squirrels)) 
+str(parks_df)
+```
+
+## Calculate column means, standard deviations, standard errors
+
+Now, maybe we want to use these columns to find out something about parks in NYC. Maybe we want to find the average number of rats and pigeons in NYC parks.
+
+```{r}
+# find the mean number of rats and pigeons for parks in NYC
+```
+
+If we have many columns with numeric data, finding the mean of each of them individually could take a while. We can use the function `colMeans()` instead. Take a look at the documentation for `colMeans()`
+
+```{r}
+# try using colMeans() to find the mean number of rats and pigeons for parks in NYC
+
+# do you run into problems? why? how could we get what we want using this function?
+```
+
+# Things we hope you've learned today (and will hopefully remember next time)
+
+* Reading tables from excel into dataframes
+* Selecting and creating specific dataframe columns
+* Creating new dataframes from scratch

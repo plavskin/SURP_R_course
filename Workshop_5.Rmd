@@ -1,14 +1,9 @@
 ---
-title: "Workshop 5: Logical operations and Dataframes"
+title: "Workshop 5: Missing Values and Logical Operations"
 subtitle: |
     |   - logical (boolean) types
     |   - using logical types to select data of interest
     |   - operations with logical data types
-    |   - formatting data for analysis and reading excel data into R dataframes
-    |   - selecting rows and columns of interest
-    |   - adding columns to dataframes
-    |   - exporting data from R
-    |   - performing operations on individual columns of data
 author:
   - Eugene Plavskin
   - Grace Avecilla
