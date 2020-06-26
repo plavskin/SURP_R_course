@@ -1484,8 +1484,8 @@ window.initializeCodeFolding = function(show) {
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
-    if (show || $(this)[0].classList.contains('fold-show'))
-      div.addClass('in');
+    show = (show || $(this).hasClass('fold-show')) && !$(this).hasClass('fold-hide');
+    if (show) div.addClass('in');
     var id = 'rcode-643E0F36' + currentIndex++;
     div.attr('id', id);
     $(this).before(div);
@@ -1756,30 +1756,20 @@ summary {
 <div id="TOC">
 <ul>
 <li><a href="#review">Review</a></li>
-<li><a href="#use-ggplot-to-make-a-plot-of-iris-petal-length-vs-sepal-length-colored-by">use ggplot to make a plot of iris petal length vs sepal length, colored by</a></li>
-<li><a href="#species">Species</a></li>
-<li><a href="#repeat-the-scatterplot-above-but-have-the-species-label-appear-on-every-point">repeat the scatterplot above, but have the species label appear on every point</a></li>
-<li><a href="#subsetting-data">Subsetting data</a></li>
-<li><a href="#look-at-the-data-frame.-what-do-you-notice-about-these-plants-esp-their-species">look at the data frame. what do you notice about these plants (esp their species)?</a><ul>
+<li><a href="#subsetting-data">Subsetting data</a><ul>
 <li><a href="#sidenote-in">sidenote: %in%</a></li>
 </ul></li>
-<li><a href="#false-statement">FALSE statement</a></li>
 <li><a href="#getting-useful-info-about-your-data">Getting useful info about your data</a><ul>
 <li><a href="#using-the-summary-function">Using the summary function</a></li>
 </ul></li>
-<li><a href="#pass-the-summary-data-for-setosa_df-into-a-new-variable-called-setosa_summary">pass the summary data for setosa_df into a new variable called setosa_summary</a></li>
-<li><a href="#print-out-setosa_summary">print out setosa_summary</a></li>
 <li><a href="#summarizing-data-with-plyr">Summarizing data with plyr</a><ul>
 <li><a href="#the-problem">The problem</a></li>
-</ul></li>
-<li><a href="#load-the-plyr-library-into-the-current-r-session">load the plyr library into the current R session</a><ul>
 <li><a href="#split-apply-combine-and-basic-plyr-functionality"><em>split-apply-combine</em> and basic <strong>plyr</strong> functionality</a></li>
 <li><a href="#creating-multiple-columns-of-summary-data">Creating multiple columns of summary data</a></li>
-</ul></li>
-<li><a href="#add-flower-color-as-alternating-blue-and-purple">add flower color as alternating ‘blue’ and ‘purple’</a><ul>
 <li><a href="#splitting-by-multiple-categories">Splitting by multiple categories</a></li>
 </ul></li>
-<li><a href="#resources-for-learning-r">Resources for learning R</a></li>
+<li><a href="#try-what-youve-learned-on-your-own-data">Try what you’ve learned on your own data!</a></li>
+<li><a href="#things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time">Things we hope you’ve learned today (and will hopefully remember next time)</a></li>
 </ul>
 </div>
 
@@ -1789,17 +1779,15 @@ summary {
 <h1>Review</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB1c2UgZ2dwbG90IHRvIG1ha2UgYSBoaXN0b2dyYW0gb2YgaXJpcyBzZXBhbCB3aWR0aCBhY3Jvc3MgYWxsIHNwZWNpZXNcblxuIyB1c2UgZ2dwbG90IHRvIG1ha2UgYSBwbG90IG9mIGlyaXMgcGV0YWwgbGVuZ3RoIHZzIHNlcGFsIGxlbmd0aCwgY29sb3JlZCBieVxuIyBTcGVjaWVzXG5cbiMgcmVwZWF0IHRoZSBzY2F0dGVycGxvdCBhYm92ZSwgYnV0IGhhdmUgdGhlIHNwZWNpZXMgbGFiZWwgYXBwZWFyIG9uIGV2ZXJ5IHBvaW50XG5cblxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # use ggplot to make a histogram of iris sepal width across all species</p>
-</div>
-<div id="use-ggplot-to-make-a-plot-of-iris-petal-length-vs-sepal-length-colored-by" class="section level1">
-<h1>use ggplot to make a plot of iris petal length vs sepal length, colored by</h1>
-</div>
-<div id="species" class="section level1">
-<h1>Species</h1>
-</div>
-<div id="repeat-the-scatterplot-above-but-have-the-species-label-appear-on-every-point" class="section level1">
-<h1>repeat the scatterplot above, but have the species label appear on every point</h1>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyB1c2UgZ2dwbG90IHRvIG1ha2UgYSBoaXN0b2dyYW0gb2YgaXJpcyBzZXBhbCB3aWR0aCBhY3Jvc3MgYWxsIHNwZWNpZXNcblxuIyB1c2UgZ2dwbG90IHRvIG1ha2UgYSBwbG90IG9mIGlyaXMgcGV0YWwgbGVuZ3RoIHZzIHNlcGFsIGxlbmd0aCwgY29sb3JlZCBieVxuIyBTcGVjaWVzXG5cbiMgcmVwZWF0IHRoZSBzY2F0dGVycGxvdCBhYm92ZSwgYnV0IGhhdmUgdGhlIHNwZWNpZXMgbGFiZWwgYXBwZWFyIG9uIGV2ZXJ5IHBvaW50XG5cblxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r</p>
+<pre class="r"><code># use ggplot to make a histogram of iris sepal width across all species
+
+# use ggplot to make a plot of iris petal length vs sepal length, colored by
+# Species
+
+# repeat the scatterplot above, but have the species label appear on every point
+</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1807,24 +1795,28 @@ summary {
 </div>
 <div id="subsetting-data" class="section level1">
 <h1>Subsetting data</h1>
-<p>One of the most powerful things R can do easily and quickly is to select part of your data based on some criteria you provide using the <code>subset()</code> function. This can be immensely useful. Let’s say we’re interested in iris data, but don’t really care about the <em>Iris setosa</em> plants. Let’s create a subset of our data that excludes those plants. To set the conditions for subsetting, you will have to remember something from our lesson on logicals.</p>
+<p>One of the most powerful things R can do easily and quickly is to select part of your data based on some criteria you provide using the <code>subset()</code> function. This can be immensely useful. Let’s say we’re interested in penguin data, but don’t really care about the <em>Chinstrap</em> species Let’s create a subset of our data that excludes those animals To set the conditions for subsetting, you will have to remember something from our lesson on logicals.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgYSBzdWJzZXQgd2l0aCBkYXRhIG9uIGFsbCBzcGVjaWVzICpleGNlcHQqIHNldG9zYVxuaXJpc19ub19zZXRvc2EgPC0gc3Vic2V0KGlyaXMsIFNwZWNpZXMgIT0gJ3NldG9zYScpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # create a subset with data on all species <em>except</em> setosa iris_no_setosa &lt;- subset(iris, Species != ‘setosa’)</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBjcmVhdGUgYSBzdWJzZXQgd2l0aCBkYXRhIG9uIGFsbCBzcGVjaWVzICpleGNlcHQqIHNldG9zYVxuaXJpc19ub19zZXRvc2EgPC0gc3Vic2V0KGlyaXMsIFNwZWNpZXMgIT0gJ3NldG9zYScpXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code># create a subset with data on all species *except* setosa
+iris_no_setosa &lt;- subset(iris, Species != 'setosa')</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Look at this new dataframe. Notice that in the code above, subset (like ggplot) knows what we mean by <code>Species</code>; because we already tell is which dataframe to work with, it figures that Species is just one of the columns in this dataframe. Recall that <code>!=</code> means ‘not equal to’.</p>
-<p>Try this on your own. Create a data frame of all the plants where sepal width is greater than 3.5.</p>
+<p>Look at this new dataframe. Notice that in the code above, subset (like ggplot) knows what we mean by <code>species</code>; because we already tell is which dataframe to work with, it figures that species is just one of the columns in this dataframe. Recall that <code>!=</code> means ‘not equal to’.</p>
+<p>Try this on your own. Create a data frame of all the penguins where flipper length is greater than 210 mm.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgYSBzdWJzZXQgb2YgdGhlIGRhdGEsIGlyaXNfd2lkZV9zZXBhbCwgdGhhdCBpbmNsdWRlcyBhbGwgcGxhbnRzIGZvclxuIyB3aGljaCBzZXBhbCB3aWR0aCBpcyBncmVhdGVyIHRoYW4gMy41XG5cbiMgbG9vayBhdCB0aGUgZGF0YSBmcmFtZS4gd2hhdCBkbyB5b3Ugbm90aWNlIGFib3V0IHRoZXNlIHBsYW50cyAoZXNwIHRoZWlyIHNwZWNpZXMpP1xuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # create a subset of the data, iris_wide_sepal, that includes all plants for # which sepal width is greater than 3.5</p>
-</div>
-<div id="look-at-the-data-frame.-what-do-you-notice-about-these-plants-esp-their-species" class="section level1">
-<h1>look at the data frame. what do you notice about these plants (esp their species)?</h1>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBjcmVhdGUgYSBzdWJzZXQgb2YgdGhlIGRhdGEsIGlyaXNfd2lkZV9zZXBhbCwgdGhhdCBpbmNsdWRlcyBhbGwgcGxhbnRzIGZvclxuIyB3aGljaCBzZXBhbCB3aWR0aCBpcyBncmVhdGVyIHRoYW4gMy41XG5cbiMgbG9vayBhdCB0aGUgZGF0YSBmcmFtZS4gd2hhdCBkbyB5b3Ugbm90aWNlIGFib3V0IHRoZXNlIHBsYW50cyAoZXNwIHRoZWlyIHNwZWNpZXMpP1xuXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code># create a subset of the data, iris_wide_sepal, that includes all plants for
+# which sepal width is greater than 3.5
+
+# look at the data frame. what do you notice about these plants (esp their species)?
+</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1834,26 +1826,27 @@ summary {
 <p>A really useful logical operator in R is <code>%in%</code>; it checks that the thing before it is a member of the list of things after it.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBUUlVFIHN0YXRlbWVudFxuJ2EnICVpbiUgYygnYScsICdiJywgJ2MnKVxuXG4jIEZBTFNFIHN0YXRlbWVudFxuJ2UnICVpbiUgYygnYScsICdiJywgJ2MnKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # TRUE statement ‘a’ %in% c(‘a’, ‘b’, ‘c’)</p>
-</div>
-</div>
-<div id="false-statement" class="section level1">
-<h1>FALSE statement</h1>
-<p>‘e’ %in% c(‘a’, ‘b’, ‘c’)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBUUlVFIHN0YXRlbWVudFxuJ2EnICVpbiUgYygnYScsICdiJywgJ2MnKVxuXG4jIEZBTFNFIHN0YXRlbWVudFxuJ2UnICVpbiUgYygnYScsICdiJywgJ2MnKVxuYGBgIn0= -->
+<pre class="r"><code># TRUE statement
+'a' %in% c('a', 'b', 'c')
+
+# FALSE statement
+'e' %in% c('a', 'b', 'c')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><code>%in%</code> can be incredibly useful in subsetting.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBhbm90aGVyIHdheSB0byBzdWJzZXQgZGF0YSB3aXRoIG5vbi1zZXRvc2Egc3BlY2llc1xuaXJpc19ub19zZXRvc2FfMiA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyAlaW4lIGMoJ3ZlcnNpY29sb3InLCAndmlyZ2luaWNhJykpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # another way to subset data with non-setosa species iris_no_setosa_2 &lt;- subset(iris, Species %in% c(‘versicolor’, ‘virginica’))</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBhbm90aGVyIHdheSB0byBzdWJzZXQgZGF0YSB3aXRoIG5vbi1zZXRvc2Egc3BlY2llc1xuaXJpc19ub19zZXRvc2FfMiA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyAlaW4lIGMoJ3ZlcnNpY29sb3InLCAndmlyZ2luaWNhJykpXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code># another way to subset data with non-setosa species
+iris_no_setosa_2 &lt;- subset(iris, Species %in% c('versicolor', 'virginica'))</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 </div>
 <div id="getting-useful-info-about-your-data" class="section level1">
 <h1>Getting useful info about your data</h1>
@@ -1863,60 +1856,65 @@ summary {
 <p>A really useful function for quickly learning about the properties of your data is <code>summary()</code>. It shows you the mean, median, and quantiles of your numeric data, as well as counts for each data category. Try this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaXJpc19zdW1tYXJ5IDwtIHN1bW1hcnkoaXJpcylcbnByaW50KGlyaXNfc3VtbWFyeSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r iris_summary &lt;- summary(iris) print(iris_summary)</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuaXJpc19zdW1tYXJ5IDwtIHN1bW1hcnkoaXJpcylcbnByaW50KGlyaXNfc3VtbWFyeSlcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r</p>
+<pre class="r"><code>iris_summary &lt;- summary(iris)
+print(iris_summary)</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>One reason <code>summary()</code> is often not particularly useful is that it summarizes <em>all</em> the data in your dataframe. Notice that it’s not splitting the summaries by species, which is probably what we would want to happen.</p>
-<p>One way to get around this is through subsetting. Make a subset of the iris data that only contains data for the <em>setosa</em> species, and then run the <code>summary</code> function on this subset.</p>
+<p>One way to get around this is through subsetting. Make a subset of the penguin data that only contains data for the <em>Adelie</em> species, and then run the <code>summary</code> function on this subset.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB1c2Ugc3Vic2V0KCkgdG8gbWFrZSBhIGRhdGFmcmFtZSwgc2V0b3NhX2RmLCB0aGF0IGNvbnRhaW5zIG9ubHkgdGhlIGRhdGEgd2hlcmVcbiMgU3BlY2llcyBpcyBzZXRvc2FcbiMgKGhpbnQ6IHlvdSB3YW50IHRoZSBTcGVjaWVzIGNvbHVtbiB0byBlcXVhbCAnc2V0b3NhJylcblxuIyBwYXNzIHRoZSBzdW1tYXJ5IGRhdGEgZm9yIHNldG9zYV9kZiBpbnRvIGEgbmV3IHZhcmlhYmxlIGNhbGxlZCBzZXRvc2Ffc3VtbWFyeVxuXG4jIHByaW50IG91dCBzZXRvc2Ffc3VtbWFyeVxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # use subset() to make a dataframe, setosa_df, that contains only the data where # Species is setosa # (hint: you want the Species column to equal ‘setosa’)</p>
-</div>
-</div>
-<div id="pass-the-summary-data-for-setosa_df-into-a-new-variable-called-setosa_summary" class="section level1">
-<h1>pass the summary data for setosa_df into a new variable called setosa_summary</h1>
-</div>
-<div id="print-out-setosa_summary" class="section level1">
-<h1>print out setosa_summary</h1>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyB1c2Ugc3Vic2V0KCkgdG8gbWFrZSBhIGRhdGFmcmFtZSwgc2V0b3NhX2RmLCB0aGF0IGNvbnRhaW5zIG9ubHkgdGhlIGRhdGEgd2hlcmVcbiMgU3BlY2llcyBpcyBzZXRvc2FcbiMgKGhpbnQ6IHlvdSB3YW50IHRoZSBTcGVjaWVzIGNvbHVtbiB0byBlcXVhbCAnc2V0b3NhJylcblxuIyBwYXNzIHRoZSBzdW1tYXJ5IGRhdGEgZm9yIHNldG9zYV9kZiBpbnRvIGEgbmV3IHZhcmlhYmxlIGNhbGxlZCBzZXRvc2Ffc3VtbWFyeVxuXG4jIHByaW50IG91dCBzZXRvc2Ffc3VtbWFyeVxuXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code># use subset() to make a dataframe, setosa_df, that contains only the data where
+# Species is setosa
+# (hint: you want the Species column to equal 'setosa')
+
+# pass the summary data for setosa_df into a new variable called setosa_summary
+
+# print out setosa_summary
+</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>There are a couple of important limitations to the approach we just used. First of all, we have to do this to one category at a time. This may not be so bad for 3 species, but imagine we had a dataset containing 50 species (or other categories we were interested in). Second, if you look in your <strong>Environment</strong> window, you’ll notice that neither iris_summary or setosa_summary are dataframes. The <code>summary</code> function produces a weird R data type called a <em>table</em>, which is easy to look at but a pain to do anything with.</p>
+<p>There are a couple of important limitations to the approach we just used. First of all, we have to do this to one category at a time. This may not be so bad for 3 species, but imagine we had a dataset containing 50 species (or other categories we were interested in). Second, if you look in your <strong>Environment</strong> window, you’ll notice that neither penguins_summary or adelie_summary are dataframes. The <code>summary</code> function produces a weird R data type called a <em>table</em>, which is easy to look at but a pain to do anything with.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuVmlldyhpcmlzX3N1bW1hcnkpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r View(iris_summary)</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuVmlldyhpcmlzX3N1bW1hcnkpXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code>View(iris_summary)</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>For example, if you wanted to plot the results of the summary functions for a bunch of species using ggplot, it would be very annoying to do.</p>
+<p>For example, if you wanted to plot the results of the summary functions for a bunch of species using ggplot (which we’ll learn how to do next class!), it would be very annoying to do.</p>
+</div>
 </div>
 <div id="summarizing-data-with-plyr" class="section level1">
 <h1>Summarizing data with plyr</h1>
 <div id="the-problem" class="section level2">
 <h2>The problem</h2>
-<p>Ideally, we want to summarize complicated data in a compact, readable, graphable way, probably as a dataframe. We also don’t want to have to subset the data individually for every member of every category we want to split by in our analysis (e.g. subset for every iris species and then find the mean of some column); this may be simply annoying for 3 irises, but becomes impossible for many datasets (e.g. imagine trying to get the mean and standard deviation of the expression level of every gene in a single-cell RNAseq experiment).</p>
-<p>One of the things that made ggplot so helpful was its ability to automatically split data by category. We don’t have to say “Plot this species in red, this other one in blue, etc…” We just specify the columns of the dataframe that we want the data grouped by, and R does the rest. If any stats need to be calculated (e.g. in <strong>geom_smooth</strong> or <strong>geom_boxplot</strong>), they are calculated within the separate groups specified by the columns that we want to categorize data by.</p>
+<p>Ideally, we want to summarize complicated data in a compact, readable, graphable way, probably as a dataframe. We also don’t want to have to subset the data individually for every member of every category we want to split by in our analysis (e.g. subset for every penguin species and then find the mean of some column); this may be simply annoying for 3 penguins, but becomes impossible for many datasets (e.g. imagine trying to get the mean and standard deviation of the expression level of every gene in a single-cell RNAseq experiment).</p>
 <p>Although R has built-in functions that do this, we’re going to turn to yet another package, <strong>plyr</strong>, which makes this process simpler.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgcGx5ciBpZiB5b3UgaGF2ZW4ndCBhbHJlYWR5IGRvbmUgc29cbiNpbnN0YWxsLnBhY2thZ2VzKCdwbHlyJylcblxuIyBsb2FkIHRoZSBwbHlyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb25cbmxpYnJhcnkocGx5cilcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # uncomment the line below and install plyr if you haven’t already done so #install.packages(‘plyr’)</p>
-</div>
-</div>
-<div id="load-the-plyr-library-into-the-current-r-session" class="section level1">
-<h1>load the plyr library into the current R session</h1>
-<p>library(plyr)</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgcGx5ciBpZiB5b3UgaGF2ZW4ndCBhbHJlYWR5IGRvbmUgc29cbiNpbnN0YWxsLnBhY2thZ2VzKCdwbHlyJylcblxuIyBsb2FkIHRoZSBwbHlyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb25cbmxpYnJhcnkocGx5cilcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r</p>
+<pre class="r"><code># uncomment the line below and install plyr if you haven't already done so
+#install.packages('plyr')
+
+# load the plyr library into the current R session
+library(plyr)</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+</div>
 <div id="split-apply-combine-and-basic-plyr-functionality" class="section level2">
 <h2><em>split-apply-combine</em> and basic <strong>plyr</strong> functionality</h2>
 <p>The basic philosophy behind <strong>plyr</strong> is the idea that for many problems, the solution falls into the pattern of <em>split-apply-combine</em>: you want to <em>split</em> the data based on some categories, apply a function (usually calculating some kind of summary statistic) to each resulting dataset, and <em>combine</em> the results back together.</p>
@@ -1929,11 +1927,15 @@ summary {
         &lt;output_column&gt; = &lt;output_function(input_column)&gt;)</code></pre>
 <p>Here, the <code>~</code> represents “as a function of”; this is common to many R functions, as you will see below!</p>
 <p><strong>plyr</strong> command names are based on the data they take as input and output; there are lots of options here, but I don’t want to go into too many of them. For now, let’s work with the iris data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (<em>d</em>) to dataframe (<em>d</em>), the function we want to use is <code>ddply</code> (if we were using a dataframe as an output and an array as output, we’d use <code>daply</code>, etc).</p>
-<p>For example, let’s try to create a dataframe that contains the mean petal length of each iris species:</p>
+<p>For example, let’s try to create a dataframe that contains the mean bill length of each penguin species:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaXJpc19wZXRhbF9sZW5ndGhfc3VtbWFyeV8yIDwtXG4gIGRkcGx5KGlyaXMsXG4gICAgICAgIH4gU3BlY2llcyxcbiAgICAgICAgc3VtbWFyaXplLFxuICAgICAgICBtZWFuX1BldGFsX0xlbmd0aCA9IG1lYW4oUGV0YWwuTGVuZ3RoKSxcbiAgICAgICAgc2RfUGV0YWxfTGVuZ3RoID0gc2QoUGV0YWwuTGVuZ3RoKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r iris_petal_length_summary_2 &lt;- ddply(iris, ~ Species, summarize, mean_Petal_Length = mean(Petal.Length), sd_Petal_Length = sd(Petal.Length))</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBVc2UgZGRwbHkgdG8gY3JlYXRlIGEgZGF0YWZyYW1lLCBpcmlzX3NlcGFsX3dpZHRoX3N1bW1hcnksIHRoYXQgY29udGFpbnMgdGhlXG4jIG1lYW4gYW5kIHN0YW5kYXJkIGVycm9yIChTRSkgb2YgZWFjaCBzcGVjaWVzJyBzZXBhbCB3aWR0aFxuIyBTRSA9IHN0YW5kYXJkIGRldmlhdGlvbiAvIHNxcnQoY291bnQgLSAxKVxuXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r</p>
+<pre class="r"><code># Use ddply to create a dataframe, iris_sepal_width_summary, that contains the
+# mean and standard error (SE) of each species' sepal width
+# SE = standard deviation / sqrt(count - 1)
+</code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1944,61 +1946,62 @@ summary {
 <p>You can use this format to create multiple new columns using multiple functions; just separate these by commas, like so:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBVc2UgZGRwbHkgdG8gY3JlYXRlIGEgZGF0YWZyYW1lLCBpcmlzX3NlcGFsX3dpZHRoX3N1bW1hcnksIHRoYXQgY29udGFpbnMgdGhlXG4jIG1lYW4gYW5kIHN0YW5kYXJkIGVycm9yIChTRSkgb2YgZWFjaCBzcGVjaWVzJyBzZXBhbCB3aWR0aFxuIyBTRSA9IHN0YW5kYXJkIGRldmlhdGlvbiAvIHNxcnQoY291bnQgLSAxKVxuXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r # Use ddply to create a dataframe, iris_sepal_width_summary, that contains the # mean and standard error (SE) of each species’ sepal width # SE = standard deviation / sqrt(count - 1)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGVuZ3Vpbl9iaWxsX2xlbmd0aF9zdW1tYXJ5XzIgPC1cbiAgZGRwbHkocGVuZ3VpbnMsXG4gICAgICAgIH4gc3BlY2llcyxcbiAgICAgICAgc3VtbWFyaXplLFxuICAgICAgICBtZWFuX2JpbGxfTGVuZ3RoID0gbWVhbihiaWxsX2xlbmd0aF9tbSwgbmEucm0gPSBUKSxcbiAgICAgICAgc2RfYmlsbF9MZW5ndGggPSBzZChiaWxsX2xlbmd0aF9tbSwgbmEucm0gPSBUKSlcbmBgYCJ9 -->
+<pre class="r"><code>penguin_bill_length_summary_2 &lt;-
+  ddply(penguins,
+        ~ species,
+        summarize,
+        mean_bill_Length = mean(bill_length_mm, na.rm = T),
+        sd_bill_Length = sd(bill_length_mm, na.rm = T))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Our summary is now a dataframe, and we can easily retrieve the mean petal length for any species</p>
+<p>Our summary is now a dataframe, and we can easily retrieve the mean bill length for any species</p>
 <p>Let’s try a challenge:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBjcmVhdGUgbmV3IGlyaXMgZGZcbmNvbG9yX2lyaXMgPC0gaXJpc1xuXG4jIGFkZCBmbG93ZXIgY29sb3IgYXMgYWx0ZXJuYXRpbmcgJ2JsdWUnIGFuZCAncHVycGxlJ1xuY29sb3JfaXJpcyRGbG93ZXIuQ29sb3IgPC0gcmVwKGMoJ2JsdWUnLCAncHVycGxlJyksIHRpbWVzID0gbnJvdyhpcmlzKS8yKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r # create new iris df color_iris &lt;- iris</p>
-</div>
-</div>
-<div id="add-flower-color-as-alternating-blue-and-purple" class="section level1">
-<h1>add flower color as alternating ‘blue’ and ‘purple’</h1>
-<p>color_iris$Flower.Color &lt;- rep(c(‘blue’, ‘purple’), times = nrow(iris)/2)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBVc2UgZGRwbHkgdG8gY3JlYXRlIGEgZGF0YWZyYW1lLCBwZW5ndWluX2JpbGxfZGVwdGhfc3VtbWFyeSwgdGhhdCBjb250YWlucyB0aGVcbiMgbWVhbiBhbmQgc3RhbmRhcmQgZXJyb3IgKFNFKSBvZiBlYWNoIHNwZWNpZXMnIGJpbGwgZGVwdGhcbiMgU0UgPSBzdGFuZGFyZCBkZXZpYXRpb24gLyBzcXJ0KGNvdW50IC0gMSlcblxuYGBgIn0= -->
+<pre class="r"><code># Use ddply to create a dataframe, penguin_bill_depth_summary, that contains the
+# mean and standard error (SE) of each species' bill depth
+# SE = standard deviation / sqrt(count - 1)
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>I think what helps me think about the solution to the above is that, in effect, <code>ddply</code> treats each Species as its own little dataframe, as if you were manually subsetting the iris dataframe by Species one-by-one and calculating the output column values. This is <em>split-apply-combine</em> in action.</p>
+<p>I think what helps me think about the solution to the above is that, in effect, <code>ddply</code> treats each species as its own little dataframe, as if you were manually subsetting the penguins dataframe by species one-by-one and calculating the output column values. This is <em>split-apply-combine</em> in action.</p>
+</div>
 <div id="splitting-by-multiple-categories" class="section level2">
 <h2>Splitting by multiple categories</h2>
-<p>Another really great thing about summarizing data this way is that we don’t need to limit ourselves to splitting it by a single category. Imagine we had a new dataset that included flower color for each plant, and we were interested in looking at flower color alongside species in our summary statistics.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuaXJpc19wZXRhbF9sZW5ndGhfc3VtbWFyeV8zIDwtXG4gIGRkcGx5KGNvbG9yX2lyaXMsXG4gICAgICAgIH4gU3BlY2llcyArIEZsb3dlci5Db2xvcixcbiAgICAgICAgc3VtbWFyaXplLFxuICAgICAgICBtZWFuX1BldGFsX0xlbmd0aCA9IG1lYW4oUGV0YWwuTGVuZ3RoKSxcbiAgICAgICAgc2RfUGV0YWxfTGVuZ3RoID0gc2QoUGV0YWwuTGVuZ3RoKSlcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r iris_petal_length_summary_3 &lt;- ddply(color_iris, ~ Species + Flower.Color, summarize, mean_Petal_Length = mean(Petal.Length), sd_Petal_Length = sd(Petal.Length))</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
+<p>Another really great thing about summarizing data this way is that we don’t need to limit ourselves to splitting it by a single category. Since the penguin data also includes islands, we can look at island alongside species in our summary statistics.</p>
 <p>We can now use ddply just as before, but splitting by a list of categories separated by <code>+</code>, rather than by a single category:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YV8xIDwtIGMoMSwgMiwgNCwgNilcbmRhdGFfMiA8LSBjKDgsIDMsIDQsIDUpXG50LnRlc3QoZGF0YV8xLCBkYXRhXzIpXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r data_1 &lt;- c(1, 2, 4, 6) data_2 &lt;- c(8, 3, 4, 5) t.test(data_1, data_2)</p>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGVuZ3Vpbl9iaWxsX2xlbmd0aF9zdW1tYXJ5XzMgPC1cbiAgZGRwbHkocGVuZ3VpbnMsXG4gICAgICAgIH4gc3BlY2llcyArIGlzbGFuZCxcbiAgICAgICAgc3VtbWFyaXplLFxuICAgICAgICBtZWFuX2JpbGxfTGVuZ3RoID0gbWVhbihiaWxsX2xlbmd0aF9tbSwgbmEucm0gPSBUKSxcbiAgICAgICAgc2RfYmlsbF9MZW5ndGggPSBzZChiaWxsX2xlbmd0aF9tbSwgbmEucm0gPSBUKSlcbmBgYCJ9 -->
+<pre class="r"><code>penguin_bill_length_summary_3 &lt;-
+  ddply(penguins,
+        ~ species + island,
+        summarize,
+        mean_bill_Length = mean(bill_length_mm, na.rm = T),
+        sd_bill_Length = sd(bill_length_mm, na.rm = T))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 </div>
-<div id="resources-for-learning-r" class="section level1">
-<h1>Resources for learning R</h1>
-<p>We wanted to share some final resources that I think are great places to look to keep going with learning to code.</p>
+<div id="try-what-youve-learned-on-your-own-data" class="section level1">
+<h1>Try what you’ve learned on your own data!</h1>
+<p>Take some time to explore your data! Try subsetting your data by a category and calculating some summary statistics.</p>
+</div>
+<div id="things-we-hope-youve-learned-today-and-will-hopefully-remember-next-time" class="section level1">
+<h1>Things we hope you’ve learned today (and will hopefully remember next time)</h1>
 <ul>
-<li><p><a href="https://software-carpentry.org/lessons/">SoftwareCarpentry</a>: Sets of lessons on the coding, mostly at an introductory/early intermediate level. Lots of overlap with this course in the R sections, but presented in a different way; also courses in Python, Unix, and really useful tools like GitHub</p></li>
-<li><p><a href="https://stat545.com/">Jenny Bryan’s UBC’s STAT545 course</a>: walks you through intro- and intermediate-level R, explaining not just the programming, but good ways to think about analyzing data and coding the analysis. If you want a more in-depth course about R in general, I highly recommend this.</p></li>
+<li>How to subset data using logical expressions</li>
+<li>How to summarize data in multiple categories using plyr</li>
 </ul>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgNzogU3VtbWFyaXppbmcgZGF0YSIKc3VidGl0bGU6IHwKICAgIHwgICAtIHN1YnNldHRpbmcgZGF0YQogICAgfCAgIC0gc3VtbWFyaXppbmcgeW91ciBkYXRhCiAgICB8ICAgLSBzcGxpdHRpbmcgZGF0YSBieSBjYXRlZ29yaWVzIHRvIGNhbGN1bGF0ZSBzdGF0cwogICAgfCAgIC0gcmVzb3VyY2VzIGZvciBsZWFybmluZyBSCmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfNy5uYi5odG1sKSoqCgojIFJldmlldwpgYGB7cn0KIyB1c2UgZ2dwbG90IHRvIG1ha2UgYSBoaXN0b2dyYW0gb2YgaXJpcyBzZXBhbCB3aWR0aCBhY3Jvc3MgYWxsIHNwZWNpZXMKCiMgdXNlIGdncGxvdCB0byBtYWtlIGEgcGxvdCBvZiBpcmlzIHBldGFsIGxlbmd0aCB2cyBzZXBhbCBsZW5ndGgsIGNvbG9yZWQgYnkKIyBTcGVjaWVzCgojIHJlcGVhdCB0aGUgc2NhdHRlcnBsb3QgYWJvdmUsIGJ1dCBoYXZlIHRoZSBzcGVjaWVzIGxhYmVsIGFwcGVhciBvbiBldmVyeSBwb2ludAoKCmBgYAoKIyBTdWJzZXR0aW5nIGRhdGEKCk9uZSBvZiB0aGUgbW9zdCBwb3dlcmZ1bCB0aGluZ3MgUiBjYW4gZG8gZWFzaWx5IGFuZCBxdWlja2x5IGlzIHRvIHNlbGVjdCBwYXJ0IG9mIHlvdXIgZGF0YSBiYXNlZCBvbiBzb21lIGNyaXRlcmlhIHlvdSBwcm92aWRlIHVzaW5nIHRoZSBgc3Vic2V0KClgIGZ1bmN0aW9uLiBUaGlzIGNhbiBiZSBpbW1lbnNlbHkgdXNlZnVsLiBMZXQncyBzYXkgd2UncmUgaW50ZXJlc3RlZCBpbiBpcmlzIGRhdGEsIGJ1dCBkb24ndCByZWFsbHkgY2FyZSBhYm91dCB0aGUgKklyaXMgc2V0b3NhKiBwbGFudHMuIExldCdzIGNyZWF0ZSBhIHN1YnNldCBvZiBvdXIgZGF0YSB0aGF0IGV4Y2x1ZGVzIHRob3NlIHBsYW50cy4gVG8gc2V0IHRoZSBjb25kaXRpb25zIGZvciBzdWJzZXR0aW5nLCB5b3Ugd2lsbCBoYXZlIHRvIHJlbWVtYmVyIHNvbWV0aGluZyBmcm9tIG91ciBsZXNzb24gb24gbG9naWNhbHMuCmBgYHtyfQojIGNyZWF0ZSBhIHN1YnNldCB3aXRoIGRhdGEgb24gYWxsIHNwZWNpZXMgKmV4Y2VwdCogc2V0b3NhCmlyaXNfbm9fc2V0b3NhIDwtIHN1YnNldChpcmlzLCBTcGVjaWVzICE9ICdzZXRvc2EnKQpgYGAKTG9vayBhdCB0aGlzIG5ldyBkYXRhZnJhbWUuIE5vdGljZSB0aGF0IGluIHRoZSBjb2RlIGFib3ZlLCBzdWJzZXQgKGxpa2UgZ2dwbG90KSBrbm93cyB3aGF0IHdlIG1lYW4gYnkgYFNwZWNpZXNgOyBiZWNhdXNlIHdlIGFscmVhZHkgdGVsbCBpcyB3aGljaCBkYXRhZnJhbWUgdG8gd29yayB3aXRoLCBpdCBmaWd1cmVzIHRoYXQgU3BlY2llcyBpcyBqdXN0IG9uZSBvZiB0aGUgY29sdW1ucyBpbiB0aGlzIGRhdGFmcmFtZS4gUmVjYWxsIHRoYXQgYCE9YCBtZWFucyAnbm90IGVxdWFsIHRvJy4KClRyeSB0aGlzIG9uIHlvdXIgb3duLiBDcmVhdGUgYSBkYXRhIGZyYW1lIG9mIGFsbCB0aGUgcGxhbnRzIHdoZXJlIHNlcGFsIHdpZHRoIGlzIGdyZWF0ZXIgdGhhbiAzLjUuCmBgYHtyfQojIGNyZWF0ZSBhIHN1YnNldCBvZiB0aGUgZGF0YSwgaXJpc193aWRlX3NlcGFsLCB0aGF0IGluY2x1ZGVzIGFsbCBwbGFudHMgZm9yCiMgd2hpY2ggc2VwYWwgd2lkdGggaXMgZ3JlYXRlciB0aGFuIDMuNQoKIyBsb29rIGF0IHRoZSBkYXRhIGZyYW1lLiB3aGF0IGRvIHlvdSBub3RpY2UgYWJvdXQgdGhlc2UgcGxhbnRzIChlc3AgdGhlaXIgc3BlY2llcyk/CgpgYGAKCiMjIyBzaWRlbm90ZTogJWluJQoKQSByZWFsbHkgdXNlZnVsIGxvZ2ljYWwgb3BlcmF0b3IgaW4gUiBpcyBgJWluJWA7IGl0IGNoZWNrcyB0aGF0IHRoZSB0aGluZyBiZWZvcmUgaXQgaXMgYSBtZW1iZXIgb2YgdGhlIGxpc3Qgb2YgdGhpbmdzIGFmdGVyIGl0LgpgYGB7cn0KIyBUUlVFIHN0YXRlbWVudAonYScgJWluJSBjKCdhJywgJ2InLCAnYycpCgojIEZBTFNFIHN0YXRlbWVudAonZScgJWluJSBjKCdhJywgJ2InLCAnYycpCmBgYAoKCmAlaW4lYCBjYW4gYmUgaW5jcmVkaWJseSB1c2VmdWwgaW4gc3Vic2V0dGluZy4KYGBge3J9CiMgYW5vdGhlciB3YXkgdG8gc3Vic2V0IGRhdGEgd2l0aCBub24tc2V0b3NhIHNwZWNpZXMKaXJpc19ub19zZXRvc2FfMiA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyAlaW4lIGMoJ3ZlcnNpY29sb3InLCAndmlyZ2luaWNhJykpCmBgYAoKCiMgR2V0dGluZyB1c2VmdWwgaW5mbyBhYm91dCB5b3VyIGRhdGEKCkl0IGNhbiBiZSBpbmNyZWRpYmx5IGhlbHBmdWwgdG8gcXVpY2tseSBnZXQgc3VtbWFyeSBpbmZvIGZvciB5b3VyIGRhdGEgaW4gYW4gYWNjZXNzaWJsZSwgUi1yZWFkYWJsZSBmb3JtYXQuIFdlJ3ZlIGFscmVhZHkgY2FsY3VsYXRlZCBzb21lICdzdW1tYXJ5IHN0YXRpc3RpY3MnIChgbWVhbmApIGZvciBldmVyeSBjb2x1bW4sIGFuZCB3ZSBzYXcgaG93IGdncGxvdCBlYXNpbHkgbGV0cyB1cyBzcGxpdCBvdXIgcGxvdCB1cCBieSBjYXRlZ29yaWVzICgqZWcqIHRocm91Z2ggdXNpbmcgZGlmZmVyZW50IGNvbG9ycyBmb3IgZWFjaCBvbmUpLiBOb3cgbGV0J3MgZG8gdGhlIHNhbWUgd2l0aCBzdW1tYXJ5IHN0YXRpc3RpY3MuCgojIyBVc2luZyB0aGUgc3VtbWFyeSBmdW5jdGlvbgoKQSByZWFsbHkgdXNlZnVsIGZ1bmN0aW9uIGZvciBxdWlja2x5IGxlYXJuaW5nIGFib3V0IHRoZSBwcm9wZXJ0aWVzIG9mIHlvdXIgZGF0YSBpcyBgc3VtbWFyeSgpYC4gSXQgc2hvd3MgeW91IHRoZSBtZWFuLCBtZWRpYW4sIGFuZCBxdWFudGlsZXMgb2YgeW91ciBudW1lcmljIGRhdGEsIGFzIHdlbGwgYXMgY291bnRzIGZvciBlYWNoIGRhdGEgY2F0ZWdvcnkuIFRyeSB0aGlzOgoKYGBge3J9CmlyaXNfc3VtbWFyeSA8LSBzdW1tYXJ5KGlyaXMpCnByaW50KGlyaXNfc3VtbWFyeSkKYGBgCgpPbmUgcmVhc29uIGBzdW1tYXJ5KClgIGlzIG9mdGVuIG5vdCBwYXJ0aWN1bGFybHkgdXNlZnVsIGlzIHRoYXQgaXQgc3VtbWFyaXplcyAqYWxsKiB0aGUgZGF0YSBpbiB5b3VyIGRhdGFmcmFtZS4gTm90aWNlIHRoYXQgaXQncyBub3Qgc3BsaXR0aW5nIHRoZSBzdW1tYXJpZXMgYnkgc3BlY2llcywgd2hpY2ggaXMgcHJvYmFibHkgd2hhdCB3ZSB3b3VsZCB3YW50IHRvIGhhcHBlbi4KCk9uZSB3YXkgdG8gZ2V0IGFyb3VuZCB0aGlzIGlzIHRocm91Z2ggc3Vic2V0dGluZy4gTWFrZSBhIHN1YnNldCBvZiB0aGUgaXJpcyBkYXRhIHRoYXQgb25seSBjb250YWlucyBkYXRhIGZvciB0aGUgKnNldG9zYSogc3BlY2llcywgYW5kIHRoZW4gcnVuIHRoZSBgc3VtbWFyeWAgZnVuY3Rpb24gb24gdGhpcyBzdWJzZXQuCmBgYHtyfQojIHVzZSBzdWJzZXQoKSB0byBtYWtlIGEgZGF0YWZyYW1lLCBzZXRvc2FfZGYsIHRoYXQgY29udGFpbnMgb25seSB0aGUgZGF0YSB3aGVyZQojIFNwZWNpZXMgaXMgc2V0b3NhCiMgKGhpbnQ6IHlvdSB3YW50IHRoZSBTcGVjaWVzIGNvbHVtbiB0byBlcXVhbCAnc2V0b3NhJykKCiMgcGFzcyB0aGUgc3VtbWFyeSBkYXRhIGZvciBzZXRvc2FfZGYgaW50byBhIG5ldyB2YXJpYWJsZSBjYWxsZWQgc2V0b3NhX3N1bW1hcnkKCiMgcHJpbnQgb3V0IHNldG9zYV9zdW1tYXJ5CgpgYGAKClRoZXJlIGFyZSBhIGNvdXBsZSBvZiBpbXBvcnRhbnQgbGltaXRhdGlvbnMgdG8gdGhlIGFwcHJvYWNoIHdlIGp1c3QgdXNlZC4gRmlyc3Qgb2YgYWxsLCB3ZSBoYXZlIHRvIGRvIHRoaXMgdG8gb25lIGNhdGVnb3J5IGF0IGEgdGltZS4gVGhpcyBtYXkgbm90IGJlIHNvIGJhZCBmb3IgMyBzcGVjaWVzLCBidXQgaW1hZ2luZSB3ZSBoYWQgYSBkYXRhc2V0IGNvbnRhaW5pbmcgNTAgc3BlY2llcyAob3Igb3RoZXIgY2F0ZWdvcmllcyB3ZSB3ZXJlIGludGVyZXN0ZWQgaW4pLiBTZWNvbmQsIGlmIHlvdSBsb29rIGluIHlvdXIgKipFbnZpcm9ubWVudCoqIHdpbmRvdywgeW91J2xsIG5vdGljZSB0aGF0IG5laXRoZXIgaXJpc19zdW1tYXJ5IG9yIHNldG9zYV9zdW1tYXJ5IGFyZSBkYXRhZnJhbWVzLiBUaGUgYHN1bW1hcnlgIGZ1bmN0aW9uIHByb2R1Y2VzIGEgd2VpcmQgUiBkYXRhIHR5cGUgY2FsbGVkIGEgKnRhYmxlKiwgd2hpY2ggaXMgZWFzeSB0byBsb29rIGF0IGJ1dCBhIHBhaW4gdG8gZG8gYW55dGhpbmcgd2l0aC4KYGBge3J9ClZpZXcoaXJpc19zdW1tYXJ5KQpgYGAKRm9yIGV4YW1wbGUsIGlmIHlvdSB3YW50ZWQgdG8gcGxvdCB0aGUgcmVzdWx0cyBvZiB0aGUgc3VtbWFyeSBmdW5jdGlvbnMgZm9yIGEgYnVuY2ggb2Ygc3BlY2llcyB1c2luZyBnZ3Bsb3QsIGl0IHdvdWxkIGJlIHZlcnkgYW5ub3lpbmcgdG8gZG8uCgojIFN1bW1hcml6aW5nIGRhdGEgd2l0aCBwbHlyCgojIyBUaGUgcHJvYmxlbQpJZGVhbGx5LCB3ZSB3YW50IHRvIHN1bW1hcml6ZSBjb21wbGljYXRlZCBkYXRhIGluIGEgY29tcGFjdCwgcmVhZGFibGUsIGdyYXBoYWJsZSB3YXksIHByb2JhYmx5IGFzIGEgZGF0YWZyYW1lLiBXZSBhbHNvIGRvbid0IHdhbnQgdG8gaGF2ZSB0byBzdWJzZXQgdGhlIGRhdGEgaW5kaXZpZHVhbGx5IGZvciBldmVyeSBtZW1iZXIgb2YgZXZlcnkgY2F0ZWdvcnkgd2Ugd2FudCB0byBzcGxpdCBieSBpbiBvdXIgYW5hbHlzaXMgKGUuZy4gc3Vic2V0IGZvciBldmVyeSBpcmlzIHNwZWNpZXMgYW5kIHRoZW4gZmluZCB0aGUgbWVhbiBvZiBzb21lIGNvbHVtbik7IHRoaXMgbWF5IGJlIHNpbXBseSBhbm5veWluZyBmb3IgMyBpcmlzZXMsIGJ1dCBiZWNvbWVzIGltcG9zc2libGUgZm9yIG1hbnkgZGF0YXNldHMgKGUuZy4gaW1hZ2luZSB0cnlpbmcgdG8gZ2V0IHRoZSBtZWFuIGFuZCBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIGV4cHJlc3Npb24gbGV2ZWwgb2YgZXZlcnkgZ2VuZSBpbiBhIHNpbmdsZS1jZWxsIFJOQXNlcSBleHBlcmltZW50KS4KCk9uZSBvZiB0aGUgdGhpbmdzIHRoYXQgbWFkZSBnZ3Bsb3Qgc28gaGVscGZ1bCB3YXMgaXRzIGFiaWxpdHkgdG8gYXV0b21hdGljYWxseSBzcGxpdCBkYXRhIGJ5IGNhdGVnb3J5LiBXZSBkb24ndCBoYXZlIHRvIHNheSAiUGxvdCB0aGlzIHNwZWNpZXMgaW4gcmVkLCB0aGlzIG90aGVyIG9uZSBpbiBibHVlLCBldGMuLi4iIFdlIGp1c3Qgc3BlY2lmeSB0aGUgY29sdW1ucyBvZiB0aGUgZGF0YWZyYW1lIHRoYXQgd2Ugd2FudCB0aGUgZGF0YSBncm91cGVkIGJ5LCBhbmQgUiBkb2VzIHRoZSByZXN0LiBJZiBhbnkgc3RhdHMgbmVlZCB0byBiZSBjYWxjdWxhdGVkIChlLmcuIGluICoqZ2VvbV9zbW9vdGgqKiBvciAqKmdlb21fYm94cGxvdCoqKSwgdGhleSBhcmUgY2FsY3VsYXRlZCB3aXRoaW4gdGhlIHNlcGFyYXRlIGdyb3VwcyBzcGVjaWZpZWQgYnkgdGhlIGNvbHVtbnMgdGhhdCB3ZSB3YW50IHRvIGNhdGVnb3JpemUgZGF0YSBieS4KCkFsdGhvdWdoIFIgaGFzIGJ1aWx0LWluIGZ1bmN0aW9ucyB0aGF0IGRvIHRoaXMsIHdlJ3JlIGdvaW5nIHRvIHR1cm4gdG8geWV0IGFub3RoZXIgcGFja2FnZSwgKipwbHlyKiosIHdoaWNoIG1ha2VzIHRoaXMgcHJvY2VzcyBzaW1wbGVyLgoKYGBge3J9CiMgdW5jb21tZW50IHRoZSBsaW5lIGJlbG93IGFuZCBpbnN0YWxsIHBseXIgaWYgeW91IGhhdmVuJ3QgYWxyZWFkeSBkb25lIHNvCiNpbnN0YWxsLnBhY2thZ2VzKCdwbHlyJykKCiMgbG9hZCB0aGUgcGx5ciBsaWJyYXJ5IGludG8gdGhlIGN1cnJlbnQgUiBzZXNzaW9uCmxpYnJhcnkocGx5cikKYGBgCgojIyAqc3BsaXQtYXBwbHktY29tYmluZSogYW5kIGJhc2ljICoqcGx5cioqIGZ1bmN0aW9uYWxpdHkKVGhlIGJhc2ljIHBoaWxvc29waHkgYmVoaW5kICoqcGx5cioqIGlzIHRoZSBpZGVhIHRoYXQgZm9yIG1hbnkgcHJvYmxlbXMsIHRoZSBzb2x1dGlvbiBmYWxscyBpbnRvIHRoZSBwYXR0ZXJuIG9mICpzcGxpdC1hcHBseS1jb21iaW5lKjogeW91IHdhbnQgdG8gKnNwbGl0KiB0aGUgZGF0YSBiYXNlZCBvbiBzb21lIGNhdGVnb3JpZXMsIGFwcGx5IGEgZnVuY3Rpb24gKHVzdWFsbHkgY2FsY3VsYXRpbmcgc29tZSBraW5kIG9mIHN1bW1hcnkgc3RhdGlzdGljKSB0byBlYWNoIHJlc3VsdGluZyBkYXRhc2V0LCBhbmQgKmNvbWJpbmUqIHRoZSByZXN1bHRzIGJhY2sgdG9nZXRoZXIuCgpUaGVyZSBhcmUgdmFyaW91cyB3YXlzIHRvIHVzZSAqKnBseXIqKidzIGBfX3BseWAgZnVuY3Rpb25zLCBhbmQgdGhlIGJ1aWx0LWluIGRvY3VtZW50YXRpb24gZG9lc24ndCBvZmZlciBtdWNoIGhlbHAgaGVyZS4gSWYgeW91J3JlIGludGVyZXN0ZWQgaW4gZGl2aW5nIGRlZXBlciBpbnRvIHRoaXMsIEkgY2FuJ3QgcmVjb21tZW5kIHRoaXMgdHV0b3JpYWwgc3Ryb25nbHkgZW5vdWdoOgpbKipwbHlyKiogY2xhc3MgZnJvbSBKZW5ueSBCcnlhbidzIFVCQydzIFNUQVQ1NDUgY291cnNlXShodHRwczovL3d3dy5zdGF0LnViYy5jYS9+amVubnkvU1RBVDU0NUEvYmxvY2swNF9kYXRhQWdncmVnYXRpb24uaHRtbCkKClRoZSBhcHBsaWNhdGlvbiBJJ20gc2hvd2luZyB5b3UgaGVyZSBpcyB0aGUgb25lIHRoYXQgbWFrZXMgdGhlIG1vc3Qgc2Vuc2UgdG8gbWU7IGl0IGxvb2tzIHNvbWV0aGluZyBsaWtlIHRoaXM6CmBgYHt9Cm91dHB1dF9kZiA8LQogIGRkcGx5KDxpbnB1dF9kZj4sCiAgICAgICAgfiA8Y29sdW1uIG5hbWVzIHRvIHNvcnQgYnk+LAogICAgICAgIHN1bW1hcml6ZSwKICAgICAgICA8b3V0cHV0X2NvbHVtbj4gPSA8b3V0cHV0X2Z1bmN0aW9uKGlucHV0X2NvbHVtbik+KQpgYGAKSGVyZSwgdGhlIGB+YCByZXByZXNlbnRzICJhcyBhIGZ1bmN0aW9uIG9mIjsgdGhpcyBpcyBjb21tb24gdG8gbWFueSBSIGZ1bmN0aW9ucywgYXMgeW91IHdpbGwgc2VlIGJlbG93IQoKKipwbHlyKiogY29tbWFuZCBuYW1lcyBhcmUgYmFzZWQgb24gdGhlIGRhdGEgdGhleSB0YWtlIGFzIGlucHV0IGFuZCBvdXRwdXQ7IHRoZXJlIGFyZSBsb3RzIG9mIG9wdGlvbnMgaGVyZSwgYnV0IEkgZG9uJ3Qgd2FudCB0byBnbyBpbnRvIHRvbyBtYW55IG9mIHRoZW0uIEZvciBub3csIGxldCdzIHdvcmsgd2l0aCB0aGUgaXJpcyBkYXRhLCBhbmQgdHJ5IHRvIGdldCBhIGRhdGFmcmFtZSBvdXQgY29udGFpbmluZyBzb21lIHN1bW1hcnkgc3RhdHMgYnkgc3BlY2llcy4gU2luY2Ugd2UgYXJlIGdvaW5nIGZyb20gZGF0YWZyYW1lICgqZCopIHRvIGRhdGFmcmFtZSAoKmQqKSwgdGhlIGZ1bmN0aW9uIHdlIHdhbnQgdG8gdXNlIGlzIGBkZHBseWAgKGlmIHdlIHdlcmUgdXNpbmcgYSBkYXRhZnJhbWUgYXMgYW4gb3V0cHV0IGFuZCBhbiBhcnJheSBhcyBvdXRwdXQsIHdlJ2QgdXNlIGBkYXBseWAsIGV0YykuCgpGb3IgZXhhbXBsZSwgbGV0J3MgdHJ5IHRvIGNyZWF0ZSBhIGRhdGFmcmFtZSB0aGF0IGNvbnRhaW5zIHRoZSBtZWFuIHBldGFsIGxlbmd0aCBvZiBlYWNoIGlyaXMgc3BlY2llczoKYGBge3J9CmlyaXNfcGV0YWxfbGVuZ3RoX3N1bW1hcnkgPC0KICBkZHBseShpcmlzLCB+IFNwZWNpZXMsIHN1bW1hcml6ZSwgbWVhbl9QZXRhbF9MZW5ndGggPSBtZWFuKFBldGFsLkxlbmd0aCkpCmBgYAoKIyMgQ3JlYXRpbmcgbXVsdGlwbGUgY29sdW1ucyBvZiBzdW1tYXJ5IGRhdGEKCllvdSBjYW4gdXNlIHRoaXMgZm9ybWF0IHRvIGNyZWF0ZSBtdWx0aXBsZSBuZXcgY29sdW1ucyB1c2luZyBtdWx0aXBsZSBmdW5jdGlvbnM7IGp1c3Qgc2VwYXJhdGUgdGhlc2UgYnkgY29tbWFzLCBsaWtlIHNvOgpgYGB7cn0KaXJpc19wZXRhbF9sZW5ndGhfc3VtbWFyeV8yIDwtCiAgZGRwbHkoaXJpcywKICAgICAgICB+IFNwZWNpZXMsCiAgICAgICAgc3VtbWFyaXplLAogICAgICAgIG1lYW5fUGV0YWxfTGVuZ3RoID0gbWVhbihQZXRhbC5MZW5ndGgpLAogICAgICAgIHNkX1BldGFsX0xlbmd0aCA9IHNkKFBldGFsLkxlbmd0aCkpCmBgYApPdXIgc3VtbWFyeSBpcyBub3cgYSBkYXRhZnJhbWUsIGFuZCB3ZSBjYW4gZWFzaWx5IHJldHJpZXZlIHRoZSBtZWFuIHBldGFsIGxlbmd0aCBmb3IgYW55IHNwZWNpZXMKCkxldCdzIHRyeSBhIGNoYWxsZW5nZToKYGBge3J9CiMgVXNlIGRkcGx5IHRvIGNyZWF0ZSBhIGRhdGFmcmFtZSwgaXJpc19zZXBhbF93aWR0aF9zdW1tYXJ5LCB0aGF0IGNvbnRhaW5zIHRoZQojIG1lYW4gYW5kIHN0YW5kYXJkIGVycm9yIChTRSkgb2YgZWFjaCBzcGVjaWVzJyBzZXBhbCB3aWR0aAojIFNFID0gc3RhbmRhcmQgZGV2aWF0aW9uIC8gc3FydChjb3VudCAtIDEpCgpgYGAKSSB0aGluayB3aGF0IGhlbHBzIG1lIHRoaW5rIGFib3V0IHRoZSBzb2x1dGlvbiB0byB0aGUgYWJvdmUgaXMgdGhhdCwgaW4gZWZmZWN0LCBgZGRwbHlgIHRyZWF0cyBlYWNoIFNwZWNpZXMgYXMgaXRzIG93biBsaXR0bGUgZGF0YWZyYW1lLCBhcyBpZiB5b3Ugd2VyZSBtYW51YWxseSBzdWJzZXR0aW5nIHRoZSBpcmlzIGRhdGFmcmFtZSBieSBTcGVjaWVzIG9uZS1ieS1vbmUgYW5kIGNhbGN1bGF0aW5nIHRoZSBvdXRwdXQgY29sdW1uIHZhbHVlcy4gVGhpcyBpcyAqc3BsaXQtYXBwbHktY29tYmluZSogaW4gYWN0aW9uLgoKIyMgU3BsaXR0aW5nIGJ5IG11bHRpcGxlIGNhdGVnb3JpZXMKCkFub3RoZXIgcmVhbGx5IGdyZWF0IHRoaW5nIGFib3V0IHN1bW1hcml6aW5nIGRhdGEgdGhpcyB3YXkgaXMgdGhhdCB3ZSBkb24ndCBuZWVkIHRvIGxpbWl0IG91cnNlbHZlcyB0byBzcGxpdHRpbmcgaXQgYnkgYSBzaW5nbGUgY2F0ZWdvcnkuIEltYWdpbmUgd2UgaGFkIGEgbmV3IGRhdGFzZXQgdGhhdCBpbmNsdWRlZCBmbG93ZXIgY29sb3IgZm9yIGVhY2ggcGxhbnQsIGFuZCB3ZSB3ZXJlIGludGVyZXN0ZWQgaW4gbG9va2luZyBhdCBmbG93ZXIgY29sb3IgYWxvbmdzaWRlIHNwZWNpZXMgaW4gb3VyIHN1bW1hcnkgc3RhdGlzdGljcy4KCmBgYHtyfQojIGNyZWF0ZSBuZXcgaXJpcyBkZgpjb2xvcl9pcmlzIDwtIGlyaXMKCiMgYWRkIGZsb3dlciBjb2xvciBhcyBhbHRlcm5hdGluZyAnYmx1ZScgYW5kICdwdXJwbGUnCmNvbG9yX2lyaXMkRmxvd2VyLkNvbG9yIDwtIHJlcChjKCdibHVlJywgJ3B1cnBsZScpLCB0aW1lcyA9IG5yb3coaXJpcykvMikKYGBgCgpXZSBjYW4gbm93IHVzZSBkZHBseSBqdXN0IGFzIGJlZm9yZSwgYnV0IHNwbGl0dGluZyBieSBhIGxpc3Qgb2YgY2F0ZWdvcmllcyBzZXBhcmF0ZWQgYnkgYCtgLCByYXRoZXIgdGhhbiBieSBhIHNpbmdsZSBjYXRlZ29yeToKYGBge3J9CmlyaXNfcGV0YWxfbGVuZ3RoX3N1bW1hcnlfMyA8LQogIGRkcGx5KGNvbG9yX2lyaXMsCiAgICAgICAgfiBTcGVjaWVzICsgRmxvd2VyLkNvbG9yLAogICAgICAgIHN1bW1hcml6ZSwKICAgICAgICBtZWFuX1BldGFsX0xlbmd0aCA9IG1lYW4oUGV0YWwuTGVuZ3RoKSwKICAgICAgICBzZF9QZXRhbF9MZW5ndGggPSBzZChQZXRhbC5MZW5ndGgpKQpgYGAKCiMgUmVzb3VyY2VzIGZvciBsZWFybmluZyBSCgpXZSB3YW50ZWQgdG8gc2hhcmUgc29tZSBmaW5hbCByZXNvdXJjZXMgdGhhdCBJIHRoaW5rIGFyZSBncmVhdCBwbGFjZXMgdG8gbG9vayB0byBrZWVwIGdvaW5nIHdpdGggbGVhcm5pbmcgdG8gY29kZS4KCiogW1NvZnR3YXJlQ2FycGVudHJ5XShodHRwczovL3NvZnR3YXJlLWNhcnBlbnRyeS5vcmcvbGVzc29ucy8pOiBTZXRzIG9mIGxlc3NvbnMgb24gdGhlIGNvZGluZywgbW9zdGx5IGF0IGFuIGludHJvZHVjdG9yeS9lYXJseSBpbnRlcm1lZGlhdGUgbGV2ZWwuIExvdHMgb2Ygb3ZlcmxhcCB3aXRoIHRoaXMgY291cnNlIGluIHRoZSBSIHNlY3Rpb25zLCBidXQgcHJlc2VudGVkIGluIGEgZGlmZmVyZW50IHdheTsgYWxzbyBjb3Vyc2VzIGluIFB5dGhvbiwgVW5peCwgYW5kIHJlYWxseSB1c2VmdWwgdG9vbHMgbGlrZSBHaXRIdWIKCiogW0plbm55IEJyeWFuJ3MgVUJDJ3MgU1RBVDU0NSBjb3Vyc2VdKGh0dHBzOi8vc3RhdDU0NS5jb20vKTogd2Fsa3MgeW91IHRocm91Z2ggaW50cm8tIGFuZCBpbnRlcm1lZGlhdGUtbGV2ZWwgUiwgZXhwbGFpbmluZyBub3QganVzdCB0aGUgcHJvZ3JhbW1pbmcsIGJ1dCBnb29kIHdheXMgdG8gdGhpbmsgYWJvdXQgYW5hbHl6aW5nIGRhdGEgYW5kIGNvZGluZyB0aGUgYW5hbHlzaXMuIElmIHlvdSB3YW50IGEgbW9yZSBpbi1kZXB0aCBjb3Vyc2UgYWJvdXQgUiBpbiBnZW5lcmFsLCBJIGhpZ2hseSByZWNvbW1lbmQgdGhpcy4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgNzogU3VtbWFyaXppbmcgZGF0YSIKc3VidGl0bGU6IHwKICAgIHwgICAtIHN1YnNldHRpbmcgZGF0YQogICAgfCAgIC0gc3VtbWFyaXppbmcgeW91ciBkYXRhCiAgICB8ICAgLSBzcGxpdHRpbmcgZGF0YSBieSBjYXRlZ29yaWVzIHRvIGNhbGN1bGF0ZSBzdGF0cwogICAgfCAgIC0gcmVzb3VyY2VzIGZvciBsZWFybmluZyBSCmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfNy5uYi5odG1sKSoqCgojIFJldmlldwpgYGB7cn0KIyBSZWFkIGluIHBlbmd1aW5zLmNzdiBhbmQgc2F2ZSBpdCBpbiBhIHZhcmlhYmxlIGNhbGxlZCBwZW5ndWlucwoKIyBGaW5kIHRoZSByYW5nZSBvZiBwZW5ndWluIGJvZHkgbWFzcwoKIyBSZWFkIGluIHlvdXIgZGF0YSBhbmQgc2F2ZSBpdCBhcyBhIHZhcmlhYmxlCmBgYAoKIyBTdWJzZXR0aW5nIGRhdGEKCk9uZSBvZiB0aGUgbW9zdCBwb3dlcmZ1bCB0aGluZ3MgUiBjYW4gZG8gZWFzaWx5IGFuZCBxdWlja2x5IGlzIHRvIHNlbGVjdCBwYXJ0IG9mIHlvdXIgZGF0YSBiYXNlZCBvbiBzb21lIGNyaXRlcmlhIHlvdSBwcm92aWRlIHVzaW5nIHRoZSBgc3Vic2V0KClgIGZ1bmN0aW9uLiBUaGlzIGNhbiBiZSBpbW1lbnNlbHkgdXNlZnVsLiBMZXQncyBzYXkgd2UncmUgaW50ZXJlc3RlZCBpbiBwZW5ndWluIGRhdGEsIGJ1dCBkb24ndCByZWFsbHkgY2FyZSBhYm91dCB0aGUgKkNoaW5zdHJhcCogc3BlY2llcyBMZXQncyBjcmVhdGUgYSBzdWJzZXQgb2Ygb3VyIGRhdGEgdGhhdCBleGNsdWRlcyB0aG9zZSBhbmltYWxzIFRvIHNldCB0aGUgY29uZGl0aW9ucyBmb3Igc3Vic2V0dGluZywgeW91IHdpbGwgaGF2ZSB0byByZW1lbWJlciBzb21ldGhpbmcgZnJvbSBvdXIgbGVzc29uIG9uIGxvZ2ljYWxzLgpgYGB7cn0KIyBjcmVhdGUgYSBzdWJzZXQgd2l0aCBkYXRhIG9uIGFsbCBzcGVjaWVzICpleGNlcHQqIHNldG9zYQpwZW5ndWluX25vX2NoaW5zdHJhcCA8LSBzdWJzZXQocGVuZ3VpbnMsIHNwZWNpZXMgIT0gJ0NoaW5zdHJhcCcpCmBgYApMb29rIGF0IHRoaXMgbmV3IGRhdGFmcmFtZS4gTm90aWNlIHRoYXQgaW4gdGhlIGNvZGUgYWJvdmUsIHN1YnNldCAobGlrZSBnZ3Bsb3QpIGtub3dzIHdoYXQgd2UgbWVhbiBieSBgc3BlY2llc2A7IGJlY2F1c2Ugd2UgYWxyZWFkeSB0ZWxsIGlzIHdoaWNoIGRhdGFmcmFtZSB0byB3b3JrIHdpdGgsIGl0IGZpZ3VyZXMgdGhhdCBzcGVjaWVzIGlzIGp1c3Qgb25lIG9mIHRoZSBjb2x1bW5zIGluIHRoaXMgZGF0YWZyYW1lLiBSZWNhbGwgdGhhdCBgIT1gIG1lYW5zICdub3QgZXF1YWwgdG8nLgoKVHJ5IHRoaXMgb24geW91ciBvd24uIENyZWF0ZSBhIGRhdGEgZnJhbWUgb2YgYWxsIHRoZSBwZW5ndWlucyB3aGVyZSBmbGlwcGVyIGxlbmd0aCBpcyBncmVhdGVyIHRoYW4gMjEwIG1tLgpgYGB7cn0KIyBjcmVhdGUgYSBzdWJzZXQgb2YgdGhlIGRhdGEsIHBlbmd1aW5fbG9uZ19mbGlwcGVyLCB0aGF0IGluY2x1ZGVzIGFsbCBhbmltYWxzIGZvcgojIHdoaWNoIGZsaXBwZXIgbGVuZ3RoIGlzIGdyZWF0ZXIgdGhhbiAyMTAgbW0KCiMgbG9vayBhdCB0aGUgZGF0YSBmcmFtZS4gd2hhdCBkbyB5b3Ugbm90aWNlIGFib3V0IHRoZXNlIGFuaW1hbHMgKGVzcCB0aGVpciBzcGVjaWVzKT8KCmBgYAoKIyMjIHNpZGVub3RlOiAlaW4lCgpBIHJlYWxseSB1c2VmdWwgbG9naWNhbCBvcGVyYXRvciBpbiBSIGlzIGAlaW4lYDsgaXQgY2hlY2tzIHRoYXQgdGhlIHRoaW5nIGJlZm9yZSBpdCBpcyBhIG1lbWJlciBvZiB0aGUgbGlzdCBvZiB0aGluZ3MgYWZ0ZXIgaXQuCmBgYHtyfQojIFRSVUUgc3RhdGVtZW50CidhJyAlaW4lIGMoJ2EnLCAnYicsICdjJykKCiMgRkFMU0Ugc3RhdGVtZW50CidlJyAlaW4lIGMoJ2EnLCAnYicsICdjJykKYGBgCgoKYCVpbiVgIGNhbiBiZSBpbmNyZWRpYmx5IHVzZWZ1bCBpbiBzdWJzZXR0aW5nLgpgYGB7cn0KIyBhbm90aGVyIHdheSB0byBzdWJzZXQgZGF0YSB3aXRoIG5vbi1zZXRvc2Egc3BlY2llcwpwZW5ndWluX25vX2NoaW5zdHJhcF8yIDwtIHN1YnNldChwZW5ndWlucywgc3BlY2llcyAlaW4lIGMoJ0FkZWxpZScsICdHZW50b28nKSkKYGBgCgoKIyBHZXR0aW5nIHVzZWZ1bCBpbmZvIGFib3V0IHlvdXIgZGF0YQoKSXQgY2FuIGJlIGluY3JlZGlibHkgaGVscGZ1bCB0byBxdWlja2x5IGdldCBzdW1tYXJ5IGluZm8gZm9yIHlvdXIgZGF0YSBpbiBhbiBhY2Nlc3NpYmxlLCBSLXJlYWRhYmxlIGZvcm1hdC4gV2UndmUgYWxyZWFkeSBjYWxjdWxhdGVkIHNvbWUgJ3N1bW1hcnkgc3RhdGlzdGljcycgKGBtZWFuYCkgZm9yIGV2ZXJ5IGNvbHVtbiwgYW5kIHdlIHNhdyBob3cgZ2dwbG90IGVhc2lseSBsZXRzIHVzIHNwbGl0IG91ciBwbG90IHVwIGJ5IGNhdGVnb3JpZXMgKCplZyogdGhyb3VnaCB1c2luZyBkaWZmZXJlbnQgY29sb3JzIGZvciBlYWNoIG9uZSkuIE5vdyBsZXQncyBkbyB0aGUgc2FtZSB3aXRoIHN1bW1hcnkgc3RhdGlzdGljcy4KCiMjIFVzaW5nIHRoZSBzdW1tYXJ5IGZ1bmN0aW9uCgpBIHJlYWxseSB1c2VmdWwgZnVuY3Rpb24gZm9yIHF1aWNrbHkgbGVhcm5pbmcgYWJvdXQgdGhlIHByb3BlcnRpZXMgb2YgeW91ciBkYXRhIGlzIGBzdW1tYXJ5KClgLiBJdCBzaG93cyB5b3UgdGhlIG1lYW4sIG1lZGlhbiwgYW5kIHF1YW50aWxlcyBvZiB5b3VyIG51bWVyaWMgZGF0YSwgYXMgd2VsbCBhcyBjb3VudHMgZm9yIGVhY2ggZGF0YSBjYXRlZ29yeS4gVHJ5IHRoaXM6CgpgYGB7cn0KcGVuZ3VpbnNfc3VtbWFyeSA8LSBzdW1tYXJ5KHBlbmd1aW5zKQpwcmludChwZW5ndWluc19zdW1tYXJ5KQpgYGAKCk9uZSByZWFzb24gYHN1bW1hcnkoKWAgaXMgb2Z0ZW4gbm90IHBhcnRpY3VsYXJseSB1c2VmdWwgaXMgdGhhdCBpdCBzdW1tYXJpemVzICphbGwqIHRoZSBkYXRhIGluIHlvdXIgZGF0YWZyYW1lLiBOb3RpY2UgdGhhdCBpdCdzIG5vdCBzcGxpdHRpbmcgdGhlIHN1bW1hcmllcyBieSBzcGVjaWVzLCB3aGljaCBpcyBwcm9iYWJseSB3aGF0IHdlIHdvdWxkIHdhbnQgdG8gaGFwcGVuLgoKT25lIHdheSB0byBnZXQgYXJvdW5kIHRoaXMgaXMgdGhyb3VnaCBzdWJzZXR0aW5nLiBNYWtlIGEgc3Vic2V0IG9mIHRoZSBwZW5ndWluIGRhdGEgdGhhdCBvbmx5IGNvbnRhaW5zIGRhdGEgZm9yIHRoZSAqQWRlbGllKiBzcGVjaWVzLCBhbmQgdGhlbiBydW4gdGhlIGBzdW1tYXJ5YCBmdW5jdGlvbiBvbiB0aGlzIHN1YnNldC4KYGBge3J9CiMgdXNlIHN1YnNldCgpIHRvIG1ha2UgYSBkYXRhZnJhbWUsIGFkZWxpZV9kZiwgdGhhdCBjb250YWlucyBvbmx5IHRoZSBkYXRhIHdoZXJlCiMgc3BlY2llcyBpcyBBZGVsaWUKIyAoaGludDogeW91IHdhbnQgdGhlIHNwZWNpZXMgY29sdW1uIHRvIGVxdWFsICdBZGVsaWUnKQoKIyBwYXNzIHRoZSBzdW1tYXJ5IGRhdGEgZm9yIGFkZWxpZV9kZiBpbnRvIGEgbmV3IHZhcmlhYmxlIGNhbGxlZCBhZGVsaWVfc3VtbWFyeQoKIyBwcmludCBvdXQgYWRlbGllX3N1bW1hcnkKCmBgYAoKVGhlcmUgYXJlIGEgY291cGxlIG9mIGltcG9ydGFudCBsaW1pdGF0aW9ucyB0byB0aGUgYXBwcm9hY2ggd2UganVzdCB1c2VkLiBGaXJzdCBvZiBhbGwsIHdlIGhhdmUgdG8gZG8gdGhpcyB0byBvbmUgY2F0ZWdvcnkgYXQgYSB0aW1lLiBUaGlzIG1heSBub3QgYmUgc28gYmFkIGZvciAzIHNwZWNpZXMsIGJ1dCBpbWFnaW5lIHdlIGhhZCBhIGRhdGFzZXQgY29udGFpbmluZyA1MCBzcGVjaWVzIChvciBvdGhlciBjYXRlZ29yaWVzIHdlIHdlcmUgaW50ZXJlc3RlZCBpbikuIFNlY29uZCwgaWYgeW91IGxvb2sgaW4geW91ciAqKkVudmlyb25tZW50Kiogd2luZG93LCB5b3UnbGwgbm90aWNlIHRoYXQgbmVpdGhlciBwZW5ndWluc19zdW1tYXJ5IG9yIGFkZWxpZV9zdW1tYXJ5IGFyZSBkYXRhZnJhbWVzLiBUaGUgYHN1bW1hcnlgIGZ1bmN0aW9uIHByb2R1Y2VzIGEgd2VpcmQgUiBkYXRhIHR5cGUgY2FsbGVkIGEgKnRhYmxlKiwgd2hpY2ggaXMgZWFzeSB0byBsb29rIGF0IGJ1dCBhIHBhaW4gdG8gZG8gYW55dGhpbmcgd2l0aC4KYGBge3J9ClZpZXcocGVuZ3VpbnNfc3VtbWFyeSkKYGBgCkZvciBleGFtcGxlLCBpZiB5b3Ugd2FudGVkIHRvIHBsb3QgdGhlIHJlc3VsdHMgb2YgdGhlIHN1bW1hcnkgZnVuY3Rpb25zIGZvciBhIGJ1bmNoIG9mIHNwZWNpZXMgdXNpbmcgZ2dwbG90ICh3aGljaCB3ZSdsbCBsZWFybiBob3cgdG8gZG8gbmV4dCBjbGFzcyEpLCBpdCB3b3VsZCBiZSB2ZXJ5IGFubm95aW5nIHRvIGRvLgoKIyBTdW1tYXJpemluZyBkYXRhIHdpdGggcGx5cgoKIyMgVGhlIHByb2JsZW0KSWRlYWxseSwgd2Ugd2FudCB0byBzdW1tYXJpemUgY29tcGxpY2F0ZWQgZGF0YSBpbiBhIGNvbXBhY3QsIHJlYWRhYmxlLCBncmFwaGFibGUgd2F5LCBwcm9iYWJseSBhcyBhIGRhdGFmcmFtZS4gV2UgYWxzbyBkb24ndCB3YW50IHRvIGhhdmUgdG8gc3Vic2V0IHRoZSBkYXRhIGluZGl2aWR1YWxseSBmb3IgZXZlcnkgbWVtYmVyIG9mIGV2ZXJ5IGNhdGVnb3J5IHdlIHdhbnQgdG8gc3BsaXQgYnkgaW4gb3VyIGFuYWx5c2lzIChlLmcuIHN1YnNldCBmb3IgZXZlcnkgcGVuZ3VpbiBzcGVjaWVzIGFuZCB0aGVuIGZpbmQgdGhlIG1lYW4gb2Ygc29tZSBjb2x1bW4pOyB0aGlzIG1heSBiZSBzaW1wbHkgYW5ub3lpbmcgZm9yIDMgcGVuZ3VpbnMsIGJ1dCBiZWNvbWVzIGltcG9zc2libGUgZm9yIG1hbnkgZGF0YXNldHMgKGUuZy4gaW1hZ2luZSB0cnlpbmcgdG8gZ2V0IHRoZSBtZWFuIGFuZCBzdGFuZGFyZCBkZXZpYXRpb24gb2YgdGhlIGV4cHJlc3Npb24gbGV2ZWwgb2YgZXZlcnkgZ2VuZSBpbiBhIHNpbmdsZS1jZWxsIFJOQXNlcSBleHBlcmltZW50KS4KCkFsdGhvdWdoIFIgaGFzIGJ1aWx0LWluIGZ1bmN0aW9ucyB0aGF0IGRvIHRoaXMsIHdlJ3JlIGdvaW5nIHRvIHR1cm4gdG8geWV0IGFub3RoZXIgcGFja2FnZSwgKipwbHlyKiosIHdoaWNoIG1ha2VzIHRoaXMgcHJvY2VzcyBzaW1wbGVyLgoKYGBge3J9CiMgdW5jb21tZW50IHRoZSBsaW5lIGJlbG93IGFuZCBpbnN0YWxsIHBseXIgaWYgeW91IGhhdmVuJ3QgYWxyZWFkeSBkb25lIHNvCiNpbnN0YWxsLnBhY2thZ2VzKCdwbHlyJykKCiMgbG9hZCB0aGUgcGx5ciBsaWJyYXJ5IGludG8gdGhlIGN1cnJlbnQgUiBzZXNzaW9uCmxpYnJhcnkocGx5cikKYGBgCgojIyAqc3BsaXQtYXBwbHktY29tYmluZSogYW5kIGJhc2ljICoqcGx5cioqIGZ1bmN0aW9uYWxpdHkKVGhlIGJhc2ljIHBoaWxvc29waHkgYmVoaW5kICoqcGx5cioqIGlzIHRoZSBpZGVhIHRoYXQgZm9yIG1hbnkgcHJvYmxlbXMsIHRoZSBzb2x1dGlvbiBmYWxscyBpbnRvIHRoZSBwYXR0ZXJuIG9mICpzcGxpdC1hcHBseS1jb21iaW5lKjogeW91IHdhbnQgdG8gKnNwbGl0KiB0aGUgZGF0YSBiYXNlZCBvbiBzb21lIGNhdGVnb3JpZXMsIGFwcGx5IGEgZnVuY3Rpb24gKHVzdWFsbHkgY2FsY3VsYXRpbmcgc29tZSBraW5kIG9mIHN1bW1hcnkgc3RhdGlzdGljKSB0byBlYWNoIHJlc3VsdGluZyBkYXRhc2V0LCBhbmQgKmNvbWJpbmUqIHRoZSByZXN1bHRzIGJhY2sgdG9nZXRoZXIuCgpUaGVyZSBhcmUgdmFyaW91cyB3YXlzIHRvIHVzZSAqKnBseXIqKidzIGBfX3BseWAgZnVuY3Rpb25zLCBhbmQgdGhlIGJ1aWx0LWluIGRvY3VtZW50YXRpb24gZG9lc24ndCBvZmZlciBtdWNoIGhlbHAgaGVyZS4gSWYgeW91J3JlIGludGVyZXN0ZWQgaW4gZGl2aW5nIGRlZXBlciBpbnRvIHRoaXMsIEkgY2FuJ3QgcmVjb21tZW5kIHRoaXMgdHV0b3JpYWwgc3Ryb25nbHkgZW5vdWdoOgpbKipwbHlyKiogY2xhc3MgZnJvbSBKZW5ueSBCcnlhbidzIFVCQydzIFNUQVQ1NDUgY291cnNlXShodHRwczovL3d3dy5zdGF0LnViYy5jYS9+amVubnkvU1RBVDU0NUEvYmxvY2swNF9kYXRhQWdncmVnYXRpb24uaHRtbCkKClRoZSBhcHBsaWNhdGlvbiBJJ20gc2hvd2luZyB5b3UgaGVyZSBpcyB0aGUgb25lIHRoYXQgbWFrZXMgdGhlIG1vc3Qgc2Vuc2UgdG8gbWU7IGl0IGxvb2tzIHNvbWV0aGluZyBsaWtlIHRoaXM6CmBgYHt9Cm91dHB1dF9kZiA8LQogIGRkcGx5KDxpbnB1dF9kZj4sCiAgICAgICAgfiA8Y29sdW1uIG5hbWVzIHRvIHNvcnQgYnk+LAogICAgICAgIHN1bW1hcml6ZSwKICAgICAgICA8b3V0cHV0X2NvbHVtbj4gPSA8b3V0cHV0X2Z1bmN0aW9uKGlucHV0X2NvbHVtbik+KQpgYGAKSGVyZSwgdGhlIGB+YCByZXByZXNlbnRzICJhcyBhIGZ1bmN0aW9uIG9mIjsgdGhpcyBpcyBjb21tb24gdG8gbWFueSBSIGZ1bmN0aW9ucywgYXMgeW91IHdpbGwgc2VlIGJlbG93IQoKKipwbHlyKiogY29tbWFuZCBuYW1lcyBhcmUgYmFzZWQgb24gdGhlIGRhdGEgdGhleSB0YWtlIGFzIGlucHV0IGFuZCBvdXRwdXQ7IHRoZXJlIGFyZSBsb3RzIG9mIG9wdGlvbnMgaGVyZSwgYnV0IEkgZG9uJ3Qgd2FudCB0byBnbyBpbnRvIHRvbyBtYW55IG9mIHRoZW0uIEZvciBub3csIGxldCdzIHdvcmsgd2l0aCB0aGUgaXJpcyBkYXRhLCBhbmQgdHJ5IHRvIGdldCBhIGRhdGFmcmFtZSBvdXQgY29udGFpbmluZyBzb21lIHN1bW1hcnkgc3RhdHMgYnkgc3BlY2llcy4gU2luY2Ugd2UgYXJlIGdvaW5nIGZyb20gZGF0YWZyYW1lICgqZCopIHRvIGRhdGFmcmFtZSAoKmQqKSwgdGhlIGZ1bmN0aW9uIHdlIHdhbnQgdG8gdXNlIGlzIGBkZHBseWAgKGlmIHdlIHdlcmUgdXNpbmcgYSBkYXRhZnJhbWUgYXMgYW4gb3V0cHV0IGFuZCBhbiBhcnJheSBhcyBvdXRwdXQsIHdlJ2QgdXNlIGBkYXBseWAsIGV0YykuCgpGb3IgZXhhbXBsZSwgbGV0J3MgdHJ5IHRvIGNyZWF0ZSBhIGRhdGFmcmFtZSB0aGF0IGNvbnRhaW5zIHRoZSBtZWFuIGJpbGwgbGVuZ3RoIG9mIGVhY2ggcGVuZ3VpbiBzcGVjaWVzOgpgYGB7cn0KcGVuZ3Vpbl9sZW5ndGhfc3VtbWFyeSA8LQogIGRkcGx5KHBlbmd1aW5zLCB+IHNwZWNpZXMsIHN1bW1hcml6ZSwgbWVhbl9iaWxsX0xlbmd0aCA9IG1lYW4oYmlsbF9sZW5ndGhfbW0sIG5hLnJtID0gVCkpCmBgYAoKIyMgQ3JlYXRpbmcgbXVsdGlwbGUgY29sdW1ucyBvZiBzdW1tYXJ5IGRhdGEKCllvdSBjYW4gdXNlIHRoaXMgZm9ybWF0IHRvIGNyZWF0ZSBtdWx0aXBsZSBuZXcgY29sdW1ucyB1c2luZyBtdWx0aXBsZSBmdW5jdGlvbnM7IGp1c3Qgc2VwYXJhdGUgdGhlc2UgYnkgY29tbWFzLCBsaWtlIHNvOgpgYGB7cn0KcGVuZ3Vpbl9iaWxsX2xlbmd0aF9zdW1tYXJ5XzIgPC0KICBkZHBseShwZW5ndWlucywKICAgICAgICB+IHNwZWNpZXMsCiAgICAgICAgc3VtbWFyaXplLAogICAgICAgIG1lYW5fYmlsbF9MZW5ndGggPSBtZWFuKGJpbGxfbGVuZ3RoX21tLCBuYS5ybSA9IFQpLAogICAgICAgIHNkX2JpbGxfTGVuZ3RoID0gc2QoYmlsbF9sZW5ndGhfbW0sIG5hLnJtID0gVCkpCmBgYApPdXIgc3VtbWFyeSBpcyBub3cgYSBkYXRhZnJhbWUsIGFuZCB3ZSBjYW4gZWFzaWx5IHJldHJpZXZlIHRoZSBtZWFuIGJpbGwgbGVuZ3RoIGZvciBhbnkgc3BlY2llcwoKTGV0J3MgdHJ5IGEgY2hhbGxlbmdlOgpgYGB7cn0KIyBVc2UgZGRwbHkgdG8gY3JlYXRlIGEgZGF0YWZyYW1lLCBwZW5ndWluX2JpbGxfZGVwdGhfc3VtbWFyeSwgdGhhdCBjb250YWlucyB0aGUKIyBtZWFuIGFuZCBzdGFuZGFyZCBlcnJvciAoU0UpIG9mIGVhY2ggc3BlY2llcycgYmlsbCBkZXB0aAojIFNFID0gc3RhbmRhcmQgZGV2aWF0aW9uIC8gc3FydChjb3VudCAtIDEpCgpgYGAKSSB0aGluayB3aGF0IGhlbHBzIG1lIHRoaW5rIGFib3V0IHRoZSBzb2x1dGlvbiB0byB0aGUgYWJvdmUgaXMgdGhhdCwgaW4gZWZmZWN0LCBgZGRwbHlgIHRyZWF0cyBlYWNoIHNwZWNpZXMgYXMgaXRzIG93biBsaXR0bGUgZGF0YWZyYW1lLCBhcyBpZiB5b3Ugd2VyZSBtYW51YWxseSBzdWJzZXR0aW5nIHRoZSBwZW5ndWlucyBkYXRhZnJhbWUgYnkgc3BlY2llcyBvbmUtYnktb25lIGFuZCBjYWxjdWxhdGluZyB0aGUgb3V0cHV0IGNvbHVtbiB2YWx1ZXMuIFRoaXMgaXMgKnNwbGl0LWFwcGx5LWNvbWJpbmUqIGluIGFjdGlvbi4KCiMjIFNwbGl0dGluZyBieSBtdWx0aXBsZSBjYXRlZ29yaWVzCgpBbm90aGVyIHJlYWxseSBncmVhdCB0aGluZyBhYm91dCBzdW1tYXJpemluZyBkYXRhIHRoaXMgd2F5IGlzIHRoYXQgd2UgZG9uJ3QgbmVlZCB0byBsaW1pdCBvdXJzZWx2ZXMgdG8gc3BsaXR0aW5nIGl0IGJ5IGEgc2luZ2xlIGNhdGVnb3J5LiBTaW5jZSB0aGUgcGVuZ3VpbiBkYXRhIGFsc28gaW5jbHVkZXMgaXNsYW5kcywgd2UgY2FuIGxvb2sgYXQgaXNsYW5kIGFsb25nc2lkZSBzcGVjaWVzIGluIG91ciBzdW1tYXJ5IHN0YXRpc3RpY3MuCgpXZSBjYW4gbm93IHVzZSBkZHBseSBqdXN0IGFzIGJlZm9yZSwgYnV0IHNwbGl0dGluZyBieSBhIGxpc3Qgb2YgY2F0ZWdvcmllcyBzZXBhcmF0ZWQgYnkgYCtgLCByYXRoZXIgdGhhbiBieSBhIHNpbmdsZSBjYXRlZ29yeToKYGBge3J9CnBlbmd1aW5fYmlsbF9sZW5ndGhfc3VtbWFyeV8zIDwtCiAgZGRwbHkocGVuZ3VpbnMsCiAgICAgICAgfiBzcGVjaWVzICsgaXNsYW5kLAogICAgICAgIHN1bW1hcml6ZSwKICAgICAgICBtZWFuX2JpbGxfTGVuZ3RoID0gbWVhbihiaWxsX2xlbmd0aF9tbSwgbmEucm0gPSBUKSwKICAgICAgICBzZF9iaWxsX0xlbmd0aCA9IHNkKGJpbGxfbGVuZ3RoX21tLCBuYS5ybSA9IFQpKQpgYGAKCiMgVHJ5IHdoYXQgeW91J3ZlIGxlYXJuZWQgb24geW91ciBvd24gZGF0YSEKVGFrZSBzb21lIHRpbWUgdG8gZXhwbG9yZSB5b3VyIGRhdGEhIFRyeSBzdWJzZXR0aW5nIHlvdXIgZGF0YSBieSBhIGNhdGVnb3J5IGFuZCBjYWxjdWxhdGluZyBzb21lIHN1bW1hcnkgc3RhdGlzdGljcy4KCiMgVGhpbmdzIHdlIGhvcGUgeW91J3ZlIGxlYXJuZWQgdG9kYXkgKGFuZCB3aWxsIGhvcGVmdWxseSByZW1lbWJlciBuZXh0IHRpbWUpCgoqIEhvdyB0byBzdWJzZXQgZGF0YSB1c2luZyBsb2dpY2FsIGV4cHJlc3Npb25zCiogSG93IHRvIHN1bW1hcml6ZSBkYXRhIGluIG11bHRpcGxlIGNhdGVnb3JpZXMgdXNpbmcgcGx5cgoK</div>
 
 
 
