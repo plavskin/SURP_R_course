@@ -7,6 +7,7 @@ subtitle: |
     |   - resources for learning R
 author:
   - Eugene Plavskin
+  - Grace Avecilla
 output:
   html_notebook:
     code_folding: show
@@ -27,12 +28,12 @@ output:
 
 # Subsetting data
 
-One of the most powerful things R can do easily and quickly is to select part of your data based on some criteria you provide using the `subset()` function. This can be immensely useful. Let's say we're interested in penguin data, but don't really care about the *Chinstrap* species Let's create a subset of our data that excludes those animals To set the conditions for subsetting, you will have to remember something from our lesson on logicals.
+One of the most powerful things R can do easily and quickly is to select part of your data based on some criteria you provide using the `subset()` function. This can be immensely useful. Let's say we're interested in penguin data, but don't really care about the *Chinstrap* species Let's create a subset of our data that excludes those animals. To set the conditions for subsetting, you will have to remember something from our lesson on logicals.
 ```{r}
 # create a subset with data on all species *except* setosa
 penguin_no_chinstrap <- subset(penguins, species != 'Chinstrap')
 ```
-Look at this new dataframe. Notice that in the code above, subset (like ggplot) knows what we mean by `species`; because we already tell is which dataframe to work with, it figures that species is just one of the columns in this dataframe. Recall that `!=` means 'not equal to'.
+Look at this new dataframe. Notice that in the code above, subset knows what we mean by `species`; because we already tell is which dataframe to work with, it figures that species is just one of the columns in this dataframe. Recall that `!=` means 'not equal to'.
 
 Try this on your own. Create a data frame of all the penguins where flipper length is greater than 210 mm.
 ```{r}
@@ -54,13 +55,15 @@ A really useful logical operator in R is `%in%`; it checks that the thing before
 'e' %in% c('a', 'b', 'c')
 ```
 
-
 `%in%` can be incredibly useful in subsetting.
 ```{r}
 # another way to subset data with non-setosa species
 penguin_no_chinstrap_2 <- subset(penguins, species %in% c('Adelie', 'Gentoo'))
 ```
 
+### sidenote: 'and', 'or'
+
+If you want to subset based on multiple logical statements (e.g. 'species is not Chinstrap' AND 'flipper length is greater than 210 mm'), you can use the AND (`&`) and OR (`|`) logical operators. We didn't have time to cover these, but you can still look at our notes on them in the [workshop on logical operations](https://plavskin.github.io/SURP_R_course/Workshop_5.nb.html#operations-on-logicals-and-or).
 
 # Getting useful info about your data
 
@@ -126,11 +129,11 @@ output_df <-
 ```
 Here, the `~` represents "as a function of"; this is common to many R functions, as you will see below!
 
-**plyr** command names are based on the data they take as input and output; there are lots of options here, but I don't want to go into too many of them. For now, let's work with the iris data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (*d*) to dataframe (*d*), the function we want to use is `ddply` (if we were using a dataframe as an output and an array as output, we'd use `daply`, etc).
+**plyr** command names are based on the data they take as input and output; there are lots of options here, but I don't want to go into too many of them. For now, let's work with the penguin data, and try to get a dataframe out containing some summary stats by species. Since we are going from dataframe (*d*) to dataframe (*d*), the function we want to use is `ddply` (if we were using a dataframe as an output and an array as output, we'd use `daply`, etc).
 
 For example, let's try to create a dataframe that contains the mean bill length of each penguin species:
 ```{r}
-penguin_length_summary <-
+penguin_bill_length_summary <-
   ddply(penguins, ~ species, summarize, mean_bill_Length = mean(bill_length_mm, na.rm = T))
 ```
 
