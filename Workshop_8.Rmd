@@ -24,21 +24,23 @@ This class will show you a *tiny* bit of plotting using the built-in R functions
 
 ## The basic structure of a plot
 
-Let's load in and consider the *iris* dataset that we played with when learning about dataframes. We had loaded this in from a *.csv* file, but actually this dataframe is a built-in dataset in R: we can refer to it by just typing `iris`.
+Let's load in and consider the *penguins* dataset that we played with when learning about dataframes. We had loaded this in from a *.csv* file.
 
 ```{r}
-print(iris)
+# read in the penguin data and save it to a variable called penguins
 ```
 
-Let's use base R to plot the Sepal Length vs Sepal Width for all the data
+Let's use base R to plot the bill length vs bill depth for all the data
 ```{r}
-plot(iris$Sepal.Length, iris$Sepal.Width)
+plot(penguins$bill_length_mm, penguins$bill_depth_mm)
 ```
 
 Pretty straightforward; the command is `plot(x, y)`.
 
 ```{r}
-# Try making a plot of iris Sepal Width vs Petal Width
+# Try making a plot of penguin flipper length vs flipper body mass
+
+# comparing these two plots, what conclusions would you make? how could these plots be improved?
 
 ```
 
@@ -57,7 +59,7 @@ library(ggplot2)
 
 The same plot as the one we made above is actually a bit more complicated to put together in ggplot:
 ```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width)) +
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()
 ```
 
@@ -77,7 +79,7 @@ ggplot(data = <DATA>, mapping = aes(<Mapping>)) +
 Arguments like *data* and *mapping* can go in the parentheses after the geom, producing the same plot as above:
 ```{r}
 ggplot() +
-  geom_point(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width))
+  geom_point(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm))
 ```
 But there are specific situations in which it's better to do this (we'll see them later)
 
@@ -91,36 +93,18 @@ We can also pass additional arguments to the geom: useful ones to know are:
 * __shape__: for points, this is the shape; for lines, this is the line pattern or dashyness
 * __alpha__: transparency level, with 0 being totally transparent and 1 being a solid, opaque color
 
-For example:
-```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width)) +
-  geom_point(color = 'blue', fill = 'yellow', shape = 23, alpha = 0.33, size = 5)
-```
-Why are some of these rhombuses darker than others?
-
-Note that any arguments that universally affect the properties of the points, lines, etc that we're plotting, like the ones we used above, *must* be passed to the relevant geom, not to the ggplot( ) command. **This is because the geom is in charge of making the points!**
-
-```{r}
-# use ggplot to create a plot of iris Sepal Width vs Petal Width, with violet
-# semi-transparent points
-
-```
-
 ## Mapping lots of variables
 
 The plot we made above isn't really all that useful. It's great to see the data across all three species on one plot, but if we're looking at this data, we're probably actually interested in how these species differ from each other. So how do we make ggplot visually separate the points by species?
 
 Remember that the **mapping** argument deals with *any properties of the plot that depend on variables in the supplied data frame*. So we can modify our original code like this:
 ```{r}
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(alpha = 0.33)
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, fill = species)) +
+  geom_point(alpha = 0.33, shape = 23, size = 5)
 ```
-```{r, eval = FALSE}
-# Can also be written as:
-ggplot(data = iris) +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species), alpha = 0.33)
-```
-Notice that the plot above uses *both* a variable-dependent color (based on the iris dataframe's *Species* column), which goes inside *aes( )*, and a variable-independent alpha value that applies to the whole geom_point command and goes outside *aes( )*
+
+
+Notice that the plot above uses *both* a variable-dependent color (based on the penguin dataframe's *species* column), which goes inside *aes( )*, and variable-independent values (alpha, shape, size) that applies to the whole geom_point command and goes outside *aes( )*
 
 Also, notice that you got a legend for *free*! You didn't have to tell ggplot how to make it, or what info to include in it; it knows automatically based on how you set up your **mapping**.
 
@@ -129,31 +113,39 @@ Depending on context, you can make color, fill, shape, size or alpha variable-de
 Let's try an exercise: 
 
 ```{r}
-# Based on the code above, make a plot where Sepal.Length is on the x axis,
-# Sepal.Width is on the y axis, all the points are colored red, the shape of the
-# point depends on the Species, and the point size depends on Petal.Width
+# Based on the code above, make a plot where body mass is on the x axis,
+# flipper length is on the y axis, all the points have a red outline, 
+#the fill of the points depends on the island, 
+# and the shape of the point depends on the species
 
 ```
-Questionable usefulness, but hey, it's possible and pretty easy...
+
 
 ## Stacking multiple **geoms**
 
 One of the places where ggplot really shines is when you want to combine multiple data representations on one plot. For example, I *really* like topology-style contour plots, which ggplot can make with **geom_density2d**. Once we know how to make a basic plot, and combining a contour plot with a plot the individual data points is super easy in ggplot:
 ```{r}
 # note, the first two lines are just our plot from above
-ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_density2d() +
   geom_point(alpha = 0.33)
 ```
 Notice that the *alpha* argument we provided only applies to geom_point, so the contour lines don't show any transparency. However, any arguments provided to **mapping** in an aes( ) statement in the **ggplot( )** command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)
 
-One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of sepal length vs width *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
+One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of bill length vs depth *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
 ```{r}
 # Removed alpha for simplicity
 # Made contour plot line color black (default is blue)
-ggplot(data = iris) +
-  geom_density2d(mapping = aes(x = Sepal.Length, y = Sepal.Width), color = 'black') +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species))
+ggplot(data = penguins) +
+  geom_density2d(mapping = aes(x = bill_length_mm, y = bill_depth_mm), color = 'black') +
+  geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species))
+```
+
+```{r eval=F}
+# can also be written as
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_density2d(color = 'black') +
+  geom_point(mapping = aes(color = species))
 ```
 This plot shows that **mapping** actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it's represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they're instead calculated across all the points in the dataset.
 
@@ -174,6 +166,49 @@ Now repeat this plot, but overlaying the density plot for each species on this p
 # has the same dashed line, but the line representing results across all the
 # data is solid
 ```
+
+
+# The structure of data that ggplot can plot
+
+As you've seen, ggplot provides users with the power to easily change the appearance of the plot, and the statistics calculated, based on any single column in the dataframe containing the data to be plotted. But this also results in some pretty rigid rules about how your data needs to be organized. Namely, data for ggplot should be in [tidy format](https://learn.gencore.bio.nyu.edu/tidyverse/):
+
+* each variable must have its own column
+* each observation must have its own row (but what's an observation?)
+* each value must have its own cell
+
+Let's take a look at what that means. Compare the *iris* dataframe we've been using to the *iris3* data, which comes with R and contains the same data:
+```{r}
+iris_3_df <- data.frame(iris3)
+print(iris_3_df)
+```
+
+Notice that in this modified version of the iris dataset, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
+
+Here's an attempt to make do with what we have:
+```{r}
+ggplot(data = iris_3_df) +
+  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
+  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
+  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
+  scale_x_continuous(name = 'Sepal Length') +
+  scale_y_continuous(name = 'Sepal Width')
+```
+Some things still work well automatically (e.g. ggplot scales axes for us), but it's a lot more effort to do this, and if we wanted to have a legend on this plot (or had more than a few categories we were interested in), it would be a complete nightmare.
+
+When putting together data to plot, we need to think very carefully about what exactly constitutes a single 'observation', and what the 'variables' are that we want to use for mapping. 
+
+The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** package) has some really great functions for re-organizing data that looks like *iris3* into a 'tidy' dataframe, and if you find yourself facing data that isn't organized the right way for your plot, I really suggest looking over [David Gresham's tidyverse tutorial](https://learn.gencore.bio.nyu.edu/tidyverse/).
+
+# Why ggplot
+
+* __easy exploratory data analysis__: separation of variable mapping from visual representation (e.g. geoms) makes it easy to try different ways of plotting data
+* __automation of the boring stuff__: generation of legends, axis bounds, etc is done very well automatically based on the data and variables you're plotting (but you can have finer control of it if you'd like)
+* __automated stats__: lots of geoms that calculate and display statistics of your data. These statistics are automatically calculated based on your grouping of the data, how you specify your axes (e.g. linear vs log scale), etc.
+    + *geom_density* and *geom_density2d* for density estimation
+    + *geom_smooth* for trendlines with error ribbons
+    + [stat_summary](https://ggplot2.tidyverse.org/reference/stat_summary.html) for other ways to bin and summarize data)
+* __plots as objects__: storing plots as objects allows them to be easily modified and combined into figures
+* __incredibly helpful online examples__: the *tidyverse* website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
 
 ## Aside: ggplot objects
 
@@ -252,120 +287,6 @@ basic_iris_plot +
 ```
 
 ***
-
-# The structure of data that ggplot can plot
-
-As you've seen, ggplot provides users with the power to easily change the appearance of the plot, and the statistics calculated, based on any single column in the dataframe containing the data to be plotted. But this also results in some pretty rigid rules about how your data needs to be organized. Namely, data for ggplot should be in [tidy format](https://learn.gencore.bio.nyu.edu/tidyverse/):
-
-* each variable must have its own column
-* each observation must have its own row (but what's an observation?)
-* each value must have its own cell
-
-Let's take a look at what that means. Compare the *iris* dataframe we've been using to the *iris3* data, which comes with R and contains the same data:
-```{r}
-iris_3_df <- data.frame(iris3)
-print(iris_3_df)
-```
-
-Notice that in this modified version of the iris dataset, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
-
-Here's an attempt to make do with what we have:
-```{r}
-ggplot(data = iris_3_df) +
-  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
-  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
-  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
-  scale_x_continuous(name = 'Sepal Length') +
-  scale_y_continuous(name = 'Sepal Width')
-```
-Some things still work well automatically (e.g. ggplot scales axes for us), but it's a lot more effort to do this, and if we wanted to have a legend on this plot (or had more than a few categories we were interested in), it would be a complete nightmare.
-
-When putting together data to plot, we need to think very carefully about what exactly constitutes a single 'observation', and what the 'variables' are that we want to use for mapping. 
-
-The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** package) has some really great functions for re-organizing data that looks like *iris3* into a 'tidy' dataframe, and if you find yourself facing data that isn't organized the right way for your plot, I really suggest looking over [David Gresham's tidyverse tutorial](https://learn.gencore.bio.nyu.edu/tidyverse/).
-
-# Why ggplot
-
-* __easy exploratory data analysis__: separation of variable mapping from visual representation (e.g. geoms) makes it easy to try different ways of plotting data
-* __automation of the boring stuff__: generation of legends, axis bounds, etc is done very well automatically based on the data and variables you're plotting (but you can have finer control of it if you'd like)
-* __automated stats__: lots of geoms that calculate and display statistics of your data. These statistics are automatically calculated based on your grouping of the data, how you specify your axes (e.g. linear vs log scale), etc.
-    + *geom_density* and *geom_density2d* for density estimation
-    + *geom_smooth* for trendlines with error ribbons
-    + [stat_summary](https://ggplot2.tidyverse.org/reference/stat_summary.html) for other ways to bin and summarize data)
-* __plots as objects__: storing plots as objects allows them to be easily modified and combined into figures
-* __incredibly helpful online examples__: the *tidyverse* website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
-
-## Using ggplot for paper figures
-
-Because ggplot does a great job of separating aesthetic properties of the plot from what is being plotted, we can create a theme that defines how our plots look in e.g. paper figures and apply it to all our plots after generating them.
-
-First, let's set a theme for our plots. Because we want our figures to look nice and consistent for the paper, there's a lot of options we can specify here.
-```{r}
-final_figure_ggplot_theme <- 
-  theme(plot.title=element_text(size=16,face='bold'),
-        plot.margin=unit(c(12,12,12,12),'pt'),
-        panel.background=element_rect(fill='white'),
-        panel.grid.major=element_line(color='grey',size=0.3),
-        axis.line = element_line(color="black", size = 0.5),
-        legend.title=element_blank(),
-        legend.justification=c(0,1),
-        legend.key = element_rect(fill='white'),
-        legend.key.height = unit(2,'line'),
-        legend.text=element_text(size=12,face='bold'),
-        axis.text.x=element_text(size=12,face='bold'),
-        axis.text.y=element_text(size=12,face='bold'),
-        axis.title.x=element_text(size=14,face='bold'),
-        axis.title.y=element_text(size=14,face='bold',angle=90)) +
-  theme_bw()
-```
-
-Next, let's create some plots. We don't have to worry about appearances here; let's just make sure the data shows up the way we want it to.
-```{r}
-# a figure with the iris data
-sepal_points <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-
-sepal_trends <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_smooth(method = 'lm')
-
-# make boxplot with overlaid points randomly placed off-center and
-# text labels placed at y = 0.75
-petal_boxplot <-
-  ggplot(data = iris, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot() +
-  geom_text(aes(label = Species), y = 0.75) +
-  geom_point(position = 'jitter')
-```
-
-We can print these figures to look at them:
-```{r}
-print(sepal_points)
-print(sepal_trends)
-print(petal_boxplot)
-```
-Useful, but not that neat.
-
-Now, let's apply our figure theme:
-```{r}
-sepal_points_figure <- sepal_points + final_figure_ggplot_theme
-print(sepal_points_figure)
-sepal_trends_figure <- sepal_trends + final_figure_ggplot_theme
-print(sepal_trends_figure)
-petal_boxplot_figure <- petal_boxplot + final_figure_ggplot_theme
-print(petal_boxplot_figure)
-```
-
-There are a few ways to save the figure, but this is probably the easiest:
-```{r}
-ggsave(file = 'sepal_points_figure.pdf',
-       plot = sepal_points_figure, width = 6.5, height = 4,
-       useDingbats=FALSE)
-```
-(If saving as a pdf, useDingbats=FALSE is a **must** and will prevent a ggplot disaster from unfolding. If you load the cowplot package described below, it replaces *ggsave* with its own function that does this by default)
-
-Because we specified our font sizes in final_figure_ggplot_theme, they will be consistent across plots, regardless of the size we decide to save them at.
 
 # Other cool things
 

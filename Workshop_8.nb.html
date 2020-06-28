@@ -1763,16 +1763,20 @@ summary {
 <li><a href="#modifying-geom-properties">Modifying <strong>geom</strong> properties</a></li>
 <li><a href="#mapping-lots-of-variables">Mapping lots of variables</a></li>
 <li><a href="#stacking-multiple-geoms">Stacking multiple <strong>geoms</strong></a></li>
+</ul></li>
+<li><a href="#bonus-change-the-linetype-of-the-species-density-plots-so-that-each-species">Bonus: Change the linetype of the species’ density plots so that each species</a></li>
+<li><a href="#has-the-same-dashed-line-but-the-line-representing-results-across-all-the">has the same dashed line, but the line representing results across all the</a></li>
+<li><a href="#data-is-solid">data is solid</a></li>
+<li><a href="#the-structure-of-data-that-ggplot-can-plot">The structure of data that ggplot can plot</a></li>
+<li><a href="#make-boxplot-with-overlaid-points-randomly-placed-off-center-and">make boxplot with overlaid points randomly placed off-center and</a></li>
+<li><a href="#text-labels-placed-at-y-0.75">text labels placed at y = 0.75</a></li>
+<li><a href="#why-ggplot">Why ggplot</a><ul>
 <li><a href="#aside-ggplot-objects">Aside: ggplot objects</a></li>
 <li><a href="#themes-and-other-options-we-can-change">themes and other options we can change</a><ul>
 <li><a href="#axes-titles">axes + titles</a></li>
 <li><a href="#legend">legend</a></li>
 <li><a href="#themes">themes</a></li>
 </ul></li>
-</ul></li>
-<li><a href="#the-structure-of-data-that-ggplot-can-plot">The structure of data that ggplot can plot</a></li>
-<li><a href="#why-ggplot">Why ggplot</a><ul>
-<li><a href="#using-ggplot-for-paper-figures">Using ggplot for paper figures</a></li>
 </ul></li>
 <li><a href="#other-cool-things">Other cool things</a><ul>
 <li><a href="#combining-multiple-data-frames-on-one-plot">combining multiple data frames on one plot</a></li>
@@ -1792,22 +1796,22 @@ summary {
 <p>This class will show you a <em>tiny</em> bit of plotting using the built-in R functions, but will pretty quickly veer into a very popular R package called <strong>ggplot2</strong>, which is often referred to as just “ggplot”. This is likely the first place in this course where you will see things that are <em>very</em> easy to do in R that would be much more complicated tasks (or maybe even impossible) in excel.</p>
 <div id="the-basic-structure-of-a-plot" class="section level2">
 <h2>The basic structure of a plot</h2>
-<p>Let’s load in and consider the <em>iris</em> dataset that we played with when learning about dataframes. We had loaded this in from a <em>.csv</em> file, but actually this dataframe is a built-in dataset in R: we can refer to it by just typing <code>iris</code>.</p>
+<p>Let’s load in and consider the <em>penguins</em> dataset that we played with when learning about dataframes. We had loaded this in from a <em>.csv</em> file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxucHJpbnQoaXJpcylcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>print(iris)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxucHJpbnQoaXJpcylcbmBgYFxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r <code>r</code>r print(iris)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Let’s use base R to plot the Sepal Length vs Sepal Width for all the data</p>
+<p>Let’s use base R to plot the bill length vs bill depth for all the data</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxucGxvdChpcmlzJFNlcGFsLkxlbmd0aCwgaXJpcyRTZXBhbC5XaWR0aClcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>plot(iris$Sepal.Length, iris$Sepal.Width)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxucGxvdChpcmlzJFNlcGFsLkxlbmd0aCwgaXJpcyRTZXBhbC5XaWR0aClcbmBgYFxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r <code>r</code>r plot(iris<span class="math inline">\(Sepal.Length, iris\)</span>Sepal.Width)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1815,10 +1819,9 @@ summary {
 <p>Pretty straightforward; the command is <code>plot(x, y)</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBUcnkgbWFraW5nIGEgcGxvdCBvZiBpcmlzIFNlcGFsIFdpZHRoIHZzIFBldGFsIFdpZHRoXG5cbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code># Try making a plot of iris Sepal Width vs Petal Width
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBUcnkgbWFraW5nIGEgcGxvdCBvZiBpcmlzIFNlcGFsIFdpZHRoIHZzIFBldGFsIFdpZHRoXG5cbmBgYFxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r <code>r</code>r # Try making a plot of iris Sepal Width vs Petal Width</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1830,25 +1833,21 @@ summary {
 <p>Let’s try to use ggplot to plot the same data. First, install <strong>ggplot2</strong> (if you haven’t already done so) and load it into your R session.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgZ2dwbG90MiBvbmx5IGlmIHlvdSBoYXZlbid0IGFscmVhZHlcbiNpbnN0YWxsLnBhY2thZ2VzKCdnZ3Bsb3QyJylcblxuIyBsb2FkIHRoZSBnZ3Bsb3QyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb25cbmxpYnJhcnkoZ2dwbG90MilcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgZ2dwbG90MiBvbmx5IGlmIHlvdSBoYXZlbid0IGFscmVhZHlcbiNpbnN0YWxsLnBhY2thZ2VzKCdnZ3Bsb3QyJylcblxuIyBsb2FkIHRoZSBnZ3Bsb3QyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb25cbmxpYnJhcnkoZ2dwbG90MilcbmBgYCJ9 -->
 <pre class="r"><code># uncomment the line below and install ggplot2 only if you haven't already
 #install.packages('ggplot2')
 
 # load the ggplot2 library into the current R session
 library(ggplot2)</code></pre>
-<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The same plot as the one we made above is actually a bit more complicated to put together in ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZ2dwbG90KGRhdGEgPSBpcmlzLCBtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCkpICtcbiAgZ2VvbV9wb2ludCgpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width)) +
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgK1xuICBnZW9tX3BvaW50KClcbmBgYCJ9 -->
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
   geom_point()</code></pre>
-<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1870,11 +1869,9 @@ library(ggplot2)</code></pre>
 <p>Arguments like <em>data</em> and <em>mapping</em> can go in the parentheses after the geom, producing the same plot as above:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyB1c2UgZ2dwbG90IHRvIGNyZWF0ZSBhIHBsb3Qgb2YgaXJpcyBTZXBhbCBXaWR0aCB2cyBQZXRhbCBXaWR0aCwgd2l0aCB2aW9sZXRcbiMgc2VtaS10cmFuc3BhcmVudCBwb2ludHNcblxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code># use ggplot to create a plot of iris Sepal Width vs Petal Width, with violet
-# semi-transparent points
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuZ2dwbG90KGRhdGEgPSBpcmlzLCBtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KGFscGhhID0gMC4zMylcbmBgYFxuYGBgXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r <code>r</code>r ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point(alpha = 0.33)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -1891,27 +1888,6 @@ library(ggplot2)</code></pre>
 <li><strong>shape</strong>: for points, this is the shape; for lines, this is the line pattern or dashyness</li>
 <li><strong>alpha</strong>: transparency level, with 0 being totally transparent and 1 being a solid, opaque color</li>
 </ul>
-<p>For example:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZ2dwbG90KGRhdGEgPSBpcmlzLCBtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KGFscGhhID0gMC4zMylcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>ggplot(data = iris, mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point(alpha = 0.33)</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Why are some of these rhombuses darker than others?</p>
-<p>Note that any arguments that universally affect the properties of the points, lines, etc that we’re plotting, like the ones we used above, <em>must</em> be passed to the relevant geom, not to the ggplot( ) command. <strong>This is because the geom is in charge of making the points!</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDYW4gYWxzbyBiZSB3cml0dGVuIGFzOlxuZ2dwbG90KGRhdGEgPSBpcmlzKSArXG4gIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcyksIGFscGhhID0gMC4zMylcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # Can also be written as: ggplot(data = iris) + geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species), alpha = 0.33)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
 </div>
 <div id="mapping-lots-of-variables" class="section level2">
 <h2>Mapping lots of variables</h2>
@@ -1919,67 +1895,66 @@ library(ggplot2)</code></pre>
 <p>Remember that the <strong>mapping</strong> argument deals with <em>any properties of the plot that depend on variables in the supplied data frame</em>. So we can modify our original code like this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYW4gYWxzbyBiZSB3cml0dGVuIGFzOlxuZ2dwbG90KGRhdGEgPSBpcmlzKSArXG4gIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcyksIGFscGhhID0gMC4zMylcbmBgYCJ9 -->
-<pre class="r"><code># Can also be written as:
-ggplot(data = iris) +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species), alpha = 0.33)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiMgQ2FuIGFsc28gYmUgd3JpdHRlbiBhczoiLCJnZ3Bsb3QoZGF0YSA9IGlyaXMpICsiLCIgIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcyksIGFscGhhID0gMC4zMykiXX0= -->
-<pre class="r"><code># Can also be written as:
-ggplot(data = iris) +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species), alpha = 0.33)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tLCBjb2xvciA9IHNwZWNpZXMsIGZpbGwgPSBzcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KGFscGhhID0gMC4zMywgc2hhcGUgPSAyMywgc2l6ZSA9IDUpXG5gYGAifQ== -->
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, fill = species)) +
+  geom_point(alpha = 0.33, shape = 23, size = 5)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Notice that the plot above uses <em>both</em> a variable-dependent color (based on the iris dataframe’s <em>Species</em> column), which goes inside <em>aes( )</em>, and a variable-independent alpha value that applies to the whole geom_point command and goes outside <em>aes( )</em></p>
+<p>Notice that the plot above uses <em>both</em> a variable-dependent color (based on the penguin dataframe’s <em>species</em> column), which goes inside <em>aes( )</em>, and variable-independent values (alpha, shape, size) that applies to the whole geom_point command and goes outside <em>aes( )</em></p>
 <p>Also, notice that you got a legend for <em>free</em>! You didn’t have to tell ggplot how to make it, or what info to include in it; it knows automatically based on how you set up your <strong>mapping</strong>.</p>
 <p>Depending on context, you can make color, fill, shape, size or alpha variable-dependent. Some of these (color, fill, shape) obviously make more sense for categorical variables, while others (alpha, size) make more sense for continuous variables, but <em>ggplot</em> will only rarely stop you from making aesthetically and data representationally questionable choices here.</p>
 <p>Let’s try an exercise:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBSZW1vdmVkIGFscGhhIGZvciBzaW1wbGljaXR5XG4jIE1hZGUgY29udG91ciBwbG90IGxpbmUgY29sb3IgYmxhY2sgKGRlZmF1bHQgaXMgYmx1ZSlcbmdncGxvdChkYXRhID0gaXJpcykgK1xuICBnZW9tX2RlbnNpdHkyZChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCksIGNvbG9yID0gJ2JsYWNrJykgK1xuICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code># Removed alpha for simplicity
-# Made contour plot line color black (default is blue)
-ggplot(data = iris) +
-  geom_density2d(mapping = aes(x = Sepal.Length, y = Sepal.Width), color = 'black') +
-  geom_point(mapping = aes(x = Sepal.Length, y = Sepal.Width, color = Species))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBEZW5zaXR5IHBsb3QgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24gb2YgUGV0YWwgTGVuZ3RocyBpbiBvdXIgZGF0YVxuZ2dwbG90KGRhdGEgPSBpcmlzKSArXG4gIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBQZXRhbC5MZW5ndGgpKVxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r <code>r</code>r # Density plot to see the distribution of Petal Lengths in our data ggplot(data = iris) + geom_density(mapping = aes(x = Petal.Length))</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Questionable usefulness, but hey, it’s possible and pretty easy…</p>
 </div>
 <div id="stacking-multiple-geoms" class="section level2">
 <h2>Stacking multiple <strong>geoms</strong></h2>
 <p>One of the places where ggplot really shines is when you want to combine multiple data representations on one plot. For example, I <em>really</em> like topology-style contour plots, which ggplot can make with <strong>geom_density2d</strong>. Once we know how to make a basic plot, and combining a contour plot with a plot the individual data points is super easy in ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBEZW5zaXR5IHBsb3QgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24gb2YgUGV0YWwgTGVuZ3RocyBpbiBvdXIgZGF0YVxuZ2dwbG90KGRhdGEgPSBpcmlzKSArXG4gIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBQZXRhbC5MZW5ndGgpKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code># Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = iris) +
-  geom_density(mapping = aes(x = Petal.Length))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBNYWtlIGEgZGVuc2l0eSBwbG90IHRoYXQgc2hvd3MgYm90aCB0aGUgZGlzdHJpYnV0aW9uIG9mIFBldGFsLkxlbmd0aCBpbiBhbGxcbiMgdGhlIGRhdGEgdG9nZXRoZXIgaW4gb25lIGNvbG9yLCBhbmQgdGhlIGRpc3RyaWJ1dGlvbiBmb3IgZWFjaCBzcGVjaWVzJ1xuIyBQZXRhbC5MZW5ndGggZWFjaCBpbiBpdHMgb3duIGNvbG9yXG5cbiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXNcbiMgaGFzIHRoZSBzYW1lIGRhc2hlZCBsaW5lLCBidXQgdGhlIGxpbmUgcmVwcmVzZW50aW5nIHJlc3VsdHMgYWNyb3NzIGFsbCB0aGVcbiMgZGF0YSBpcyBzb2xpZFxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r <code>r</code>r # Make a density plot that shows both the distribution of Petal.Length in all # the data together in one color, and the distribution for each species’ # Petal.Length each in its own color</p>
+</div>
+</div>
+<div id="bonus-change-the-linetype-of-the-species-density-plots-so-that-each-species" class="section level1">
+<h1>Bonus: Change the linetype of the species’ density plots so that each species</h1>
+</div>
+<div id="has-the-same-dashed-line-but-the-line-representing-results-across-all-the" class="section level1">
+<h1>has the same dashed line, but the line representing results across all the</h1>
+</div>
+<div id="data-is-solid" class="section level1">
+<h1>data is solid</h1>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Notice that the <em>alpha</em> argument we provided only applies to geom_point, so the contour lines don’t show any transparency. However, any arguments provided to <strong>mapping</strong> in an aes( ) statement in the <strong>ggplot( )</strong> command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)</p>
-<p>One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let’s say we’d like our datapoints to be colored by species, but we’d also like to see a contour plot of sepal length vs width <em>across all the species</em>. To do this, we’re going to have to move our <strong>mapping</strong> calls inside the geoms, since we now want each geom to map the data differently:</p>
+<p>One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let’s say we’d like our datapoints to be colored by species, but we’d also like to see a contour plot of bill length vs depth <em>across all the species</em>. To do this, we’re going to have to move our <strong>mapping</strong> calls inside the geoms, since we now want each geom to map the data differently:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBNYWtlIGEgZGVuc2l0eSBwbG90IHRoYXQgc2hvd3MgYm90aCB0aGUgZGlzdHJpYnV0aW9uIG9mIFBldGFsLkxlbmd0aCBpbiBhbGxcbiMgdGhlIGRhdGEgdG9nZXRoZXIgaW4gb25lIGNvbG9yLCBhbmQgdGhlIGRpc3RyaWJ1dGlvbiBmb3IgZWFjaCBzcGVjaWVzJ1xuIyBQZXRhbC5MZW5ndGggZWFjaCBpbiBpdHMgb3duIGNvbG9yXG5cbiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXNcbiMgaGFzIHRoZSBzYW1lIGRhc2hlZCBsaW5lLCBidXQgdGhlIGxpbmUgcmVwcmVzZW50aW5nIHJlc3VsdHMgYWNyb3NzIGFsbCB0aGVcbiMgZGF0YSBpcyBzb2xpZFxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code># Make a density plot that shows both the distribution of Petal.Length in all
-# the data together in one color, and the distribution for each species'
-# Petal.Length each in its own color
-
-# Bonus: Change the linetype of the species' density plots so that each species
-# has the same dashed line, but the line representing results across all the
-# data is solid</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90IDwtXG4gIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KClcbnByaW50KGJhc2ljX2lyaXNfcGxvdClcbiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3RcbmlyaXNfcGxvdF93aXRoX2NvbnRvdXJzIDwtXG4gIGJhc2ljX2lyaXNfcGxvdCArIGdlb21fZGVuc2l0eTJkKClcbnByaW50KGlyaXNfcGxvdF93aXRoX2NvbnRvdXJzKVxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r <code>r</code>r basic_iris_plot &lt;- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point() print(basic_iris_plot) # let’s add another geom to this plot iris_plot_with_contours &lt;- basic_iris_plot + geom_density2d() print(iris_plot_with_contours)</p>
 <pre><code></code></pre>
+<pre><code></code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgY2FuIGFsc28gYmUgd3JpdHRlbiBhcyIsImdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsiLCIgIGdlb21fZGVuc2l0eTJkKGNvbG9yID0gJ2JsYWNrJykgKyIsIiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKGNvbG9yID0gc3BlY2llcykpIl19 -->
+<pre class="r"><code># can also be written as
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_density2d(color = 'black') +
+  geom_point(mapping = aes(color = species))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1987,16 +1962,9 @@ ggplot(data = iris) +
 <p>Let’s try an exercise. A really useful kind of plot you can make while exploring data is a <em>density</em> plot, which shows pretty much a normalized, smoothed histogram of your data using <strong>geom_density</strong>. For example, if we want to get an idea of what the distribution of Petal Lengths in our dataset is, we can run:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90IDwtXG4gIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KClcbnByaW50KGJhc2ljX2lyaXNfcGxvdClcbiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3RcbmlyaXNfcGxvdF93aXRoX2NvbnRvdXJzIDwtXG4gIGJhc2ljX2lyaXNfcGxvdCArIGdlb21fZGVuc2l0eTJkKClcbnByaW50KGlyaXNfcGxvdF93aXRoX2NvbnRvdXJzKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-print(basic_iris_plot)
-# let's add another geom to this plot
-iris_plot_with_contours &lt;-
-  basic_iris_plot + geom_density2d()
-print(iris_plot_with_contours)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKVxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r <code>r</code>r basic_iris_plot + ggtitle(‘Iris Sepals’)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -2004,124 +1972,13 @@ print(iris_plot_with_contours)</code></pre>
 <p>Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species’ data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot +
-  ggtitle('Iris Sepals')</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKSArXG4gIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gJ1NlcGFsIExlbmd0aCcsXG4gICAgICAgICAgICAgICAgICAgICBsaW1pdHMgPSBjKDAsMTApKSArXG4gIHNjYWxlX3lfbG9nMTAobmFtZSA9ICdTZXBhbCBXaWR0aCcsXG4gICAgICAgICAgICAgICAgYnJlYWtzID0gYygyLDMsNCkpXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r <code>r</code>r basic_iris_plot + ggtitle(‘Iris Sepals’) + scale_x_continuous(name = ‘Sepal Length’, limits = c(0,10)) + scale_y_log10(name = ‘Sepal Width’, breaks = c(2,3,4))</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
-<div id="aside-ggplot-objects" class="section level2">
-<h2>Aside: ggplot objects</h2>
-<p>ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKSArXG4gIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gJ1NlcGFsIExlbmd0aCcsXG4gICAgICAgICAgICAgICAgICAgICBsaW1pdHMgPSBjKDAsMTApKSArXG4gIHNjYWxlX3lfbG9nMTAobmFtZSA9ICdTZXBhbCBXaWR0aCcsXG4gICAgICAgICAgICAgICAgYnJlYWtzID0gYygyLDMsNCkpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot +
-  ggtitle('Iris Sepals') +
-  scale_x_continuous(name = 'Sepal Length',
-                     limits = c(0,10)) +
-  scale_y_log10(name = 'Sepal Width',
-                breaks = c(2,3,4))</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<hr />
-</div>
-<div id="themes-and-other-options-we-can-change" class="section level2">
-<h2>themes and other options we can change</h2>
-<p>ggplot also allows a huge amount of control over other aspects of the plot (e.g. titles, axis labeling and scale, overall plot look, etc). For most of these, ggplot actually allows multiple equivalent ways to achieve the same effect.</p>
-<div id="axes-titles" class="section level3">
-<h3>axes + titles</h3>
-<p>Adding a title to a plot can be achieved using ggtitle()</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFxcdmlvbGV0XFwsIFxcYmx1ZVxcLCBcXGdyYXlcXCksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVxcSXJpcyBTcGVjaWVzXFwsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcXEJyaXN0bGUtUG9pbnRlZCBJcmlzXFwsIFxcQmx1ZSBGbGFnXFwsIFxcVmlyZ2luaWEgSXJpc1xcKSlcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot +
-  scale_color_manual(values=c(\violet\, \blue\, \gray\),
-                     name=\Iris Species\,
-                     labels=c(\Bristle-Pointed Iris\, \Blue Flag\, \Virginia Iris\))</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We can also modify the axis properties directly</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFxcdmlvbGV0XFwsIFxcYmx1ZVxcLCBcXGdyYXlcXCksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVxcSXJpcyBTcGVjaWVzXFwsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcXEJyaXN0bGUtUG9pbnRlZCBJcmlzXFwsIFxcQmx1ZSBGbGFnXFwsIFxcVmlyZ2luaWEgSXJpc1xcKSkgK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJylcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot +
-  scale_color_manual(values=c(\violet\, \blue\, \gray\),
-                     name=\Iris Species\,
-                     labels=c(\Bristle-Pointed Iris\, \Blue Flag\, \Virginia Iris\)) +
-  theme(legend.position = 'bottom')</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>There’s a few things going on here:</p>
-<ul>
-<li><strong>scale_x_continuous( )</strong> and <strong>scale_y_log10( )</strong>: set the scale of the x and y axes. For continuous variables, they can also be plotted on a square root scale, reversed, and various other transformations. For discrete variables, use <strong>scale_x_discrete( )</strong> and <strong>scale_y_discrete( )</strong></li>
-<li><strong>name</strong>: the axis label</li>
-<li><strong>limits</strong>: the bounds on the axis, must be provided as a 2-number vector</li>
-<li><strong>breaks</strong>: manually assign where the tickmarks go</li>
-<li><strong>labels</strong>: for discrete variables, this can be used to rename the categories along your axis</li>
-</ul>
-</div>
-<div id="legend" class="section level3">
-<h3>legend</h3>
-<p>You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to ‘color’ on our plot is represented, we can use <strong>scale_color_discrete( )</strong>, or, if we want to manually change the values assigned to each category (e.g. the colors), <strong>scale_color_manual( )</strong>:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFxcdmlvbGV0XFwsIFxcYmx1ZVxcLCBcXGdyYXlcXCksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVxcSXJpcyBTcGVjaWVzXFwsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcXEJyaXN0bGUtUG9pbnRlZCBJcmlzXFwsIFxcQmx1ZSBGbGFnXFwsIFxcVmlyZ2luaWEgSXJpc1xcKSkgK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJykgK1xuICB0aGVtZV9idygpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot +
-  scale_color_manual(values=c(\violet\, \blue\, \gray\),
-                     name=\Iris Species\,
-                     labels=c(\Bristle-Pointed Iris\, \Blue Flag\, \Virginia Iris\)) +
-  theme(legend.position = 'bottom') +
-  theme_bw()</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>We can also change the position of the legend using <strong>theme( )</strong> (which can actually control nearly every other aesthetic aspect of the plot, such as font size, which axes get labels/tickmarks, etc).</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuaXJpc18zX2RmIDwtIGRhdGEuZnJhbWUoaXJpczMpXG5wcmludChpcmlzXzNfZGYpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>iris_3_df &lt;- data.frame(iris3)
-print(iris_3_df)</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="themes" class="section level3">
-<h3>themes</h3>
-<p>Finally, the overall appearance of the graph can be changed by selecting a custom ‘theme’; this is a bit confusing, since these are distinct from the <strong>theme( )</strong> command used above.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZ2dwbG90KGRhdGEgPSBpcmlzXzNfZGYpICtcbiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MLi5TZXRvc2EsIHkgPSBTZXBhbC5XLi5TZXRvc2EpLCBjb2xvciA9ICdyZWQnKSArXG4gIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTC4uVmVyc2ljb2xvciwgeSA9IFNlcGFsLlcuLlZlcnNpY29sb3IpLCBjb2xvciA9ICdibHVlJykgK1xuICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkwuLlZpcmdpbmljYSwgeSA9IFNlcGFsLlcuLlZpcmdpbmljYSksIGNvbG9yID0gJ2dyZWVuJykgK1xuICBzY2FsZV94X2NvbnRpbnVvdXMobmFtZSA9ICdTZXBhbCBMZW5ndGgnKSArXG4gIHNjYWxlX3lfY29udGludW91cyhuYW1lID0gJ1NlcGFsIFdpZHRoJylcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>ggplot(data = iris_3_df) +
-  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
-  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
-  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
-  scale_x_continuous(name = 'Sepal Length') +
-  scale_y_continuous(name = 'Sepal Width')</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<hr />
-</div>
-</div>
 </div>
 <div id="the-structure-of-data-that-ggplot-can-plot" class="section level1">
 <h1>The structure of data that ggplot can plot</h1>
@@ -2134,24 +1991,17 @@ print(iris_3_df)</code></pre>
 <p>Let’s take a look at what that means. Compare the <em>iris</em> dataframe we’ve been using to the <em>iris3</em> data, which comes with R and contains the same data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZmluYWxfZmlndXJlX2dncGxvdF90aGVtZSA8LSBcbiAgdGhlbWUocGxvdC50aXRsZT1lbGVtZW50X3RleHQoc2l6ZT0xNixmYWNlPSdib2xkJyksXG4gICAgICAgIHBsb3QubWFyZ2luPXVuaXQoYygxMiwxMiwxMiwxMiksJ3B0JyksXG4gICAgICAgIHBhbmVsLmJhY2tncm91bmQ9ZWxlbWVudF9yZWN0KGZpbGw9J3doaXRlJyksXG4gICAgICAgIHBhbmVsLmdyaWQubWFqb3I9ZWxlbWVudF9saW5lKGNvbG9yPSdncmV5JyxzaXplPTAuMyksXG4gICAgICAgIGF4aXMubGluZSA9IGVsZW1lbnRfbGluZShjb2xvcj1cXGJsYWNrXFwsIHNpemUgPSAwLjUpLFxuICAgICAgICBsZWdlbmQudGl0bGU9ZWxlbWVudF9ibGFuaygpLFxuICAgICAgICBsZWdlbmQuanVzdGlmaWNhdGlvbj1jKDAsMSksXG4gICAgICAgIGxlZ2VuZC5rZXkgPSBlbGVtZW50X3JlY3QoZmlsbD0nd2hpdGUnKSxcbiAgICAgICAgbGVnZW5kLmtleS5oZWlnaHQgPSB1bml0KDIsJ2xpbmUnKSxcbiAgICAgICAgbGVnZW5kLnRleHQ9ZWxlbWVudF90ZXh0KHNpemU9MTIsZmFjZT0nYm9sZCcpLFxuICAgICAgICBheGlzLnRleHQueD1lbGVtZW50X3RleHQoc2l6ZT0xMixmYWNlPSdib2xkJyksXG4gICAgICAgIGF4aXMudGV4dC55PWVsZW1lbnRfdGV4dChzaXplPTEyLGZhY2U9J2JvbGQnKSxcbiAgICAgICAgYXhpcy50aXRsZS54PWVsZW1lbnRfdGV4dChzaXplPTE0LGZhY2U9J2JvbGQnKSxcbiAgICAgICAgYXhpcy50aXRsZS55PWVsZW1lbnRfdGV4dChzaXplPTE0LGZhY2U9J2JvbGQnLGFuZ2xlPTkwKSkgK1xuICB0aGVtZV9idygpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>final_figure_ggplot_theme &lt;- 
-  theme(plot.title=element_text(size=16,face='bold'),
-        plot.margin=unit(c(12,12,12,12),'pt'),
-        panel.background=element_rect(fill='white'),
-        panel.grid.major=element_line(color='grey',size=0.3),
-        axis.line = element_line(color=\black\, size = 0.5),
-        legend.title=element_blank(),
-        legend.justification=c(0,1),
-        legend.key = element_rect(fill='white'),
-        legend.key.height = unit(2,'line'),
-        legend.text=element_text(size=12,face='bold'),
-        axis.text.x=element_text(size=12,face='bold'),
-        axis.text.y=element_text(size=12,face='bold'),
-        axis.title.x=element_text(size=14,face='bold'),
-        axis.title.y=element_text(size=14,face='bold',angle=90)) +
-  theme_bw()</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBhIGZpZ3VyZSB3aXRoIHRoZSBpcmlzIGRhdGFcbnNlcGFsX3BvaW50cyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9wb2ludCgpXG5cbnNlcGFsX3RyZW5kcyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gJ2xtJylcblxuIyBtYWtlIGJveHBsb3Qgd2l0aCBvdmVybGFpZCBwb2ludHMgcmFuZG9tbHkgcGxhY2VkIG9mZi1jZW50ZXIgYW5kXG4jIHRleHQgbGFiZWxzIHBsYWNlZCBhdCB5ID0gMC43NVxucGV0YWxfYm94cGxvdCA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU3BlY2llcywgeSA9IFBldGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArXG4gIGdlb21fYm94cGxvdCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFNwZWNpZXMpLCB5ID0gMC43NSkgK1xuICBnZW9tX3BvaW50KHBvc2l0aW9uID0gJ2ppdHRlcicpXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r <code>r</code>r # a figure with the iris data sepal_points &lt;- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point()</p>
+<p>sepal_trends &lt;- ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_smooth(method = ‘lm’)</p>
+</div>
+<div id="make-boxplot-with-overlaid-points-randomly-placed-off-center-and" class="section level1">
+<h1>make boxplot with overlaid points randomly placed off-center and</h1>
+</div>
+<div id="text-labels-placed-at-y-0.75" class="section level1">
+<h1>text labels placed at y = 0.75</h1>
+<p>petal_boxplot &lt;- ggplot(data = iris, aes(x = Species, y = Petal.Width, color = Species)) + geom_boxplot() + geom_text(aes(label = Species), y = 0.75) + geom_point(position = ‘jitter’)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -2160,25 +2010,13 @@ print(iris_3_df)</code></pre>
 <p>Here’s an attempt to make do with what we have:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuIyBhIGZpZ3VyZSB3aXRoIHRoZSBpcmlzIGRhdGFcbnNlcGFsX3BvaW50cyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9wb2ludCgpXG5cbnNlcGFsX3RyZW5kcyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gJ2xtJylcblxuIyBtYWtlIGJveHBsb3Qgd2l0aCBvdmVybGFpZCBwb2ludHMgcmFuZG9tbHkgcGxhY2VkIG9mZi1jZW50ZXIgYW5kXG4jIHRleHQgbGFiZWxzIHBsYWNlZCBhdCB5ID0gMC43NVxucGV0YWxfYm94cGxvdCA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU3BlY2llcywgeSA9IFBldGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArXG4gIGdlb21fYm94cGxvdCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFNwZWNpZXMpLCB5ID0gMC43NSkgK1xuICBnZW9tX3BvaW50KHBvc2l0aW9uID0gJ2ppdHRlcicpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code># a figure with the iris data
-sepal_points &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-
-sepal_trends &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_smooth(method = 'lm')
-
-# make boxplot with overlaid points randomly placed off-center and
-# text labels placed at y = 0.75
-petal_boxplot &lt;-
-  ggplot(data = iris, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot() +
-  geom_text(aes(label = Species), y = 0.75) +
-  geom_point(position = 'jitter')</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGRhdGEgPSBpcmlzXzNfZGYpICtcbiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MLi5TZXRvc2EsIHkgPSBTZXBhbC5XLi5TZXRvc2EpLCBjb2xvciA9ICdyZWQnKSArXG4gIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTC4uVmVyc2ljb2xvciwgeSA9IFNlcGFsLlcuLlZlcnNpY29sb3IpLCBjb2xvciA9ICdibHVlJykgK1xuICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkwuLlZpcmdpbmljYSwgeSA9IFNlcGFsLlcuLlZpcmdpbmljYSksIGNvbG9yID0gJ2dyZWVuJykgK1xuICBzY2FsZV94X2NvbnRpbnVvdXMobmFtZSA9ICdTZXBhbCBMZW5ndGgnKSArXG4gIHNjYWxlX3lfY29udGludW91cyhuYW1lID0gJ1NlcGFsIFdpZHRoJylcbmBgYCJ9 -->
+<pre class="r"><code>ggplot(data = iris_3_df) +
+  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
+  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
+  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
+  scale_x_continuous(name = 'Sepal Length') +
+  scale_y_continuous(name = 'Sepal Width')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -2200,76 +2038,104 @@ petal_boxplot &lt;-
 <li><strong>plots as objects</strong>: storing plots as objects allows them to be easily modified and combined into figures</li>
 <li><strong>incredibly helpful online examples</strong>: the <em>tidyverse</em> website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: <a href="https://ggplot2.tidyverse.org/reference/">https://ggplot2.tidyverse.org/reference/</a></li>
 </ul>
-<div id="using-ggplot-for-paper-figures" class="section level2">
-<h2>Using ggplot for paper figures</h2>
-<p>Because ggplot does a great job of separating aesthetic properties of the plot from what is being plotted, we can create a theme that defines how our plots look in e.g. paper figures and apply it to all our plots after generating them.</p>
-<p>First, let’s set a theme for our plots. Because we want our figures to look nice and consistent for the paper, there’s a lot of options we can specify here.</p>
+<div id="aside-ggplot-objects" class="section level2">
+<h2>Aside: ggplot objects</h2>
+<p>ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxucHJpbnQoc2VwYWxfcG9pbnRzKVxucHJpbnQoc2VwYWxfdHJlbmRzKVxucHJpbnQocGV0YWxfYm94cGxvdClcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>print(sepal_points)
-print(sepal_trends)
-print(petal_boxplot)</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90IDwtXG4gIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KClcbnByaW50KGJhc2ljX2lyaXNfcGxvdClcbiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3RcbmlyaXNfcGxvdF93aXRoX2NvbnRvdXJzIDwtXG4gIGJhc2ljX2lyaXNfcGxvdCArIGdlb21fZGVuc2l0eTJkKClcbnByaW50KGlyaXNfcGxvdF93aXRoX2NvbnRvdXJzKVxuYGBgIn0= -->
+<pre class="r"><code>basic_iris_plot &lt;-
+  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+  geom_point()
+print(basic_iris_plot)
+# let's add another geom to this plot
+iris_plot_with_contours &lt;-
+  basic_iris_plot + geom_density2d()
+print(iris_plot_with_contours)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Next, let’s create some plots. We don’t have to worry about appearances here; let’s just make sure the data shows up the way we want it to.</p>
+<hr />
+</div>
+<div id="themes-and-other-options-we-can-change" class="section level2">
+<h2>themes and other options we can change</h2>
+<p>ggplot also allows a huge amount of control over other aspects of the plot (e.g. titles, axis labeling and scale, overall plot look, etc). For most of these, ggplot actually allows multiple equivalent ways to achieve the same effect.</p>
+<div id="axes-titles" class="section level3">
+<h3>axes + titles</h3>
+<p>Adding a title to a plot can be achieved using ggtitle()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuc2VwYWxfcG9pbnRzX2ZpZ3VyZSA8LSBzZXBhbF9wb2ludHMgKyBmaW5hbF9maWd1cmVfZ2dwbG90X3RoZW1lXG5wcmludChzZXBhbF9wb2ludHNfZmlndXJlKVxuc2VwYWxfdHJlbmRzX2ZpZ3VyZSA8LSBzZXBhbF90cmVuZHMgKyBmaW5hbF9maWd1cmVfZ2dwbG90X3RoZW1lXG5wcmludChzZXBhbF90cmVuZHNfZmlndXJlKVxucGV0YWxfYm94cGxvdF9maWd1cmUgPC0gcGV0YWxfYm94cGxvdCArIGZpbmFsX2ZpZ3VyZV9nZ3Bsb3RfdGhlbWVcbnByaW50KHBldGFsX2JveHBsb3RfZmlndXJlKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code>sepal_points_figure &lt;- sepal_points + final_figure_ggplot_theme
-print(sepal_points_figure)
-sepal_trends_figure &lt;- sepal_trends + final_figure_ggplot_theme
-print(sepal_trends_figure)
-petal_boxplot_figure &lt;- petal_boxplot + final_figure_ggplot_theme
-print(petal_boxplot_figure)</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKVxuYGBgIn0= -->
+<pre class="r"><code>basic_iris_plot +
+  ggtitle('Iris Sepals')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>We can print these figures to look at them:</p>
+<p>We can also modify the axis properties directly</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZ2dzYXZlKGZpbGUgPSAnc2VwYWxfcG9pbnRzX2ZpZ3VyZS5wZGYnLFxuICAgICAgIHBsb3QgPSBzZXBhbF9wb2ludHNfZmlndXJlLCB3aWR0aCA9IDYuNSwgaGVpZ2h0ID0gNCxcbiAgICAgICB1c2VEaW5nYmF0cz1GQUxTRSlcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>ggsave(file = 'sepal_points_figure.pdf',
-       plot = sepal_points_figure, width = 6.5, height = 4,
-       useDingbats=FALSE)</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKSArXG4gIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gJ1NlcGFsIExlbmd0aCcsXG4gICAgICAgICAgICAgICAgICAgICBsaW1pdHMgPSBjKDAsMTApKSArXG4gIHNjYWxlX3lfbG9nMTAobmFtZSA9ICdTZXBhbCBXaWR0aCcsXG4gICAgICAgICAgICAgICAgYnJlYWtzID0gYygyLDMsNCkpXG5gYGAifQ== -->
+<pre class="r"><code>basic_iris_plot +
+  ggtitle('Iris Sepals') +
+  scale_x_continuous(name = 'Sepal Length',
+                     limits = c(0,10)) +
+  scale_y_log10(name = 'Sepal Width',
+                breaks = c(2,3,4))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Useful, but not that neat.</p>
-<p>Now, let’s apply our figure theme:</p>
+<p>There’s a few things going on here:</p>
+<ul>
+<li><strong>scale_x_continuous( )</strong> and <strong>scale_y_log10( )</strong>: set the scale of the x and y axes. For continuous variables, they can also be plotted on a square root scale, reversed, and various other transformations. For discrete variables, use <strong>scale_x_discrete( )</strong> and <strong>scale_y_discrete( )</strong></li>
+<li><strong>name</strong>: the axis label</li>
+<li><strong>limits</strong>: the bounds on the axis, must be provided as a 2-number vector</li>
+<li><strong>breaks</strong>: manually assign where the tickmarks go</li>
+<li><strong>labels</strong>: for discrete variables, this can be used to rename the categories along your axis</li>
+</ul>
+</div>
+<div id="legend" class="section level3">
+<h3>legend</h3>
+<p>You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to ‘color’ on our plot is represented, we can use <strong>scale_color_discrete( )</strong>, or, if we want to manually change the values assigned to each category (e.g. the colors), <strong>scale_color_manual( )</strong>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuaXJpc19ub252aXJnaW5jYSA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyAhPSAndmlyZ2luaWNhJylcbmlyaXNfdmlyZ2luaWNhX3BldGFscyA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyA9PSAndmlyZ2luaWNhJylbLCBjKCdQZXRhbC5XaWR0aCcsICdTcGVjaWVzJyldXG5wcmludChpcmlzX25vbnZpcmdpbmNhKVxucHJpbnQoaXJpc192aXJnaW5pY2FfcGV0YWxzKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code>iris_nonvirginca &lt;- subset(iris, Species != 'virginica')
-iris_virginica_petals &lt;- subset(iris, Species == 'virginica')[, c('Petal.Width', 'Species')]
-print(iris_nonvirginca)
-print(iris_virginica_petals)</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFwidmlvbGV0XCIsIFwiYmx1ZVwiLCBcImdyYXlcIiksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVwiSXJpcyBTcGVjaWVzXCIsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcIkJyaXN0bGUtUG9pbnRlZCBJcmlzXCIsIFwiQmx1ZSBGbGFnXCIsIFwiVmlyZ2luaWEgSXJpc1wiKSlcbmBgYCJ9 -->
+<pre class="r"><code>basic_iris_plot +
+  scale_color_manual(values=c(&quot;violet&quot;, &quot;blue&quot;, &quot;gray&quot;),
+                     name=&quot;Iris Species&quot;,
+                     labels=c(&quot;Bristle-Pointed Iris&quot;, &quot;Blue Flag&quot;, &quot;Virginia Iris&quot;))</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>There are a few ways to save the figure, but this is probably the easiest:</p>
+<p>We can also change the position of the legend using <strong>theme( )</strong> (which can actually control nearly every other aesthetic aspect of the plot, such as font size, which axes get labels/tickmarks, etc).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuZ2dwbG90KCkgK1xuICBnZW9tX2JveHBsb3QoZGF0YSA9IGlyaXNfbm9udmlyZ2luY2EsIGFlcyh4ID0gU3BlY2llcywgeSA9IFBldGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArXG4gIGdlb21fYm94cGxvdChkYXRhID0gaXJpc192aXJnaW5pY2FfcGV0YWxzLCBhZXMoeCA9IFNwZWNpZXMsIHkgPSBQZXRhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSlcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r</p>
-<pre class="r"><code>ggplot() +
-  geom_boxplot(data = iris_nonvirginca, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot(data = iris_virginica_petals, aes(x = Species, y = Petal.Width, color = Species))</code></pre>
-<pre><code></code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFwidmlvbGV0XCIsIFwiYmx1ZVwiLCBcImdyYXlcIiksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVwiSXJpcyBTcGVjaWVzXCIsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcIkJyaXN0bGUtUG9pbnRlZCBJcmlzXCIsIFwiQmx1ZSBGbGFnXCIsIFwiVmlyZ2luaWEgSXJpc1wiKSkgK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJylcbmBgYCJ9 -->
+<pre class="r"><code>basic_iris_plot +
+  scale_color_manual(values=c(&quot;violet&quot;, &quot;blue&quot;, &quot;gray&quot;),
+                     name=&quot;Iris Species&quot;,
+                     labels=c(&quot;Bristle-Pointed Iris&quot;, &quot;Blue Flag&quot;, &quot;Virginia Iris&quot;)) +
+  theme(legend.position = 'bottom')</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>(If saving as a pdf, useDingbats=FALSE is a <strong>must</strong> and will prevent a ggplot disaster from unfolding. If you load the cowplot package described below, it replaces <em>ggsave</em> with its own function that does this by default)</p>
-<p>Because we specified our font sizes in final_figure_ggplot_theme, they will be consistent across plots, regardless of the size we decide to save them at.</p>
+</div>
+<div id="themes" class="section level3">
+<h3>themes</h3>
+<p>Finally, the overall appearance of the graph can be changed by selecting a custom ‘theme’; this is a bit confusing, since these are distinct from the <strong>theme( )</strong> command used above.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFwidmlvbGV0XCIsIFwiYmx1ZVwiLCBcImdyYXlcIiksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVwiSXJpcyBTcGVjaWVzXCIsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcIkJyaXN0bGUtUG9pbnRlZCBJcmlzXCIsIFwiQmx1ZSBGbGFnXCIsIFwiVmlyZ2luaWEgSXJpc1wiKSkgK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJykgK1xuICB0aGVtZV9idygpXG5gYGAifQ== -->
+<pre class="r"><code>basic_iris_plot +
+  scale_color_manual(values=c(&quot;violet&quot;, &quot;blue&quot;, &quot;gray&quot;),
+                     name=&quot;Iris Species&quot;,
+                     labels=c(&quot;Bristle-Pointed Iris&quot;, &quot;Blue Flag&quot;, &quot;Virginia Iris&quot;)) +
+  theme(legend.position = 'bottom') +
+  theme_bw()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<hr />
+</div>
 </div>
 </div>
 <div id="other-cool-things" class="section level1">
@@ -2290,8 +2156,9 @@ print(iris_virginica_petals)</code></pre>
 <p>We now have two dataframes, containing data on different species, and with only a subset of the data in one that is contained in the other (the petal widths and species). But if petal width and species is what we want to plot, this isn’t a problem for ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90ICtcbiAgZmFjZXRfd3JhcCggfiBTcGVjaWVzKVxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r basic_iris_plot + facet_wrap( ~ Species)</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuaW5zdGFsbC5wYWNrYWdlcygnY293cGxvdCcpXG5saWJyYXJ5KGNvd3Bsb3QpXG5wbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsXG4gICAgICAgICAgbGFiZWxzID0gXFxBVVRPXFwpXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r <code>r</code>r install.packages(‘cowplot’) library(cowplot) plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure, labels = )</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -2302,12 +2169,9 @@ print(iris_virginica_petals)</code></pre>
 <p>Another great tool ggplot provides is faceting. This allows you to separate data into subplots based on a column (or multiple columns):</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuaW5zdGFsbC5wYWNrYWdlcygnY293cGxvdCcpXG5saWJyYXJ5KGNvd3Bsb3QpXG5wbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsXG4gICAgICAgICAgbGFiZWxzID0gXFxBVVRPXFwpXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r</p>
-<pre class="r"><code>install.packages('cowplot')
-library(cowplot)
-plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure,
-          labels = \AUTO\)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxubGlicmFyeShjb3dwbG90KVxudG9wX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgbGFiZWxzID0gJ0EnKVxuYm90dG9tX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsIGxhYmVscyA9IGMoJ0InLCAnQycpKVxucGxvdF9ncmlkKHRvcF9yb3csIGJvdHRvbV9yb3csIG5yb3cgPSAyKVxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r <code>r</code>r library(cowplot) top_row &lt;- plot_grid(sepal_points_figure, labels = ‘A’) bottom_row &lt;- plot_grid(sepal_trends_figure, petal_boxplot_figure, labels = c(‘B’, ‘C’)) plot_grid(top_row, bottom_row, nrow = 2)</p>
+<pre><code></code></pre>
 <pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
@@ -2322,14 +2186,6 @@ plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure,
 <p>Add animations to plots</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxubGlicmFyeShjb3dwbG90KVxudG9wX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgbGFiZWxzID0gJ0EnKVxuYm90dG9tX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsIGxhYmVscyA9IGMoJ0InLCAnQycpKVxucGxvdF9ncmlkKHRvcF9yb3csIGJvdHRvbV9yb3csIG5yb3cgPSAyKVxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r</p>
-<pre class="r"><code>library(cowplot)
-top_row &lt;- plot_grid(sepal_points_figure, labels = 'A')
-bottom_row &lt;- plot_grid(sepal_trends_figure, petal_boxplot_figure, labels = c('B', 'C'))
-plot_grid(top_row, bottom_row, nrow = 2)</code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2357,7 +2213,7 @@ plot_grid(top_row, bottom_row, nrow = 2)</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgODogUGxvdHRpbmcgKHdpdGggZ2dwbG90MikiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBwbG90dGluZyB3aXRoIGJhc2UgUgogICAgfCAgIC0gaW50cm9kdWN0aW9uIHRvIGdncGxvdAogICAgfCAgIC0gY29tYmluaW5nIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIGluIGdncGxvdAogICAgfCAgIC0gY2hhbmdpbmcgdGhlIGFwcGVhcmFuY2Ugb2YgcGxvdHMKICAgIHwgICAtIG9yZ2FuaXppbmcgZGF0YSBhY2NvcmRpbmcgdG8gInRpZHkiIHByaW5jaXBsZXMKICAgIHwgICAtIGVhc3ksIHJlcHJvZHVjaWJsZSBwYXBlciBmaWd1cmVzIHdpdGggZ2dwbG90CmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfNi5uYi5odG1sKSoqCgojIEludHJvIHRvIHBsb3R0aW5nCgpUaGlzIGNsYXNzIHdpbGwgc2hvdyB5b3UgYSAqdGlueSogYml0IG9mIHBsb3R0aW5nIHVzaW5nIHRoZSBidWlsdC1pbiBSIGZ1bmN0aW9ucywgYnV0IHdpbGwgcHJldHR5IHF1aWNrbHkgdmVlciBpbnRvIGEgdmVyeSBwb3B1bGFyIFIgcGFja2FnZSBjYWxsZWQgKipnZ3Bsb3QyKiosIHdoaWNoIGlzIG9mdGVuIHJlZmVycmVkIHRvIGFzIGp1c3QgImdncGxvdCIuIFRoaXMgaXMgbGlrZWx5IHRoZSBmaXJzdCBwbGFjZSBpbiB0aGlzIGNvdXJzZSB3aGVyZSB5b3Ugd2lsbCBzZWUgdGhpbmdzIHRoYXQgYXJlICp2ZXJ5KiBlYXN5IHRvIGRvIGluIFIgdGhhdCB3b3VsZCBiZSBtdWNoIG1vcmUgY29tcGxpY2F0ZWQgdGFza3MgKG9yIG1heWJlIGV2ZW4gaW1wb3NzaWJsZSkgaW4gZXhjZWwuCgojIyBUaGUgYmFzaWMgc3RydWN0dXJlIG9mIGEgcGxvdAoKTGV0J3MgbG9hZCBpbiBhbmQgY29uc2lkZXIgdGhlICppcmlzKiBkYXRhc2V0IHRoYXQgd2UgcGxheWVkIHdpdGggd2hlbiBsZWFybmluZyBhYm91dCBkYXRhZnJhbWVzLiBXZSBoYWQgbG9hZGVkIHRoaXMgaW4gZnJvbSBhICouY3N2KiBmaWxlLCBidXQgYWN0dWFsbHkgdGhpcyBkYXRhZnJhbWUgaXMgYSBidWlsdC1pbiBkYXRhc2V0IGluIFI6IHdlIGNhbiByZWZlciB0byBpdCBieSBqdXN0IHR5cGluZyBgaXJpc2AuCgpgYGB7cn0KcHJpbnQoaXJpcykKYGBgCgpMZXQncyB1c2UgYmFzZSBSIHRvIHBsb3QgdGhlIFNlcGFsIExlbmd0aCB2cyBTZXBhbCBXaWR0aCBmb3IgYWxsIHRoZSBkYXRhCmBgYHtyfQpwbG90KGlyaXMkU2VwYWwuTGVuZ3RoLCBpcmlzJFNlcGFsLldpZHRoKQpgYGAKClByZXR0eSBzdHJhaWdodGZvcndhcmQ7IHRoZSBjb21tYW5kIGlzIGBwbG90KHgsIHkpYC4KCmBgYHtyfQojIFRyeSBtYWtpbmcgYSBwbG90IG9mIGlyaXMgU2VwYWwgV2lkdGggdnMgUGV0YWwgV2lkdGgKCmBgYAoKWW91IGNhbiBmdXJ0aGVyIG1vZGlmeSB0aGUgcGxvdCBpZiB5b3Ugd2FudCB0byBjaGFuZ2UgdGhlIHdheSB0aGUgcG9pbnRzIGxvb2ssIGV0Yy4gQXMgSSBtZW50aW9uZWQsIHdlIHdvbid0IGJlIGdvaW5nIGRlZXAgaW50byB0aGUgZGV0YWlscyBvZiB0aGUgcmVndWxhciBSIHBsb3QgZnVuY3Rpb24uCgojIyBJbnRybyB0byBnZ3Bsb3QKCkxldCdzIHRyeSB0byB1c2UgZ2dwbG90IHRvIHBsb3QgdGhlIHNhbWUgZGF0YS4gRmlyc3QsIGluc3RhbGwgKipnZ3Bsb3QyKiogKGlmIHlvdSBoYXZlbid0IGFscmVhZHkgZG9uZSBzbykgYW5kIGxvYWQgaXQgaW50byB5b3VyIFIgc2Vzc2lvbi4KYGBge3J9CiMgdW5jb21tZW50IHRoZSBsaW5lIGJlbG93IGFuZCBpbnN0YWxsIGdncGxvdDIgb25seSBpZiB5b3UgaGF2ZW4ndCBhbHJlYWR5CiNpbnN0YWxsLnBhY2thZ2VzKCdnZ3Bsb3QyJykKCiMgbG9hZCB0aGUgZ2dwbG90MiBsaWJyYXJ5IGludG8gdGhlIGN1cnJlbnQgUiBzZXNzaW9uCmxpYnJhcnkoZ2dwbG90MikKYGBgCgpUaGUgc2FtZSBwbG90IGFzIHRoZSBvbmUgd2UgbWFkZSBhYm92ZSBpcyBhY3R1YWxseSBhIGJpdCBtb3JlIGNvbXBsaWNhdGVkIHRvIHB1dCB0b2dldGhlciBpbiBnZ3Bsb3Q6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IGlyaXMsIG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoKSkgKwogIGdlb21fcG9pbnQoKQpgYGAKClRoZSBhYm92ZSBjb250YWlucyB0aGUgY29tcG9uZW50cyB0aGF0IGFyZSB0aGUgYmFyZSBtaW5pbXVtIG9mIHdoYXQgd2UgbmVlZCBmb3IgYSBnZ3Bsb3QgcGxvdDsgd2UgY2FuIGFkZCBtb3JlIG9uIGxhdGVyLCBidXQgbGV0J3MgZGlzc2VjdCB0aGUgcGFydHMgb2YgdGhpcyBjb21tYW5kOgpgYGB7fQpnZ3Bsb3QoZGF0YSA9IDxEQVRBPiwgbWFwcGluZyA9IGFlcyg8TWFwcGluZz4pKSArCiAgICAgICAgPEdFT01fRlVOQ1RJT04+KCkKYGBgCgoqIGFyZ3VtZW50czoKICAgICsgKipkYXRhKio6IHRoZSBkYXRhZnJhbWUgeW91IHdhbnQgdG8gcGxvdAogICAgKyAqKm1hcHBpbmcqKjogQW55IHZhcmlhYmxlcyBmcm9tIHlvdXIgZGF0YSB0aGF0IGFmZmVjdCBwbG90IG91dHB1dCwgbGlzdGVkIGluICphZXMoICkqCiogY29tbWFuZHM6CiAgICArICoqZ2dwbG90KCApKio6IHJlcXVpcmVkIHN0YXJ0IG9mIGV2ZXJ5IGdncGxvdCBjb21tYW5kLiBDb250YWlucyBhbnkgb3B0aW9ucyB0aGF0IHdlIHdhbnQgdG8gYXBwbHkgdG8gdGhlIHdob2xlIHBsb3QgKHdoaWNoIGNhbiBiZSBub3RoaW5nKQogICAgKyAqKmdlb21fe3NvbWV0aGluZ30oICkqKjogKmhvdyogeW91J3JlIHBsb3R0aW5nIHRoZSBkYXRhLiBIZXJlLCB3ZSB3YW50IHRvIHBsb3QgcG9pbnRzLCBzbyB3ZSdyZSB1c2luZyAqKmdlb21fcG9pbnQqKjsgdGhlcmUgYXJlICp0b25zKiBvZiBkaWZmZXJlbnQgZ2VvbXMgYXZhaWxhYmxlLCBvbmUgZm9yIGVhY2ggdHlwZSBvZiBwbG90IHlvdSBtaWdodCB3YW50IHRvIG1ha2UuCgpBcmd1bWVudHMgbGlrZSAqZGF0YSogYW5kICptYXBwaW5nKiBjYW4gZ28gaW4gdGhlIHBhcmVudGhlc2VzIGFmdGVyIHRoZSBnZW9tLCBwcm9kdWNpbmcgdGhlIHNhbWUgcGxvdCBhcyBhYm92ZToKYGBge3J9CmdncGxvdCgpICsKICBnZW9tX3BvaW50KGRhdGEgPSBpcmlzLCBtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCkpCmBgYApCdXQgdGhlcmUgYXJlIHNwZWNpZmljIHNpdHVhdGlvbnMgaW4gd2hpY2ggaXQncyBiZXR0ZXIgdG8gZG8gdGhpcyAod2UnbGwgc2VlIHRoZW0gbGF0ZXIpCgojIyBNb2RpZnlpbmcgKipnZW9tKiogcHJvcGVydGllcwoKV2UgY2FuIGFsc28gcGFzcyBhZGRpdGlvbmFsIGFyZ3VtZW50cyB0byB0aGUgZ2VvbTogdXNlZnVsIG9uZXMgdG8ga25vdyBhcmU6CgoqIF9fY29sb3JfXzogbGluZSBjb2xvcjsgZm9yIHRoZSBkZWZhdWx0IHNoYXBlIHVzZWQgaW4gZ2VvbV9wb2ludCwgdGhpcyBhY3R1YWxseSBjb2xvcnMgdGhlIGluc2lkZSBvZiB0aGUgc2hhcGUgYXMgd2VsbAoqIF9fZmlsbF9fOiB0aGUgZmlsbCBjb2xvciBpbnNpZGUgYSBzaGFwZQoqIF9fc2l6ZV9fOiBwb2ludCBzaXplIG9yIGxpbmUgdGhpY2tuZXNzCiogX19zaGFwZV9fOiBmb3IgcG9pbnRzLCB0aGlzIGlzIHRoZSBzaGFwZTsgZm9yIGxpbmVzLCB0aGlzIGlzIHRoZSBsaW5lIHBhdHRlcm4gb3IgZGFzaHluZXNzCiogX19hbHBoYV9fOiB0cmFuc3BhcmVuY3kgbGV2ZWwsIHdpdGggMCBiZWluZyB0b3RhbGx5IHRyYW5zcGFyZW50IGFuZCAxIGJlaW5nIGEgc29saWQsIG9wYXF1ZSBjb2xvcgoKRm9yIGV4YW1wbGU6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IGlyaXMsIG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoKSkgKwogIGdlb21fcG9pbnQoY29sb3IgPSAnYmx1ZScsIGZpbGwgPSAneWVsbG93Jywgc2hhcGUgPSAyMywgYWxwaGEgPSAwLjMzLCBzaXplID0gNSkKYGBgCldoeSBhcmUgc29tZSBvZiB0aGVzZSByaG9tYnVzZXMgZGFya2VyIHRoYW4gb3RoZXJzPwoKTm90ZSB0aGF0IGFueSBhcmd1bWVudHMgdGhhdCB1bml2ZXJzYWxseSBhZmZlY3QgdGhlIHByb3BlcnRpZXMgb2YgdGhlIHBvaW50cywgbGluZXMsIGV0YyB0aGF0IHdlJ3JlIHBsb3R0aW5nLCBsaWtlIHRoZSBvbmVzIHdlIHVzZWQgYWJvdmUsICptdXN0KiBiZSBwYXNzZWQgdG8gdGhlIHJlbGV2YW50IGdlb20sIG5vdCB0byB0aGUgZ2dwbG90KCApIGNvbW1hbmQuICoqVGhpcyBpcyBiZWNhdXNlIHRoZSBnZW9tIGlzIGluIGNoYXJnZSBvZiBtYWtpbmcgdGhlIHBvaW50cyEqKgoKYGBge3J9CiMgdXNlIGdncGxvdCB0byBjcmVhdGUgYSBwbG90IG9mIGlyaXMgU2VwYWwgV2lkdGggdnMgUGV0YWwgV2lkdGgsIHdpdGggdmlvbGV0CiMgc2VtaS10cmFuc3BhcmVudCBwb2ludHMKCmBgYAoKIyMgTWFwcGluZyBsb3RzIG9mIHZhcmlhYmxlcwoKVGhlIHBsb3Qgd2UgbWFkZSBhYm92ZSBpc24ndCByZWFsbHkgYWxsIHRoYXQgdXNlZnVsLiBJdCdzIGdyZWF0IHRvIHNlZSB0aGUgZGF0YSBhY3Jvc3MgYWxsIHRocmVlIHNwZWNpZXMgb24gb25lIHBsb3QsIGJ1dCBpZiB3ZSdyZSBsb29raW5nIGF0IHRoaXMgZGF0YSwgd2UncmUgcHJvYmFibHkgYWN0dWFsbHkgaW50ZXJlc3RlZCBpbiBob3cgdGhlc2Ugc3BlY2llcyBkaWZmZXIgZnJvbSBlYWNoIG90aGVyLiBTbyBob3cgZG8gd2UgbWFrZSBnZ3Bsb3QgdmlzdWFsbHkgc2VwYXJhdGUgdGhlIHBvaW50cyBieSBzcGVjaWVzPwoKUmVtZW1iZXIgdGhhdCB0aGUgKiptYXBwaW5nKiogYXJndW1lbnQgZGVhbHMgd2l0aCAqYW55IHByb3BlcnRpZXMgb2YgdGhlIHBsb3QgdGhhdCBkZXBlbmQgb24gdmFyaWFibGVzIGluIHRoZSBzdXBwbGllZCBkYXRhIGZyYW1lKi4gU28gd2UgY2FuIG1vZGlmeSBvdXIgb3JpZ2luYWwgY29kZSBsaWtlIHRoaXM6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IGlyaXMsIG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArCiAgZ2VvbV9wb2ludChhbHBoYSA9IDAuMzMpCmBgYApgYGB7ciwgZXZhbCA9IEZBTFNFfQojIENhbiBhbHNvIGJlIHdyaXR0ZW4gYXM6CmdncGxvdChkYXRhID0gaXJpcykgKwogIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcyksIGFscGhhID0gMC4zMykKYGBgCk5vdGljZSB0aGF0IHRoZSBwbG90IGFib3ZlIHVzZXMgKmJvdGgqIGEgdmFyaWFibGUtZGVwZW5kZW50IGNvbG9yIChiYXNlZCBvbiB0aGUgaXJpcyBkYXRhZnJhbWUncyAqU3BlY2llcyogY29sdW1uKSwgd2hpY2ggZ29lcyBpbnNpZGUgKmFlcyggKSosIGFuZCBhIHZhcmlhYmxlLWluZGVwZW5kZW50IGFscGhhIHZhbHVlIHRoYXQgYXBwbGllcyB0byB0aGUgd2hvbGUgZ2VvbV9wb2ludCBjb21tYW5kIGFuZCBnb2VzIG91dHNpZGUgKmFlcyggKSoKCkFsc28sIG5vdGljZSB0aGF0IHlvdSBnb3QgYSBsZWdlbmQgZm9yICpmcmVlKiEgWW91IGRpZG4ndCBoYXZlIHRvIHRlbGwgZ2dwbG90IGhvdyB0byBtYWtlIGl0LCBvciB3aGF0IGluZm8gdG8gaW5jbHVkZSBpbiBpdDsgaXQga25vd3MgYXV0b21hdGljYWxseSBiYXNlZCBvbiBob3cgeW91IHNldCB1cCB5b3VyICoqbWFwcGluZyoqLgoKRGVwZW5kaW5nIG9uIGNvbnRleHQsIHlvdSBjYW4gbWFrZSBjb2xvciwgZmlsbCwgc2hhcGUsIHNpemUgb3IgYWxwaGEgdmFyaWFibGUtZGVwZW5kZW50LiBTb21lIG9mIHRoZXNlIChjb2xvciwgZmlsbCwgc2hhcGUpIG9idmlvdXNseSBtYWtlIG1vcmUgc2Vuc2UgZm9yIGNhdGVnb3JpY2FsIHZhcmlhYmxlcywgd2hpbGUgb3RoZXJzIChhbHBoYSwgc2l6ZSkgbWFrZSBtb3JlIHNlbnNlIGZvciBjb250aW51b3VzIHZhcmlhYmxlcywgYnV0ICpnZ3Bsb3QqIHdpbGwgb25seSByYXJlbHkgc3RvcCB5b3UgZnJvbSBtYWtpbmcgYWVzdGhldGljYWxseSBhbmQgZGF0YSByZXByZXNlbnRhdGlvbmFsbHkgcXVlc3Rpb25hYmxlIGNob2ljZXMgaGVyZS4KCkxldCdzIHRyeSBhbiBleGVyY2lzZTogCgpgYGB7cn0KIyBCYXNlZCBvbiB0aGUgY29kZSBhYm92ZSwgbWFrZSBhIHBsb3Qgd2hlcmUgU2VwYWwuTGVuZ3RoIGlzIG9uIHRoZSB4IGF4aXMsCiMgU2VwYWwuV2lkdGggaXMgb24gdGhlIHkgYXhpcywgYWxsIHRoZSBwb2ludHMgYXJlIGNvbG9yZWQgcmVkLCB0aGUgc2hhcGUgb2YgdGhlCiMgcG9pbnQgZGVwZW5kcyBvbiB0aGUgU3BlY2llcywgYW5kIHRoZSBwb2ludCBzaXplIGRlcGVuZHMgb24gUGV0YWwuV2lkdGgKCmBgYApRdWVzdGlvbmFibGUgdXNlZnVsbmVzcywgYnV0IGhleSwgaXQncyBwb3NzaWJsZSBhbmQgcHJldHR5IGVhc3kuLi4KCiMjIFN0YWNraW5nIG11bHRpcGxlICoqZ2VvbXMqKgoKT25lIG9mIHRoZSBwbGFjZXMgd2hlcmUgZ2dwbG90IHJlYWxseSBzaGluZXMgaXMgd2hlbiB5b3Ugd2FudCB0byBjb21iaW5lIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIG9uIG9uZSBwbG90LiBGb3IgZXhhbXBsZSwgSSAqcmVhbGx5KiBsaWtlIHRvcG9sb2d5LXN0eWxlIGNvbnRvdXIgcGxvdHMsIHdoaWNoIGdncGxvdCBjYW4gbWFrZSB3aXRoICoqZ2VvbV9kZW5zaXR5MmQqKi4gT25jZSB3ZSBrbm93IGhvdyB0byBtYWtlIGEgYmFzaWMgcGxvdCwgYW5kIGNvbWJpbmluZyBhIGNvbnRvdXIgcGxvdCB3aXRoIGEgcGxvdCB0aGUgaW5kaXZpZHVhbCBkYXRhIHBvaW50cyBpcyBzdXBlciBlYXN5IGluIGdncGxvdDoKYGBge3J9CiMgbm90ZSwgdGhlIGZpcnN0IHR3byBsaW5lcyBhcmUganVzdCBvdXIgcGxvdCBmcm9tIGFib3ZlCmdncGxvdChkYXRhID0gaXJpcywgbWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICsKICBnZW9tX2RlbnNpdHkyZCgpICsKICBnZW9tX3BvaW50KGFscGhhID0gMC4zMykKYGBgCk5vdGljZSB0aGF0IHRoZSAqYWxwaGEqIGFyZ3VtZW50IHdlIHByb3ZpZGVkIG9ubHkgYXBwbGllcyB0byBnZW9tX3BvaW50LCBzbyB0aGUgY29udG91ciBsaW5lcyBkb24ndCBzaG93IGFueSB0cmFuc3BhcmVuY3kuIEhvd2V2ZXIsIGFueSBhcmd1bWVudHMgcHJvdmlkZWQgdG8gKiptYXBwaW5nKiogaW4gYW4gYWVzKCApIHN0YXRlbWVudCBpbiB0aGUgKipnZ3Bsb3QoICkqKiBjb21tYW5kIGFwcGx5IGFjcm9zcyBhbGwgZ2VvbXMuIChBbHNvLCBub3RpY2UgdGhhdCB3aGVuIHdlIGFkZCBhIGdlb20sIGdncGxvdCBhdXRvbWF0aWNhbGx5IHVwZGF0ZXMgb3VyIGxlZ2VuZCEpCgpPbmUgcmVhbGx5IHBvd2VyZnVsIGFwcGxpY2F0aW9uIG9mIHRoaXMgaXMgdGhhdCB3ZSBjYW4gYWN0dWFsbHkgbWFrZSBlYWNoIGdlb20oICkgcmVwcmVzZW50IGEgZGlmZmVyZW50IGFzcGVjdCBvZiB0aGUgc2FtZSBkYXRhLiBMZXQncyBzYXkgd2UnZCBsaWtlIG91ciBkYXRhcG9pbnRzIHRvIGJlIGNvbG9yZWQgYnkgc3BlY2llcywgYnV0IHdlJ2QgYWxzbyBsaWtlIHRvIHNlZSBhIGNvbnRvdXIgcGxvdCBvZiBzZXBhbCBsZW5ndGggdnMgd2lkdGggKmFjcm9zcyBhbGwgdGhlIHNwZWNpZXMqLiBUbyBkbyB0aGlzLCB3ZSdyZSBnb2luZyB0byBoYXZlIHRvIG1vdmUgb3VyICoqbWFwcGluZyoqIGNhbGxzIGluc2lkZSB0aGUgZ2VvbXMsIHNpbmNlIHdlIG5vdyB3YW50IGVhY2ggZ2VvbSB0byBtYXAgdGhlIGRhdGEgZGlmZmVyZW50bHk6CmBgYHtyfQojIFJlbW92ZWQgYWxwaGEgZm9yIHNpbXBsaWNpdHkKIyBNYWRlIGNvbnRvdXIgcGxvdCBsaW5lIGNvbG9yIGJsYWNrIChkZWZhdWx0IGlzIGJsdWUpCmdncGxvdChkYXRhID0gaXJpcykgKwogIGdlb21fZGVuc2l0eTJkKG1hcHBpbmcgPSBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoKSwgY29sb3IgPSAnYmxhY2snKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkKYGBgClRoaXMgcGxvdCBzaG93cyB0aGF0ICoqbWFwcGluZyoqIGFjdHVhbGx5IGNvbnRyb2xzIG5vdCBqdXN0IHdoZXJlIHRvIHBsb3QgdGhlIGRhdGEgcG9pbnRzIGFuZCBob3cgdGhleSBzaG91bGQgbG9vayBhZXN0aGV0aWNhbGx5LCBidXQgYWxzbyBob3cgdGhlIGRhdGEgaXMgZ3JvdXBlZCB3aGVuIGl0J3MgcmVwcmVzZW50ZWQgaW4gdGhlIHBsb3QuIE5vdGljZSB0aGF0IGluIHRoZSBmaXJzdCBjb250b3VyIHBsb3QsIHRoZSBzdGF0aXN0aWNzIG5lZWRlZCB0byBwbG90IHRoZSBjb250b3VycyB3ZXJlIGNvbXB1dGVkIHNlcGFyYXRlbHkgZm9yIGVhY2ggc3BlY2llcy4gSG93ZXZlciwgd2hlbiB3ZSByZW1vdmVkIHNwZWNpZXMgZnJvbSB0aGUgYWVzKCApIGJlaW5nIHVzZWQgYnkgZ2VvbV9kZW5zaXR5MmQsIHRoZSBkYXRhIHdhcyBubyBsb25nZXIgc2VwYXJhdGVkIGJ5IHNwZWNpZXMgZm9yIGFueSBvZiB0aGUgc3RhdHMgY2FsY3VsYXRlZCBmb3IgdGhpcyBnZW9tLCBhbmQgdGhleSdyZSBpbnN0ZWFkIGNhbGN1bGF0ZWQgYWNyb3NzIGFsbCB0aGUgcG9pbnRzIGluIHRoZSBkYXRhc2V0LgoKTGV0J3MgdHJ5IGFuIGV4ZXJjaXNlLiBBIHJlYWxseSB1c2VmdWwga2luZCBvZiBwbG90IHlvdSBjYW4gbWFrZSB3aGlsZSBleHBsb3JpbmcgZGF0YSBpcyBhICpkZW5zaXR5KiBwbG90LCB3aGljaCBzaG93cyBwcmV0dHkgbXVjaCBhIG5vcm1hbGl6ZWQsIHNtb290aGVkIGhpc3RvZ3JhbSBvZiB5b3VyIGRhdGEgdXNpbmcgKipnZW9tX2RlbnNpdHkqKi4gRm9yIGV4YW1wbGUsIGlmIHdlIHdhbnQgdG8gZ2V0IGFuIGlkZWEgb2Ygd2hhdCB0aGUgZGlzdHJpYnV0aW9uIG9mIFBldGFsIExlbmd0aHMgaW4gb3VyIGRhdGFzZXQgaXMsIHdlIGNhbiBydW46CmBgYHtyfQojIERlbnNpdHkgcGxvdCB0byBzZWUgdGhlIGRpc3RyaWJ1dGlvbiBvZiBQZXRhbCBMZW5ndGhzIGluIG91ciBkYXRhCmdncGxvdChkYXRhID0gaXJpcykgKwogIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBQZXRhbC5MZW5ndGgpKQpgYGAKCk5vdyByZXBlYXQgdGhpcyBwbG90LCBidXQgb3ZlcmxheWluZyB0aGUgZGVuc2l0eSBwbG90IGZvciBlYWNoIHNwZWNpZXMgb24gdGhpcyBwbG90IHRoYXQgc2hvd3MgdGhlIGRpc3RyaWJ1dGlvbiBhY3Jvc3MgYWxsIDMgc3BlY2llcycgZGF0YToKYGBge3J9CiMgTWFrZSBhIGRlbnNpdHkgcGxvdCB0aGF0IHNob3dzIGJvdGggdGhlIGRpc3RyaWJ1dGlvbiBvZiBQZXRhbC5MZW5ndGggaW4gYWxsCiMgdGhlIGRhdGEgdG9nZXRoZXIgaW4gb25lIGNvbG9yLCBhbmQgdGhlIGRpc3RyaWJ1dGlvbiBmb3IgZWFjaCBzcGVjaWVzJwojIFBldGFsLkxlbmd0aCBlYWNoIGluIGl0cyBvd24gY29sb3IKCiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXMKIyBoYXMgdGhlIHNhbWUgZGFzaGVkIGxpbmUsIGJ1dCB0aGUgbGluZSByZXByZXNlbnRpbmcgcmVzdWx0cyBhY3Jvc3MgYWxsIHRoZQojIGRhdGEgaXMgc29saWQKYGBgCgojIyBBc2lkZTogZ2dwbG90IG9iamVjdHMKCmdncGxvdCBhY3R1YWxseSBjcmVhdGVzIG9iamVjdHMgdGhhdCB3ZSBjYW4gc3RvcmUgYXMgdmFyaWFibGVzIGFuZCBhZGQgb250by4gU28sIGZvciBleGFtcGxlLCB3ZSBjYW4gZG8gdGhpczoKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCA8LQogIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgKwogIGdlb21fcG9pbnQoKQpwcmludChiYXNpY19pcmlzX3Bsb3QpCiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3QKaXJpc19wbG90X3dpdGhfY29udG91cnMgPC0KICBiYXNpY19pcmlzX3Bsb3QgKyBnZW9tX2RlbnNpdHkyZCgpCnByaW50KGlyaXNfcGxvdF93aXRoX2NvbnRvdXJzKQpgYGAKCioqKgoKIyMgdGhlbWVzIGFuZCBvdGhlciBvcHRpb25zIHdlIGNhbiBjaGFuZ2UKCmdncGxvdCBhbHNvIGFsbG93cyBhIGh1Z2UgYW1vdW50IG9mIGNvbnRyb2wgb3ZlciBvdGhlciBhc3BlY3RzIG9mIHRoZSBwbG90IChlLmcuIHRpdGxlcywgYXhpcyBsYWJlbGluZyBhbmQgc2NhbGUsIG92ZXJhbGwgcGxvdCBsb29rLCBldGMpLiBGb3IgbW9zdCBvZiB0aGVzZSwgZ2dwbG90IGFjdHVhbGx5IGFsbG93cyBtdWx0aXBsZSBlcXVpdmFsZW50IHdheXMgdG8gYWNoaWV2ZSB0aGUgc2FtZSBlZmZlY3QuCgojIyMgYXhlcyArIHRpdGxlcwoKQWRkaW5nIGEgdGl0bGUgdG8gYSBwbG90IGNhbiBiZSBhY2hpZXZlZCB1c2luZyBnZ3RpdGxlKCkKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKQpgYGAKCldlIGNhbiBhbHNvIG1vZGlmeSB0aGUgYXhpcyBwcm9wZXJ0aWVzIGRpcmVjdGx5CmBgYHtyfQpiYXNpY19pcmlzX3Bsb3QgKwogIGdndGl0bGUoJ0lyaXMgU2VwYWxzJykgKwogIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gJ1NlcGFsIExlbmd0aCcsCiAgICAgICAgICAgICAgICAgICAgIGxpbWl0cyA9IGMoMCwxMCkpICsKICBzY2FsZV95X2xvZzEwKG5hbWUgPSAnU2VwYWwgV2lkdGgnLAogICAgICAgICAgICAgICAgYnJlYWtzID0gYygyLDMsNCkpCmBgYApUaGVyZSdzIGEgZmV3IHRoaW5ncyBnb2luZyBvbiBoZXJlOgoKKiBfX3NjYWxlX3hfY29udGludW91cyggKV9fIGFuZCBfX3NjYWxlX3lfbG9nMTAoIClfXzogc2V0IHRoZSBzY2FsZSBvZiB0aGUgeCBhbmQgeSBheGVzLiBGb3IgY29udGludW91cyB2YXJpYWJsZXMsIHRoZXkgY2FuIGFsc28gYmUgcGxvdHRlZCBvbiBhIHNxdWFyZSByb290IHNjYWxlLCByZXZlcnNlZCwgYW5kIHZhcmlvdXMgb3RoZXIgdHJhbnNmb3JtYXRpb25zLiBGb3IgZGlzY3JldGUgdmFyaWFibGVzLCB1c2UgKipzY2FsZV94X2Rpc2NyZXRlKCApKiogYW5kICoqc2NhbGVfeV9kaXNjcmV0ZSggKSoqCiogX19uYW1lX186IHRoZSBheGlzIGxhYmVsCiogX19saW1pdHNfXzogdGhlIGJvdW5kcyBvbiB0aGUgYXhpcywgbXVzdCBiZSBwcm92aWRlZCBhcyBhIDItbnVtYmVyIHZlY3RvcgoqIF9fYnJlYWtzX186IG1hbnVhbGx5IGFzc2lnbiB3aGVyZSB0aGUgdGlja21hcmtzIGdvCiogX19sYWJlbHNfXzogZm9yIGRpc2NyZXRlIHZhcmlhYmxlcywgdGhpcyBjYW4gYmUgdXNlZCB0byByZW5hbWUgdGhlIGNhdGVnb3JpZXMgYWxvbmcgeW91ciBheGlzCgojIyMgbGVnZW5kCgpZb3UgY2FuIG1vZGlmeSB0aGUgbGVnZW5kIGluIGEgc2ltaWxhciB3YXkgdG8gdGhlIG90aGVyIG1hcHBpbmdzIChlLmcuIHRoZSBheGVzKTsgZm9yIGV4YW1wbGUsIGlmIHdlIHdhbnQgdG8gbW9kaWZ5IHRoZSB3YXkgdGhlIHRoaW5nIG1hcHBlZCB0byAnY29sb3InIG9uIG91ciBwbG90IGlzIHJlcHJlc2VudGVkLCB3ZSBjYW4gdXNlICoqc2NhbGVfY29sb3JfZGlzY3JldGUoICkqKiwgb3IsIGlmIHdlIHdhbnQgdG8gbWFudWFsbHkgY2hhbmdlIHRoZSB2YWx1ZXMgYXNzaWduZWQgdG8gZWFjaCBjYXRlZ29yeSAoZS5nLiB0aGUgY29sb3JzKSwgKipzY2FsZV9jb2xvcl9tYW51YWwoICkqKjoKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IklyaXMgU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJCcmlzdGxlLVBvaW50ZWQgSXJpcyIsICJCbHVlIEZsYWciLCAiVmlyZ2luaWEgSXJpcyIpKQpgYGAKV2UgY2FuIGFsc28gY2hhbmdlIHRoZSBwb3NpdGlvbiBvZiB0aGUgbGVnZW5kIHVzaW5nICoqdGhlbWUoICkqKiAod2hpY2ggY2FuIGFjdHVhbGx5IGNvbnRyb2wgbmVhcmx5IGV2ZXJ5IG90aGVyIGFlc3RoZXRpYyBhc3BlY3Qgb2YgdGhlIHBsb3QsIHN1Y2ggYXMgZm9udCBzaXplLCB3aGljaCBheGVzIGdldCBsYWJlbHMvdGlja21hcmtzLCBldGMpLgoKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IklyaXMgU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJCcmlzdGxlLVBvaW50ZWQgSXJpcyIsICJCbHVlIEZsYWciLCAiVmlyZ2luaWEgSXJpcyIpKSArCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gJ2JvdHRvbScpCmBgYAoKIyMjIHRoZW1lcwoKRmluYWxseSwgdGhlIG92ZXJhbGwgYXBwZWFyYW5jZSBvZiB0aGUgZ3JhcGggY2FuIGJlIGNoYW5nZWQgYnkgc2VsZWN0aW5nIGEgY3VzdG9tICd0aGVtZSc7IHRoaXMgaXMgYSBiaXQgY29uZnVzaW5nLCBzaW5jZSB0aGVzZSBhcmUgZGlzdGluY3QgZnJvbSB0aGUgKip0aGVtZSggKSoqIGNvbW1hbmQgdXNlZCBhYm92ZS4KYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IklyaXMgU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJCcmlzdGxlLVBvaW50ZWQgSXJpcyIsICJCbHVlIEZsYWciLCAiVmlyZ2luaWEgSXJpcyIpKSArCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gJ2JvdHRvbScpICsKICB0aGVtZV9idygpCmBgYAoKKioqCgojIFRoZSBzdHJ1Y3R1cmUgb2YgZGF0YSB0aGF0IGdncGxvdCBjYW4gcGxvdAoKQXMgeW91J3ZlIHNlZW4sIGdncGxvdCBwcm92aWRlcyB1c2VycyB3aXRoIHRoZSBwb3dlciB0byBlYXNpbHkgY2hhbmdlIHRoZSBhcHBlYXJhbmNlIG9mIHRoZSBwbG90LCBhbmQgdGhlIHN0YXRpc3RpY3MgY2FsY3VsYXRlZCwgYmFzZWQgb24gYW55IHNpbmdsZSBjb2x1bW4gaW4gdGhlIGRhdGFmcmFtZSBjb250YWluaW5nIHRoZSBkYXRhIHRvIGJlIHBsb3R0ZWQuIEJ1dCB0aGlzIGFsc28gcmVzdWx0cyBpbiBzb21lIHByZXR0eSByaWdpZCBydWxlcyBhYm91dCBob3cgeW91ciBkYXRhIG5lZWRzIHRvIGJlIG9yZ2FuaXplZC4gTmFtZWx5LCBkYXRhIGZvciBnZ3Bsb3Qgc2hvdWxkIGJlIGluIFt0aWR5IGZvcm1hdF0oaHR0cHM6Ly9sZWFybi5nZW5jb3JlLmJpby5ueXUuZWR1L3RpZHl2ZXJzZS8pOgoKKiBlYWNoIHZhcmlhYmxlIG11c3QgaGF2ZSBpdHMgb3duIGNvbHVtbgoqIGVhY2ggb2JzZXJ2YXRpb24gbXVzdCBoYXZlIGl0cyBvd24gcm93IChidXQgd2hhdCdzIGFuIG9ic2VydmF0aW9uPykKKiBlYWNoIHZhbHVlIG11c3QgaGF2ZSBpdHMgb3duIGNlbGwKCkxldCdzIHRha2UgYSBsb29rIGF0IHdoYXQgdGhhdCBtZWFucy4gQ29tcGFyZSB0aGUgKmlyaXMqIGRhdGFmcmFtZSB3ZSd2ZSBiZWVuIHVzaW5nIHRvIHRoZSAqaXJpczMqIGRhdGEsIHdoaWNoIGNvbWVzIHdpdGggUiBhbmQgY29udGFpbnMgdGhlIHNhbWUgZGF0YToKYGBge3J9CmlyaXNfM19kZiA8LSBkYXRhLmZyYW1lKGlyaXMzKQpwcmludChpcmlzXzNfZGYpCmBgYAoKTm90aWNlIHRoYXQgaW4gdGhpcyBtb2RpZmllZCB2ZXJzaW9uIG9mIHRoZSBpcmlzIGRhdGFzZXQsIHRoZXJlIGlzIGEgc2luZ2xlIHJvdyBjb250YWluaW5nIGRhdGEgb24gcGxhbnRzIGZyb20gZWFjaCBvZiB0aGUgdGhyZWUgaXJpcyBzcGVjaWVzLiBUaGlzIGlzIG5vdCBhIGNvbXBsZXRlbHkgY3JhenkgdGhpbmcgdG8gZG86IG1heWJlIG91ciBleHBlcmltZW50IGNvbnNpc3RlZCBvZiA1MCBpbmRpdmlkdWFsIHBvdHMsIGVhY2ggb2Ygd2hpY2ggaGFkIGEgcGxhbnQgZnJvbSBldmVyeSBzcGVjaWVzLCBhbmQgd2UgY29sbGVjdGVkIHRoZSBkYXRhIG9uIGEgcG90LWJ5LXBvdCBsZXZlbC4gQnV0IG9yZ2FuaXppbmcgdGhlIGRhdGEgaW4gdGhpcyB3YXkgbWFrZXMgZGlyZWN0bHkgZ3JhcGhpbmcgaXQgd2l0aCBnZ3Bsb3QgYSByZWFsIHBhaW4sIGF0IGxlYXN0IGlmIHdlIHdhbnQgdG8gY29tcGFyZSBzcGVjaWVzIHdpdGggZWFjaCBvdGhlci4gV2Ugbm8gbG9uZ2VyIGhhdmUgYSAnc3BlY2llcycgY29sdW1uLCBvciBuZWF0IGNvbHVtbnMgZm9yIG90aGVyIG1hcHBpbmdzIHdlIG1pZ2h0IGJlIGludGVyZXN0ZWQgaW4gKGUuZy4gU2VwYWwgV2lkdGgpLgoKSGVyZSdzIGFuIGF0dGVtcHQgdG8gbWFrZSBkbyB3aXRoIHdoYXQgd2UgaGF2ZToKYGBge3J9CmdncGxvdChkYXRhID0gaXJpc18zX2RmKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MLi5TZXRvc2EsIHkgPSBTZXBhbC5XLi5TZXRvc2EpLCBjb2xvciA9ICdyZWQnKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MLi5WZXJzaWNvbG9yLCB5ID0gU2VwYWwuVy4uVmVyc2ljb2xvciksIGNvbG9yID0gJ2JsdWUnKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKHggPSBTZXBhbC5MLi5WaXJnaW5pY2EsIHkgPSBTZXBhbC5XLi5WaXJnaW5pY2EpLCBjb2xvciA9ICdncmVlbicpICsKICBzY2FsZV94X2NvbnRpbnVvdXMobmFtZSA9ICdTZXBhbCBMZW5ndGgnKSArCiAgc2NhbGVfeV9jb250aW51b3VzKG5hbWUgPSAnU2VwYWwgV2lkdGgnKQpgYGAKU29tZSB0aGluZ3Mgc3RpbGwgd29yayB3ZWxsIGF1dG9tYXRpY2FsbHkgKGUuZy4gZ2dwbG90IHNjYWxlcyBheGVzIGZvciB1cyksIGJ1dCBpdCdzIGEgbG90IG1vcmUgZWZmb3J0IHRvIGRvIHRoaXMsIGFuZCBpZiB3ZSB3YW50ZWQgdG8gaGF2ZSBhIGxlZ2VuZCBvbiB0aGlzIHBsb3QgKG9yIGhhZCBtb3JlIHRoYW4gYSBmZXcgY2F0ZWdvcmllcyB3ZSB3ZXJlIGludGVyZXN0ZWQgaW4pLCBpdCB3b3VsZCBiZSBhIGNvbXBsZXRlIG5pZ2h0bWFyZS4KCldoZW4gcHV0dGluZyB0b2dldGhlciBkYXRhIHRvIHBsb3QsIHdlIG5lZWQgdG8gdGhpbmsgdmVyeSBjYXJlZnVsbHkgYWJvdXQgd2hhdCBleGFjdGx5IGNvbnN0aXR1dGVzIGEgc2luZ2xlICdvYnNlcnZhdGlvbicsIGFuZCB3aGF0IHRoZSAndmFyaWFibGVzJyBhcmUgdGhhdCB3ZSB3YW50IHRvIHVzZSBmb3IgbWFwcGluZy4gCgpUaGUgKip0aWR5cioqIHBhY2thZ2UgKHdoaWNoLCBsaWtlICoqZ2dwbG90MioqLCBpcyBwYXJ0IG9mIHRoZSAqKnRpZHl2ZXJzZSoqIHBhY2thZ2UpIGhhcyBzb21lIHJlYWxseSBncmVhdCBmdW5jdGlvbnMgZm9yIHJlLW9yZ2FuaXppbmcgZGF0YSB0aGF0IGxvb2tzIGxpa2UgKmlyaXMzKiBpbnRvIGEgJ3RpZHknIGRhdGFmcmFtZSwgYW5kIGlmIHlvdSBmaW5kIHlvdXJzZWxmIGZhY2luZyBkYXRhIHRoYXQgaXNuJ3Qgb3JnYW5pemVkIHRoZSByaWdodCB3YXkgZm9yIHlvdXIgcGxvdCwgSSByZWFsbHkgc3VnZ2VzdCBsb29raW5nIG92ZXIgW0RhdmlkIEdyZXNoYW0ncyB0aWR5dmVyc2UgdHV0b3JpYWxdKGh0dHBzOi8vbGVhcm4uZ2VuY29yZS5iaW8ubnl1LmVkdS90aWR5dmVyc2UvKS4KCiMgV2h5IGdncGxvdAoKKiBfX2Vhc3kgZXhwbG9yYXRvcnkgZGF0YSBhbmFseXNpc19fOiBzZXBhcmF0aW9uIG9mIHZhcmlhYmxlIG1hcHBpbmcgZnJvbSB2aXN1YWwgcmVwcmVzZW50YXRpb24gKGUuZy4gZ2VvbXMpIG1ha2VzIGl0IGVhc3kgdG8gdHJ5IGRpZmZlcmVudCB3YXlzIG9mIHBsb3R0aW5nIGRhdGEKKiBfX2F1dG9tYXRpb24gb2YgdGhlIGJvcmluZyBzdHVmZl9fOiBnZW5lcmF0aW9uIG9mIGxlZ2VuZHMsIGF4aXMgYm91bmRzLCBldGMgaXMgZG9uZSB2ZXJ5IHdlbGwgYXV0b21hdGljYWxseSBiYXNlZCBvbiB0aGUgZGF0YSBhbmQgdmFyaWFibGVzIHlvdSdyZSBwbG90dGluZyAoYnV0IHlvdSBjYW4gaGF2ZSBmaW5lciBjb250cm9sIG9mIGl0IGlmIHlvdSdkIGxpa2UpCiogX19hdXRvbWF0ZWQgc3RhdHNfXzogbG90cyBvZiBnZW9tcyB0aGF0IGNhbGN1bGF0ZSBhbmQgZGlzcGxheSBzdGF0aXN0aWNzIG9mIHlvdXIgZGF0YS4gVGhlc2Ugc3RhdGlzdGljcyBhcmUgYXV0b21hdGljYWxseSBjYWxjdWxhdGVkIGJhc2VkIG9uIHlvdXIgZ3JvdXBpbmcgb2YgdGhlIGRhdGEsIGhvdyB5b3Ugc3BlY2lmeSB5b3VyIGF4ZXMgKGUuZy4gbGluZWFyIHZzIGxvZyBzY2FsZSksIGV0Yy4KICAgICsgKmdlb21fZGVuc2l0eSogYW5kICpnZW9tX2RlbnNpdHkyZCogZm9yIGRlbnNpdHkgZXN0aW1hdGlvbgogICAgKyAqZ2VvbV9zbW9vdGgqIGZvciB0cmVuZGxpbmVzIHdpdGggZXJyb3IgcmliYm9ucwogICAgKyBbc3RhdF9zdW1tYXJ5XShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2Uvc3RhdF9zdW1tYXJ5Lmh0bWwpIGZvciBvdGhlciB3YXlzIHRvIGJpbiBhbmQgc3VtbWFyaXplIGRhdGEpCiogX19wbG90cyBhcyBvYmplY3RzX186IHN0b3JpbmcgcGxvdHMgYXMgb2JqZWN0cyBhbGxvd3MgdGhlbSB0byBiZSBlYXNpbHkgbW9kaWZpZWQgYW5kIGNvbWJpbmVkIGludG8gZmlndXJlcwoqIF9faW5jcmVkaWJseSBoZWxwZnVsIG9ubGluZSBleGFtcGxlc19fOiB0aGUgKnRpZHl2ZXJzZSogd2Vic2l0ZSBjb250YWlucyBhbiBpbmNyZWRpYmxlIG9ubGluZSBtYW51YWwgd2l0aCBleHBsYW5hdGlvbnMgYW5kIGNsZWFyIGV4YW1wbGVzIGZvciBuZWFybHkgZXZlcnl0aGluZyB5b3UgbWlnaHQgd2FudCB0byBkbyBpbiBnZ3Bsb3Q6IFtodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvXShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvKQoKIyMgVXNpbmcgZ2dwbG90IGZvciBwYXBlciBmaWd1cmVzCgpCZWNhdXNlIGdncGxvdCBkb2VzIGEgZ3JlYXQgam9iIG9mIHNlcGFyYXRpbmcgYWVzdGhldGljIHByb3BlcnRpZXMgb2YgdGhlIHBsb3QgZnJvbSB3aGF0IGlzIGJlaW5nIHBsb3R0ZWQsIHdlIGNhbiBjcmVhdGUgYSB0aGVtZSB0aGF0IGRlZmluZXMgaG93IG91ciBwbG90cyBsb29rIGluIGUuZy4gcGFwZXIgZmlndXJlcyBhbmQgYXBwbHkgaXQgdG8gYWxsIG91ciBwbG90cyBhZnRlciBnZW5lcmF0aW5nIHRoZW0uCgpGaXJzdCwgbGV0J3Mgc2V0IGEgdGhlbWUgZm9yIG91ciBwbG90cy4gQmVjYXVzZSB3ZSB3YW50IG91ciBmaWd1cmVzIHRvIGxvb2sgbmljZSBhbmQgY29uc2lzdGVudCBmb3IgdGhlIHBhcGVyLCB0aGVyZSdzIGEgbG90IG9mIG9wdGlvbnMgd2UgY2FuIHNwZWNpZnkgaGVyZS4KYGBge3J9CmZpbmFsX2ZpZ3VyZV9nZ3Bsb3RfdGhlbWUgPC0gCiAgdGhlbWUocGxvdC50aXRsZT1lbGVtZW50X3RleHQoc2l6ZT0xNixmYWNlPSdib2xkJyksCiAgICAgICAgcGxvdC5tYXJnaW49dW5pdChjKDEyLDEyLDEyLDEyKSwncHQnKSwKICAgICAgICBwYW5lbC5iYWNrZ3JvdW5kPWVsZW1lbnRfcmVjdChmaWxsPSd3aGl0ZScpLAogICAgICAgIHBhbmVsLmdyaWQubWFqb3I9ZWxlbWVudF9saW5lKGNvbG9yPSdncmV5JyxzaXplPTAuMyksCiAgICAgICAgYXhpcy5saW5lID0gZWxlbWVudF9saW5lKGNvbG9yPSJibGFjayIsIHNpemUgPSAwLjUpLAogICAgICAgIGxlZ2VuZC50aXRsZT1lbGVtZW50X2JsYW5rKCksCiAgICAgICAgbGVnZW5kLmp1c3RpZmljYXRpb249YygwLDEpLAogICAgICAgIGxlZ2VuZC5rZXkgPSBlbGVtZW50X3JlY3QoZmlsbD0nd2hpdGUnKSwKICAgICAgICBsZWdlbmQua2V5LmhlaWdodCA9IHVuaXQoMiwnbGluZScpLAogICAgICAgIGxlZ2VuZC50ZXh0PWVsZW1lbnRfdGV4dChzaXplPTEyLGZhY2U9J2JvbGQnKSwKICAgICAgICBheGlzLnRleHQueD1lbGVtZW50X3RleHQoc2l6ZT0xMixmYWNlPSdib2xkJyksCiAgICAgICAgYXhpcy50ZXh0Lnk9ZWxlbWVudF90ZXh0KHNpemU9MTIsZmFjZT0nYm9sZCcpLAogICAgICAgIGF4aXMudGl0bGUueD1lbGVtZW50X3RleHQoc2l6ZT0xNCxmYWNlPSdib2xkJyksCiAgICAgICAgYXhpcy50aXRsZS55PWVsZW1lbnRfdGV4dChzaXplPTE0LGZhY2U9J2JvbGQnLGFuZ2xlPTkwKSkgKwogIHRoZW1lX2J3KCkKYGBgCgpOZXh0LCBsZXQncyBjcmVhdGUgc29tZSBwbG90cy4gV2UgZG9uJ3QgaGF2ZSB0byB3b3JyeSBhYm91dCBhcHBlYXJhbmNlcyBoZXJlOyBsZXQncyBqdXN0IG1ha2Ugc3VyZSB0aGUgZGF0YSBzaG93cyB1cCB0aGUgd2F5IHdlIHdhbnQgaXQgdG8uCmBgYHtyfQojIGEgZmlndXJlIHdpdGggdGhlIGlyaXMgZGF0YQpzZXBhbF9wb2ludHMgPC0KICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICsKICBnZW9tX3BvaW50KCkKCnNlcGFsX3RyZW5kcyA8LQogIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgKwogIGdlb21fc21vb3RoKG1ldGhvZCA9ICdsbScpCgojIG1ha2UgYm94cGxvdCB3aXRoIG92ZXJsYWlkIHBvaW50cyByYW5kb21seSBwbGFjZWQgb2ZmLWNlbnRlciBhbmQKIyB0ZXh0IGxhYmVscyBwbGFjZWQgYXQgeSA9IDAuNzUKcGV0YWxfYm94cGxvdCA8LQogIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTcGVjaWVzLCB5ID0gUGV0YWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICsKICBnZW9tX2JveHBsb3QoKSArCiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFNwZWNpZXMpLCB5ID0gMC43NSkgKwogIGdlb21fcG9pbnQocG9zaXRpb24gPSAnaml0dGVyJykKYGBgCgpXZSBjYW4gcHJpbnQgdGhlc2UgZmlndXJlcyB0byBsb29rIGF0IHRoZW06CmBgYHtyfQpwcmludChzZXBhbF9wb2ludHMpCnByaW50KHNlcGFsX3RyZW5kcykKcHJpbnQocGV0YWxfYm94cGxvdCkKYGBgClVzZWZ1bCwgYnV0IG5vdCB0aGF0IG5lYXQuCgpOb3csIGxldCdzIGFwcGx5IG91ciBmaWd1cmUgdGhlbWU6CmBgYHtyfQpzZXBhbF9wb2ludHNfZmlndXJlIDwtIHNlcGFsX3BvaW50cyArIGZpbmFsX2ZpZ3VyZV9nZ3Bsb3RfdGhlbWUKcHJpbnQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSkKc2VwYWxfdHJlbmRzX2ZpZ3VyZSA8LSBzZXBhbF90cmVuZHMgKyBmaW5hbF9maWd1cmVfZ2dwbG90X3RoZW1lCnByaW50KHNlcGFsX3RyZW5kc19maWd1cmUpCnBldGFsX2JveHBsb3RfZmlndXJlIDwtIHBldGFsX2JveHBsb3QgKyBmaW5hbF9maWd1cmVfZ2dwbG90X3RoZW1lCnByaW50KHBldGFsX2JveHBsb3RfZmlndXJlKQpgYGAKClRoZXJlIGFyZSBhIGZldyB3YXlzIHRvIHNhdmUgdGhlIGZpZ3VyZSwgYnV0IHRoaXMgaXMgcHJvYmFibHkgdGhlIGVhc2llc3Q6CmBgYHtyfQpnZ3NhdmUoZmlsZSA9ICdzZXBhbF9wb2ludHNfZmlndXJlLnBkZicsCiAgICAgICBwbG90ID0gc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgd2lkdGggPSA2LjUsIGhlaWdodCA9IDQsCiAgICAgICB1c2VEaW5nYmF0cz1GQUxTRSkKYGBgCihJZiBzYXZpbmcgYXMgYSBwZGYsIHVzZURpbmdiYXRzPUZBTFNFIGlzIGEgKiptdXN0KiogYW5kIHdpbGwgcHJldmVudCBhIGdncGxvdCBkaXNhc3RlciBmcm9tIHVuZm9sZGluZy4gSWYgeW91IGxvYWQgdGhlIGNvd3Bsb3QgcGFja2FnZSBkZXNjcmliZWQgYmVsb3csIGl0IHJlcGxhY2VzICpnZ3NhdmUqIHdpdGggaXRzIG93biBmdW5jdGlvbiB0aGF0IGRvZXMgdGhpcyBieSBkZWZhdWx0KQoKQmVjYXVzZSB3ZSBzcGVjaWZpZWQgb3VyIGZvbnQgc2l6ZXMgaW4gZmluYWxfZmlndXJlX2dncGxvdF90aGVtZSwgdGhleSB3aWxsIGJlIGNvbnNpc3RlbnQgYWNyb3NzIHBsb3RzLCByZWdhcmRsZXNzIG9mIHRoZSBzaXplIHdlIGRlY2lkZSB0byBzYXZlIHRoZW0gYXQuCgojIE90aGVyIGNvb2wgdGhpbmdzCgojIyBjb21iaW5pbmcgbXVsdGlwbGUgZGF0YSBmcmFtZXMgb24gb25lIHBsb3QKCmdncGxvdCBtYWtlcyBpdCBzdXBlciBlYXN5IHRvIGNvbWJpbmUgbXVsdGlwbGUgZGF0YXNldHMgb24gb25lIHBsb3QsIGFzc3VtaW5nIHRoZXkgaGF2ZSB0aGUgcmVsZXZhbnQgdmFyaWFibGVzIChkYXRhZnJhbWUgY29sdW1ucykgaW4gY29tbW9uLiBMZXQncyBicmVhayB1cCB0aGUgaXJpcyBkYXRhZnJhbWUgdG8gc2VlIGhvdyB0aGlzIHdvcmtzOgpgYGB7cn0KaXJpc19ub252aXJnaW5jYSA8LSBzdWJzZXQoaXJpcywgU3BlY2llcyAhPSAndmlyZ2luaWNhJykKaXJpc192aXJnaW5pY2FfcGV0YWxzIDwtIHN1YnNldChpcmlzLCBTcGVjaWVzID09ICd2aXJnaW5pY2EnKVssIGMoJ1BldGFsLldpZHRoJywgJ1NwZWNpZXMnKV0KcHJpbnQoaXJpc19ub252aXJnaW5jYSkKcHJpbnQoaXJpc192aXJnaW5pY2FfcGV0YWxzKQpgYGAKV2Ugbm93IGhhdmUgdHdvIGRhdGFmcmFtZXMsIGNvbnRhaW5pbmcgZGF0YSBvbiBkaWZmZXJlbnQgc3BlY2llcywgYW5kIHdpdGggb25seSBhIHN1YnNldCBvZiB0aGUgZGF0YSBpbiBvbmUgdGhhdCBpcyBjb250YWluZWQgaW4gdGhlIG90aGVyICh0aGUgcGV0YWwgd2lkdGhzIGFuZCBzcGVjaWVzKS4gQnV0IGlmIHBldGFsIHdpZHRoIGFuZCBzcGVjaWVzIGlzIHdoYXQgd2Ugd2FudCB0byBwbG90LCB0aGlzIGlzbid0IGEgcHJvYmxlbSBmb3IgZ2dwbG90OgpgYGB7cn0KZ2dwbG90KCkgKwogIGdlb21fYm94cGxvdChkYXRhID0gaXJpc19ub252aXJnaW5jYSwgYWVzKHggPSBTcGVjaWVzLCB5ID0gUGV0YWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICsKICBnZW9tX2JveHBsb3QoZGF0YSA9IGlyaXNfdmlyZ2luaWNhX3BldGFscywgYWVzKHggPSBTcGVjaWVzLCB5ID0gUGV0YWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpCmBgYAoKIyMgZmFjZXRzCgpBbm90aGVyIGdyZWF0IHRvb2wgZ2dwbG90IHByb3ZpZGVzIGlzIGZhY2V0aW5nLiBUaGlzIGFsbG93cyB5b3UgdG8gc2VwYXJhdGUgZGF0YSBpbnRvIHN1YnBsb3RzIGJhc2VkIG9uIGEgY29sdW1uIChvciBtdWx0aXBsZSBjb2x1bW5zKToKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgZmFjZXRfd3JhcCggfiBTcGVjaWVzKQpgYGAKTm90aWNlIHRoYXQgdGhlIHgtYXhlcyBhcmUgY29uc2lzdGVudCBhbW9uZyB0aGVzZSBwbG90cy4KCiMjIExvdHMgb2YgYWRkaXRpb25hbCBwYWNrYWdlcyEKCkJlY2F1c2UgZ2dwbG90IGlzIHNvIHBvcHVsYXIsIHRoZXJlJ3MgYmVlbiBhIHRvbiBvZiBhZGRpdGlvbmFsIHBhY2thZ2VzIHdyaXR0ZW4gdGhhdCBidWlsZCBvbiB0b3Agb2YgaXQuIEhlcmUgYXJlIHR3byBleGFtcGxlcy4KCiMjIyBnZ2FuaW1hdGUKCkFkZCBhbmltYXRpb25zIHRvIHBsb3RzCmBgYHtyIHdhcm5pbmc9RkFMU0UsIG1lc3NhZ2U9RkFMU0UsIHJlc3VsdHMgPSBGQUxTRX0KaW5zdGFsbC5wYWNrYWdlcygnZ2lmc2tpJykKaW5zdGFsbC5wYWNrYWdlcygnZ2dhbmltYXRlJykKbGlicmFyeShnZ2FuaW1hdGUpCmFuaW1hdGVkX2lyaXNfcGxvdCA8LQogIGJhc2ljX2lyaXNfcGxvdCArIHRyYW5zaXRpb25fc3RhdGVzKFNwZWNpZXMpCiMgc2F2ZSBwbG90IHdpdGggMyBmcmFtZXMsIHBsYXkgYXQgMSBmcmFtZSBwZXIgc2Vjb25kCmFuaW1fc2F2ZSgiYW5pbWF0ZWRfaXJpc19wbG90LmdpZiIsIGFuaW1hdGVkX2lyaXNfcGxvdCwgbmZyYW1lcyA9IDQsIGZwcyA9IDEpCiMgcmVuZGVyIHBsb3QgdXNpbmcgIVtdKHBsb3RfcGF0aCkgb3V0c2lkZSBvZiBjb2RlIGNodW5rCmBgYAoKIyMjIGNvd3Bsb3QKCkFycmFuZ2UgeW91ciBwbG90cyBmb3IgcHVibGljYXRpb24gZmlndXJlcwpgYGB7cn0KaW5zdGFsbC5wYWNrYWdlcygnY293cGxvdCcpCmxpYnJhcnkoY293cGxvdCkKcGxvdF9ncmlkKHNlcGFsX3BvaW50c19maWd1cmUsIHNlcGFsX3RyZW5kc19maWd1cmUsIHBldGFsX2JveHBsb3RfZmlndXJlLAogICAgICAgICAgbGFiZWxzID0gIkFVVE8iKQpgYGAKCmBgYHtyfQpsaWJyYXJ5KGNvd3Bsb3QpCnRvcF9yb3cgPC0gcGxvdF9ncmlkKHNlcGFsX3BvaW50c19maWd1cmUsIGxhYmVscyA9ICdBJykKYm90dG9tX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsIGxhYmVscyA9IGMoJ0InLCAnQycpKQpwbG90X2dyaWQodG9wX3JvdywgYm90dG9tX3JvdywgbnJvdyA9IDIpCmBgYAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgODogUGxvdHRpbmcgKHdpdGggZ2dwbG90MikiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBwbG90dGluZyB3aXRoIGJhc2UgUgogICAgfCAgIC0gaW50cm9kdWN0aW9uIHRvIGdncGxvdAogICAgfCAgIC0gY29tYmluaW5nIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIGluIGdncGxvdAogICAgfCAgIC0gY2hhbmdpbmcgdGhlIGFwcGVhcmFuY2Ugb2YgcGxvdHMKICAgIHwgICAtIG9yZ2FuaXppbmcgZGF0YSBhY2NvcmRpbmcgdG8gInRpZHkiIHByaW5jaXBsZXMKICAgIHwgICAtIGVhc3ksIHJlcHJvZHVjaWJsZSBwYXBlciBmaWd1cmVzIHdpdGggZ2dwbG90CmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfNi5uYi5odG1sKSoqCgojIEludHJvIHRvIHBsb3R0aW5nCgpUaGlzIGNsYXNzIHdpbGwgc2hvdyB5b3UgYSAqdGlueSogYml0IG9mIHBsb3R0aW5nIHVzaW5nIHRoZSBidWlsdC1pbiBSIGZ1bmN0aW9ucywgYnV0IHdpbGwgcHJldHR5IHF1aWNrbHkgdmVlciBpbnRvIGEgdmVyeSBwb3B1bGFyIFIgcGFja2FnZSBjYWxsZWQgKipnZ3Bsb3QyKiosIHdoaWNoIGlzIG9mdGVuIHJlZmVycmVkIHRvIGFzIGp1c3QgImdncGxvdCIuIFRoaXMgaXMgbGlrZWx5IHRoZSBmaXJzdCBwbGFjZSBpbiB0aGlzIGNvdXJzZSB3aGVyZSB5b3Ugd2lsbCBzZWUgdGhpbmdzIHRoYXQgYXJlICp2ZXJ5KiBlYXN5IHRvIGRvIGluIFIgdGhhdCB3b3VsZCBiZSBtdWNoIG1vcmUgY29tcGxpY2F0ZWQgdGFza3MgKG9yIG1heWJlIGV2ZW4gaW1wb3NzaWJsZSkgaW4gZXhjZWwuCgojIyBUaGUgYmFzaWMgc3RydWN0dXJlIG9mIGEgcGxvdAoKTGV0J3MgbG9hZCBpbiBhbmQgY29uc2lkZXIgdGhlICpwZW5ndWlucyogZGF0YXNldCB0aGF0IHdlIHBsYXllZCB3aXRoIHdoZW4gbGVhcm5pbmcgYWJvdXQgZGF0YWZyYW1lcy4gV2UgaGFkIGxvYWRlZCB0aGlzIGluIGZyb20gYSAqLmNzdiogZmlsZS4KCmBgYHtyfQojIHJlYWQgaW4gdGhlIHBlbmd1aW4gZGF0YSBhbmQgc2F2ZSBpdCB0byBhIHZhcmlhYmxlIGNhbGxlZCBwZW5ndWlucwpgYGAKCkxldCdzIHVzZSBiYXNlIFIgdG8gcGxvdCB0aGUgYmlsbCBsZW5ndGggdnMgYmlsbCBkZXB0aCBmb3IgYWxsIHRoZSBkYXRhCmBgYHtyfQpwbG90KHBlbmd1aW5zJGJpbGxfbGVuZ3RoX21tLCBwZW5ndWlucyRiaWxsX2RlcHRoX21tKQpgYGAKClByZXR0eSBzdHJhaWdodGZvcndhcmQ7IHRoZSBjb21tYW5kIGlzIGBwbG90KHgsIHkpYC4KCmBgYHtyfQojIFRyeSBtYWtpbmcgYSBwbG90IG9mIHBlbmd1aW4gZmxpcHBlciBsZW5ndGggdnMgZmxpcHBlciBib2R5IG1hc3MKCiMgY29tcGFyaW5nIHRoZXNlIHR3byBwbG90cywgd2hhdCBjb25jbHVzaW9ucyB3b3VsZCB5b3UgbWFrZT8gaG93IGNvdWxkIHRoZXNlIHBsb3RzIGJlIGltcHJvdmVkPwoKYGBgCgpZb3UgY2FuIGZ1cnRoZXIgbW9kaWZ5IHRoZSBwbG90IGlmIHlvdSB3YW50IHRvIGNoYW5nZSB0aGUgd2F5IHRoZSBwb2ludHMgbG9vaywgZXRjLiBBcyBJIG1lbnRpb25lZCwgd2Ugd29uJ3QgYmUgZ29pbmcgZGVlcCBpbnRvIHRoZSBkZXRhaWxzIG9mIHRoZSByZWd1bGFyIFIgcGxvdCBmdW5jdGlvbi4KCiMjIEludHJvIHRvIGdncGxvdAoKTGV0J3MgdHJ5IHRvIHVzZSBnZ3Bsb3QgdG8gcGxvdCB0aGUgc2FtZSBkYXRhLiBGaXJzdCwgaW5zdGFsbCAqKmdncGxvdDIqKiAoaWYgeW91IGhhdmVuJ3QgYWxyZWFkeSBkb25lIHNvKSBhbmQgbG9hZCBpdCBpbnRvIHlvdXIgUiBzZXNzaW9uLgpgYGB7cn0KIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgZ2dwbG90MiBvbmx5IGlmIHlvdSBoYXZlbid0IGFscmVhZHkKI2luc3RhbGwucGFja2FnZXMoJ2dncGxvdDInKQoKIyBsb2FkIHRoZSBnZ3Bsb3QyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb24KbGlicmFyeShnZ3Bsb3QyKQpgYGAKClRoZSBzYW1lIHBsb3QgYXMgdGhlIG9uZSB3ZSBtYWRlIGFib3ZlIGlzIGFjdHVhbGx5IGEgYml0IG1vcmUgY29tcGxpY2F0ZWQgdG8gcHV0IHRvZ2V0aGVyIGluIGdncGxvdDoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KCkKYGBgCgpUaGUgYWJvdmUgY29udGFpbnMgdGhlIGNvbXBvbmVudHMgdGhhdCBhcmUgdGhlIGJhcmUgbWluaW11bSBvZiB3aGF0IHdlIG5lZWQgZm9yIGEgZ2dwbG90IHBsb3Q7IHdlIGNhbiBhZGQgbW9yZSBvbiBsYXRlciwgYnV0IGxldCdzIGRpc3NlY3QgdGhlIHBhcnRzIG9mIHRoaXMgY29tbWFuZDoKYGBge30KZ2dwbG90KGRhdGEgPSA8REFUQT4sIG1hcHBpbmcgPSBhZXMoPE1hcHBpbmc+KSkgKwogICAgICAgIDxHRU9NX0ZVTkNUSU9OPigpCmBgYAoKKiBhcmd1bWVudHM6CiAgICArICoqZGF0YSoqOiB0aGUgZGF0YWZyYW1lIHlvdSB3YW50IHRvIHBsb3QKICAgICsgKiptYXBwaW5nKio6IEFueSB2YXJpYWJsZXMgZnJvbSB5b3VyIGRhdGEgdGhhdCBhZmZlY3QgcGxvdCBvdXRwdXQsIGxpc3RlZCBpbiAqYWVzKCApKgoqIGNvbW1hbmRzOgogICAgKyAqKmdncGxvdCggKSoqOiByZXF1aXJlZCBzdGFydCBvZiBldmVyeSBnZ3Bsb3QgY29tbWFuZC4gQ29udGFpbnMgYW55IG9wdGlvbnMgdGhhdCB3ZSB3YW50IHRvIGFwcGx5IHRvIHRoZSB3aG9sZSBwbG90ICh3aGljaCBjYW4gYmUgbm90aGluZykKICAgICsgKipnZW9tX3tzb21ldGhpbmd9KCApKio6ICpob3cqIHlvdSdyZSBwbG90dGluZyB0aGUgZGF0YS4gSGVyZSwgd2Ugd2FudCB0byBwbG90IHBvaW50cywgc28gd2UncmUgdXNpbmcgKipnZW9tX3BvaW50Kio7IHRoZXJlIGFyZSAqdG9ucyogb2YgZGlmZmVyZW50IGdlb21zIGF2YWlsYWJsZSwgb25lIGZvciBlYWNoIHR5cGUgb2YgcGxvdCB5b3UgbWlnaHQgd2FudCB0byBtYWtlLgoKQXJndW1lbnRzIGxpa2UgKmRhdGEqIGFuZCAqbWFwcGluZyogY2FuIGdvIGluIHRoZSBwYXJlbnRoZXNlcyBhZnRlciB0aGUgZ2VvbSwgcHJvZHVjaW5nIHRoZSBzYW1lIHBsb3QgYXMgYWJvdmU6CmBgYHtyfQpnZ3Bsb3QoKSArCiAgZ2VvbV9wb2ludChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpCmBgYApCdXQgdGhlcmUgYXJlIHNwZWNpZmljIHNpdHVhdGlvbnMgaW4gd2hpY2ggaXQncyBiZXR0ZXIgdG8gZG8gdGhpcyAod2UnbGwgc2VlIHRoZW0gbGF0ZXIpCgojIyBNb2RpZnlpbmcgKipnZW9tKiogcHJvcGVydGllcwoKV2UgY2FuIGFsc28gcGFzcyBhZGRpdGlvbmFsIGFyZ3VtZW50cyB0byB0aGUgZ2VvbTogdXNlZnVsIG9uZXMgdG8ga25vdyBhcmU6CgoqIF9fY29sb3JfXzogbGluZSBjb2xvcjsgZm9yIHRoZSBkZWZhdWx0IHNoYXBlIHVzZWQgaW4gZ2VvbV9wb2ludCwgdGhpcyBhY3R1YWxseSBjb2xvcnMgdGhlIGluc2lkZSBvZiB0aGUgc2hhcGUgYXMgd2VsbAoqIF9fZmlsbF9fOiB0aGUgZmlsbCBjb2xvciBpbnNpZGUgYSBzaGFwZQoqIF9fc2l6ZV9fOiBwb2ludCBzaXplIG9yIGxpbmUgdGhpY2tuZXNzCiogX19zaGFwZV9fOiBmb3IgcG9pbnRzLCB0aGlzIGlzIHRoZSBzaGFwZTsgZm9yIGxpbmVzLCB0aGlzIGlzIHRoZSBsaW5lIHBhdHRlcm4gb3IgZGFzaHluZXNzCiogX19hbHBoYV9fOiB0cmFuc3BhcmVuY3kgbGV2ZWwsIHdpdGggMCBiZWluZyB0b3RhbGx5IHRyYW5zcGFyZW50IGFuZCAxIGJlaW5nIGEgc29saWQsIG9wYXF1ZSBjb2xvcgoKIyMgTWFwcGluZyBsb3RzIG9mIHZhcmlhYmxlcwoKVGhlIHBsb3Qgd2UgbWFkZSBhYm92ZSBpc24ndCByZWFsbHkgYWxsIHRoYXQgdXNlZnVsLiBJdCdzIGdyZWF0IHRvIHNlZSB0aGUgZGF0YSBhY3Jvc3MgYWxsIHRocmVlIHNwZWNpZXMgb24gb25lIHBsb3QsIGJ1dCBpZiB3ZSdyZSBsb29raW5nIGF0IHRoaXMgZGF0YSwgd2UncmUgcHJvYmFibHkgYWN0dWFsbHkgaW50ZXJlc3RlZCBpbiBob3cgdGhlc2Ugc3BlY2llcyBkaWZmZXIgZnJvbSBlYWNoIG90aGVyLiBTbyBob3cgZG8gd2UgbWFrZSBnZ3Bsb3QgdmlzdWFsbHkgc2VwYXJhdGUgdGhlIHBvaW50cyBieSBzcGVjaWVzPwoKUmVtZW1iZXIgdGhhdCB0aGUgKiptYXBwaW5nKiogYXJndW1lbnQgZGVhbHMgd2l0aCAqYW55IHByb3BlcnRpZXMgb2YgdGhlIHBsb3QgdGhhdCBkZXBlbmQgb24gdmFyaWFibGVzIGluIHRoZSBzdXBwbGllZCBkYXRhIGZyYW1lKi4gU28gd2UgY2FuIG1vZGlmeSBvdXIgb3JpZ2luYWwgY29kZSBsaWtlIHRoaXM6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0sIGNvbG9yID0gc3BlY2llcywgZmlsbCA9IHNwZWNpZXMpKSArCiAgZ2VvbV9wb2ludChhbHBoYSA9IDAuMzMsIHNoYXBlID0gMjMsIHNpemUgPSA1KQpgYGAKCgpOb3RpY2UgdGhhdCB0aGUgcGxvdCBhYm92ZSB1c2VzICpib3RoKiBhIHZhcmlhYmxlLWRlcGVuZGVudCBjb2xvciAoYmFzZWQgb24gdGhlIHBlbmd1aW4gZGF0YWZyYW1lJ3MgKnNwZWNpZXMqIGNvbHVtbiksIHdoaWNoIGdvZXMgaW5zaWRlICphZXMoICkqLCBhbmQgdmFyaWFibGUtaW5kZXBlbmRlbnQgdmFsdWVzIChhbHBoYSwgc2hhcGUsIHNpemUpIHRoYXQgYXBwbGllcyB0byB0aGUgd2hvbGUgZ2VvbV9wb2ludCBjb21tYW5kIGFuZCBnb2VzIG91dHNpZGUgKmFlcyggKSoKCkFsc28sIG5vdGljZSB0aGF0IHlvdSBnb3QgYSBsZWdlbmQgZm9yICpmcmVlKiEgWW91IGRpZG4ndCBoYXZlIHRvIHRlbGwgZ2dwbG90IGhvdyB0byBtYWtlIGl0LCBvciB3aGF0IGluZm8gdG8gaW5jbHVkZSBpbiBpdDsgaXQga25vd3MgYXV0b21hdGljYWxseSBiYXNlZCBvbiBob3cgeW91IHNldCB1cCB5b3VyICoqbWFwcGluZyoqLgoKRGVwZW5kaW5nIG9uIGNvbnRleHQsIHlvdSBjYW4gbWFrZSBjb2xvciwgZmlsbCwgc2hhcGUsIHNpemUgb3IgYWxwaGEgdmFyaWFibGUtZGVwZW5kZW50LiBTb21lIG9mIHRoZXNlIChjb2xvciwgZmlsbCwgc2hhcGUpIG9idmlvdXNseSBtYWtlIG1vcmUgc2Vuc2UgZm9yIGNhdGVnb3JpY2FsIHZhcmlhYmxlcywgd2hpbGUgb3RoZXJzIChhbHBoYSwgc2l6ZSkgbWFrZSBtb3JlIHNlbnNlIGZvciBjb250aW51b3VzIHZhcmlhYmxlcywgYnV0ICpnZ3Bsb3QqIHdpbGwgb25seSByYXJlbHkgc3RvcCB5b3UgZnJvbSBtYWtpbmcgYWVzdGhldGljYWxseSBhbmQgZGF0YSByZXByZXNlbnRhdGlvbmFsbHkgcXVlc3Rpb25hYmxlIGNob2ljZXMgaGVyZS4KCkxldCdzIHRyeSBhbiBleGVyY2lzZTogCgpgYGB7cn0KIyBCYXNlZCBvbiB0aGUgY29kZSBhYm92ZSwgbWFrZSBhIHBsb3Qgd2hlcmUgYm9keSBtYXNzIGlzIG9uIHRoZSB4IGF4aXMsCiMgZmxpcHBlciBsZW5ndGggaXMgb24gdGhlIHkgYXhpcywgYWxsIHRoZSBwb2ludHMgaGF2ZSBhIHJlZCBvdXRsaW5lLCAKI3RoZSBmaWxsIG9mIHRoZSBwb2ludHMgZGVwZW5kcyBvbiB0aGUgaXNsYW5kLCAKIyBhbmQgdGhlIHNoYXBlIG9mIHRoZSBwb2ludCBkZXBlbmRzIG9uIHRoZSBzcGVjaWVzCgpgYGAKCgojIyBTdGFja2luZyBtdWx0aXBsZSAqKmdlb21zKioKCk9uZSBvZiB0aGUgcGxhY2VzIHdoZXJlIGdncGxvdCByZWFsbHkgc2hpbmVzIGlzIHdoZW4geW91IHdhbnQgdG8gY29tYmluZSBtdWx0aXBsZSBkYXRhIHJlcHJlc2VudGF0aW9ucyBvbiBvbmUgcGxvdC4gRm9yIGV4YW1wbGUsIEkgKnJlYWxseSogbGlrZSB0b3BvbG9neS1zdHlsZSBjb250b3VyIHBsb3RzLCB3aGljaCBnZ3Bsb3QgY2FuIG1ha2Ugd2l0aCAqKmdlb21fZGVuc2l0eTJkKiouIE9uY2Ugd2Uga25vdyBob3cgdG8gbWFrZSBhIGJhc2ljIHBsb3QsIGFuZCBjb21iaW5pbmcgYSBjb250b3VyIHBsb3Qgd2l0aCBhIHBsb3QgdGhlIGluZGl2aWR1YWwgZGF0YSBwb2ludHMgaXMgc3VwZXIgZWFzeSBpbiBnZ3Bsb3Q6CmBgYHtyfQojIG5vdGUsIHRoZSBmaXJzdCB0d28gbGluZXMgYXJlIGp1c3Qgb3VyIHBsb3QgZnJvbSBhYm92ZQpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0sIGNvbG9yID0gc3BlY2llcykpICsKICBnZW9tX2RlbnNpdHkyZCgpICsKICBnZW9tX3BvaW50KGFscGhhID0gMC4zMykKYGBgCk5vdGljZSB0aGF0IHRoZSAqYWxwaGEqIGFyZ3VtZW50IHdlIHByb3ZpZGVkIG9ubHkgYXBwbGllcyB0byBnZW9tX3BvaW50LCBzbyB0aGUgY29udG91ciBsaW5lcyBkb24ndCBzaG93IGFueSB0cmFuc3BhcmVuY3kuIEhvd2V2ZXIsIGFueSBhcmd1bWVudHMgcHJvdmlkZWQgdG8gKiptYXBwaW5nKiogaW4gYW4gYWVzKCApIHN0YXRlbWVudCBpbiB0aGUgKipnZ3Bsb3QoICkqKiBjb21tYW5kIGFwcGx5IGFjcm9zcyBhbGwgZ2VvbXMuIChBbHNvLCBub3RpY2UgdGhhdCB3aGVuIHdlIGFkZCBhIGdlb20sIGdncGxvdCBhdXRvbWF0aWNhbGx5IHVwZGF0ZXMgb3VyIGxlZ2VuZCEpCgpPbmUgcmVhbGx5IHBvd2VyZnVsIGFwcGxpY2F0aW9uIG9mIHRoaXMgaXMgdGhhdCB3ZSBjYW4gYWN0dWFsbHkgbWFrZSBlYWNoIGdlb20oICkgcmVwcmVzZW50IGEgZGlmZmVyZW50IGFzcGVjdCBvZiB0aGUgc2FtZSBkYXRhLiBMZXQncyBzYXkgd2UnZCBsaWtlIG91ciBkYXRhcG9pbnRzIHRvIGJlIGNvbG9yZWQgYnkgc3BlY2llcywgYnV0IHdlJ2QgYWxzbyBsaWtlIHRvIHNlZSBhIGNvbnRvdXIgcGxvdCBvZiBiaWxsIGxlbmd0aCB2cyBkZXB0aCAqYWNyb3NzIGFsbCB0aGUgc3BlY2llcyouIFRvIGRvIHRoaXMsIHdlJ3JlIGdvaW5nIHRvIGhhdmUgdG8gbW92ZSBvdXIgKiptYXBwaW5nKiogY2FsbHMgaW5zaWRlIHRoZSBnZW9tcywgc2luY2Ugd2Ugbm93IHdhbnQgZWFjaCBnZW9tIHRvIG1hcCB0aGUgZGF0YSBkaWZmZXJlbnRseToKYGBge3J9CiMgUmVtb3ZlZCBhbHBoYSBmb3Igc2ltcGxpY2l0eQojIE1hZGUgY29udG91ciBwbG90IGxpbmUgY29sb3IgYmxhY2sgKGRlZmF1bHQgaXMgYmx1ZSkKZ2dwbG90KGRhdGEgPSBwZW5ndWlucykgKwogIGdlb21fZGVuc2l0eTJkKG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSksIGNvbG9yID0gJ2JsYWNrJykgKwogIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tLCBjb2xvciA9IHNwZWNpZXMpKQpgYGAKCmBgYHtyIGV2YWw9Rn0KIyBjYW4gYWxzbyBiZSB3cml0dGVuIGFzCmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX2RlbnNpdHkyZChjb2xvciA9ICdibGFjaycpICsKICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoY29sb3IgPSBzcGVjaWVzKSkKYGBgClRoaXMgcGxvdCBzaG93cyB0aGF0ICoqbWFwcGluZyoqIGFjdHVhbGx5IGNvbnRyb2xzIG5vdCBqdXN0IHdoZXJlIHRvIHBsb3QgdGhlIGRhdGEgcG9pbnRzIGFuZCBob3cgdGhleSBzaG91bGQgbG9vayBhZXN0aGV0aWNhbGx5LCBidXQgYWxzbyBob3cgdGhlIGRhdGEgaXMgZ3JvdXBlZCB3aGVuIGl0J3MgcmVwcmVzZW50ZWQgaW4gdGhlIHBsb3QuIE5vdGljZSB0aGF0IGluIHRoZSBmaXJzdCBjb250b3VyIHBsb3QsIHRoZSBzdGF0aXN0aWNzIG5lZWRlZCB0byBwbG90IHRoZSBjb250b3VycyB3ZXJlIGNvbXB1dGVkIHNlcGFyYXRlbHkgZm9yIGVhY2ggc3BlY2llcy4gSG93ZXZlciwgd2hlbiB3ZSByZW1vdmVkIHNwZWNpZXMgZnJvbSB0aGUgYWVzKCApIGJlaW5nIHVzZWQgYnkgZ2VvbV9kZW5zaXR5MmQsIHRoZSBkYXRhIHdhcyBubyBsb25nZXIgc2VwYXJhdGVkIGJ5IHNwZWNpZXMgZm9yIGFueSBvZiB0aGUgc3RhdHMgY2FsY3VsYXRlZCBmb3IgdGhpcyBnZW9tLCBhbmQgdGhleSdyZSBpbnN0ZWFkIGNhbGN1bGF0ZWQgYWNyb3NzIGFsbCB0aGUgcG9pbnRzIGluIHRoZSBkYXRhc2V0LgoKTGV0J3MgdHJ5IGFuIGV4ZXJjaXNlLiBBIHJlYWxseSB1c2VmdWwga2luZCBvZiBwbG90IHlvdSBjYW4gbWFrZSB3aGlsZSBleHBsb3JpbmcgZGF0YSBpcyBhICpkZW5zaXR5KiBwbG90LCB3aGljaCBzaG93cyBwcmV0dHkgbXVjaCBhIG5vcm1hbGl6ZWQsIHNtb290aGVkIGhpc3RvZ3JhbSBvZiB5b3VyIGRhdGEgdXNpbmcgKipnZW9tX2RlbnNpdHkqKi4gRm9yIGV4YW1wbGUsIGlmIHdlIHdhbnQgdG8gZ2V0IGFuIGlkZWEgb2Ygd2hhdCB0aGUgZGlzdHJpYnV0aW9uIG9mIFBldGFsIExlbmd0aHMgaW4gb3VyIGRhdGFzZXQgaXMsIHdlIGNhbiBydW46CmBgYHtyfQojIERlbnNpdHkgcGxvdCB0byBzZWUgdGhlIGRpc3RyaWJ1dGlvbiBvZiBQZXRhbCBMZW5ndGhzIGluIG91ciBkYXRhCmdncGxvdChkYXRhID0gaXJpcykgKwogIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBQZXRhbC5MZW5ndGgpKQpgYGAKCk5vdyByZXBlYXQgdGhpcyBwbG90LCBidXQgb3ZlcmxheWluZyB0aGUgZGVuc2l0eSBwbG90IGZvciBlYWNoIHNwZWNpZXMgb24gdGhpcyBwbG90IHRoYXQgc2hvd3MgdGhlIGRpc3RyaWJ1dGlvbiBhY3Jvc3MgYWxsIDMgc3BlY2llcycgZGF0YToKYGBge3J9CiMgTWFrZSBhIGRlbnNpdHkgcGxvdCB0aGF0IHNob3dzIGJvdGggdGhlIGRpc3RyaWJ1dGlvbiBvZiBQZXRhbC5MZW5ndGggaW4gYWxsCiMgdGhlIGRhdGEgdG9nZXRoZXIgaW4gb25lIGNvbG9yLCBhbmQgdGhlIGRpc3RyaWJ1dGlvbiBmb3IgZWFjaCBzcGVjaWVzJwojIFBldGFsLkxlbmd0aCBlYWNoIGluIGl0cyBvd24gY29sb3IKCiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXMKIyBoYXMgdGhlIHNhbWUgZGFzaGVkIGxpbmUsIGJ1dCB0aGUgbGluZSByZXByZXNlbnRpbmcgcmVzdWx0cyBhY3Jvc3MgYWxsIHRoZQojIGRhdGEgaXMgc29saWQKYGBgCgoKIyBUaGUgc3RydWN0dXJlIG9mIGRhdGEgdGhhdCBnZ3Bsb3QgY2FuIHBsb3QKCkFzIHlvdSd2ZSBzZWVuLCBnZ3Bsb3QgcHJvdmlkZXMgdXNlcnMgd2l0aCB0aGUgcG93ZXIgdG8gZWFzaWx5IGNoYW5nZSB0aGUgYXBwZWFyYW5jZSBvZiB0aGUgcGxvdCwgYW5kIHRoZSBzdGF0aXN0aWNzIGNhbGN1bGF0ZWQsIGJhc2VkIG9uIGFueSBzaW5nbGUgY29sdW1uIGluIHRoZSBkYXRhZnJhbWUgY29udGFpbmluZyB0aGUgZGF0YSB0byBiZSBwbG90dGVkLiBCdXQgdGhpcyBhbHNvIHJlc3VsdHMgaW4gc29tZSBwcmV0dHkgcmlnaWQgcnVsZXMgYWJvdXQgaG93IHlvdXIgZGF0YSBuZWVkcyB0byBiZSBvcmdhbml6ZWQuIE5hbWVseSwgZGF0YSBmb3IgZ2dwbG90IHNob3VsZCBiZSBpbiBbdGlkeSBmb3JtYXRdKGh0dHBzOi8vbGVhcm4uZ2VuY29yZS5iaW8ubnl1LmVkdS90aWR5dmVyc2UvKToKCiogZWFjaCB2YXJpYWJsZSBtdXN0IGhhdmUgaXRzIG93biBjb2x1bW4KKiBlYWNoIG9ic2VydmF0aW9uIG11c3QgaGF2ZSBpdHMgb3duIHJvdyAoYnV0IHdoYXQncyBhbiBvYnNlcnZhdGlvbj8pCiogZWFjaCB2YWx1ZSBtdXN0IGhhdmUgaXRzIG93biBjZWxsCgpMZXQncyB0YWtlIGEgbG9vayBhdCB3aGF0IHRoYXQgbWVhbnMuIENvbXBhcmUgdGhlICppcmlzKiBkYXRhZnJhbWUgd2UndmUgYmVlbiB1c2luZyB0byB0aGUgKmlyaXMzKiBkYXRhLCB3aGljaCBjb21lcyB3aXRoIFIgYW5kIGNvbnRhaW5zIHRoZSBzYW1lIGRhdGE6CmBgYHtyfQppcmlzXzNfZGYgPC0gZGF0YS5mcmFtZShpcmlzMykKcHJpbnQoaXJpc18zX2RmKQpgYGAKCk5vdGljZSB0aGF0IGluIHRoaXMgbW9kaWZpZWQgdmVyc2lvbiBvZiB0aGUgaXJpcyBkYXRhc2V0LCB0aGVyZSBpcyBhIHNpbmdsZSByb3cgY29udGFpbmluZyBkYXRhIG9uIHBsYW50cyBmcm9tIGVhY2ggb2YgdGhlIHRocmVlIGlyaXMgc3BlY2llcy4gVGhpcyBpcyBub3QgYSBjb21wbGV0ZWx5IGNyYXp5IHRoaW5nIHRvIGRvOiBtYXliZSBvdXIgZXhwZXJpbWVudCBjb25zaXN0ZWQgb2YgNTAgaW5kaXZpZHVhbCBwb3RzLCBlYWNoIG9mIHdoaWNoIGhhZCBhIHBsYW50IGZyb20gZXZlcnkgc3BlY2llcywgYW5kIHdlIGNvbGxlY3RlZCB0aGUgZGF0YSBvbiBhIHBvdC1ieS1wb3QgbGV2ZWwuIEJ1dCBvcmdhbml6aW5nIHRoZSBkYXRhIGluIHRoaXMgd2F5IG1ha2VzIGRpcmVjdGx5IGdyYXBoaW5nIGl0IHdpdGggZ2dwbG90IGEgcmVhbCBwYWluLCBhdCBsZWFzdCBpZiB3ZSB3YW50IHRvIGNvbXBhcmUgc3BlY2llcyB3aXRoIGVhY2ggb3RoZXIuIFdlIG5vIGxvbmdlciBoYXZlIGEgJ3NwZWNpZXMnIGNvbHVtbiwgb3IgbmVhdCBjb2x1bW5zIGZvciBvdGhlciBtYXBwaW5ncyB3ZSBtaWdodCBiZSBpbnRlcmVzdGVkIGluIChlLmcuIFNlcGFsIFdpZHRoKS4KCkhlcmUncyBhbiBhdHRlbXB0IHRvIG1ha2UgZG8gd2l0aCB3aGF0IHdlIGhhdmU6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IGlyaXNfM19kZikgKwogIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTC4uU2V0b3NhLCB5ID0gU2VwYWwuVy4uU2V0b3NhKSwgY29sb3IgPSAncmVkJykgKwogIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTC4uVmVyc2ljb2xvciwgeSA9IFNlcGFsLlcuLlZlcnNpY29sb3IpLCBjb2xvciA9ICdibHVlJykgKwogIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gU2VwYWwuTC4uVmlyZ2luaWNhLCB5ID0gU2VwYWwuVy4uVmlyZ2luaWNhKSwgY29sb3IgPSAnZ3JlZW4nKSArCiAgc2NhbGVfeF9jb250aW51b3VzKG5hbWUgPSAnU2VwYWwgTGVuZ3RoJykgKwogIHNjYWxlX3lfY29udGludW91cyhuYW1lID0gJ1NlcGFsIFdpZHRoJykKYGBgClNvbWUgdGhpbmdzIHN0aWxsIHdvcmsgd2VsbCBhdXRvbWF0aWNhbGx5IChlLmcuIGdncGxvdCBzY2FsZXMgYXhlcyBmb3IgdXMpLCBidXQgaXQncyBhIGxvdCBtb3JlIGVmZm9ydCB0byBkbyB0aGlzLCBhbmQgaWYgd2Ugd2FudGVkIHRvIGhhdmUgYSBsZWdlbmQgb24gdGhpcyBwbG90IChvciBoYWQgbW9yZSB0aGFuIGEgZmV3IGNhdGVnb3JpZXMgd2Ugd2VyZSBpbnRlcmVzdGVkIGluKSwgaXQgd291bGQgYmUgYSBjb21wbGV0ZSBuaWdodG1hcmUuCgpXaGVuIHB1dHRpbmcgdG9nZXRoZXIgZGF0YSB0byBwbG90LCB3ZSBuZWVkIHRvIHRoaW5rIHZlcnkgY2FyZWZ1bGx5IGFib3V0IHdoYXQgZXhhY3RseSBjb25zdGl0dXRlcyBhIHNpbmdsZSAnb2JzZXJ2YXRpb24nLCBhbmQgd2hhdCB0aGUgJ3ZhcmlhYmxlcycgYXJlIHRoYXQgd2Ugd2FudCB0byB1c2UgZm9yIG1hcHBpbmcuIAoKVGhlICoqdGlkeXIqKiBwYWNrYWdlICh3aGljaCwgbGlrZSAqKmdncGxvdDIqKiwgaXMgcGFydCBvZiB0aGUgKip0aWR5dmVyc2UqKiBwYWNrYWdlKSBoYXMgc29tZSByZWFsbHkgZ3JlYXQgZnVuY3Rpb25zIGZvciByZS1vcmdhbml6aW5nIGRhdGEgdGhhdCBsb29rcyBsaWtlICppcmlzMyogaW50byBhICd0aWR5JyBkYXRhZnJhbWUsIGFuZCBpZiB5b3UgZmluZCB5b3Vyc2VsZiBmYWNpbmcgZGF0YSB0aGF0IGlzbid0IG9yZ2FuaXplZCB0aGUgcmlnaHQgd2F5IGZvciB5b3VyIHBsb3QsIEkgcmVhbGx5IHN1Z2dlc3QgbG9va2luZyBvdmVyIFtEYXZpZCBHcmVzaGFtJ3MgdGlkeXZlcnNlIHR1dG9yaWFsXShodHRwczovL2xlYXJuLmdlbmNvcmUuYmlvLm55dS5lZHUvdGlkeXZlcnNlLykuCgojIFdoeSBnZ3Bsb3QKCiogX19lYXN5IGV4cGxvcmF0b3J5IGRhdGEgYW5hbHlzaXNfXzogc2VwYXJhdGlvbiBvZiB2YXJpYWJsZSBtYXBwaW5nIGZyb20gdmlzdWFsIHJlcHJlc2VudGF0aW9uIChlLmcuIGdlb21zKSBtYWtlcyBpdCBlYXN5IHRvIHRyeSBkaWZmZXJlbnQgd2F5cyBvZiBwbG90dGluZyBkYXRhCiogX19hdXRvbWF0aW9uIG9mIHRoZSBib3Jpbmcgc3R1ZmZfXzogZ2VuZXJhdGlvbiBvZiBsZWdlbmRzLCBheGlzIGJvdW5kcywgZXRjIGlzIGRvbmUgdmVyeSB3ZWxsIGF1dG9tYXRpY2FsbHkgYmFzZWQgb24gdGhlIGRhdGEgYW5kIHZhcmlhYmxlcyB5b3UncmUgcGxvdHRpbmcgKGJ1dCB5b3UgY2FuIGhhdmUgZmluZXIgY29udHJvbCBvZiBpdCBpZiB5b3UnZCBsaWtlKQoqIF9fYXV0b21hdGVkIHN0YXRzX186IGxvdHMgb2YgZ2VvbXMgdGhhdCBjYWxjdWxhdGUgYW5kIGRpc3BsYXkgc3RhdGlzdGljcyBvZiB5b3VyIGRhdGEuIFRoZXNlIHN0YXRpc3RpY3MgYXJlIGF1dG9tYXRpY2FsbHkgY2FsY3VsYXRlZCBiYXNlZCBvbiB5b3VyIGdyb3VwaW5nIG9mIHRoZSBkYXRhLCBob3cgeW91IHNwZWNpZnkgeW91ciBheGVzIChlLmcuIGxpbmVhciB2cyBsb2cgc2NhbGUpLCBldGMuCiAgICArICpnZW9tX2RlbnNpdHkqIGFuZCAqZ2VvbV9kZW5zaXR5MmQqIGZvciBkZW5zaXR5IGVzdGltYXRpb24KICAgICsgKmdlb21fc21vb3RoKiBmb3IgdHJlbmRsaW5lcyB3aXRoIGVycm9yIHJpYmJvbnMKICAgICsgW3N0YXRfc3VtbWFyeV0oaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlL3N0YXRfc3VtbWFyeS5odG1sKSBmb3Igb3RoZXIgd2F5cyB0byBiaW4gYW5kIHN1bW1hcml6ZSBkYXRhKQoqIF9fcGxvdHMgYXMgb2JqZWN0c19fOiBzdG9yaW5nIHBsb3RzIGFzIG9iamVjdHMgYWxsb3dzIHRoZW0gdG8gYmUgZWFzaWx5IG1vZGlmaWVkIGFuZCBjb21iaW5lZCBpbnRvIGZpZ3VyZXMKKiBfX2luY3JlZGlibHkgaGVscGZ1bCBvbmxpbmUgZXhhbXBsZXNfXzogdGhlICp0aWR5dmVyc2UqIHdlYnNpdGUgY29udGFpbnMgYW4gaW5jcmVkaWJsZSBvbmxpbmUgbWFudWFsIHdpdGggZXhwbGFuYXRpb25zIGFuZCBjbGVhciBleGFtcGxlcyBmb3IgbmVhcmx5IGV2ZXJ5dGhpbmcgeW91IG1pZ2h0IHdhbnQgdG8gZG8gaW4gZ2dwbG90OiBbaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlL10oaHR0cHM6Ly9nZ3Bsb3QyLnRpZHl2ZXJzZS5vcmcvcmVmZXJlbmNlLykKCiMjIEFzaWRlOiBnZ3Bsb3Qgb2JqZWN0cwoKZ2dwbG90IGFjdHVhbGx5IGNyZWF0ZXMgb2JqZWN0cyB0aGF0IHdlIGNhbiBzdG9yZSBhcyB2YXJpYWJsZXMgYW5kIGFkZCBvbnRvLiBTbywgZm9yIGV4YW1wbGUsIHdlIGNhbiBkbyB0aGlzOgpgYGB7cn0KYmFzaWNfaXJpc19wbG90IDwtCiAgZ2dwbG90KGRhdGEgPSBpcmlzLCBhZXMoeCA9IFNlcGFsLkxlbmd0aCwgeSA9IFNlcGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArCiAgZ2VvbV9wb2ludCgpCnByaW50KGJhc2ljX2lyaXNfcGxvdCkKIyBsZXQncyBhZGQgYW5vdGhlciBnZW9tIHRvIHRoaXMgcGxvdAppcmlzX3Bsb3Rfd2l0aF9jb250b3VycyA8LQogIGJhc2ljX2lyaXNfcGxvdCArIGdlb21fZGVuc2l0eTJkKCkKcHJpbnQoaXJpc19wbG90X3dpdGhfY29udG91cnMpCmBgYAoKKioqCgojIyB0aGVtZXMgYW5kIG90aGVyIG9wdGlvbnMgd2UgY2FuIGNoYW5nZQoKZ2dwbG90IGFsc28gYWxsb3dzIGEgaHVnZSBhbW91bnQgb2YgY29udHJvbCBvdmVyIG90aGVyIGFzcGVjdHMgb2YgdGhlIHBsb3QgKGUuZy4gdGl0bGVzLCBheGlzIGxhYmVsaW5nIGFuZCBzY2FsZSwgb3ZlcmFsbCBwbG90IGxvb2ssIGV0YykuIEZvciBtb3N0IG9mIHRoZXNlLCBnZ3Bsb3QgYWN0dWFsbHkgYWxsb3dzIG11bHRpcGxlIGVxdWl2YWxlbnQgd2F5cyB0byBhY2hpZXZlIHRoZSBzYW1lIGVmZmVjdC4KCiMjIyBheGVzICsgdGl0bGVzCgpBZGRpbmcgYSB0aXRsZSB0byBhIHBsb3QgY2FuIGJlIGFjaGlldmVkIHVzaW5nIGdndGl0bGUoKQpgYGB7cn0KYmFzaWNfaXJpc19wbG90ICsKICBnZ3RpdGxlKCdJcmlzIFNlcGFscycpCmBgYAoKV2UgY2FuIGFsc28gbW9kaWZ5IHRoZSBheGlzIHByb3BlcnRpZXMgZGlyZWN0bHkKYGBge3J9CmJhc2ljX2lyaXNfcGxvdCArCiAgZ2d0aXRsZSgnSXJpcyBTZXBhbHMnKSArCiAgc2NhbGVfeF9jb250aW51b3VzKG5hbWUgPSAnU2VwYWwgTGVuZ3RoJywKICAgICAgICAgICAgICAgICAgICAgbGltaXRzID0gYygwLDEwKSkgKwogIHNjYWxlX3lfbG9nMTAobmFtZSA9ICdTZXBhbCBXaWR0aCcsCiAgICAgICAgICAgICAgICBicmVha3MgPSBjKDIsMyw0KSkKYGBgClRoZXJlJ3MgYSBmZXcgdGhpbmdzIGdvaW5nIG9uIGhlcmU6CgoqIF9fc2NhbGVfeF9jb250aW51b3VzKCApX18gYW5kIF9fc2NhbGVfeV9sb2cxMCggKV9fOiBzZXQgdGhlIHNjYWxlIG9mIHRoZSB4IGFuZCB5IGF4ZXMuIEZvciBjb250aW51b3VzIHZhcmlhYmxlcywgdGhleSBjYW4gYWxzbyBiZSBwbG90dGVkIG9uIGEgc3F1YXJlIHJvb3Qgc2NhbGUsIHJldmVyc2VkLCBhbmQgdmFyaW91cyBvdGhlciB0cmFuc2Zvcm1hdGlvbnMuIEZvciBkaXNjcmV0ZSB2YXJpYWJsZXMsIHVzZSAqKnNjYWxlX3hfZGlzY3JldGUoICkqKiBhbmQgKipzY2FsZV95X2Rpc2NyZXRlKCApKioKKiBfX25hbWVfXzogdGhlIGF4aXMgbGFiZWwKKiBfX2xpbWl0c19fOiB0aGUgYm91bmRzIG9uIHRoZSBheGlzLCBtdXN0IGJlIHByb3ZpZGVkIGFzIGEgMi1udW1iZXIgdmVjdG9yCiogX19icmVha3NfXzogbWFudWFsbHkgYXNzaWduIHdoZXJlIHRoZSB0aWNrbWFya3MgZ28KKiBfX2xhYmVsc19fOiBmb3IgZGlzY3JldGUgdmFyaWFibGVzLCB0aGlzIGNhbiBiZSB1c2VkIHRvIHJlbmFtZSB0aGUgY2F0ZWdvcmllcyBhbG9uZyB5b3VyIGF4aXMKCiMjIyBsZWdlbmQKCllvdSBjYW4gbW9kaWZ5IHRoZSBsZWdlbmQgaW4gYSBzaW1pbGFyIHdheSB0byB0aGUgb3RoZXIgbWFwcGluZ3MgKGUuZy4gdGhlIGF4ZXMpOyBmb3IgZXhhbXBsZSwgaWYgd2Ugd2FudCB0byBtb2RpZnkgdGhlIHdheSB0aGUgdGhpbmcgbWFwcGVkIHRvICdjb2xvcicgb24gb3VyIHBsb3QgaXMgcmVwcmVzZW50ZWQsIHdlIGNhbiB1c2UgKipzY2FsZV9jb2xvcl9kaXNjcmV0ZSggKSoqLCBvciwgaWYgd2Ugd2FudCB0byBtYW51YWxseSBjaGFuZ2UgdGhlIHZhbHVlcyBhc3NpZ25lZCB0byBlYWNoIGNhdGVnb3J5IChlLmcuIHRoZSBjb2xvcnMpLCAqKnNjYWxlX2NvbG9yX21hbnVhbCggKSoqOgpgYGB7cn0KYmFzaWNfaXJpc19wbG90ICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzPWMoInZpb2xldCIsICJibHVlIiwgImdyYXkiKSwKICAgICAgICAgICAgICAgICAgICAgbmFtZT0iSXJpcyBTcGVjaWVzIiwKICAgICAgICAgICAgICAgICAgICAgbGFiZWxzPWMoIkJyaXN0bGUtUG9pbnRlZCBJcmlzIiwgIkJsdWUgRmxhZyIsICJWaXJnaW5pYSBJcmlzIikpCmBgYApXZSBjYW4gYWxzbyBjaGFuZ2UgdGhlIHBvc2l0aW9uIG9mIHRoZSBsZWdlbmQgdXNpbmcgKip0aGVtZSggKSoqICh3aGljaCBjYW4gYWN0dWFsbHkgY29udHJvbCBuZWFybHkgZXZlcnkgb3RoZXIgYWVzdGhldGljIGFzcGVjdCBvZiB0aGUgcGxvdCwgc3VjaCBhcyBmb250IHNpemUsIHdoaWNoIGF4ZXMgZ2V0IGxhYmVscy90aWNrbWFya3MsIGV0YykuCgpgYGB7cn0KYmFzaWNfaXJpc19wbG90ICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzPWMoInZpb2xldCIsICJibHVlIiwgImdyYXkiKSwKICAgICAgICAgICAgICAgICAgICAgbmFtZT0iSXJpcyBTcGVjaWVzIiwKICAgICAgICAgICAgICAgICAgICAgbGFiZWxzPWMoIkJyaXN0bGUtUG9pbnRlZCBJcmlzIiwgIkJsdWUgRmxhZyIsICJWaXJnaW5pYSBJcmlzIikpICsKICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJykKYGBgCgojIyMgdGhlbWVzCgpGaW5hbGx5LCB0aGUgb3ZlcmFsbCBhcHBlYXJhbmNlIG9mIHRoZSBncmFwaCBjYW4gYmUgY2hhbmdlZCBieSBzZWxlY3RpbmcgYSBjdXN0b20gJ3RoZW1lJzsgdGhpcyBpcyBhIGJpdCBjb25mdXNpbmcsIHNpbmNlIHRoZXNlIGFyZSBkaXN0aW5jdCBmcm9tIHRoZSAqKnRoZW1lKCApKiogY29tbWFuZCB1c2VkIGFib3ZlLgpgYGB7cn0KYmFzaWNfaXJpc19wbG90ICsKICBzY2FsZV9jb2xvcl9tYW51YWwodmFsdWVzPWMoInZpb2xldCIsICJibHVlIiwgImdyYXkiKSwKICAgICAgICAgICAgICAgICAgICAgbmFtZT0iSXJpcyBTcGVjaWVzIiwKICAgICAgICAgICAgICAgICAgICAgbGFiZWxzPWMoIkJyaXN0bGUtUG9pbnRlZCBJcmlzIiwgIkJsdWUgRmxhZyIsICJWaXJnaW5pYSBJcmlzIikpICsKICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJykgKwogIHRoZW1lX2J3KCkKYGBgCgoqKioKCiMgT3RoZXIgY29vbCB0aGluZ3MKCiMjIGNvbWJpbmluZyBtdWx0aXBsZSBkYXRhIGZyYW1lcyBvbiBvbmUgcGxvdAoKZ2dwbG90IG1ha2VzIGl0IHN1cGVyIGVhc3kgdG8gY29tYmluZSBtdWx0aXBsZSBkYXRhc2V0cyBvbiBvbmUgcGxvdCwgYXNzdW1pbmcgdGhleSBoYXZlIHRoZSByZWxldmFudCB2YXJpYWJsZXMgKGRhdGFmcmFtZSBjb2x1bW5zKSBpbiBjb21tb24uIExldCdzIGJyZWFrIHVwIHRoZSBpcmlzIGRhdGFmcmFtZSB0byBzZWUgaG93IHRoaXMgd29ya3M6CmBgYHtyfQppcmlzX25vbnZpcmdpbmNhIDwtIHN1YnNldChpcmlzLCBTcGVjaWVzICE9ICd2aXJnaW5pY2EnKQppcmlzX3ZpcmdpbmljYV9wZXRhbHMgPC0gc3Vic2V0KGlyaXMsIFNwZWNpZXMgPT0gJ3ZpcmdpbmljYScpWywgYygnUGV0YWwuV2lkdGgnLCAnU3BlY2llcycpXQpwcmludChpcmlzX25vbnZpcmdpbmNhKQpwcmludChpcmlzX3ZpcmdpbmljYV9wZXRhbHMpCmBgYApXZSBub3cgaGF2ZSB0d28gZGF0YWZyYW1lcywgY29udGFpbmluZyBkYXRhIG9uIGRpZmZlcmVudCBzcGVjaWVzLCBhbmQgd2l0aCBvbmx5IGEgc3Vic2V0IG9mIHRoZSBkYXRhIGluIG9uZSB0aGF0IGlzIGNvbnRhaW5lZCBpbiB0aGUgb3RoZXIgKHRoZSBwZXRhbCB3aWR0aHMgYW5kIHNwZWNpZXMpLiBCdXQgaWYgcGV0YWwgd2lkdGggYW5kIHNwZWNpZXMgaXMgd2hhdCB3ZSB3YW50IHRvIHBsb3QsIHRoaXMgaXNuJ3QgYSBwcm9ibGVtIGZvciBnZ3Bsb3Q6CmBgYHtyfQpnZ3Bsb3QoKSArCiAgZ2VvbV9ib3hwbG90KGRhdGEgPSBpcmlzX25vbnZpcmdpbmNhLCBhZXMoeCA9IFNwZWNpZXMsIHkgPSBQZXRhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgKwogIGdlb21fYm94cGxvdChkYXRhID0gaXJpc192aXJnaW5pY2FfcGV0YWxzLCBhZXMoeCA9IFNwZWNpZXMsIHkgPSBQZXRhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkKYGBgCgojIyBmYWNldHMKCkFub3RoZXIgZ3JlYXQgdG9vbCBnZ3Bsb3QgcHJvdmlkZXMgaXMgZmFjZXRpbmcuIFRoaXMgYWxsb3dzIHlvdSB0byBzZXBhcmF0ZSBkYXRhIGludG8gc3VicGxvdHMgYmFzZWQgb24gYSBjb2x1bW4gKG9yIG11bHRpcGxlIGNvbHVtbnMpOgpgYGB7cn0KYmFzaWNfaXJpc19wbG90ICsKICBmYWNldF93cmFwKCB+IFNwZWNpZXMpCmBgYApOb3RpY2UgdGhhdCB0aGUgeC1heGVzIGFyZSBjb25zaXN0ZW50IGFtb25nIHRoZXNlIHBsb3RzLgoKIyMgTG90cyBvZiBhZGRpdGlvbmFsIHBhY2thZ2VzIQoKQmVjYXVzZSBnZ3Bsb3QgaXMgc28gcG9wdWxhciwgdGhlcmUncyBiZWVuIGEgdG9uIG9mIGFkZGl0aW9uYWwgcGFja2FnZXMgd3JpdHRlbiB0aGF0IGJ1aWxkIG9uIHRvcCBvZiBpdC4gSGVyZSBhcmUgdHdvIGV4YW1wbGVzLgoKIyMjIGdnYW5pbWF0ZQoKQWRkIGFuaW1hdGlvbnMgdG8gcGxvdHMKYGBge3Igd2FybmluZz1GQUxTRSwgbWVzc2FnZT1GQUxTRSwgcmVzdWx0cyA9IEZBTFNFfQppbnN0YWxsLnBhY2thZ2VzKCdnaWZza2knKQppbnN0YWxsLnBhY2thZ2VzKCdnZ2FuaW1hdGUnKQpsaWJyYXJ5KGdnYW5pbWF0ZSkKYW5pbWF0ZWRfaXJpc19wbG90IDwtCiAgYmFzaWNfaXJpc19wbG90ICsgdHJhbnNpdGlvbl9zdGF0ZXMoU3BlY2llcykKIyBzYXZlIHBsb3Qgd2l0aCAzIGZyYW1lcywgcGxheSBhdCAxIGZyYW1lIHBlciBzZWNvbmQKYW5pbV9zYXZlKCJhbmltYXRlZF9pcmlzX3Bsb3QuZ2lmIiwgYW5pbWF0ZWRfaXJpc19wbG90LCBuZnJhbWVzID0gNCwgZnBzID0gMSkKIyByZW5kZXIgcGxvdCB1c2luZyAhW10ocGxvdF9wYXRoKSBvdXRzaWRlIG9mIGNvZGUgY2h1bmsKYGBgCgojIyMgY293cGxvdAoKQXJyYW5nZSB5b3VyIHBsb3RzIGZvciBwdWJsaWNhdGlvbiBmaWd1cmVzCmBgYHtyfQppbnN0YWxsLnBhY2thZ2VzKCdjb3dwbG90JykKbGlicmFyeShjb3dwbG90KQpwbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgc2VwYWxfdHJlbmRzX2ZpZ3VyZSwgcGV0YWxfYm94cGxvdF9maWd1cmUsCiAgICAgICAgICBsYWJlbHMgPSAiQVVUTyIpCmBgYAoKYGBge3J9CmxpYnJhcnkoY293cGxvdCkKdG9wX3JvdyA8LSBwbG90X2dyaWQoc2VwYWxfcG9pbnRzX2ZpZ3VyZSwgbGFiZWxzID0gJ0EnKQpib3R0b21fcm93IDwtIHBsb3RfZ3JpZChzZXBhbF90cmVuZHNfZmlndXJlLCBwZXRhbF9ib3hwbG90X2ZpZ3VyZSwgbGFiZWxzID0gYygnQicsICdDJykpCnBsb3RfZ3JpZCh0b3Bfcm93LCBib3R0b21fcm93LCBucm93ID0gMikKYGBgCg==</div>
 
 
 
