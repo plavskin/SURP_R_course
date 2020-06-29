@@ -16,7 +16,7 @@ output:
     tidy: yes
     toc: yes
 ---
-**Solutions to this workshop can be found [here](Solutions_Workshop_6.nb.html)**
+**Solutions to this workshop can be found [here](Solutions_Workshop_8.nb.html)**
 
 # Intro to plotting
 
@@ -103,7 +103,6 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, col
   geom_point(alpha = 0.33, shape = 23, size = 5)
 ```
 
-
 Notice that the plot above uses *both* a variable-dependent color (based on the penguin dataframe's *species* column), which goes inside *aes( )*, and variable-independent values (alpha, shape, size) that applies to the whole geom_point command and goes outside *aes( )*
 
 Also, notice that you got a legend for *free*! You didn't have to tell ggplot how to make it, or what info to include in it; it knows automatically based on how you set up your **mapping**.
@@ -132,6 +131,8 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, col
 ```
 Notice that the *alpha* argument we provided only applies to geom_point, so the contour lines don't show any transparency. However, any arguments provided to **mapping** in an aes( ) statement in the **ggplot( )** command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)
 
+***
+
 One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of bill length vs depth *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
 ```{r}
 # Removed alpha for simplicity
@@ -149,24 +150,25 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
 ```
 This plot shows that **mapping** actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it's represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they're instead calculated across all the points in the dataset.
 
-Let's try an exercise. A really useful kind of plot you can make while exploring data is a *density* plot, which shows pretty much a normalized, smoothed histogram of your data using **geom_density**. For example, if we want to get an idea of what the distribution of Petal Lengths in our dataset is, we can run:
+Let's try an exercise. A really useful kind of plot you can make while exploring data is a *density* plot, which shows pretty much a normalized, smoothed histogram of your data using **geom_density**. For example, if we want to get an idea of what the distribution of bill lengths in our dataset is, we can run:
 ```{r}
 # Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = iris) +
-  geom_density(mapping = aes(x = Petal.Length))
+ggplot(data = penguins) +
+  geom_density(mapping = aes(x = bill_length_mm))
 ```
 
 Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species' data:
 ```{r}
-# Make a density plot that shows both the distribution of Petal.Length in all
+# Make a density plot that shows both the distribution of bill_length_mm in all
 # the data together in one color, and the distribution for each species'
-# Petal.Length each in its own color
+# bill_lengh_mm each in its own color
 
 # Bonus: Change the linetype of the species' density plots so that each species
 # has the same dashed line, but the line representing results across all the
 # data is solid
 ```
 
+***
 
 # The structure of data that ggplot can plot
 
@@ -176,28 +178,34 @@ As you've seen, ggplot provides users with the power to easily change the appear
 * each observation must have its own row (but what's an observation?)
 * each value must have its own cell
 
-Let's take a look at what that means. Compare the *iris* dataframe we've been using to the *iris3* data, which comes with R and contains the same data:
+Let's take a look at what that means. Imagine the penguin data was collected for breeding pairs. Below we have created two subset of the *penguins* dataframe to mimic this, containing the same data on the same individuals, one male and one female per species.
 ```{r}
-iris_3_df <- data.frame(iris3)
-print(iris_3_df)
+penguin_pairs_1 <- penguins[c(1,2,5,6,155:158,277:280),
+                            c('species', 'sex', 'bill_length_mm')]
+penguin_pairs_1$breeding_pair <- rep(1:6, each = 2)
+
+penguin_pairs_2 <-
+  pivot_wider(penguin_pairs_1, names_from = 'sex',
+              values_from = 'bill_length_mm', names_prefix = 'bill_length_mm_')
+
+print(penguin_pairs_1)
+print(penguin_pairs_2)
 ```
 
-Notice that in this modified version of the iris dataset, there is a single row containing data on plants from each of the three iris species. This is not a completely crazy thing to do: maybe our experiment consisted of 50 individual pots, each of which had a plant from every species, and we collected the data on a pot-by-pot level. But organizing the data in this way makes directly graphing it with ggplot a real pain, at least if we want to compare species with each other. We no longer have a 'species' column, or neat columns for other mappings we might be interested in (e.g. Sepal Width).
+Imagine we had two graphs we wanted to make:
 
-Here's an attempt to make do with what we have:
+1. Plot the distribution (density) of bill lengths for all the penguins, colored by species.
+2. Plot the bill length for male vs female individuals of each breeding pair, colored by species
+
+For each of these graphs, what are the *individual observations* (i.e. are they breeding pairs or individual penguins)? Which is the easiest dataset to use for plotting each of these graphs with **ggplot**?
+
+Try both of them out below.
+
 ```{r}
-ggplot(data = iris_3_df) +
-  geom_point(mapping = aes(x = Sepal.L..Setosa, y = Sepal.W..Setosa), color = 'red') +
-  geom_point(mapping = aes(x = Sepal.L..Versicolor, y = Sepal.W..Versicolor), color = 'blue') +
-  geom_point(mapping = aes(x = Sepal.L..Virginica, y = Sepal.W..Virginica), color = 'green') +
-  scale_x_continuous(name = 'Sepal Length') +
-  scale_y_continuous(name = 'Sepal Width')
+
 ```
-Some things still work well automatically (e.g. ggplot scales axes for us), but it's a lot more effort to do this, and if we wanted to have a legend on this plot (or had more than a few categories we were interested in), it would be a complete nightmare.
 
-When putting together data to plot, we need to think very carefully about what exactly constitutes a single 'observation', and what the 'variables' are that we want to use for mapping. 
-
-The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** package) has some really great functions for re-organizing data that looks like *iris3* into a 'tidy' dataframe, and if you find yourself facing data that isn't organized the right way for your plot, I really suggest looking over [David Gresham's tidyverse tutorial](https://learn.gencore.bio.nyu.edu/tidyverse/).
+The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** package) has some really great functions for re-organizing data, allowing you to convert from something that looks like `penguin_pairs_1` into `penguin_pairs_2`, and vice versa. If you find yourself facing data that isn't organized the right way for your plot, I really suggest looking over [David Gresham's tidyverse tutorial](https://learn.gencore.bio.nyu.edu/tidyverse/) and the more up-to-date [tidyr tutorial on pivot](https://tidyr.tidyverse.org/articles/pivot.html).
 
 # Why ggplot
 
