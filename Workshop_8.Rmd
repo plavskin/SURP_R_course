@@ -222,14 +222,14 @@ The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** pac
 
 ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:
 ```{r}
-basic_iris_plot <-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+basic_penguin_plot <-
+  ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
-print(basic_iris_plot)
+print(basic_penguin_plot)
 # let's add another geom to this plot
-iris_plot_with_contours <-
-  basic_iris_plot + geom_density2d()
-print(iris_plot_with_contours)
+penguin_plot_with_contours <-
+  basic_penguin_plot + geom_density2d()
+print(penguin_plot_with_contours)
 ```
 
 ***
@@ -242,18 +242,18 @@ ggplot also allows a huge amount of control over other aspects of the plot (e.g.
 
 Adding a title to a plot can be achieved using ggtitle()
 ```{r}
-basic_iris_plot +
-  ggtitle('Iris Sepals')
+basic_penguin_plot +
+  ggtitle('Penguin Bills')
 ```
 
 We can also modify the axis properties directly
 ```{r}
-basic_iris_plot +
-  ggtitle('Iris Sepals') +
-  scale_x_continuous(name = 'Sepal Length',
-                     limits = c(0,10)) +
-  scale_y_log10(name = 'Sepal Width',
-                breaks = c(2,3,4))
+basic_penguin_plot +
+  ggtitle('Penguin Bills') +
+  scale_x_continuous(name = 'Bill Length',
+                     limits = c(0,60)) +
+  scale_y_log10(name = 'Bill Depth',
+                breaks = c(15, 18, 21))
 ```
 There's a few things going on here:
 
@@ -267,18 +267,18 @@ There's a few things going on here:
 
 You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to 'color' on our plot is represented, we can use **scale_color_discrete( )**, or, if we want to manually change the values assigned to each category (e.g. the colors), **scale_color_manual( )**:
 ```{r}
-basic_iris_plot +
+basic_penguin_plot +
   scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris"))
+                     name="Penguin Species",
+                     labels=c("Adelie", "Chinstrap", "Gentoo"))
 ```
 We can also change the position of the legend using **theme( )** (which can actually control nearly every other aesthetic aspect of the plot, such as font size, which axes get labels/tickmarks, etc).
 
 ```{r}
-basic_iris_plot +
+basic_penguin_plot +
   scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris")) +
+                     name="Penguin Species",
+                     labels=c("Adelie", "Chinstrap", "Gentoo")) +
   theme(legend.position = 'bottom')
 ```
 
@@ -286,10 +286,10 @@ basic_iris_plot +
 
 Finally, the overall appearance of the graph can be changed by selecting a custom 'theme'; this is a bit confusing, since these are distinct from the **theme( )** command used above.
 ```{r}
-basic_iris_plot +
+basic_penguin_plot +
   scale_color_manual(values=c("violet", "blue", "gray"),
-                     name="Iris Species",
-                     labels=c("Bristle-Pointed Iris", "Blue Flag", "Virginia Iris")) +
+                     name="Penguin Species",
+                     labels=c("Adelie", "Chinstrap", "Gentoo")) +
   theme(legend.position = 'bottom') +
   theme_bw()
 ```
@@ -300,26 +300,26 @@ basic_iris_plot +
 
 ## combining multiple data frames on one plot
 
-ggplot makes it super easy to combine multiple datasets on one plot, assuming they have the relevant variables (dataframe columns) in common. Let's break up the iris dataframe to see how this works:
+ggplot makes it super easy to combine multiple datasets on one plot, assuming they have the relevant variables (dataframe columns) in common. Let's break up the penguins dataframe to see how this works:
 ```{r}
-iris_nonvirginca <- subset(iris, Species != 'virginica')
-iris_virginica_petals <- subset(iris, Species == 'virginica')[, c('Petal.Width', 'Species')]
-print(iris_nonvirginca)
-print(iris_virginica_petals)
+penguins_nonchinstrap <- subset(penguins, species != 'Chinstrap')
+penguin_chinstrap_mass <- subset(penguins, species == 'Chinstrap')[, c('body_mass_g', 'species')]
+print(penguins_nonchinstrap)
+print(penguin_chinstrap_mass)
 ```
 We now have two dataframes, containing data on different species, and with only a subset of the data in one that is contained in the other (the petal widths and species). But if petal width and species is what we want to plot, this isn't a problem for ggplot:
 ```{r}
 ggplot() +
-  geom_boxplot(data = iris_nonvirginca, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot(data = iris_virginica_petals, aes(x = Species, y = Petal.Width, color = Species))
+  geom_boxplot(data = penguins_nonchinstrap, aes(x = species, y = body_mass_g, color = species)) +
+  geom_boxplot(data = penguin_chinstrap_mass, aes(x = species, y = body_mass_g, color = species))
 ```
 
 ## facets
 
 Another great tool ggplot provides is faceting. This allows you to separate data into subplots based on a column (or multiple columns):
 ```{r}
-basic_iris_plot +
-  facet_wrap( ~ Species)
+basic_penguin_plot +
+  facet_wrap( ~ species)
 ```
 Notice that the x-axes are consistent among these plots.
 
@@ -334,26 +334,9 @@ Add animations to plots
 install.packages('gifski')
 install.packages('gganimate')
 library(gganimate)
-animated_iris_plot <-
-  basic_iris_plot + transition_states(Species)
+animated_pegnuin_plot <-
+  basic_penguin_plot + transition_states(species)
 # save plot with 3 frames, play at 1 frame per second
-anim_save("animated_iris_plot.gif", animated_iris_plot, nframes = 4, fps = 1)
+anim_save("animated_penguin_plot.gif", animated_penguin_plot, nframes = 4, fps = 1)
 # render plot using ![](plot_path) outside of code chunk
-```
-
-### cowplot
-
-Arrange your plots for publication figures
-```{r}
-install.packages('cowplot')
-library(cowplot)
-plot_grid(sepal_points_figure, sepal_trends_figure, petal_boxplot_figure,
-          labels = "AUTO")
-```
-
-```{r}
-library(cowplot)
-top_row <- plot_grid(sepal_points_figure, labels = 'A')
-bottom_row <- plot_grid(sepal_trends_figure, petal_boxplot_figure, labels = c('B', 'C'))
-plot_grid(top_row, bottom_row, nrow = 2)
 ```
