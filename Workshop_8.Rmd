@@ -38,7 +38,7 @@ plot(penguins$bill_length_mm, penguins$bill_depth_mm)
 Pretty straightforward; the command is `plot(x, y)`.
 
 ```{r}
-# Try making a plot of penguin flipper length vs flipper body mass
+# Try making a plot of penguin flipper length vs body mass
 
 # comparing these two plots, what conclusions would you make? how could these plots be improved?
 
@@ -113,7 +113,7 @@ Let's try an exercise:
 
 ```{r}
 # Based on the code above, make a plot where body mass is on the x axis,
-# flipper length is on the y axis, all the points have a red outline, 
+# flipper length is on the y axis, 
 #the fill of the points depends on the island, 
 # and the shape of the point depends on the species
 
@@ -131,44 +131,6 @@ ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm, col
 ```
 Notice that the *alpha* argument we provided only applies to geom_point, so the contour lines don't show any transparency. However, any arguments provided to **mapping** in an aes( ) statement in the **ggplot( )** command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)
 
-***
-
-One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of bill length vs depth *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
-```{r}
-# Removed alpha for simplicity
-# Made contour plot line color black (default is blue)
-ggplot(data = penguins) +
-  geom_density2d(mapping = aes(x = bill_length_mm, y = bill_depth_mm), color = 'black') +
-  geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species))
-```
-
-```{r eval=F}
-# can also be written as
-ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_density2d(color = 'black') +
-  geom_point(mapping = aes(color = species))
-```
-This plot shows that **mapping** actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it's represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they're instead calculated across all the points in the dataset.
-
-Let's try an exercise. A really useful kind of plot you can make while exploring data is a *density* plot, which shows pretty much a normalized, smoothed histogram of your data using **geom_density**. For example, if we want to get an idea of what the distribution of bill lengths in our dataset is, we can run:
-```{r}
-# Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = penguins) +
-  geom_density(mapping = aes(x = bill_length_mm))
-```
-
-Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species' data:
-```{r}
-# Make a density plot that shows both the distribution of bill_length_mm in all
-# the data together in one color, and the distribution for each species'
-# bill_lengh_mm each in its own color
-
-# Bonus: Change the linetype of the species' density plots so that each species
-# has the same dashed line, but the line representing results across all the
-# data is solid
-```
-
-***
 
 # The structure of data that ggplot can plot
 
@@ -218,6 +180,17 @@ The **tidyr** package (which, like **ggplot2**, is part of the **tidyverse** pac
 * __plots as objects__: storing plots as objects allows them to be easily modified and combined into figures
 * __incredibly helpful online examples__: the *tidyverse* website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: [https://ggplot2.tidyverse.org/reference/](https://ggplot2.tidyverse.org/reference/)
 
+# Plot your own data!
+Try plotting some of your own data! Here are some commonly used types of plots (and their corresponding geoms) for data visualization:  
+* scatter plots: geom_point()
+* density plots: geom_density()
+* histograms: geom_histogram()
+* boxplots: geom_boxplot()
+* barplots: geom_bar()
+* lineplots: geom_line()
+
+***
+
 ## Aside: ggplot objects
 
 ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:
@@ -232,7 +205,6 @@ penguin_plot_with_contours <-
 print(penguin_plot_with_contours)
 ```
 
-***
 
 ## themes and other options we can change
 
@@ -294,9 +266,45 @@ basic_penguin_plot +
   theme_bw()
 ```
 
-***
 
 # Other cool things
+
+## More info about stacking multiple geoms
+
+One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let's say we'd like our datapoints to be colored by species, but we'd also like to see a contour plot of bill length vs depth *across all the species*. To do this, we're going to have to move our **mapping** calls inside the geoms, since we now want each geom to map the data differently:
+```{r}
+# Removed alpha for simplicity
+# Made contour plot line color black (default is blue)
+ggplot(data = penguins) +
+  geom_density2d(mapping = aes(x = bill_length_mm, y = bill_depth_mm), color = 'black') +
+  geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species))
+```
+
+```{r eval=F}
+# can also be written as
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_density2d(color = 'black') +
+  geom_point(mapping = aes(color = species))
+```
+This plot shows that **mapping** actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it's represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they're instead calculated across all the points in the dataset.
+
+Let's try an exercise. A really useful kind of plot you can make while exploring data is a *density* plot, which shows pretty much a normalized, smoothed histogram of your data using **geom_density**. For example, if we want to get an idea of what the distribution of bill lengths in our dataset is, we can run:
+```{r}
+# Density plot to see the distribution of bill lengths in our data
+ggplot(data = penguins) +
+  geom_density(mapping = aes(x = bill_length_mm))
+```
+
+Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species' data:
+```{r}
+# Make a density plot that shows both the distribution of bill_length_mm in all
+# the data together in one color, and the distribution for each species'
+# bill_lengh_mm each in its own color
+
+# Bonus: Change the linetype of the species' density plots so that each species
+# has the same dashed line, but the line representing results across all the
+# data is solid
+```
 
 ## combining multiple data frames on one plot
 

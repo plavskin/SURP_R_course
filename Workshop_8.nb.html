@@ -1760,14 +1760,13 @@ summary {
 <li><a href="#intro-to-plotting">Intro to plotting</a><ul>
 <li><a href="#the-basic-structure-of-a-plot">The basic structure of a plot</a></li>
 <li><a href="#intro-to-ggplot">Intro to ggplot</a></li>
-</ul></li>
-<li><a href="#load-the-ggplot2-library-into-the-current-r-session">load the ggplot2 library into the current R session</a><ul>
 <li><a href="#modifying-geom-properties">Modifying <strong>geom</strong> properties</a></li>
 <li><a href="#mapping-lots-of-variables">Mapping lots of variables</a></li>
 <li><a href="#stacking-multiple-geoms">Stacking multiple <strong>geoms</strong></a></li>
 </ul></li>
 <li><a href="#the-structure-of-data-that-ggplot-can-plot">The structure of data that ggplot can plot</a></li>
-<li><a href="#why-ggplot">Why ggplot</a><ul>
+<li><a href="#why-ggplot">Why ggplot</a></li>
+<li><a href="#plot-your-own-data">Plot your own data!</a><ul>
 <li><a href="#aside-ggplot-objects">Aside: ggplot objects</a></li>
 <li><a href="#themes-and-other-options-we-can-change">themes and other options we can change</a><ul>
 <li><a href="#axes-titles">axes + titles</a></li>
@@ -1776,6 +1775,7 @@ summary {
 </ul></li>
 </ul></li>
 <li><a href="#other-cool-things">Other cool things</a><ul>
+<li><a href="#more-info-about-stacking-multiple-geoms">More info about stacking multiple geoms</a></li>
 <li><a href="#combining-multiple-data-frames-on-one-plot">combining multiple data frames on one plot</a></li>
 <li><a href="#facets">facets</a></li>
 <li><a href="#lots-of-additional-packages">Lots of additional packages!</a><ul>
@@ -1795,35 +1795,16 @@ summary {
 <p>Let’s load in and consider the <em>penguins</em> dataset that we played with when learning about dataframes. We had loaded this in from a <em>.csv</em> file.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxucHJpbnQoaXJpcylcbmBgYFxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code>print(iris)</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Let’s use base R to plot the bill length vs bill depth for all the data</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxucGxvdChpcmlzJFNlcGFsLkxlbmd0aCwgaXJpcyRTZXBhbC5XaWR0aClcbmBgYFxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code>plot(iris$Sepal.Length, iris$Sepal.Width)</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Pretty straightforward; the command is <code>plot(x, y)</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBUcnkgbWFraW5nIGEgcGxvdCBvZiBpcmlzIFNlcGFsIFdpZHRoIHZzIFBldGFsIFdpZHRoXG5cbmBgYFxuYGBgXG5gYGBcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code># Try making a plot of iris Sepal Width vs Petal Width
-</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>You can further modify the plot if you want to change the way the points look, etc. As I mentioned, we won’t be going deep into the details of the regular R plot function.</p>
@@ -1833,24 +1814,11 @@ summary {
 <p>Let’s try to use ggplot to plot the same data. First, install <strong>ggplot2</strong> (if you haven’t already done so) and load it into your R session.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgZ2dwbG90MiBvbmx5IGlmIHlvdSBoYXZlbid0IGFscmVhZHlcbiNpbnN0YWxsLnBhY2thZ2VzKCdnZ3Bsb3QyJylcblxuIyBsb2FkIHRoZSBnZ3Bsb3QyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb25cbmxpYnJhcnkoZ2dwbG90MilcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r # uncomment the line below and install ggplot2 only if you haven’t already #install.packages(‘ggplot2’)</p>
-</div>
-</div>
-<div id="load-the-ggplot2-library-into-the-current-r-session" class="section level1">
-<h1>load the ggplot2 library into the current R session</h1>
-<p>library(ggplot2)</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The same plot as the one we made above is actually a bit more complicated to put together in ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSkgK1xuICBnZW9tX3BvaW50KClcbmBgYFxuYGBgIn0= -->
-<p><code>r</code>r ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) + geom_point()</p>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The above contains the components that are the bare minimum of what we need for a ggplot plot; we can add more on later, but let’s dissect the parts of this command:</p>
@@ -1871,13 +1839,10 @@ summary {
 <p>Arguments like <em>data</em> and <em>mapping</em> can go in the parentheses after the geom, producing the same plot as above:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KCkgK1xuICBnZW9tX3BvaW50KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSlcbmBgYCJ9 -->
-<pre class="r"><code>ggplot() +
-  geom_point(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm))</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>But there are specific situations in which it’s better to do this (we’ll see them later)</p>
+</div>
 <div id="modifying-geom-properties" class="section level2">
 <h2>Modifying <strong>geom</strong> properties</h2>
 <p>We can also pass additional arguments to the geom: useful ones to know are:</p>
@@ -1895,14 +1860,6 @@ summary {
 <p>Remember that the <strong>mapping</strong> argument deals with <em>any properties of the plot that depend on variables in the supplied data frame</em>. So we can modify our original code like this:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBEZW5zaXR5IHBsb3QgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24gb2YgUGV0YWwgTGVuZ3RocyBpbiBvdXIgZGF0YVxuZ2dwbG90KGRhdGEgPSBpcmlzKSArXG4gIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBQZXRhbC5MZW5ndGgpKVxuYGBgXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code># Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = iris) +
-  geom_density(mapping = aes(x = Petal.Length))</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Notice that the plot above uses <em>both</em> a variable-dependent color (based on the penguin dataframe’s <em>species</em> column), which goes inside <em>aes( )</em>, and variable-independent values (alpha, shape, size) that applies to the whole geom_point command and goes outside <em>aes( )</em></p>
@@ -1911,18 +1868,6 @@ ggplot(data = iris) +
 <p>Let’s try an exercise:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBNYWtlIGEgZGVuc2l0eSBwbG90IHRoYXQgc2hvd3MgYm90aCB0aGUgZGlzdHJpYnV0aW9uIG9mIFBldGFsLkxlbmd0aCBpbiBhbGxcbiMgdGhlIGRhdGEgdG9nZXRoZXIgaW4gb25lIGNvbG9yLCBhbmQgdGhlIGRpc3RyaWJ1dGlvbiBmb3IgZWFjaCBzcGVjaWVzJ1xuIyBQZXRhbC5MZW5ndGggZWFjaCBpbiBpdHMgb3duIGNvbG9yXG5cbiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXNcbiMgaGFzIHRoZSBzYW1lIGRhc2hlZCBsaW5lLCBidXQgdGhlIGxpbmUgcmVwcmVzZW50aW5nIHJlc3VsdHMgYWNyb3NzIGFsbCB0aGVcbiMgZGF0YSBpcyBzb2xpZFxuYGBgXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code># Make a density plot that shows both the distribution of Petal.Length in all
-# the data together in one color, and the distribution for each species'
-# Petal.Length each in its own color
-
-# Bonus: Change the linetype of the species' density plots so that each species
-# has the same dashed line, but the line representing results across all the
-# data is solid</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -1931,82 +1876,9 @@ ggplot(data = iris) +
 <p>One of the places where ggplot really shines is when you want to combine multiple data representations on one plot. For example, I <em>really</em> like topology-style contour plots, which ggplot can make with <strong>geom_density2d</strong>. Once we know how to make a basic plot, and combining a contour plot with a plot the individual data points is super easy in ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxuYmFzaWNfaXJpc19wbG90IDwtXG4gIGdncGxvdChkYXRhID0gaXJpcywgYWVzKHggPSBTZXBhbC5MZW5ndGgsIHkgPSBTZXBhbC5XaWR0aCwgY29sb3IgPSBTcGVjaWVzKSkgK1xuICBnZW9tX3BvaW50KClcbnByaW50KGJhc2ljX2lyaXNfcGxvdClcbiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3RcbmlyaXNfcGxvdF93aXRoX2NvbnRvdXJzIDwtXG4gIGJhc2ljX2lyaXNfcGxvdCArIGdlb21fZGVuc2l0eTJkKClcbnByaW50KGlyaXNfcGxvdF93aXRoX2NvbnRvdXJzKVxuYGBgXG5gYGBcbmBgYFxuYGBgXG5gYGAifQ== -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code>basic_iris_plot &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-print(basic_iris_plot)
-# let's add another geom to this plot
-iris_plot_with_contours &lt;-
-  basic_iris_plot + geom_density2d()
-print(iris_plot_with_contours)</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Notice that the <em>alpha</em> argument we provided only applies to geom_point, so the contour lines don’t show any transparency. However, any arguments provided to <strong>mapping</strong> in an aes( ) statement in the <strong>ggplot( )</strong> command apply across all geoms. (Also, notice that when we add a geom, ggplot automatically updates our legend!)</p>
-<hr />
-<p>One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let’s say we’d like our datapoints to be colored by species, but we’d also like to see a contour plot of bill length vs depth <em>across all the species</em>. To do this, we’re going to have to move our <strong>mapping</strong> calls inside the geoms, since we now want each geom to map the data differently:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjYW4gYWxzbyBiZSB3cml0dGVuIGFzXG5nZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pKSArXG4gIGdlb21fZGVuc2l0eTJkKGNvbG9yID0gJ2JsYWNrJykgK1xuICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoY29sb3IgPSBzcGVjaWVzKSlcbmBgYCJ9 -->
-<pre class="r"><code># can also be written as
-ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_density2d(color = 'black') +
-  geom_point(mapping = aes(color = species))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiMgY2FuIGFsc28gYmUgd3JpdHRlbiBhcyIsImdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsiLCIgIGdlb21fZGVuc2l0eTJkKGNvbG9yID0gJ2JsYWNrJykgKyIsIiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKGNvbG9yID0gc3BlY2llcykpIl19 -->
-<pre class="r"><code># can also be written as
-ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
-  geom_density2d(color = 'black') +
-  geom_point(mapping = aes(color = species))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This plot shows that <strong>mapping</strong> actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it’s represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they’re instead calculated across all the points in the dataset.</p>
-<p>Let’s try an exercise. A really useful kind of plot you can make while exploring data is a <em>density</em> plot, which shows pretty much a normalized, smoothed histogram of your data using <strong>geom_density</strong>. For example, if we want to get an idea of what the distribution of bill lengths in our dataset is, we can run:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZW5zaXR5IHBsb3QgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24gb2YgUGV0YWwgTGVuZ3RocyBpbiBvdXIgZGF0YVxuZ2dwbG90KGRhdGEgPSBwZW5ndWlucykgK1xuICBnZW9tX2RlbnNpdHkobWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0pKVxuYGBgIn0= -->
-<pre class="r"><code># Density plot to see the distribution of Petal Lengths in our data
-ggplot(data = penguins) +
-  geom_density(mapping = aes(x = bill_length_mm))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species’ data:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuYGBgclxuYGBgclxuYGBgclxuIyBhIGZpZ3VyZSB3aXRoIHRoZSBpcmlzIGRhdGFcbnNlcGFsX3BvaW50cyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9wb2ludCgpXG5cbnNlcGFsX3RyZW5kcyA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU2VwYWwuTGVuZ3RoLCB5ID0gU2VwYWwuV2lkdGgsIGNvbG9yID0gU3BlY2llcykpICtcbiAgZ2VvbV9zbW9vdGgobWV0aG9kID0gJ2xtJylcblxuIyBtYWtlIGJveHBsb3Qgd2l0aCBvdmVybGFpZCBwb2ludHMgcmFuZG9tbHkgcGxhY2VkIG9mZi1jZW50ZXIgYW5kXG4jIHRleHQgbGFiZWxzIHBsYWNlZCBhdCB5ID0gMC43NVxucGV0YWxfYm94cGxvdCA8LVxuICBnZ3Bsb3QoZGF0YSA9IGlyaXMsIGFlcyh4ID0gU3BlY2llcywgeSA9IFBldGFsLldpZHRoLCBjb2xvciA9IFNwZWNpZXMpKSArXG4gIGdlb21fYm94cGxvdCgpICtcbiAgZ2VvbV90ZXh0KGFlcyhsYWJlbCA9IFNwZWNpZXMpLCB5ID0gMC43NSkgK1xuICBnZW9tX3BvaW50KHBvc2l0aW9uID0gJ2ppdHRlcicpXG5gYGBcbmBgYFxuYGBgXG5gYGBcbmBgYCJ9 -->
-<p><code>r</code>r <code>r</code>r</p>
-<pre class="r"><code># a figure with the iris data
-sepal_points &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_point()
-
-sepal_trends &lt;-
-  ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
-  geom_smooth(method = 'lm')
-
-# make boxplot with overlaid points randomly placed off-center and
-# text labels placed at y = 0.75
-petal_boxplot &lt;-
-  ggplot(data = iris, aes(x = Species, y = Petal.Width, color = Species)) +
-  geom_boxplot() +
-  geom_text(aes(label = Species), y = 0.75) +
-  geom_point(position = 'jitter')</code></pre>
-<pre><code></code></pre>
-<pre><code></code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<hr />
 </div>
 </div>
 <div id="the-structure-of-data-that-ggplot-can-plot" class="section level1">
@@ -2020,7 +1892,7 @@ petal_boxplot &lt;-
 <p>Let’s take a look at what that means. Imagine the penguin data was collected for breeding pairs. Below we have created two subset of the <em>penguins</em> dataframe to mimic this, containing the same data on the same individuals, one male and one female per species.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGVuZ3Vpbl9wYWlyc18xIDwtIHBlbmd1aW5zW2MoMSwyLDUsNiwxNTU6MTU4LDI3NzoyODApLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGMoJ3NwZWNpZXMnLCAnc2V4JywgJ2JpbGxfbGVuZ3RoX21tJyldXG5wZW5ndWluX3BhaXJzXzEkYnJlZWRpbmdfcGFpciA8LSByZXAoMTo2LCBlYWNoID0gMilcblxucGVuZ3Vpbl9wYWlyc18yIDwtXG4gIHBpdm90X3dpZGVyKHBlbmd1aW5fcGFpcnNfMSwgbmFtZXNfZnJvbSA9ICdzZXgnLFxuICAgICAgICAgICAgICB2YWx1ZXNfZnJvbSA9ICdiaWxsX2xlbmd0aF9tbScsIG5hbWVzX3ByZWZpeCA9ICdiaWxsX2xlbmd0aF9tbV8nKVxuXG5wcmludChwZW5ndWluX3BhaXJzXzEpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGVuZ3Vpbl9wYWlyc18xIDwtIHBlbmd1aW5zW2MoMSwyLDUsNiwxNTU6MTU4LDI3NzoyODApLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGMoJ3NwZWNpZXMnLCAnc2V4JywgJ2JpbGxfbGVuZ3RoX21tJyldXG5wZW5ndWluX3BhaXJzXzEkYnJlZWRpbmdfcGFpciA8LSByZXAoMTo2LCBlYWNoID0gMilcblxucGVuZ3Vpbl9wYWlyc18yIDwtXG4gIHBpdm90X3dpZGVyKHBlbmd1aW5fcGFpcnNfMSwgbmFtZXNfZnJvbSA9ICdzZXgnLFxuICAgICAgICAgICAgICB2YWx1ZXNfZnJvbSA9ICdiaWxsX2xlbmd0aF9tbScsIG5hbWVzX3ByZWZpeCA9ICdiaWxsX2xlbmd0aF9tbV8nKVxuXG5wcmludChwZW5ndWluX3BhaXJzXzEpXG5wcmludChwZW5ndWluX3BhaXJzXzIpXG5gYGAifQ== -->
 <pre class="r"><code>penguin_pairs_1 &lt;- penguins[c(1,2,5,6,155:158,277:280),
                             c('species', 'sex', 'bill_length_mm')]
 penguin_pairs_1$breeding_pair &lt;- rep(1:6, each = 2)
@@ -2029,25 +1901,9 @@ penguin_pairs_2 &lt;-
   pivot_wider(penguin_pairs_1, names_from = 'sex',
               values_from = 'bill_length_mm', names_prefix = 'bill_length_mm_')
 
-print(penguin_pairs_1)</code></pre>
+print(penguin_pairs_1)
+print(penguin_pairs_2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6MTJ9LCJyZGYiOiJINHNJQUFBQUFBQUFBMzFTWFU3Q1FCQmUrZ09CQ0NIeEhEUXgrT0JqRlFQeWFqVEJKN0swQzJ4Y3RrMjdLSThld0F2b0FieUFGL0FBZUJ1ZnFiUHRMR21iNkNiVG1mbG05cHVmN2UzMWJOaVpkUWdoTnJHYklDNll4TDIvR3c4dUNIRXNjQnJFSVcydGQ1QjBDb1lEdWd2NkpBOVd4YTZKVlpVS1lWT3dKeVpTc1BwNU5xS1hJUk9jb2RjZXJibE1WVUpqRTU0d3FhS29SdVVHZ3FhRzZjaS9wSUdLRXJBT3BZNnRVcmRXU2RkeDlIVVpLME5tNjhqTU5sU1lIcDNjempQdDdMOGVTRS8zNEk5ZTkzQysvZEdYM2pYeHJ4N2U0THo3bzQrbFB2NE4rbE5TeENmN0luL2lvNC9heEtkNGIvdzUxQWVnK3V1WWVjeXJPQ2d1U3JPUTZrb2wzVEN6VWdmQlZocXpnQU5jdUhiS2RtajJGbHlJdVdCeXBkYnp6UWJSN2lKaExPUnlOWThwVDJvVjJrbjA3SmtxdW1YckJUNVpsdjM4c2N4T1NCWDFsZ2xjS1JaYW9XdEZzZUtSQkRMckZPY3FYMjRrTmFDL2xicDRPQWpXVy9rNE9EdlhGWEJoQkR0cTRDS043UlExSGRPWmE1NFo1dWJTL0JDdW9Bc216R0pneW54SUwwNjRWR1lVUUZOUFJZcWF2RTRRQ1lNVWY4dmhGOVQ1QkFHZEF3QUEifQ== -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["sex"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["bill_length_mm"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["breeding_pair"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Adelie","2":"male","3":"39.1","4":"1"},{"1":"Adelie","2":"female","3":"39.5","4":"1"},{"1":"Adelie","2":"female","3":"36.7","4":"2"},{"1":"Adelie","2":"male","3":"39.3","4":"2"},{"1":"Gentoo","2":"female","3":"48.7","4":"3"},{"1":"Gentoo","2":"male","3":"50.0","4":"3"},{"1":"Gentoo","2":"male","3":"47.6","4":"4"},{"1":"Gentoo","2":"female","3":"46.5","4":"4"},{"1":"Chinstrap","2":"female","3":"46.5","4":"5"},{"1":"Chinstrap","2":"male","3":"50.0","4":"5"},{"1":"Chinstrap","2":"male","3":"51.3","4":"6"},{"1":"Chinstrap","2":"female","3":"45.4","4":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[12]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQocGVuZ3Vpbl9wYWlyc18yKVxuYGBgIn0= -->
-<pre class="r"><code>print(penguin_pairs_2)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibmNvbCI6NCwibnJvdyI6Nn0sInJkZiI6Ikg0c0lBQUFBQUFBQUExMVNYVTdDUUJCZVNndWhDWVNFZUF5YUdIendzWW9CZVRXYTRGT3p0RnZZdU4xdDJrVjk5QUJlUUEvZ0JieUFCOEFMK1VDZDdlNHFkSkxwekh6elA5dWJxK1hFWC9vSW9UWnFkNEE5VUpGM2R6c2JueVBrT21DMGtJdDZTajVEMEFnVUYyUWZaS2QyYW00YmRqUWZKWFlZZVNTc0JHMVlSeG4wSWlHTUVtUDFwaHZLUzFuZzNMcm5oRXNoR3FXOG1PSFNWdnFybitKWWlnSzBQZkRoWkk2WnlsV3BCaDhvR1U1ZmQwRGY0ZlFqVlJRdVVFM2hmS2R4YXkrMC96L3ZTK09YOTI5QTcrRzFrZlBRNUJzNSs1d29hbzdQY1VicytLNEJ1MlZPWWdxd052dXJncENFOG5XVVkxb1ljTFNpakVXTThMWGNSRmtXWlpqWnk1MDBYQ21wbmNlTmU0VjRDbXh6ZFNIbkJUNVZWZjNvd0hiVnVLbWZZSW1EdElBVWZkZWpjbDJSU3lvNEZITkc1clNIeWEyaUFReTNYRFZQeHZGbXl4L0dwMmVxZzNralpDWnFtZmV4dXF0N3VuWXl6NzQyYkVxNTNkNWplRVdZTVFhd1piMWtrQmVVUzdzS29HVWdoY1Eyem84RnM0aithZmEvTi9wWW13Z0RBQUE9In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["species"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["breeding_pair"],"name":[2],"type":["int"],"align":["right"]},{"label":["bill_length_mm_male"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bill_length_mm_female"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Adelie","2":"1","3":"39.1","4":"39.5"},{"1":"Adelie","2":"2","3":"39.3","4":"36.7"},{"1":"Gentoo","2":"3","3":"50.0","4":"48.7"},{"1":"Gentoo","2":"4","3":"47.6","4":"46.5"},{"1":"Chinstrap","2":"5","3":"50.0","4":"46.5"},{"1":"Chinstrap","2":"6","3":"51.3","4":"45.4"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Imagine we had two graphs we wanted to make:</p>
@@ -2077,6 +1933,12 @@ print(penguin_pairs_1)</code></pre>
 <li><strong>plots as objects</strong>: storing plots as objects allows them to be easily modified and combined into figures</li>
 <li><strong>incredibly helpful online examples</strong>: the <em>tidyverse</em> website contains an incredible online manual with explanations and clear examples for nearly everything you might want to do in ggplot: <a href="https://ggplot2.tidyverse.org/reference/">https://ggplot2.tidyverse.org/reference/</a></li>
 </ul>
+</div>
+<div id="plot-your-own-data" class="section level1">
+<h1>Plot your own data!</h1>
+<p>Try plotting some of your own data! Here are some commonly used types of plots (and their corresponding geoms) for data visualization:<br />
+* scatter plots: geom_point() * density plots: geom_density() * histograms: geom_histogram() * boxplots: geom_boxplot() * barplots: geom_bar() * lineplots: geom_line()</p>
+<hr />
 <div id="aside-ggplot-objects" class="section level2">
 <h2>Aside: ggplot objects</h2>
 <p>ggplot actually creates objects that we can store as variables and add onto. So, for example, we can do this:</p>
@@ -2094,7 +1956,6 @@ print(penguin_plot_with_contours)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<hr />
 </div>
 <div id="themes-and-other-options-we-can-change" class="section level2">
 <h2>themes and other options we can change</h2>
@@ -2104,23 +1965,11 @@ print(penguin_plot_with_contours)</code></pre>
 <p>Adding a title to a plot can be achieved using ggtitle()</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfcGVuZ3Vpbl9wbG90ICtcbiAgZ2d0aXRsZSgnUGVuZ3VpbiBCaWxscycpXG5gYGAifQ== -->
-<pre class="r"><code>basic_penguin_plot +
-  ggtitle('Penguin Bills')</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We can also modify the axis properties directly</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfcGVuZ3Vpbl9wbG90ICtcbiAgZ2d0aXRsZSgnUGVuZ3VpbiBCaWxscycpICtcbiAgc2NhbGVfeF9jb250aW51b3VzKG5hbWUgPSAnQmlsbCBMZW5ndGgnLFxuICAgICAgICAgICAgICAgICAgICAgbGltaXRzID0gYygwLDYwKSkgK1xuICBzY2FsZV95X2xvZzEwKG5hbWUgPSAnQmlsbCBEZXB0aCcsXG4gICAgICAgICAgICAgICAgYnJlYWtzID0gYygxNSwgMTgsIDIxKSlcbmBgYCJ9 -->
-<pre class="r"><code>basic_penguin_plot +
-  ggtitle('Penguin Bills') +
-  scale_x_continuous(name = 'Bill Length',
-                     limits = c(0,60)) +
-  scale_y_log10(name = 'Bill Depth',
-                breaks = c(15, 18, 21))</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>There’s a few things going on here:</p>
@@ -2137,24 +1986,11 @@ print(penguin_plot_with_contours)</code></pre>
 <p>You can modify the legend in a similar way to the other mappings (e.g. the axes); for example, if we want to modify the way the thing mapped to ‘color’ on our plot is represented, we can use <strong>scale_color_discrete( )</strong>, or, if we want to manually change the values assigned to each category (e.g. the colors), <strong>scale_color_manual( )</strong>:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfcGVuZ3Vpbl9wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFwidmlvbGV0XCIsIFwiYmx1ZVwiLCBcImdyYXlcIiksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVwiUGVuZ3VpbiBTcGVjaWVzXCIsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcIkFkZWxpZVwiLCBcIkNoaW5zdHJhcFwiLCBcIkdlbnRvb1wiKSlcbmBgYCJ9 -->
-<pre class="r"><code>basic_penguin_plot +
-  scale_color_manual(values=c(&quot;violet&quot;, &quot;blue&quot;, &quot;gray&quot;),
-                     name=&quot;Penguin Species&quot;,
-                     labels=c(&quot;Adelie&quot;, &quot;Chinstrap&quot;, &quot;Gentoo&quot;))</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We can also change the position of the legend using <strong>theme( )</strong> (which can actually control nearly every other aesthetic aspect of the plot, such as font size, which axes get labels/tickmarks, etc).</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYmFzaWNfcGVuZ3Vpbl9wbG90ICtcbiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKFwidmlvbGV0XCIsIFwiYmx1ZVwiLCBcImdyYXlcIiksXG4gICAgICAgICAgICAgICAgICAgICBuYW1lPVwiUGVuZ3VpbiBTcGVjaWVzXCIsXG4gICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YyhcIkFkZWxpZVwiLCBcIkNoaW5zdHJhcFwiLCBcIkdlbnRvb1wiKSkgK1xuICB0aGVtZShsZWdlbmQucG9zaXRpb24gPSAnYm90dG9tJylcbmBgYCJ9 -->
-<pre class="r"><code>basic_penguin_plot +
-  scale_color_manual(values=c(&quot;violet&quot;, &quot;blue&quot;, &quot;gray&quot;),
-                     name=&quot;Penguin Species&quot;,
-                     labels=c(&quot;Adelie&quot;, &quot;Chinstrap&quot;, &quot;Gentoo&quot;)) +
-  theme(legend.position = 'bottom')</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2173,12 +2009,61 @@ print(penguin_plot_with_contours)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<hr />
 </div>
 </div>
 </div>
 <div id="other-cool-things" class="section level1">
 <h1>Other cool things</h1>
+<div id="more-info-about-stacking-multiple-geoms" class="section level2">
+<h2>More info about stacking multiple geoms</h2>
+<p>One really powerful application of this is that we can actually make each geom( ) represent a different aspect of the same data. Let’s say we’d like our datapoints to be colored by species, but we’d also like to see a contour plot of bill length vs depth <em>across all the species</em>. To do this, we’re going to have to move our <strong>mapping</strong> calls inside the geoms, since we now want each geom to map the data differently:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBSZW1vdmVkIGFscGhhIGZvciBzaW1wbGljaXR5XG4jIE1hZGUgY29udG91ciBwbG90IGxpbmUgY29sb3IgYmxhY2sgKGRlZmF1bHQgaXMgYmx1ZSlcbmdncGxvdChkYXRhID0gcGVuZ3VpbnMpICtcbiAgZ2VvbV9kZW5zaXR5MmQobWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tKSwgY29sb3IgPSAnYmxhY2snKSArXG4gIGdlb21fcG9pbnQobWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tLCBjb2xvciA9IHNwZWNpZXMpKVxuYGBgIn0= -->
+<pre class="r"><code># Removed alpha for simplicity
+# Made contour plot line color black (default is blue)
+ggplot(data = penguins) +
+  geom_density2d(mapping = aes(x = bill_length_mm, y = bill_depth_mm), color = 'black') +
+  geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMgY2FuIGFsc28gYmUgd3JpdHRlbiBhcyIsImdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsiLCIgIGdlb21fZGVuc2l0eTJkKGNvbG9yID0gJ2JsYWNrJykgKyIsIiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKGNvbG9yID0gc3BlY2llcykpIl19 -->
+<pre class="r"><code># can also be written as
+ggplot(data = penguins, mapping = aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_density2d(color = 'black') +
+  geom_point(mapping = aes(color = species))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>This plot shows that <strong>mapping</strong> actually controls not just where to plot the data points and how they should look aesthetically, but also how the data is grouped when it’s represented in the plot. Notice that in the first contour plot, the statistics needed to plot the contours were computed separately for each species. However, when we removed species from the aes( ) being used by geom_density2d, the data was no longer separated by species for any of the stats calculated for this geom, and they’re instead calculated across all the points in the dataset.</p>
+<p>Let’s try an exercise. A really useful kind of plot you can make while exploring data is a <em>density</em> plot, which shows pretty much a normalized, smoothed histogram of your data using <strong>geom_density</strong>. For example, if we want to get an idea of what the distribution of bill lengths in our dataset is, we can run:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBEZW5zaXR5IHBsb3QgdG8gc2VlIHRoZSBkaXN0cmlidXRpb24gb2YgYmlsbCBsZW5ndGhzIGluIG91ciBkYXRhXG5nZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zKSArXG4gIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSkpXG5gYGAifQ== -->
+<pre class="r"><code># Density plot to see the distribution of bill lengths in our data
+ggplot(data = penguins) +
+  geom_density(mapping = aes(x = bill_length_mm))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Now repeat this plot, but overlaying the density plot for each species on this plot that shows the distribution across all 3 species’ data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBNYWtlIGEgZGVuc2l0eSBwbG90IHRoYXQgc2hvd3MgYm90aCB0aGUgZGlzdHJpYnV0aW9uIG9mIGJpbGxfbGVuZ3RoX21tIGluIGFsbFxuIyB0aGUgZGF0YSB0b2dldGhlciBpbiBvbmUgY29sb3IsIGFuZCB0aGUgZGlzdHJpYnV0aW9uIGZvciBlYWNoIHNwZWNpZXMnXG4jIGJpbGxfbGVuZ2hfbW0gZWFjaCBpbiBpdHMgb3duIGNvbG9yXG5cbiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXNcbiMgaGFzIHRoZSBzYW1lIGRhc2hlZCBsaW5lLCBidXQgdGhlIGxpbmUgcmVwcmVzZW50aW5nIHJlc3VsdHMgYWNyb3NzIGFsbCB0aGVcbiMgZGF0YSBpcyBzb2xpZFxuYGBgIn0= -->
+<pre class="r"><code># Make a density plot that shows both the distribution of bill_length_mm in all
+# the data together in one color, and the distribution for each species'
+# bill_lengh_mm each in its own color
+
+# Bonus: Change the linetype of the species' density plots so that each species
+# has the same dashed line, but the line representing results across all the
+# data is solid</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
 <div id="combining-multiple-data-frames-on-one-plot" class="section level2">
 <h2>combining multiple data frames on one plot</h2>
 <p>ggplot makes it super easy to combine multiple datasets on one plot, assuming they have the relevant variables (dataframe columns) in common. Let’s break up the penguins dataframe to see how this works:</p>
@@ -2189,11 +2074,6 @@ print(penguin_plot_with_contours)</code></pre>
 <p>We now have two dataframes, containing data on different species, and with only a subset of the data in one that is contained in the other (the petal widths and species). But if petal width and species is what we want to plot, this isn’t a problem for ggplot:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KCkgK1xuICBnZW9tX2JveHBsb3QoZGF0YSA9IHBlbmd1aW5zX25vbmNoaW5zdHJhcCwgYWVzKHggPSBzcGVjaWVzLCB5ID0gYm9keV9tYXNzX2csIGNvbG9yID0gc3BlY2llcykpICtcbiAgZ2VvbV9ib3hwbG90KGRhdGEgPSBwZW5ndWluX2NoaW5zdHJhcF9tYXNzLCBhZXMoeCA9IHNwZWNpZXMsIHkgPSBib2R5X21hc3NfZywgY29sb3IgPSBzcGVjaWVzKSlcbmBgYCJ9 -->
-<pre class="r"><code>ggplot() +
-  geom_boxplot(data = penguins_nonchinstrap, aes(x = species, y = body_mass_g, color = species)) +
-  geom_boxplot(data = penguin_chinstrap_mass, aes(x = species, y = body_mass_g, color = species))</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -2223,7 +2103,7 @@ print(penguin_plot_with_contours)</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgODogUGxvdHRpbmcgKHdpdGggZ2dwbG90MikiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBwbG90dGluZyB3aXRoIGJhc2UgUgogICAgfCAgIC0gaW50cm9kdWN0aW9uIHRvIGdncGxvdAogICAgfCAgIC0gY29tYmluaW5nIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIGluIGdncGxvdAogICAgfCAgIC0gY2hhbmdpbmcgdGhlIGFwcGVhcmFuY2Ugb2YgcGxvdHMKICAgIHwgICAtIG9yZ2FuaXppbmcgZGF0YSBhY2NvcmRpbmcgdG8gInRpZHkiIHByaW5jaXBsZXMKICAgIHwgICAtIGVhc3ksIHJlcHJvZHVjaWJsZSBwYXBlciBmaWd1cmVzIHdpdGggZ2dwbG90CmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfOC5uYi5odG1sKSoqCgojIEludHJvIHRvIHBsb3R0aW5nCgpUaGlzIGNsYXNzIHdpbGwgc2hvdyB5b3UgYSAqdGlueSogYml0IG9mIHBsb3R0aW5nIHVzaW5nIHRoZSBidWlsdC1pbiBSIGZ1bmN0aW9ucywgYnV0IHdpbGwgcHJldHR5IHF1aWNrbHkgdmVlciBpbnRvIGEgdmVyeSBwb3B1bGFyIFIgcGFja2FnZSBjYWxsZWQgKipnZ3Bsb3QyKiosIHdoaWNoIGlzIG9mdGVuIHJlZmVycmVkIHRvIGFzIGp1c3QgImdncGxvdCIuIFRoaXMgaXMgbGlrZWx5IHRoZSBmaXJzdCBwbGFjZSBpbiB0aGlzIGNvdXJzZSB3aGVyZSB5b3Ugd2lsbCBzZWUgdGhpbmdzIHRoYXQgYXJlICp2ZXJ5KiBlYXN5IHRvIGRvIGluIFIgdGhhdCB3b3VsZCBiZSBtdWNoIG1vcmUgY29tcGxpY2F0ZWQgdGFza3MgKG9yIG1heWJlIGV2ZW4gaW1wb3NzaWJsZSkgaW4gZXhjZWwuCgojIyBUaGUgYmFzaWMgc3RydWN0dXJlIG9mIGEgcGxvdAoKTGV0J3MgbG9hZCBpbiBhbmQgY29uc2lkZXIgdGhlICpwZW5ndWlucyogZGF0YXNldCB0aGF0IHdlIHBsYXllZCB3aXRoIHdoZW4gbGVhcm5pbmcgYWJvdXQgZGF0YWZyYW1lcy4gV2UgaGFkIGxvYWRlZCB0aGlzIGluIGZyb20gYSAqLmNzdiogZmlsZS4KCmBgYHtyfQojIHJlYWQgaW4gdGhlIHBlbmd1aW4gZGF0YSBhbmQgc2F2ZSBpdCB0byBhIHZhcmlhYmxlIGNhbGxlZCBwZW5ndWlucwpgYGAKCkxldCdzIHVzZSBiYXNlIFIgdG8gcGxvdCB0aGUgYmlsbCBsZW5ndGggdnMgYmlsbCBkZXB0aCBmb3IgYWxsIHRoZSBkYXRhCmBgYHtyfQpwbG90KHBlbmd1aW5zJGJpbGxfbGVuZ3RoX21tLCBwZW5ndWlucyRiaWxsX2RlcHRoX21tKQpgYGAKClByZXR0eSBzdHJhaWdodGZvcndhcmQ7IHRoZSBjb21tYW5kIGlzIGBwbG90KHgsIHkpYC4KCmBgYHtyfQojIFRyeSBtYWtpbmcgYSBwbG90IG9mIHBlbmd1aW4gZmxpcHBlciBsZW5ndGggdnMgZmxpcHBlciBib2R5IG1hc3MKCiMgY29tcGFyaW5nIHRoZXNlIHR3byBwbG90cywgd2hhdCBjb25jbHVzaW9ucyB3b3VsZCB5b3UgbWFrZT8gaG93IGNvdWxkIHRoZXNlIHBsb3RzIGJlIGltcHJvdmVkPwoKYGBgCgpZb3UgY2FuIGZ1cnRoZXIgbW9kaWZ5IHRoZSBwbG90IGlmIHlvdSB3YW50IHRvIGNoYW5nZSB0aGUgd2F5IHRoZSBwb2ludHMgbG9vaywgZXRjLiBBcyBJIG1lbnRpb25lZCwgd2Ugd29uJ3QgYmUgZ29pbmcgZGVlcCBpbnRvIHRoZSBkZXRhaWxzIG9mIHRoZSByZWd1bGFyIFIgcGxvdCBmdW5jdGlvbi4KCiMjIEludHJvIHRvIGdncGxvdAoKTGV0J3MgdHJ5IHRvIHVzZSBnZ3Bsb3QgdG8gcGxvdCB0aGUgc2FtZSBkYXRhLiBGaXJzdCwgaW5zdGFsbCAqKmdncGxvdDIqKiAoaWYgeW91IGhhdmVuJ3QgYWxyZWFkeSBkb25lIHNvKSBhbmQgbG9hZCBpdCBpbnRvIHlvdXIgUiBzZXNzaW9uLgpgYGB7cn0KIyB1bmNvbW1lbnQgdGhlIGxpbmUgYmVsb3cgYW5kIGluc3RhbGwgZ2dwbG90MiBvbmx5IGlmIHlvdSBoYXZlbid0IGFscmVhZHkKI2luc3RhbGwucGFja2FnZXMoJ2dncGxvdDInKQoKIyBsb2FkIHRoZSBnZ3Bsb3QyIGxpYnJhcnkgaW50byB0aGUgY3VycmVudCBSIHNlc3Npb24KbGlicmFyeShnZ3Bsb3QyKQpgYGAKClRoZSBzYW1lIHBsb3QgYXMgdGhlIG9uZSB3ZSBtYWRlIGFib3ZlIGlzIGFjdHVhbGx5IGEgYml0IG1vcmUgY29tcGxpY2F0ZWQgdG8gcHV0IHRvZ2V0aGVyIGluIGdncGxvdDoKYGBge3J9CmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpICsKICBnZW9tX3BvaW50KCkKYGBgCgpUaGUgYWJvdmUgY29udGFpbnMgdGhlIGNvbXBvbmVudHMgdGhhdCBhcmUgdGhlIGJhcmUgbWluaW11bSBvZiB3aGF0IHdlIG5lZWQgZm9yIGEgZ2dwbG90IHBsb3Q7IHdlIGNhbiBhZGQgbW9yZSBvbiBsYXRlciwgYnV0IGxldCdzIGRpc3NlY3QgdGhlIHBhcnRzIG9mIHRoaXMgY29tbWFuZDoKYGBge30KZ2dwbG90KGRhdGEgPSA8REFUQT4sIG1hcHBpbmcgPSBhZXMoPE1hcHBpbmc+KSkgKwogICAgICAgIDxHRU9NX0ZVTkNUSU9OPigpCmBgYAoKKiBhcmd1bWVudHM6CiAgICArICoqZGF0YSoqOiB0aGUgZGF0YWZyYW1lIHlvdSB3YW50IHRvIHBsb3QKICAgICsgKiptYXBwaW5nKio6IEFueSB2YXJpYWJsZXMgZnJvbSB5b3VyIGRhdGEgdGhhdCBhZmZlY3QgcGxvdCBvdXRwdXQsIGxpc3RlZCBpbiAqYWVzKCApKgoqIGNvbW1hbmRzOgogICAgKyAqKmdncGxvdCggKSoqOiByZXF1aXJlZCBzdGFydCBvZiBldmVyeSBnZ3Bsb3QgY29tbWFuZC4gQ29udGFpbnMgYW55IG9wdGlvbnMgdGhhdCB3ZSB3YW50IHRvIGFwcGx5IHRvIHRoZSB3aG9sZSBwbG90ICh3aGljaCBjYW4gYmUgbm90aGluZykKICAgICsgKipnZW9tX3tzb21ldGhpbmd9KCApKio6ICpob3cqIHlvdSdyZSBwbG90dGluZyB0aGUgZGF0YS4gSGVyZSwgd2Ugd2FudCB0byBwbG90IHBvaW50cywgc28gd2UncmUgdXNpbmcgKipnZW9tX3BvaW50Kio7IHRoZXJlIGFyZSAqdG9ucyogb2YgZGlmZmVyZW50IGdlb21zIGF2YWlsYWJsZSwgb25lIGZvciBlYWNoIHR5cGUgb2YgcGxvdCB5b3UgbWlnaHQgd2FudCB0byBtYWtlLgoKQXJndW1lbnRzIGxpa2UgKmRhdGEqIGFuZCAqbWFwcGluZyogY2FuIGdvIGluIHRoZSBwYXJlbnRoZXNlcyBhZnRlciB0aGUgZ2VvbSwgcHJvZHVjaW5nIHRoZSBzYW1lIHBsb3QgYXMgYWJvdmU6CmBgYHtyfQpnZ3Bsb3QoKSArCiAgZ2VvbV9wb2ludChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSkpCmBgYApCdXQgdGhlcmUgYXJlIHNwZWNpZmljIHNpdHVhdGlvbnMgaW4gd2hpY2ggaXQncyBiZXR0ZXIgdG8gZG8gdGhpcyAod2UnbGwgc2VlIHRoZW0gbGF0ZXIpCgojIyBNb2RpZnlpbmcgKipnZW9tKiogcHJvcGVydGllcwoKV2UgY2FuIGFsc28gcGFzcyBhZGRpdGlvbmFsIGFyZ3VtZW50cyB0byB0aGUgZ2VvbTogdXNlZnVsIG9uZXMgdG8ga25vdyBhcmU6CgoqIF9fY29sb3JfXzogbGluZSBjb2xvcjsgZm9yIHRoZSBkZWZhdWx0IHNoYXBlIHVzZWQgaW4gZ2VvbV9wb2ludCwgdGhpcyBhY3R1YWxseSBjb2xvcnMgdGhlIGluc2lkZSBvZiB0aGUgc2hhcGUgYXMgd2VsbAoqIF9fZmlsbF9fOiB0aGUgZmlsbCBjb2xvciBpbnNpZGUgYSBzaGFwZQoqIF9fc2l6ZV9fOiBwb2ludCBzaXplIG9yIGxpbmUgdGhpY2tuZXNzCiogX19zaGFwZV9fOiBmb3IgcG9pbnRzLCB0aGlzIGlzIHRoZSBzaGFwZTsgZm9yIGxpbmVzLCB0aGlzIGlzIHRoZSBsaW5lIHBhdHRlcm4gb3IgZGFzaHluZXNzCiogX19hbHBoYV9fOiB0cmFuc3BhcmVuY3kgbGV2ZWwsIHdpdGggMCBiZWluZyB0b3RhbGx5IHRyYW5zcGFyZW50IGFuZCAxIGJlaW5nIGEgc29saWQsIG9wYXF1ZSBjb2xvcgoKIyMgTWFwcGluZyBsb3RzIG9mIHZhcmlhYmxlcwoKVGhlIHBsb3Qgd2UgbWFkZSBhYm92ZSBpc24ndCByZWFsbHkgYWxsIHRoYXQgdXNlZnVsLiBJdCdzIGdyZWF0IHRvIHNlZSB0aGUgZGF0YSBhY3Jvc3MgYWxsIHRocmVlIHNwZWNpZXMgb24gb25lIHBsb3QsIGJ1dCBpZiB3ZSdyZSBsb29raW5nIGF0IHRoaXMgZGF0YSwgd2UncmUgcHJvYmFibHkgYWN0dWFsbHkgaW50ZXJlc3RlZCBpbiBob3cgdGhlc2Ugc3BlY2llcyBkaWZmZXIgZnJvbSBlYWNoIG90aGVyLiBTbyBob3cgZG8gd2UgbWFrZSBnZ3Bsb3QgdmlzdWFsbHkgc2VwYXJhdGUgdGhlIHBvaW50cyBieSBzcGVjaWVzPwoKUmVtZW1iZXIgdGhhdCB0aGUgKiptYXBwaW5nKiogYXJndW1lbnQgZGVhbHMgd2l0aCAqYW55IHByb3BlcnRpZXMgb2YgdGhlIHBsb3QgdGhhdCBkZXBlbmQgb24gdmFyaWFibGVzIGluIHRoZSBzdXBwbGllZCBkYXRhIGZyYW1lKi4gU28gd2UgY2FuIG1vZGlmeSBvdXIgb3JpZ2luYWwgY29kZSBsaWtlIHRoaXM6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0sIGNvbG9yID0gc3BlY2llcywgZmlsbCA9IHNwZWNpZXMpKSArCiAgZ2VvbV9wb2ludChhbHBoYSA9IDAuMzMsIHNoYXBlID0gMjMsIHNpemUgPSA1KQpgYGAKCk5vdGljZSB0aGF0IHRoZSBwbG90IGFib3ZlIHVzZXMgKmJvdGgqIGEgdmFyaWFibGUtZGVwZW5kZW50IGNvbG9yIChiYXNlZCBvbiB0aGUgcGVuZ3VpbiBkYXRhZnJhbWUncyAqc3BlY2llcyogY29sdW1uKSwgd2hpY2ggZ29lcyBpbnNpZGUgKmFlcyggKSosIGFuZCB2YXJpYWJsZS1pbmRlcGVuZGVudCB2YWx1ZXMgKGFscGhhLCBzaGFwZSwgc2l6ZSkgdGhhdCBhcHBsaWVzIHRvIHRoZSB3aG9sZSBnZW9tX3BvaW50IGNvbW1hbmQgYW5kIGdvZXMgb3V0c2lkZSAqYWVzKCApKgoKQWxzbywgbm90aWNlIHRoYXQgeW91IGdvdCBhIGxlZ2VuZCBmb3IgKmZyZWUqISBZb3UgZGlkbid0IGhhdmUgdG8gdGVsbCBnZ3Bsb3QgaG93IHRvIG1ha2UgaXQsIG9yIHdoYXQgaW5mbyB0byBpbmNsdWRlIGluIGl0OyBpdCBrbm93cyBhdXRvbWF0aWNhbGx5IGJhc2VkIG9uIGhvdyB5b3Ugc2V0IHVwIHlvdXIgKiptYXBwaW5nKiouCgpEZXBlbmRpbmcgb24gY29udGV4dCwgeW91IGNhbiBtYWtlIGNvbG9yLCBmaWxsLCBzaGFwZSwgc2l6ZSBvciBhbHBoYSB2YXJpYWJsZS1kZXBlbmRlbnQuIFNvbWUgb2YgdGhlc2UgKGNvbG9yLCBmaWxsLCBzaGFwZSkgb2J2aW91c2x5IG1ha2UgbW9yZSBzZW5zZSBmb3IgY2F0ZWdvcmljYWwgdmFyaWFibGVzLCB3aGlsZSBvdGhlcnMgKGFscGhhLCBzaXplKSBtYWtlIG1vcmUgc2Vuc2UgZm9yIGNvbnRpbnVvdXMgdmFyaWFibGVzLCBidXQgKmdncGxvdCogd2lsbCBvbmx5IHJhcmVseSBzdG9wIHlvdSBmcm9tIG1ha2luZyBhZXN0aGV0aWNhbGx5IGFuZCBkYXRhIHJlcHJlc2VudGF0aW9uYWxseSBxdWVzdGlvbmFibGUgY2hvaWNlcyBoZXJlLgoKTGV0J3MgdHJ5IGFuIGV4ZXJjaXNlOiAKCmBgYHtyfQojIEJhc2VkIG9uIHRoZSBjb2RlIGFib3ZlLCBtYWtlIGEgcGxvdCB3aGVyZSBib2R5IG1hc3MgaXMgb24gdGhlIHggYXhpcywKIyBmbGlwcGVyIGxlbmd0aCBpcyBvbiB0aGUgeSBheGlzLCBhbGwgdGhlIHBvaW50cyBoYXZlIGEgcmVkIG91dGxpbmUsIAojdGhlIGZpbGwgb2YgdGhlIHBvaW50cyBkZXBlbmRzIG9uIHRoZSBpc2xhbmQsIAojIGFuZCB0aGUgc2hhcGUgb2YgdGhlIHBvaW50IGRlcGVuZHMgb24gdGhlIHNwZWNpZXMKCmBgYAoKCiMjIFN0YWNraW5nIG11bHRpcGxlICoqZ2VvbXMqKgoKT25lIG9mIHRoZSBwbGFjZXMgd2hlcmUgZ2dwbG90IHJlYWxseSBzaGluZXMgaXMgd2hlbiB5b3Ugd2FudCB0byBjb21iaW5lIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIG9uIG9uZSBwbG90LiBGb3IgZXhhbXBsZSwgSSAqcmVhbGx5KiBsaWtlIHRvcG9sb2d5LXN0eWxlIGNvbnRvdXIgcGxvdHMsIHdoaWNoIGdncGxvdCBjYW4gbWFrZSB3aXRoICoqZ2VvbV9kZW5zaXR5MmQqKi4gT25jZSB3ZSBrbm93IGhvdyB0byBtYWtlIGEgYmFzaWMgcGxvdCwgYW5kIGNvbWJpbmluZyBhIGNvbnRvdXIgcGxvdCB3aXRoIGEgcGxvdCB0aGUgaW5kaXZpZHVhbCBkYXRhIHBvaW50cyBpcyBzdXBlciBlYXN5IGluIGdncGxvdDoKYGBge3J9CiMgbm90ZSwgdGhlIGZpcnN0IHR3byBsaW5lcyBhcmUganVzdCBvdXIgcGxvdCBmcm9tIGFib3ZlCmdncGxvdChkYXRhID0gcGVuZ3VpbnMsIG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSwgY29sb3IgPSBzcGVjaWVzKSkgKwogIGdlb21fZGVuc2l0eTJkKCkgKwogIGdlb21fcG9pbnQoYWxwaGEgPSAwLjMzKQpgYGAKTm90aWNlIHRoYXQgdGhlICphbHBoYSogYXJndW1lbnQgd2UgcHJvdmlkZWQgb25seSBhcHBsaWVzIHRvIGdlb21fcG9pbnQsIHNvIHRoZSBjb250b3VyIGxpbmVzIGRvbid0IHNob3cgYW55IHRyYW5zcGFyZW5jeS4gSG93ZXZlciwgYW55IGFyZ3VtZW50cyBwcm92aWRlZCB0byAqKm1hcHBpbmcqKiBpbiBhbiBhZXMoICkgc3RhdGVtZW50IGluIHRoZSAqKmdncGxvdCggKSoqIGNvbW1hbmQgYXBwbHkgYWNyb3NzIGFsbCBnZW9tcy4gKEFsc28sIG5vdGljZSB0aGF0IHdoZW4gd2UgYWRkIGEgZ2VvbSwgZ2dwbG90IGF1dG9tYXRpY2FsbHkgdXBkYXRlcyBvdXIgbGVnZW5kISkKCioqKgoKT25lIHJlYWxseSBwb3dlcmZ1bCBhcHBsaWNhdGlvbiBvZiB0aGlzIGlzIHRoYXQgd2UgY2FuIGFjdHVhbGx5IG1ha2UgZWFjaCBnZW9tKCApIHJlcHJlc2VudCBhIGRpZmZlcmVudCBhc3BlY3Qgb2YgdGhlIHNhbWUgZGF0YS4gTGV0J3Mgc2F5IHdlJ2QgbGlrZSBvdXIgZGF0YXBvaW50cyB0byBiZSBjb2xvcmVkIGJ5IHNwZWNpZXMsIGJ1dCB3ZSdkIGFsc28gbGlrZSB0byBzZWUgYSBjb250b3VyIHBsb3Qgb2YgYmlsbCBsZW5ndGggdnMgZGVwdGggKmFjcm9zcyBhbGwgdGhlIHNwZWNpZXMqLiBUbyBkbyB0aGlzLCB3ZSdyZSBnb2luZyB0byBoYXZlIHRvIG1vdmUgb3VyICoqbWFwcGluZyoqIGNhbGxzIGluc2lkZSB0aGUgZ2VvbXMsIHNpbmNlIHdlIG5vdyB3YW50IGVhY2ggZ2VvbSB0byBtYXAgdGhlIGRhdGEgZGlmZmVyZW50bHk6CmBgYHtyfQojIFJlbW92ZWQgYWxwaGEgZm9yIHNpbXBsaWNpdHkKIyBNYWRlIGNvbnRvdXIgcGxvdCBsaW5lIGNvbG9yIGJsYWNrIChkZWZhdWx0IGlzIGJsdWUpCmdncGxvdChkYXRhID0gcGVuZ3VpbnMpICsKICBnZW9tX2RlbnNpdHkyZChtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pLCBjb2xvciA9ICdibGFjaycpICsKICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSwgY29sb3IgPSBzcGVjaWVzKSkKYGBgCgpgYGB7ciBldmFsPUZ9CiMgY2FuIGFsc28gYmUgd3JpdHRlbiBhcwpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pKSArCiAgZ2VvbV9kZW5zaXR5MmQoY29sb3IgPSAnYmxhY2snKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKGNvbG9yID0gc3BlY2llcykpCmBgYApUaGlzIHBsb3Qgc2hvd3MgdGhhdCAqKm1hcHBpbmcqKiBhY3R1YWxseSBjb250cm9scyBub3QganVzdCB3aGVyZSB0byBwbG90IHRoZSBkYXRhIHBvaW50cyBhbmQgaG93IHRoZXkgc2hvdWxkIGxvb2sgYWVzdGhldGljYWxseSwgYnV0IGFsc28gaG93IHRoZSBkYXRhIGlzIGdyb3VwZWQgd2hlbiBpdCdzIHJlcHJlc2VudGVkIGluIHRoZSBwbG90LiBOb3RpY2UgdGhhdCBpbiB0aGUgZmlyc3QgY29udG91ciBwbG90LCB0aGUgc3RhdGlzdGljcyBuZWVkZWQgdG8gcGxvdCB0aGUgY29udG91cnMgd2VyZSBjb21wdXRlZCBzZXBhcmF0ZWx5IGZvciBlYWNoIHNwZWNpZXMuIEhvd2V2ZXIsIHdoZW4gd2UgcmVtb3ZlZCBzcGVjaWVzIGZyb20gdGhlIGFlcyggKSBiZWluZyB1c2VkIGJ5IGdlb21fZGVuc2l0eTJkLCB0aGUgZGF0YSB3YXMgbm8gbG9uZ2VyIHNlcGFyYXRlZCBieSBzcGVjaWVzIGZvciBhbnkgb2YgdGhlIHN0YXRzIGNhbGN1bGF0ZWQgZm9yIHRoaXMgZ2VvbSwgYW5kIHRoZXkncmUgaW5zdGVhZCBjYWxjdWxhdGVkIGFjcm9zcyBhbGwgdGhlIHBvaW50cyBpbiB0aGUgZGF0YXNldC4KCkxldCdzIHRyeSBhbiBleGVyY2lzZS4gQSByZWFsbHkgdXNlZnVsIGtpbmQgb2YgcGxvdCB5b3UgY2FuIG1ha2Ugd2hpbGUgZXhwbG9yaW5nIGRhdGEgaXMgYSAqZGVuc2l0eSogcGxvdCwgd2hpY2ggc2hvd3MgcHJldHR5IG11Y2ggYSBub3JtYWxpemVkLCBzbW9vdGhlZCBoaXN0b2dyYW0gb2YgeW91ciBkYXRhIHVzaW5nICoqZ2VvbV9kZW5zaXR5KiouIEZvciBleGFtcGxlLCBpZiB3ZSB3YW50IHRvIGdldCBhbiBpZGVhIG9mIHdoYXQgdGhlIGRpc3RyaWJ1dGlvbiBvZiBiaWxsIGxlbmd0aHMgaW4gb3VyIGRhdGFzZXQgaXMsIHdlIGNhbiBydW46CmBgYHtyfQojIERlbnNpdHkgcGxvdCB0byBzZWUgdGhlIGRpc3RyaWJ1dGlvbiBvZiBQZXRhbCBMZW5ndGhzIGluIG91ciBkYXRhCmdncGxvdChkYXRhID0gcGVuZ3VpbnMpICsKICBnZW9tX2RlbnNpdHkobWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0pKQpgYGAKCk5vdyByZXBlYXQgdGhpcyBwbG90LCBidXQgb3ZlcmxheWluZyB0aGUgZGVuc2l0eSBwbG90IGZvciBlYWNoIHNwZWNpZXMgb24gdGhpcyBwbG90IHRoYXQgc2hvd3MgdGhlIGRpc3RyaWJ1dGlvbiBhY3Jvc3MgYWxsIDMgc3BlY2llcycgZGF0YToKYGBge3J9CiMgTWFrZSBhIGRlbnNpdHkgcGxvdCB0aGF0IHNob3dzIGJvdGggdGhlIGRpc3RyaWJ1dGlvbiBvZiBiaWxsX2xlbmd0aF9tbSBpbiBhbGwKIyB0aGUgZGF0YSB0b2dldGhlciBpbiBvbmUgY29sb3IsIGFuZCB0aGUgZGlzdHJpYnV0aW9uIGZvciBlYWNoIHNwZWNpZXMnCiMgYmlsbF9sZW5naF9tbSBlYWNoIGluIGl0cyBvd24gY29sb3IKCiMgQm9udXM6IENoYW5nZSB0aGUgbGluZXR5cGUgb2YgdGhlIHNwZWNpZXMnIGRlbnNpdHkgcGxvdHMgc28gdGhhdCBlYWNoIHNwZWNpZXMKIyBoYXMgdGhlIHNhbWUgZGFzaGVkIGxpbmUsIGJ1dCB0aGUgbGluZSByZXByZXNlbnRpbmcgcmVzdWx0cyBhY3Jvc3MgYWxsIHRoZQojIGRhdGEgaXMgc29saWQKYGBgCgoqKioKCiMgVGhlIHN0cnVjdHVyZSBvZiBkYXRhIHRoYXQgZ2dwbG90IGNhbiBwbG90CgpBcyB5b3UndmUgc2VlbiwgZ2dwbG90IHByb3ZpZGVzIHVzZXJzIHdpdGggdGhlIHBvd2VyIHRvIGVhc2lseSBjaGFuZ2UgdGhlIGFwcGVhcmFuY2Ugb2YgdGhlIHBsb3QsIGFuZCB0aGUgc3RhdGlzdGljcyBjYWxjdWxhdGVkLCBiYXNlZCBvbiBhbnkgc2luZ2xlIGNvbHVtbiBpbiB0aGUgZGF0YWZyYW1lIGNvbnRhaW5pbmcgdGhlIGRhdGEgdG8gYmUgcGxvdHRlZC4gQnV0IHRoaXMgYWxzbyByZXN1bHRzIGluIHNvbWUgcHJldHR5IHJpZ2lkIHJ1bGVzIGFib3V0IGhvdyB5b3VyIGRhdGEgbmVlZHMgdG8gYmUgb3JnYW5pemVkLiBOYW1lbHksIGRhdGEgZm9yIGdncGxvdCBzaG91bGQgYmUgaW4gW3RpZHkgZm9ybWF0XShodHRwczovL2xlYXJuLmdlbmNvcmUuYmlvLm55dS5lZHUvdGlkeXZlcnNlLyk6CgoqIGVhY2ggdmFyaWFibGUgbXVzdCBoYXZlIGl0cyBvd24gY29sdW1uCiogZWFjaCBvYnNlcnZhdGlvbiBtdXN0IGhhdmUgaXRzIG93biByb3cgKGJ1dCB3aGF0J3MgYW4gb2JzZXJ2YXRpb24/KQoqIGVhY2ggdmFsdWUgbXVzdCBoYXZlIGl0cyBvd24gY2VsbAoKTGV0J3MgdGFrZSBhIGxvb2sgYXQgd2hhdCB0aGF0IG1lYW5zLiBJbWFnaW5lIHRoZSBwZW5ndWluIGRhdGEgd2FzIGNvbGxlY3RlZCBmb3IgYnJlZWRpbmcgcGFpcnMuIEJlbG93IHdlIGhhdmUgY3JlYXRlZCB0d28gc3Vic2V0IG9mIHRoZSAqcGVuZ3VpbnMqIGRhdGFmcmFtZSB0byBtaW1pYyB0aGlzLCBjb250YWluaW5nIHRoZSBzYW1lIGRhdGEgb24gdGhlIHNhbWUgaW5kaXZpZHVhbHMsIG9uZSBtYWxlIGFuZCBvbmUgZmVtYWxlIHBlciBzcGVjaWVzLgpgYGB7cn0KcGVuZ3Vpbl9wYWlyc18xIDwtIHBlbmd1aW5zW2MoMSwyLDUsNiwxNTU6MTU4LDI3NzoyODApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgYygnc3BlY2llcycsICdzZXgnLCAnYmlsbF9sZW5ndGhfbW0nKV0KcGVuZ3Vpbl9wYWlyc18xJGJyZWVkaW5nX3BhaXIgPC0gcmVwKDE6NiwgZWFjaCA9IDIpCgpwZW5ndWluX3BhaXJzXzIgPC0KICBwaXZvdF93aWRlcihwZW5ndWluX3BhaXJzXzEsIG5hbWVzX2Zyb20gPSAnc2V4JywKICAgICAgICAgICAgICB2YWx1ZXNfZnJvbSA9ICdiaWxsX2xlbmd0aF9tbScsIG5hbWVzX3ByZWZpeCA9ICdiaWxsX2xlbmd0aF9tbV8nKQoKcHJpbnQocGVuZ3Vpbl9wYWlyc18xKQpwcmludChwZW5ndWluX3BhaXJzXzIpCmBgYAoKSW1hZ2luZSB3ZSBoYWQgdHdvIGdyYXBocyB3ZSB3YW50ZWQgdG8gbWFrZToKCjEuIFBsb3QgdGhlIGRpc3RyaWJ1dGlvbiAoZGVuc2l0eSkgb2YgYmlsbCBsZW5ndGhzIGZvciBhbGwgdGhlIHBlbmd1aW5zLCBjb2xvcmVkIGJ5IHNwZWNpZXMuCjIuIFBsb3QgdGhlIGJpbGwgbGVuZ3RoIGZvciBtYWxlIHZzIGZlbWFsZSBpbmRpdmlkdWFscyBvZiBlYWNoIGJyZWVkaW5nIHBhaXIsIGNvbG9yZWQgYnkgc3BlY2llcwoKRm9yIGVhY2ggb2YgdGhlc2UgZ3JhcGhzLCB3aGF0IGFyZSB0aGUgKmluZGl2aWR1YWwgb2JzZXJ2YXRpb25zKiAoaS5lLiBhcmUgdGhleSBicmVlZGluZyBwYWlycyBvciBpbmRpdmlkdWFsIHBlbmd1aW5zKT8gV2hpY2ggaXMgdGhlIGVhc2llc3QgZGF0YXNldCB0byB1c2UgZm9yIHBsb3R0aW5nIGVhY2ggb2YgdGhlc2UgZ3JhcGhzIHdpdGggKipnZ3Bsb3QqKj8KClRyeSBib3RoIG9mIHRoZW0gb3V0IGJlbG93LgoKYGBge3J9CgpgYGAKClRoZSAqKnRpZHlyKiogcGFja2FnZSAod2hpY2gsIGxpa2UgKipnZ3Bsb3QyKiosIGlzIHBhcnQgb2YgdGhlICoqdGlkeXZlcnNlKiogcGFja2FnZSkgaGFzIHNvbWUgcmVhbGx5IGdyZWF0IGZ1bmN0aW9ucyBmb3IgcmUtb3JnYW5pemluZyBkYXRhLCBhbGxvd2luZyB5b3UgdG8gY29udmVydCBmcm9tIHNvbWV0aGluZyB0aGF0IGxvb2tzIGxpa2UgYHBlbmd1aW5fcGFpcnNfMWAgaW50byBgcGVuZ3Vpbl9wYWlyc18yYCwgYW5kIHZpY2UgdmVyc2EuIElmIHlvdSBmaW5kIHlvdXJzZWxmIGZhY2luZyBkYXRhIHRoYXQgaXNuJ3Qgb3JnYW5pemVkIHRoZSByaWdodCB3YXkgZm9yIHlvdXIgcGxvdCwgSSByZWFsbHkgc3VnZ2VzdCBsb29raW5nIG92ZXIgW0RhdmlkIEdyZXNoYW0ncyB0aWR5dmVyc2UgdHV0b3JpYWxdKGh0dHBzOi8vbGVhcm4uZ2VuY29yZS5iaW8ubnl1LmVkdS90aWR5dmVyc2UvKSBhbmQgdGhlIG1vcmUgdXAtdG8tZGF0ZSBbdGlkeXIgdHV0b3JpYWwgb24gcGl2b3RdKGh0dHBzOi8vdGlkeXIudGlkeXZlcnNlLm9yZy9hcnRpY2xlcy9waXZvdC5odG1sKS4KCiMgV2h5IGdncGxvdAoKKiBfX2Vhc3kgZXhwbG9yYXRvcnkgZGF0YSBhbmFseXNpc19fOiBzZXBhcmF0aW9uIG9mIHZhcmlhYmxlIG1hcHBpbmcgZnJvbSB2aXN1YWwgcmVwcmVzZW50YXRpb24gKGUuZy4gZ2VvbXMpIG1ha2VzIGl0IGVhc3kgdG8gdHJ5IGRpZmZlcmVudCB3YXlzIG9mIHBsb3R0aW5nIGRhdGEKKiBfX2F1dG9tYXRpb24gb2YgdGhlIGJvcmluZyBzdHVmZl9fOiBnZW5lcmF0aW9uIG9mIGxlZ2VuZHMsIGF4aXMgYm91bmRzLCBldGMgaXMgZG9uZSB2ZXJ5IHdlbGwgYXV0b21hdGljYWxseSBiYXNlZCBvbiB0aGUgZGF0YSBhbmQgdmFyaWFibGVzIHlvdSdyZSBwbG90dGluZyAoYnV0IHlvdSBjYW4gaGF2ZSBmaW5lciBjb250cm9sIG9mIGl0IGlmIHlvdSdkIGxpa2UpCiogX19hdXRvbWF0ZWQgc3RhdHNfXzogbG90cyBvZiBnZW9tcyB0aGF0IGNhbGN1bGF0ZSBhbmQgZGlzcGxheSBzdGF0aXN0aWNzIG9mIHlvdXIgZGF0YS4gVGhlc2Ugc3RhdGlzdGljcyBhcmUgYXV0b21hdGljYWxseSBjYWxjdWxhdGVkIGJhc2VkIG9uIHlvdXIgZ3JvdXBpbmcgb2YgdGhlIGRhdGEsIGhvdyB5b3Ugc3BlY2lmeSB5b3VyIGF4ZXMgKGUuZy4gbGluZWFyIHZzIGxvZyBzY2FsZSksIGV0Yy4KICAgICsgKmdlb21fZGVuc2l0eSogYW5kICpnZW9tX2RlbnNpdHkyZCogZm9yIGRlbnNpdHkgZXN0aW1hdGlvbgogICAgKyAqZ2VvbV9zbW9vdGgqIGZvciB0cmVuZGxpbmVzIHdpdGggZXJyb3IgcmliYm9ucwogICAgKyBbc3RhdF9zdW1tYXJ5XShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2Uvc3RhdF9zdW1tYXJ5Lmh0bWwpIGZvciBvdGhlciB3YXlzIHRvIGJpbiBhbmQgc3VtbWFyaXplIGRhdGEpCiogX19wbG90cyBhcyBvYmplY3RzX186IHN0b3JpbmcgcGxvdHMgYXMgb2JqZWN0cyBhbGxvd3MgdGhlbSB0byBiZSBlYXNpbHkgbW9kaWZpZWQgYW5kIGNvbWJpbmVkIGludG8gZmlndXJlcwoqIF9faW5jcmVkaWJseSBoZWxwZnVsIG9ubGluZSBleGFtcGxlc19fOiB0aGUgKnRpZHl2ZXJzZSogd2Vic2l0ZSBjb250YWlucyBhbiBpbmNyZWRpYmxlIG9ubGluZSBtYW51YWwgd2l0aCBleHBsYW5hdGlvbnMgYW5kIGNsZWFyIGV4YW1wbGVzIGZvciBuZWFybHkgZXZlcnl0aGluZyB5b3UgbWlnaHQgd2FudCB0byBkbyBpbiBnZ3Bsb3Q6IFtodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvXShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvKQoKIyMgQXNpZGU6IGdncGxvdCBvYmplY3RzCgpnZ3Bsb3QgYWN0dWFsbHkgY3JlYXRlcyBvYmplY3RzIHRoYXQgd2UgY2FuIHN0b3JlIGFzIHZhcmlhYmxlcyBhbmQgYWRkIG9udG8uIFNvLCBmb3IgZXhhbXBsZSwgd2UgY2FuIGRvIHRoaXM6CmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgPC0KICBnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSwgY29sb3IgPSBzcGVjaWVzKSkgKwogIGdlb21fcG9pbnQoKQpwcmludChiYXNpY19wZW5ndWluX3Bsb3QpCiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3QKcGVuZ3Vpbl9wbG90X3dpdGhfY29udG91cnMgPC0KICBiYXNpY19wZW5ndWluX3Bsb3QgKyBnZW9tX2RlbnNpdHkyZCgpCnByaW50KHBlbmd1aW5fcGxvdF93aXRoX2NvbnRvdXJzKQpgYGAKCioqKgoKIyMgdGhlbWVzIGFuZCBvdGhlciBvcHRpb25zIHdlIGNhbiBjaGFuZ2UKCmdncGxvdCBhbHNvIGFsbG93cyBhIGh1Z2UgYW1vdW50IG9mIGNvbnRyb2wgb3ZlciBvdGhlciBhc3BlY3RzIG9mIHRoZSBwbG90IChlLmcuIHRpdGxlcywgYXhpcyBsYWJlbGluZyBhbmQgc2NhbGUsIG92ZXJhbGwgcGxvdCBsb29rLCBldGMpLiBGb3IgbW9zdCBvZiB0aGVzZSwgZ2dwbG90IGFjdHVhbGx5IGFsbG93cyBtdWx0aXBsZSBlcXVpdmFsZW50IHdheXMgdG8gYWNoaWV2ZSB0aGUgc2FtZSBlZmZlY3QuCgojIyMgYXhlcyArIHRpdGxlcwoKQWRkaW5nIGEgdGl0bGUgdG8gYSBwbG90IGNhbiBiZSBhY2hpZXZlZCB1c2luZyBnZ3RpdGxlKCkKYGBge3J9CmJhc2ljX3Blbmd1aW5fcGxvdCArCiAgZ2d0aXRsZSgnUGVuZ3VpbiBCaWxscycpCmBgYAoKV2UgY2FuIGFsc28gbW9kaWZ5IHRoZSBheGlzIHByb3BlcnRpZXMgZGlyZWN0bHkKYGBge3J9CmJhc2ljX3Blbmd1aW5fcGxvdCArCiAgZ2d0aXRsZSgnUGVuZ3VpbiBCaWxscycpICsKICBzY2FsZV94X2NvbnRpbnVvdXMobmFtZSA9ICdCaWxsIExlbmd0aCcsCiAgICAgICAgICAgICAgICAgICAgIGxpbWl0cyA9IGMoMCw2MCkpICsKICBzY2FsZV95X2xvZzEwKG5hbWUgPSAnQmlsbCBEZXB0aCcsCiAgICAgICAgICAgICAgICBicmVha3MgPSBjKDE1LCAxOCwgMjEpKQpgYGAKVGhlcmUncyBhIGZldyB0aGluZ3MgZ29pbmcgb24gaGVyZToKCiogX19zY2FsZV94X2NvbnRpbnVvdXMoIClfXyBhbmQgX19zY2FsZV95X2xvZzEwKCApX186IHNldCB0aGUgc2NhbGUgb2YgdGhlIHggYW5kIHkgYXhlcy4gRm9yIGNvbnRpbnVvdXMgdmFyaWFibGVzLCB0aGV5IGNhbiBhbHNvIGJlIHBsb3R0ZWQgb24gYSBzcXVhcmUgcm9vdCBzY2FsZSwgcmV2ZXJzZWQsIGFuZCB2YXJpb3VzIG90aGVyIHRyYW5zZm9ybWF0aW9ucy4gRm9yIGRpc2NyZXRlIHZhcmlhYmxlcywgdXNlICoqc2NhbGVfeF9kaXNjcmV0ZSggKSoqIGFuZCAqKnNjYWxlX3lfZGlzY3JldGUoICkqKgoqIF9fbmFtZV9fOiB0aGUgYXhpcyBsYWJlbAoqIF9fbGltaXRzX186IHRoZSBib3VuZHMgb24gdGhlIGF4aXMsIG11c3QgYmUgcHJvdmlkZWQgYXMgYSAyLW51bWJlciB2ZWN0b3IKKiBfX2JyZWFrc19fOiBtYW51YWxseSBhc3NpZ24gd2hlcmUgdGhlIHRpY2ttYXJrcyBnbwoqIF9fbGFiZWxzX186IGZvciBkaXNjcmV0ZSB2YXJpYWJsZXMsIHRoaXMgY2FuIGJlIHVzZWQgdG8gcmVuYW1lIHRoZSBjYXRlZ29yaWVzIGFsb25nIHlvdXIgYXhpcwoKIyMjIGxlZ2VuZAoKWW91IGNhbiBtb2RpZnkgdGhlIGxlZ2VuZCBpbiBhIHNpbWlsYXIgd2F5IHRvIHRoZSBvdGhlciBtYXBwaW5ncyAoZS5nLiB0aGUgYXhlcyk7IGZvciBleGFtcGxlLCBpZiB3ZSB3YW50IHRvIG1vZGlmeSB0aGUgd2F5IHRoZSB0aGluZyBtYXBwZWQgdG8gJ2NvbG9yJyBvbiBvdXIgcGxvdCBpcyByZXByZXNlbnRlZCwgd2UgY2FuIHVzZSAqKnNjYWxlX2NvbG9yX2Rpc2NyZXRlKCApKiosIG9yLCBpZiB3ZSB3YW50IHRvIG1hbnVhbGx5IGNoYW5nZSB0aGUgdmFsdWVzIGFzc2lnbmVkIHRvIGVhY2ggY2F0ZWdvcnkgKGUuZy4gdGhlIGNvbG9ycyksICoqc2NhbGVfY29sb3JfbWFudWFsKCApKio6CmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXM9YygidmlvbGV0IiwgImJsdWUiLCAiZ3JheSIpLAogICAgICAgICAgICAgICAgICAgICBuYW1lPSJQZW5ndWluIFNwZWNpZXMiLAogICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YygiQWRlbGllIiwgIkNoaW5zdHJhcCIsICJHZW50b28iKSkKYGBgCldlIGNhbiBhbHNvIGNoYW5nZSB0aGUgcG9zaXRpb24gb2YgdGhlIGxlZ2VuZCB1c2luZyAqKnRoZW1lKCApKiogKHdoaWNoIGNhbiBhY3R1YWxseSBjb250cm9sIG5lYXJseSBldmVyeSBvdGhlciBhZXN0aGV0aWMgYXNwZWN0IG9mIHRoZSBwbG90LCBzdWNoIGFzIGZvbnQgc2l6ZSwgd2hpY2ggYXhlcyBnZXQgbGFiZWxzL3RpY2ttYXJrcywgZXRjKS4KCmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXM9YygidmlvbGV0IiwgImJsdWUiLCAiZ3JheSIpLAogICAgICAgICAgICAgICAgICAgICBuYW1lPSJQZW5ndWluIFNwZWNpZXMiLAogICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YygiQWRlbGllIiwgIkNoaW5zdHJhcCIsICJHZW50b28iKSkgKwogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICdib3R0b20nKQpgYGAKCiMjIyB0aGVtZXMKCkZpbmFsbHksIHRoZSBvdmVyYWxsIGFwcGVhcmFuY2Ugb2YgdGhlIGdyYXBoIGNhbiBiZSBjaGFuZ2VkIGJ5IHNlbGVjdGluZyBhIGN1c3RvbSAndGhlbWUnOyB0aGlzIGlzIGEgYml0IGNvbmZ1c2luZywgc2luY2UgdGhlc2UgYXJlIGRpc3RpbmN0IGZyb20gdGhlICoqdGhlbWUoICkqKiBjb21tYW5kIHVzZWQgYWJvdmUuCmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgKwogIHNjYWxlX2NvbG9yX21hbnVhbCh2YWx1ZXM9YygidmlvbGV0IiwgImJsdWUiLCAiZ3JheSIpLAogICAgICAgICAgICAgICAgICAgICBuYW1lPSJQZW5ndWluIFNwZWNpZXMiLAogICAgICAgICAgICAgICAgICAgICBsYWJlbHM9YygiQWRlbGllIiwgIkNoaW5zdHJhcCIsICJHZW50b28iKSkgKwogIHRoZW1lKGxlZ2VuZC5wb3NpdGlvbiA9ICdib3R0b20nKSArCiAgdGhlbWVfYncoKQpgYGAKCioqKgoKIyBPdGhlciBjb29sIHRoaW5ncwoKIyMgY29tYmluaW5nIG11bHRpcGxlIGRhdGEgZnJhbWVzIG9uIG9uZSBwbG90CgpnZ3Bsb3QgbWFrZXMgaXQgc3VwZXIgZWFzeSB0byBjb21iaW5lIG11bHRpcGxlIGRhdGFzZXRzIG9uIG9uZSBwbG90LCBhc3N1bWluZyB0aGV5IGhhdmUgdGhlIHJlbGV2YW50IHZhcmlhYmxlcyAoZGF0YWZyYW1lIGNvbHVtbnMpIGluIGNvbW1vbi4gTGV0J3MgYnJlYWsgdXAgdGhlIHBlbmd1aW5zIGRhdGFmcmFtZSB0byBzZWUgaG93IHRoaXMgd29ya3M6CmBgYHtyfQpwZW5ndWluc19ub25jaGluc3RyYXAgPC0gc3Vic2V0KHBlbmd1aW5zLCBzcGVjaWVzICE9ICdDaGluc3RyYXAnKQpwZW5ndWluX2NoaW5zdHJhcF9tYXNzIDwtIHN1YnNldChwZW5ndWlucywgc3BlY2llcyA9PSAnQ2hpbnN0cmFwJylbLCBjKCdib2R5X21hc3NfZycsICdzcGVjaWVzJyldCnByaW50KHBlbmd1aW5zX25vbmNoaW5zdHJhcCkKcHJpbnQocGVuZ3Vpbl9jaGluc3RyYXBfbWFzcykKYGBgCldlIG5vdyBoYXZlIHR3byBkYXRhZnJhbWVzLCBjb250YWluaW5nIGRhdGEgb24gZGlmZmVyZW50IHNwZWNpZXMsIGFuZCB3aXRoIG9ubHkgYSBzdWJzZXQgb2YgdGhlIGRhdGEgaW4gb25lIHRoYXQgaXMgY29udGFpbmVkIGluIHRoZSBvdGhlciAodGhlIHBldGFsIHdpZHRocyBhbmQgc3BlY2llcykuIEJ1dCBpZiBwZXRhbCB3aWR0aCBhbmQgc3BlY2llcyBpcyB3aGF0IHdlIHdhbnQgdG8gcGxvdCwgdGhpcyBpc24ndCBhIHByb2JsZW0gZm9yIGdncGxvdDoKYGBge3J9CmdncGxvdCgpICsKICBnZW9tX2JveHBsb3QoZGF0YSA9IHBlbmd1aW5zX25vbmNoaW5zdHJhcCwgYWVzKHggPSBzcGVjaWVzLCB5ID0gYm9keV9tYXNzX2csIGNvbG9yID0gc3BlY2llcykpICsKICBnZW9tX2JveHBsb3QoZGF0YSA9IHBlbmd1aW5fY2hpbnN0cmFwX21hc3MsIGFlcyh4ID0gc3BlY2llcywgeSA9IGJvZHlfbWFzc19nLCBjb2xvciA9IHNwZWNpZXMpKQpgYGAKCiMjIGZhY2V0cwoKQW5vdGhlciBncmVhdCB0b29sIGdncGxvdCBwcm92aWRlcyBpcyBmYWNldGluZy4gVGhpcyBhbGxvd3MgeW91IHRvIHNlcGFyYXRlIGRhdGEgaW50byBzdWJwbG90cyBiYXNlZCBvbiBhIGNvbHVtbiAob3IgbXVsdGlwbGUgY29sdW1ucyk6CmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgKwogIGZhY2V0X3dyYXAoIH4gc3BlY2llcykKYGBgCk5vdGljZSB0aGF0IHRoZSB4LWF4ZXMgYXJlIGNvbnNpc3RlbnQgYW1vbmcgdGhlc2UgcGxvdHMuCgojIyBMb3RzIG9mIGFkZGl0aW9uYWwgcGFja2FnZXMhCgpCZWNhdXNlIGdncGxvdCBpcyBzbyBwb3B1bGFyLCB0aGVyZSdzIGJlZW4gYSB0b24gb2YgYWRkaXRpb25hbCBwYWNrYWdlcyB3cml0dGVuIHRoYXQgYnVpbGQgb24gdG9wIG9mIGl0LiBIZXJlIGFyZSB0d28gZXhhbXBsZXMuCgojIyMgZ2dhbmltYXRlCgpBZGQgYW5pbWF0aW9ucyB0byBwbG90cwpgYGB7ciB3YXJuaW5nPUZBTFNFLCBtZXNzYWdlPUZBTFNFLCByZXN1bHRzID0gRkFMU0V9Cmluc3RhbGwucGFja2FnZXMoJ2dpZnNraScpCmluc3RhbGwucGFja2FnZXMoJ2dnYW5pbWF0ZScpCmxpYnJhcnkoZ2dhbmltYXRlKQphbmltYXRlZF9wZWdudWluX3Bsb3QgPC0KICBiYXNpY19wZW5ndWluX3Bsb3QgKyB0cmFuc2l0aW9uX3N0YXRlcyhzcGVjaWVzKQojIHNhdmUgcGxvdCB3aXRoIDMgZnJhbWVzLCBwbGF5IGF0IDEgZnJhbWUgcGVyIHNlY29uZAphbmltX3NhdmUoImFuaW1hdGVkX3Blbmd1aW5fcGxvdC5naWYiLCBhbmltYXRlZF9wZW5ndWluX3Bsb3QsIG5mcmFtZXMgPSA0LCBmcHMgPSAxKQojIHJlbmRlciBwbG90IHVzaW5nICFbXShwbG90X3BhdGgpIG91dHNpZGUgb2YgY29kZSBjaHVuawpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiV29ya3Nob3AgODogUGxvdHRpbmcgKHdpdGggZ2dwbG90MikiCnN1YnRpdGxlOiB8CiAgICB8ICAgLSBwbG90dGluZyB3aXRoIGJhc2UgUgogICAgfCAgIC0gaW50cm9kdWN0aW9uIHRvIGdncGxvdAogICAgfCAgIC0gY29tYmluaW5nIG11bHRpcGxlIGRhdGEgcmVwcmVzZW50YXRpb25zIGluIGdncGxvdAogICAgfCAgIC0gY2hhbmdpbmcgdGhlIGFwcGVhcmFuY2Ugb2YgcGxvdHMKICAgIHwgICAtIG9yZ2FuaXppbmcgZGF0YSBhY2NvcmRpbmcgdG8gInRpZHkiIHByaW5jaXBsZXMKICAgIHwgICAtIGVhc3ksIHJlcHJvZHVjaWJsZSBwYXBlciBmaWd1cmVzIHdpdGggZ2dwbG90CmF1dGhvcjoKICAtIEV1Z2VuZSBQbGF2c2tpbgpvdXRwdXQ6CiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogc2hvdwogICAgZGVwdGg6IDMKICAgIHRpZHk6IHllcwogICAgdG9jOiB5ZXMKLS0tCioqU29sdXRpb25zIHRvIHRoaXMgd29ya3Nob3AgY2FuIGJlIGZvdW5kIFtoZXJlXShTb2x1dGlvbnNfV29ya3Nob3BfOC5uYi5odG1sKSoqCgojIEludHJvIHRvIHBsb3R0aW5nCgpUaGlzIGNsYXNzIHdpbGwgc2hvdyB5b3UgYSAqdGlueSogYml0IG9mIHBsb3R0aW5nIHVzaW5nIHRoZSBidWlsdC1pbiBSIGZ1bmN0aW9ucywgYnV0IHdpbGwgcHJldHR5IHF1aWNrbHkgdmVlciBpbnRvIGEgdmVyeSBwb3B1bGFyIFIgcGFja2FnZSBjYWxsZWQgKipnZ3Bsb3QyKiosIHdoaWNoIGlzIG9mdGVuIHJlZmVycmVkIHRvIGFzIGp1c3QgImdncGxvdCIuIFRoaXMgaXMgbGlrZWx5IHRoZSBmaXJzdCBwbGFjZSBpbiB0aGlzIGNvdXJzZSB3aGVyZSB5b3Ugd2lsbCBzZWUgdGhpbmdzIHRoYXQgYXJlICp2ZXJ5KiBlYXN5IHRvIGRvIGluIFIgdGhhdCB3b3VsZCBiZSBtdWNoIG1vcmUgY29tcGxpY2F0ZWQgdGFza3MgKG9yIG1heWJlIGV2ZW4gaW1wb3NzaWJsZSkgaW4gZXhjZWwuCgojIyBUaGUgYmFzaWMgc3RydWN0dXJlIG9mIGEgcGxvdAoKTGV0J3MgbG9hZCBpbiBhbmQgY29uc2lkZXIgdGhlICpwZW5ndWlucyogZGF0YXNldCB0aGF0IHdlIHBsYXllZCB3aXRoIHdoZW4gbGVhcm5pbmcgYWJvdXQgZGF0YWZyYW1lcy4gV2UgaGFkIGxvYWRlZCB0aGlzIGluIGZyb20gYSAqLmNzdiogZmlsZS4KCmBgYHtyfQojIHJlYWQgaW4gdGhlIHBlbmd1aW4gZGF0YSBhbmQgc2F2ZSBpdCB0byBhIHZhcmlhYmxlIGNhbGxlZCBwZW5ndWlucwpgYGAKCkxldCdzIHVzZSBiYXNlIFIgdG8gcGxvdCB0aGUgYmlsbCBsZW5ndGggdnMgYmlsbCBkZXB0aCBmb3IgYWxsIHRoZSBkYXRhCmBgYHtyfQpwbG90KHBlbmd1aW5zJGJpbGxfbGVuZ3RoX21tLCBwZW5ndWlucyRiaWxsX2RlcHRoX21tKQpgYGAKClByZXR0eSBzdHJhaWdodGZvcndhcmQ7IHRoZSBjb21tYW5kIGlzIGBwbG90KHgsIHkpYC4KCmBgYHtyfQojIFRyeSBtYWtpbmcgYSBwbG90IG9mIHBlbmd1aW4gZmxpcHBlciBsZW5ndGggdnMgYm9keSBtYXNzCgojIGNvbXBhcmluZyB0aGVzZSB0d28gcGxvdHMsIHdoYXQgY29uY2x1c2lvbnMgd291bGQgeW91IG1ha2U/IGhvdyBjb3VsZCB0aGVzZSBwbG90cyBiZSBpbXByb3ZlZD8KCmBgYAoKWW91IGNhbiBmdXJ0aGVyIG1vZGlmeSB0aGUgcGxvdCBpZiB5b3Ugd2FudCB0byBjaGFuZ2UgdGhlIHdheSB0aGUgcG9pbnRzIGxvb2ssIGV0Yy4gQXMgSSBtZW50aW9uZWQsIHdlIHdvbid0IGJlIGdvaW5nIGRlZXAgaW50byB0aGUgZGV0YWlscyBvZiB0aGUgcmVndWxhciBSIHBsb3QgZnVuY3Rpb24uCgojIyBJbnRybyB0byBnZ3Bsb3QKCkxldCdzIHRyeSB0byB1c2UgZ2dwbG90IHRvIHBsb3QgdGhlIHNhbWUgZGF0YS4gRmlyc3QsIGluc3RhbGwgKipnZ3Bsb3QyKiogKGlmIHlvdSBoYXZlbid0IGFscmVhZHkgZG9uZSBzbykgYW5kIGxvYWQgaXQgaW50byB5b3VyIFIgc2Vzc2lvbi4KYGBge3J9CiMgdW5jb21tZW50IHRoZSBsaW5lIGJlbG93IGFuZCBpbnN0YWxsIGdncGxvdDIgb25seSBpZiB5b3UgaGF2ZW4ndCBhbHJlYWR5CiNpbnN0YWxsLnBhY2thZ2VzKCdnZ3Bsb3QyJykKCiMgbG9hZCB0aGUgZ2dwbG90MiBsaWJyYXJ5IGludG8gdGhlIGN1cnJlbnQgUiBzZXNzaW9uCmxpYnJhcnkoZ2dwbG90MikKYGBgCgpUaGUgc2FtZSBwbG90IGFzIHRoZSBvbmUgd2UgbWFkZSBhYm92ZSBpcyBhY3R1YWxseSBhIGJpdCBtb3JlIGNvbXBsaWNhdGVkIHRvIHB1dCB0b2dldGhlciBpbiBnZ3Bsb3Q6CmBgYHtyfQpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pKSArCiAgZ2VvbV9wb2ludCgpCmBgYAoKVGhlIGFib3ZlIGNvbnRhaW5zIHRoZSBjb21wb25lbnRzIHRoYXQgYXJlIHRoZSBiYXJlIG1pbmltdW0gb2Ygd2hhdCB3ZSBuZWVkIGZvciBhIGdncGxvdCBwbG90OyB3ZSBjYW4gYWRkIG1vcmUgb24gbGF0ZXIsIGJ1dCBsZXQncyBkaXNzZWN0IHRoZSBwYXJ0cyBvZiB0aGlzIGNvbW1hbmQ6CmBgYHt9CmdncGxvdChkYXRhID0gPERBVEE+LCBtYXBwaW5nID0gYWVzKDxNYXBwaW5nPikpICsKICAgICAgICA8R0VPTV9GVU5DVElPTj4oKQpgYGAKCiogYXJndW1lbnRzOgogICAgKyAqKmRhdGEqKjogdGhlIGRhdGFmcmFtZSB5b3Ugd2FudCB0byBwbG90CiAgICArICoqbWFwcGluZyoqOiBBbnkgdmFyaWFibGVzIGZyb20geW91ciBkYXRhIHRoYXQgYWZmZWN0IHBsb3Qgb3V0cHV0LCBsaXN0ZWQgaW4gKmFlcyggKSoKKiBjb21tYW5kczoKICAgICsgKipnZ3Bsb3QoICkqKjogcmVxdWlyZWQgc3RhcnQgb2YgZXZlcnkgZ2dwbG90IGNvbW1hbmQuIENvbnRhaW5zIGFueSBvcHRpb25zIHRoYXQgd2Ugd2FudCB0byBhcHBseSB0byB0aGUgd2hvbGUgcGxvdCAod2hpY2ggY2FuIGJlIG5vdGhpbmcpCiAgICArICoqZ2VvbV97c29tZXRoaW5nfSggKSoqOiAqaG93KiB5b3UncmUgcGxvdHRpbmcgdGhlIGRhdGEuIEhlcmUsIHdlIHdhbnQgdG8gcGxvdCBwb2ludHMsIHNvIHdlJ3JlIHVzaW5nICoqZ2VvbV9wb2ludCoqOyB0aGVyZSBhcmUgKnRvbnMqIG9mIGRpZmZlcmVudCBnZW9tcyBhdmFpbGFibGUsIG9uZSBmb3IgZWFjaCB0eXBlIG9mIHBsb3QgeW91IG1pZ2h0IHdhbnQgdG8gbWFrZS4KCkFyZ3VtZW50cyBsaWtlICpkYXRhKiBhbmQgKm1hcHBpbmcqIGNhbiBnbyBpbiB0aGUgcGFyZW50aGVzZXMgYWZ0ZXIgdGhlIGdlb20sIHByb2R1Y2luZyB0aGUgc2FtZSBwbG90IGFzIGFib3ZlOgpgYGB7cn0KZ2dwbG90KCkgKwogIGdlb21fcG9pbnQoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pKQpgYGAKQnV0IHRoZXJlIGFyZSBzcGVjaWZpYyBzaXR1YXRpb25zIGluIHdoaWNoIGl0J3MgYmV0dGVyIHRvIGRvIHRoaXMgKHdlJ2xsIHNlZSB0aGVtIGxhdGVyKQoKIyMgTW9kaWZ5aW5nICoqZ2VvbSoqIHByb3BlcnRpZXMKCldlIGNhbiBhbHNvIHBhc3MgYWRkaXRpb25hbCBhcmd1bWVudHMgdG8gdGhlIGdlb206IHVzZWZ1bCBvbmVzIHRvIGtub3cgYXJlOgoKKiBfX2NvbG9yX186IGxpbmUgY29sb3I7IGZvciB0aGUgZGVmYXVsdCBzaGFwZSB1c2VkIGluIGdlb21fcG9pbnQsIHRoaXMgYWN0dWFsbHkgY29sb3JzIHRoZSBpbnNpZGUgb2YgdGhlIHNoYXBlIGFzIHdlbGwKKiBfX2ZpbGxfXzogdGhlIGZpbGwgY29sb3IgaW5zaWRlIGEgc2hhcGUKKiBfX3NpemVfXzogcG9pbnQgc2l6ZSBvciBsaW5lIHRoaWNrbmVzcwoqIF9fc2hhcGVfXzogZm9yIHBvaW50cywgdGhpcyBpcyB0aGUgc2hhcGU7IGZvciBsaW5lcywgdGhpcyBpcyB0aGUgbGluZSBwYXR0ZXJuIG9yIGRhc2h5bmVzcwoqIF9fYWxwaGFfXzogdHJhbnNwYXJlbmN5IGxldmVsLCB3aXRoIDAgYmVpbmcgdG90YWxseSB0cmFuc3BhcmVudCBhbmQgMSBiZWluZyBhIHNvbGlkLCBvcGFxdWUgY29sb3IKCiMjIE1hcHBpbmcgbG90cyBvZiB2YXJpYWJsZXMKClRoZSBwbG90IHdlIG1hZGUgYWJvdmUgaXNuJ3QgcmVhbGx5IGFsbCB0aGF0IHVzZWZ1bC4gSXQncyBncmVhdCB0byBzZWUgdGhlIGRhdGEgYWNyb3NzIGFsbCB0aHJlZSBzcGVjaWVzIG9uIG9uZSBwbG90LCBidXQgaWYgd2UncmUgbG9va2luZyBhdCB0aGlzIGRhdGEsIHdlJ3JlIHByb2JhYmx5IGFjdHVhbGx5IGludGVyZXN0ZWQgaW4gaG93IHRoZXNlIHNwZWNpZXMgZGlmZmVyIGZyb20gZWFjaCBvdGhlci4gU28gaG93IGRvIHdlIG1ha2UgZ2dwbG90IHZpc3VhbGx5IHNlcGFyYXRlIHRoZSBwb2ludHMgYnkgc3BlY2llcz8KClJlbWVtYmVyIHRoYXQgdGhlICoqbWFwcGluZyoqIGFyZ3VtZW50IGRlYWxzIHdpdGggKmFueSBwcm9wZXJ0aWVzIG9mIHRoZSBwbG90IHRoYXQgZGVwZW5kIG9uIHZhcmlhYmxlcyBpbiB0aGUgc3VwcGxpZWQgZGF0YSBmcmFtZSouIFNvIHdlIGNhbiBtb2RpZnkgb3VyIG9yaWdpbmFsIGNvZGUgbGlrZSB0aGlzOgpgYGB7cn0KZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tLCBjb2xvciA9IHNwZWNpZXMsIGZpbGwgPSBzcGVjaWVzKSkgKwogIGdlb21fcG9pbnQoYWxwaGEgPSAwLjMzLCBzaGFwZSA9IDIzLCBzaXplID0gNSkKYGBgCgpOb3RpY2UgdGhhdCB0aGUgcGxvdCBhYm92ZSB1c2VzICpib3RoKiBhIHZhcmlhYmxlLWRlcGVuZGVudCBjb2xvciAoYmFzZWQgb24gdGhlIHBlbmd1aW4gZGF0YWZyYW1lJ3MgKnNwZWNpZXMqIGNvbHVtbiksIHdoaWNoIGdvZXMgaW5zaWRlICphZXMoICkqLCBhbmQgdmFyaWFibGUtaW5kZXBlbmRlbnQgdmFsdWVzIChhbHBoYSwgc2hhcGUsIHNpemUpIHRoYXQgYXBwbGllcyB0byB0aGUgd2hvbGUgZ2VvbV9wb2ludCBjb21tYW5kIGFuZCBnb2VzIG91dHNpZGUgKmFlcyggKSoKCkFsc28sIG5vdGljZSB0aGF0IHlvdSBnb3QgYSBsZWdlbmQgZm9yICpmcmVlKiEgWW91IGRpZG4ndCBoYXZlIHRvIHRlbGwgZ2dwbG90IGhvdyB0byBtYWtlIGl0LCBvciB3aGF0IGluZm8gdG8gaW5jbHVkZSBpbiBpdDsgaXQga25vd3MgYXV0b21hdGljYWxseSBiYXNlZCBvbiBob3cgeW91IHNldCB1cCB5b3VyICoqbWFwcGluZyoqLgoKRGVwZW5kaW5nIG9uIGNvbnRleHQsIHlvdSBjYW4gbWFrZSBjb2xvciwgZmlsbCwgc2hhcGUsIHNpemUgb3IgYWxwaGEgdmFyaWFibGUtZGVwZW5kZW50LiBTb21lIG9mIHRoZXNlIChjb2xvciwgZmlsbCwgc2hhcGUpIG9idmlvdXNseSBtYWtlIG1vcmUgc2Vuc2UgZm9yIGNhdGVnb3JpY2FsIHZhcmlhYmxlcywgd2hpbGUgb3RoZXJzIChhbHBoYSwgc2l6ZSkgbWFrZSBtb3JlIHNlbnNlIGZvciBjb250aW51b3VzIHZhcmlhYmxlcywgYnV0ICpnZ3Bsb3QqIHdpbGwgb25seSByYXJlbHkgc3RvcCB5b3UgZnJvbSBtYWtpbmcgYWVzdGhldGljYWxseSBhbmQgZGF0YSByZXByZXNlbnRhdGlvbmFsbHkgcXVlc3Rpb25hYmxlIGNob2ljZXMgaGVyZS4KCkxldCdzIHRyeSBhbiBleGVyY2lzZTogCgpgYGB7cn0KIyBCYXNlZCBvbiB0aGUgY29kZSBhYm92ZSwgbWFrZSBhIHBsb3Qgd2hlcmUgYm9keSBtYXNzIGlzIG9uIHRoZSB4IGF4aXMsCiMgZmxpcHBlciBsZW5ndGggaXMgb24gdGhlIHkgYXhpcywgCiN0aGUgZmlsbCBvZiB0aGUgcG9pbnRzIGRlcGVuZHMgb24gdGhlIGlzbGFuZCwgCiMgYW5kIHRoZSBzaGFwZSBvZiB0aGUgcG9pbnQgZGVwZW5kcyBvbiB0aGUgc3BlY2llcwoKYGBgCgoKIyMgU3RhY2tpbmcgbXVsdGlwbGUgKipnZW9tcyoqCgpPbmUgb2YgdGhlIHBsYWNlcyB3aGVyZSBnZ3Bsb3QgcmVhbGx5IHNoaW5lcyBpcyB3aGVuIHlvdSB3YW50IHRvIGNvbWJpbmUgbXVsdGlwbGUgZGF0YSByZXByZXNlbnRhdGlvbnMgb24gb25lIHBsb3QuIEZvciBleGFtcGxlLCBJICpyZWFsbHkqIGxpa2UgdG9wb2xvZ3ktc3R5bGUgY29udG91ciBwbG90cywgd2hpY2ggZ2dwbG90IGNhbiBtYWtlIHdpdGggKipnZW9tX2RlbnNpdHkyZCoqLiBPbmNlIHdlIGtub3cgaG93IHRvIG1ha2UgYSBiYXNpYyBwbG90LCBhbmQgY29tYmluaW5nIGEgY29udG91ciBwbG90IHdpdGggYSBwbG90IHRoZSBpbmRpdmlkdWFsIGRhdGEgcG9pbnRzIGlzIHN1cGVyIGVhc3kgaW4gZ2dwbG90OgpgYGB7cn0KIyBub3RlLCB0aGUgZmlyc3QgdHdvIGxpbmVzIGFyZSBqdXN0IG91ciBwbG90IGZyb20gYWJvdmUKZ2dwbG90KGRhdGEgPSBwZW5ndWlucywgbWFwcGluZyA9IGFlcyh4ID0gYmlsbF9sZW5ndGhfbW0sIHkgPSBiaWxsX2RlcHRoX21tLCBjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9kZW5zaXR5MmQoKSArCiAgZ2VvbV9wb2ludChhbHBoYSA9IDAuMzMpCmBgYApOb3RpY2UgdGhhdCB0aGUgKmFscGhhKiBhcmd1bWVudCB3ZSBwcm92aWRlZCBvbmx5IGFwcGxpZXMgdG8gZ2VvbV9wb2ludCwgc28gdGhlIGNvbnRvdXIgbGluZXMgZG9uJ3Qgc2hvdyBhbnkgdHJhbnNwYXJlbmN5LiBIb3dldmVyLCBhbnkgYXJndW1lbnRzIHByb3ZpZGVkIHRvICoqbWFwcGluZyoqIGluIGFuIGFlcyggKSBzdGF0ZW1lbnQgaW4gdGhlICoqZ2dwbG90KCApKiogY29tbWFuZCBhcHBseSBhY3Jvc3MgYWxsIGdlb21zLiAoQWxzbywgbm90aWNlIHRoYXQgd2hlbiB3ZSBhZGQgYSBnZW9tLCBnZ3Bsb3QgYXV0b21hdGljYWxseSB1cGRhdGVzIG91ciBsZWdlbmQhKQoKCiMgVGhlIHN0cnVjdHVyZSBvZiBkYXRhIHRoYXQgZ2dwbG90IGNhbiBwbG90CgpBcyB5b3UndmUgc2VlbiwgZ2dwbG90IHByb3ZpZGVzIHVzZXJzIHdpdGggdGhlIHBvd2VyIHRvIGVhc2lseSBjaGFuZ2UgdGhlIGFwcGVhcmFuY2Ugb2YgdGhlIHBsb3QsIGFuZCB0aGUgc3RhdGlzdGljcyBjYWxjdWxhdGVkLCBiYXNlZCBvbiBhbnkgc2luZ2xlIGNvbHVtbiBpbiB0aGUgZGF0YWZyYW1lIGNvbnRhaW5pbmcgdGhlIGRhdGEgdG8gYmUgcGxvdHRlZC4gQnV0IHRoaXMgYWxzbyByZXN1bHRzIGluIHNvbWUgcHJldHR5IHJpZ2lkIHJ1bGVzIGFib3V0IGhvdyB5b3VyIGRhdGEgbmVlZHMgdG8gYmUgb3JnYW5pemVkLiBOYW1lbHksIGRhdGEgZm9yIGdncGxvdCBzaG91bGQgYmUgaW4gW3RpZHkgZm9ybWF0XShodHRwczovL2xlYXJuLmdlbmNvcmUuYmlvLm55dS5lZHUvdGlkeXZlcnNlLyk6CgoqIGVhY2ggdmFyaWFibGUgbXVzdCBoYXZlIGl0cyBvd24gY29sdW1uCiogZWFjaCBvYnNlcnZhdGlvbiBtdXN0IGhhdmUgaXRzIG93biByb3cgKGJ1dCB3aGF0J3MgYW4gb2JzZXJ2YXRpb24/KQoqIGVhY2ggdmFsdWUgbXVzdCBoYXZlIGl0cyBvd24gY2VsbAoKTGV0J3MgdGFrZSBhIGxvb2sgYXQgd2hhdCB0aGF0IG1lYW5zLiBJbWFnaW5lIHRoZSBwZW5ndWluIGRhdGEgd2FzIGNvbGxlY3RlZCBmb3IgYnJlZWRpbmcgcGFpcnMuIEJlbG93IHdlIGhhdmUgY3JlYXRlZCB0d28gc3Vic2V0IG9mIHRoZSAqcGVuZ3VpbnMqIGRhdGFmcmFtZSB0byBtaW1pYyB0aGlzLCBjb250YWluaW5nIHRoZSBzYW1lIGRhdGEgb24gdGhlIHNhbWUgaW5kaXZpZHVhbHMsIG9uZSBtYWxlIGFuZCBvbmUgZmVtYWxlIHBlciBzcGVjaWVzLgpgYGB7cn0KcGVuZ3Vpbl9wYWlyc18xIDwtIHBlbmd1aW5zW2MoMSwyLDUsNiwxNTU6MTU4LDI3NzoyODApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgYygnc3BlY2llcycsICdzZXgnLCAnYmlsbF9sZW5ndGhfbW0nKV0KcGVuZ3Vpbl9wYWlyc18xJGJyZWVkaW5nX3BhaXIgPC0gcmVwKDE6NiwgZWFjaCA9IDIpCgpwZW5ndWluX3BhaXJzXzIgPC0KICBwaXZvdF93aWRlcihwZW5ndWluX3BhaXJzXzEsIG5hbWVzX2Zyb20gPSAnc2V4JywKICAgICAgICAgICAgICB2YWx1ZXNfZnJvbSA9ICdiaWxsX2xlbmd0aF9tbScsIG5hbWVzX3ByZWZpeCA9ICdiaWxsX2xlbmd0aF9tbV8nKQoKcHJpbnQocGVuZ3Vpbl9wYWlyc18xKQpwcmludChwZW5ndWluX3BhaXJzXzIpCmBgYAoKSW1hZ2luZSB3ZSBoYWQgdHdvIGdyYXBocyB3ZSB3YW50ZWQgdG8gbWFrZToKCjEuIFBsb3QgdGhlIGRpc3RyaWJ1dGlvbiAoZGVuc2l0eSkgb2YgYmlsbCBsZW5ndGhzIGZvciBhbGwgdGhlIHBlbmd1aW5zLCBjb2xvcmVkIGJ5IHNwZWNpZXMuCjIuIFBsb3QgdGhlIGJpbGwgbGVuZ3RoIGZvciBtYWxlIHZzIGZlbWFsZSBpbmRpdmlkdWFscyBvZiBlYWNoIGJyZWVkaW5nIHBhaXIsIGNvbG9yZWQgYnkgc3BlY2llcwoKRm9yIGVhY2ggb2YgdGhlc2UgZ3JhcGhzLCB3aGF0IGFyZSB0aGUgKmluZGl2aWR1YWwgb2JzZXJ2YXRpb25zKiAoaS5lLiBhcmUgdGhleSBicmVlZGluZyBwYWlycyBvciBpbmRpdmlkdWFsIHBlbmd1aW5zKT8gV2hpY2ggaXMgdGhlIGVhc2llc3QgZGF0YXNldCB0byB1c2UgZm9yIHBsb3R0aW5nIGVhY2ggb2YgdGhlc2UgZ3JhcGhzIHdpdGggKipnZ3Bsb3QqKj8KClRyeSBib3RoIG9mIHRoZW0gb3V0IGJlbG93LgoKYGBge3J9CgpgYGAKClRoZSAqKnRpZHlyKiogcGFja2FnZSAod2hpY2gsIGxpa2UgKipnZ3Bsb3QyKiosIGlzIHBhcnQgb2YgdGhlICoqdGlkeXZlcnNlKiogcGFja2FnZSkgaGFzIHNvbWUgcmVhbGx5IGdyZWF0IGZ1bmN0aW9ucyBmb3IgcmUtb3JnYW5pemluZyBkYXRhLCBhbGxvd2luZyB5b3UgdG8gY29udmVydCBmcm9tIHNvbWV0aGluZyB0aGF0IGxvb2tzIGxpa2UgYHBlbmd1aW5fcGFpcnNfMWAgaW50byBgcGVuZ3Vpbl9wYWlyc18yYCwgYW5kIHZpY2UgdmVyc2EuIElmIHlvdSBmaW5kIHlvdXJzZWxmIGZhY2luZyBkYXRhIHRoYXQgaXNuJ3Qgb3JnYW5pemVkIHRoZSByaWdodCB3YXkgZm9yIHlvdXIgcGxvdCwgSSByZWFsbHkgc3VnZ2VzdCBsb29raW5nIG92ZXIgW0RhdmlkIEdyZXNoYW0ncyB0aWR5dmVyc2UgdHV0b3JpYWxdKGh0dHBzOi8vbGVhcm4uZ2VuY29yZS5iaW8ubnl1LmVkdS90aWR5dmVyc2UvKSBhbmQgdGhlIG1vcmUgdXAtdG8tZGF0ZSBbdGlkeXIgdHV0b3JpYWwgb24gcGl2b3RdKGh0dHBzOi8vdGlkeXIudGlkeXZlcnNlLm9yZy9hcnRpY2xlcy9waXZvdC5odG1sKS4KCiMgV2h5IGdncGxvdAoKKiBfX2Vhc3kgZXhwbG9yYXRvcnkgZGF0YSBhbmFseXNpc19fOiBzZXBhcmF0aW9uIG9mIHZhcmlhYmxlIG1hcHBpbmcgZnJvbSB2aXN1YWwgcmVwcmVzZW50YXRpb24gKGUuZy4gZ2VvbXMpIG1ha2VzIGl0IGVhc3kgdG8gdHJ5IGRpZmZlcmVudCB3YXlzIG9mIHBsb3R0aW5nIGRhdGEKKiBfX2F1dG9tYXRpb24gb2YgdGhlIGJvcmluZyBzdHVmZl9fOiBnZW5lcmF0aW9uIG9mIGxlZ2VuZHMsIGF4aXMgYm91bmRzLCBldGMgaXMgZG9uZSB2ZXJ5IHdlbGwgYXV0b21hdGljYWxseSBiYXNlZCBvbiB0aGUgZGF0YSBhbmQgdmFyaWFibGVzIHlvdSdyZSBwbG90dGluZyAoYnV0IHlvdSBjYW4gaGF2ZSBmaW5lciBjb250cm9sIG9mIGl0IGlmIHlvdSdkIGxpa2UpCiogX19hdXRvbWF0ZWQgc3RhdHNfXzogbG90cyBvZiBnZW9tcyB0aGF0IGNhbGN1bGF0ZSBhbmQgZGlzcGxheSBzdGF0aXN0aWNzIG9mIHlvdXIgZGF0YS4gVGhlc2Ugc3RhdGlzdGljcyBhcmUgYXV0b21hdGljYWxseSBjYWxjdWxhdGVkIGJhc2VkIG9uIHlvdXIgZ3JvdXBpbmcgb2YgdGhlIGRhdGEsIGhvdyB5b3Ugc3BlY2lmeSB5b3VyIGF4ZXMgKGUuZy4gbGluZWFyIHZzIGxvZyBzY2FsZSksIGV0Yy4KICAgICsgKmdlb21fZGVuc2l0eSogYW5kICpnZW9tX2RlbnNpdHkyZCogZm9yIGRlbnNpdHkgZXN0aW1hdGlvbgogICAgKyAqZ2VvbV9zbW9vdGgqIGZvciB0cmVuZGxpbmVzIHdpdGggZXJyb3IgcmliYm9ucwogICAgKyBbc3RhdF9zdW1tYXJ5XShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2Uvc3RhdF9zdW1tYXJ5Lmh0bWwpIGZvciBvdGhlciB3YXlzIHRvIGJpbiBhbmQgc3VtbWFyaXplIGRhdGEpCiogX19wbG90cyBhcyBvYmplY3RzX186IHN0b3JpbmcgcGxvdHMgYXMgb2JqZWN0cyBhbGxvd3MgdGhlbSB0byBiZSBlYXNpbHkgbW9kaWZpZWQgYW5kIGNvbWJpbmVkIGludG8gZmlndXJlcwoqIF9faW5jcmVkaWJseSBoZWxwZnVsIG9ubGluZSBleGFtcGxlc19fOiB0aGUgKnRpZHl2ZXJzZSogd2Vic2l0ZSBjb250YWlucyBhbiBpbmNyZWRpYmxlIG9ubGluZSBtYW51YWwgd2l0aCBleHBsYW5hdGlvbnMgYW5kIGNsZWFyIGV4YW1wbGVzIGZvciBuZWFybHkgZXZlcnl0aGluZyB5b3UgbWlnaHQgd2FudCB0byBkbyBpbiBnZ3Bsb3Q6IFtodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvXShodHRwczovL2dncGxvdDIudGlkeXZlcnNlLm9yZy9yZWZlcmVuY2UvKQoKIyBQbG90IHlvdXIgb3duIGRhdGEhClRyeSBwbG90dGluZyBzb21lIG9mIHlvdXIgb3duIGRhdGEhIEhlcmUgYXJlIHNvbWUgY29tbW9ubHkgdXNlZCB0eXBlcyBvZiBwbG90cyAoYW5kIHRoZWlyIGNvcnJlc3BvbmRpbmcgZ2VvbXMpIGZvciBkYXRhIHZpc3VhbGl6YXRpb246ICAKKiBzY2F0dGVyIHBsb3RzOiBnZW9tX3BvaW50KCkKKiBkZW5zaXR5IHBsb3RzOiBnZW9tX2RlbnNpdHkoKQoqIGhpc3RvZ3JhbXM6IGdlb21faGlzdG9ncmFtKCkKKiBib3hwbG90czogZ2VvbV9ib3hwbG90KCkKKiBiYXJwbG90czogZ2VvbV9iYXIoKQoqIGxpbmVwbG90czogZ2VvbV9saW5lKCkKCioqKgoKIyMgQXNpZGU6IGdncGxvdCBvYmplY3RzCgpnZ3Bsb3QgYWN0dWFsbHkgY3JlYXRlcyBvYmplY3RzIHRoYXQgd2UgY2FuIHN0b3JlIGFzIHZhcmlhYmxlcyBhbmQgYWRkIG9udG8uIFNvLCBmb3IgZXhhbXBsZSwgd2UgY2FuIGRvIHRoaXM6CmBgYHtyfQpiYXNpY19wZW5ndWluX3Bsb3QgPC0KICBnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSwgY29sb3IgPSBzcGVjaWVzKSkgKwogIGdlb21fcG9pbnQoKQpwcmludChiYXNpY19wZW5ndWluX3Bsb3QpCiMgbGV0J3MgYWRkIGFub3RoZXIgZ2VvbSB0byB0aGlzIHBsb3QKcGVuZ3Vpbl9wbG90X3dpdGhfY29udG91cnMgPC0KICBiYXNpY19wZW5ndWluX3Bsb3QgKyBnZW9tX2RlbnNpdHkyZCgpCnByaW50KHBlbmd1aW5fcGxvdF93aXRoX2NvbnRvdXJzKQpgYGAKCgojIyB0aGVtZXMgYW5kIG90aGVyIG9wdGlvbnMgd2UgY2FuIGNoYW5nZQoKZ2dwbG90IGFsc28gYWxsb3dzIGEgaHVnZSBhbW91bnQgb2YgY29udHJvbCBvdmVyIG90aGVyIGFzcGVjdHMgb2YgdGhlIHBsb3QgKGUuZy4gdGl0bGVzLCBheGlzIGxhYmVsaW5nIGFuZCBzY2FsZSwgb3ZlcmFsbCBwbG90IGxvb2ssIGV0YykuIEZvciBtb3N0IG9mIHRoZXNlLCBnZ3Bsb3QgYWN0dWFsbHkgYWxsb3dzIG11bHRpcGxlIGVxdWl2YWxlbnQgd2F5cyB0byBhY2hpZXZlIHRoZSBzYW1lIGVmZmVjdC4KCiMjIyBheGVzICsgdGl0bGVzCgpBZGRpbmcgYSB0aXRsZSB0byBhIHBsb3QgY2FuIGJlIGFjaGlldmVkIHVzaW5nIGdndGl0bGUoKQpgYGB7cn0KYmFzaWNfcGVuZ3Vpbl9wbG90ICsKICBnZ3RpdGxlKCdQZW5ndWluIEJpbGxzJykKYGBgCgpXZSBjYW4gYWxzbyBtb2RpZnkgdGhlIGF4aXMgcHJvcGVydGllcyBkaXJlY3RseQpgYGB7cn0KYmFzaWNfcGVuZ3Vpbl9wbG90ICsKICBnZ3RpdGxlKCdQZW5ndWluIEJpbGxzJykgKwogIHNjYWxlX3hfY29udGludW91cyhuYW1lID0gJ0JpbGwgTGVuZ3RoJywKICAgICAgICAgICAgICAgICAgICAgbGltaXRzID0gYygwLDYwKSkgKwogIHNjYWxlX3lfbG9nMTAobmFtZSA9ICdCaWxsIERlcHRoJywKICAgICAgICAgICAgICAgIGJyZWFrcyA9IGMoMTUsIDE4LCAyMSkpCmBgYApUaGVyZSdzIGEgZmV3IHRoaW5ncyBnb2luZyBvbiBoZXJlOgoKKiBfX3NjYWxlX3hfY29udGludW91cyggKV9fIGFuZCBfX3NjYWxlX3lfbG9nMTAoIClfXzogc2V0IHRoZSBzY2FsZSBvZiB0aGUgeCBhbmQgeSBheGVzLiBGb3IgY29udGludW91cyB2YXJpYWJsZXMsIHRoZXkgY2FuIGFsc28gYmUgcGxvdHRlZCBvbiBhIHNxdWFyZSByb290IHNjYWxlLCByZXZlcnNlZCwgYW5kIHZhcmlvdXMgb3RoZXIgdHJhbnNmb3JtYXRpb25zLiBGb3IgZGlzY3JldGUgdmFyaWFibGVzLCB1c2UgKipzY2FsZV94X2Rpc2NyZXRlKCApKiogYW5kICoqc2NhbGVfeV9kaXNjcmV0ZSggKSoqCiogX19uYW1lX186IHRoZSBheGlzIGxhYmVsCiogX19saW1pdHNfXzogdGhlIGJvdW5kcyBvbiB0aGUgYXhpcywgbXVzdCBiZSBwcm92aWRlZCBhcyBhIDItbnVtYmVyIHZlY3RvcgoqIF9fYnJlYWtzX186IG1hbnVhbGx5IGFzc2lnbiB3aGVyZSB0aGUgdGlja21hcmtzIGdvCiogX19sYWJlbHNfXzogZm9yIGRpc2NyZXRlIHZhcmlhYmxlcywgdGhpcyBjYW4gYmUgdXNlZCB0byByZW5hbWUgdGhlIGNhdGVnb3JpZXMgYWxvbmcgeW91ciBheGlzCgojIyMgbGVnZW5kCgpZb3UgY2FuIG1vZGlmeSB0aGUgbGVnZW5kIGluIGEgc2ltaWxhciB3YXkgdG8gdGhlIG90aGVyIG1hcHBpbmdzIChlLmcuIHRoZSBheGVzKTsgZm9yIGV4YW1wbGUsIGlmIHdlIHdhbnQgdG8gbW9kaWZ5IHRoZSB3YXkgdGhlIHRoaW5nIG1hcHBlZCB0byAnY29sb3InIG9uIG91ciBwbG90IGlzIHJlcHJlc2VudGVkLCB3ZSBjYW4gdXNlICoqc2NhbGVfY29sb3JfZGlzY3JldGUoICkqKiwgb3IsIGlmIHdlIHdhbnQgdG8gbWFudWFsbHkgY2hhbmdlIHRoZSB2YWx1ZXMgYXNzaWduZWQgdG8gZWFjaCBjYXRlZ29yeSAoZS5nLiB0aGUgY29sb3JzKSwgKipzY2FsZV9jb2xvcl9tYW51YWwoICkqKjoKYGBge3J9CmJhc2ljX3Blbmd1aW5fcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IlBlbmd1aW4gU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJBZGVsaWUiLCAiQ2hpbnN0cmFwIiwgIkdlbnRvbyIpKQpgYGAKV2UgY2FuIGFsc28gY2hhbmdlIHRoZSBwb3NpdGlvbiBvZiB0aGUgbGVnZW5kIHVzaW5nICoqdGhlbWUoICkqKiAod2hpY2ggY2FuIGFjdHVhbGx5IGNvbnRyb2wgbmVhcmx5IGV2ZXJ5IG90aGVyIGFlc3RoZXRpYyBhc3BlY3Qgb2YgdGhlIHBsb3QsIHN1Y2ggYXMgZm9udCBzaXplLCB3aGljaCBheGVzIGdldCBsYWJlbHMvdGlja21hcmtzLCBldGMpLgoKYGBge3J9CmJhc2ljX3Blbmd1aW5fcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IlBlbmd1aW4gU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJBZGVsaWUiLCAiQ2hpbnN0cmFwIiwgIkdlbnRvbyIpKSArCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gJ2JvdHRvbScpCmBgYAoKIyMjIHRoZW1lcwoKRmluYWxseSwgdGhlIG92ZXJhbGwgYXBwZWFyYW5jZSBvZiB0aGUgZ3JhcGggY2FuIGJlIGNoYW5nZWQgYnkgc2VsZWN0aW5nIGEgY3VzdG9tICd0aGVtZSc7IHRoaXMgaXMgYSBiaXQgY29uZnVzaW5nLCBzaW5jZSB0aGVzZSBhcmUgZGlzdGluY3QgZnJvbSB0aGUgKip0aGVtZSggKSoqIGNvbW1hbmQgdXNlZCBhYm92ZS4KYGBge3J9CmJhc2ljX3Blbmd1aW5fcGxvdCArCiAgc2NhbGVfY29sb3JfbWFudWFsKHZhbHVlcz1jKCJ2aW9sZXQiLCAiYmx1ZSIsICJncmF5IiksCiAgICAgICAgICAgICAgICAgICAgIG5hbWU9IlBlbmd1aW4gU3BlY2llcyIsCiAgICAgICAgICAgICAgICAgICAgIGxhYmVscz1jKCJBZGVsaWUiLCAiQ2hpbnN0cmFwIiwgIkdlbnRvbyIpKSArCiAgdGhlbWUobGVnZW5kLnBvc2l0aW9uID0gJ2JvdHRvbScpICsKICB0aGVtZV9idygpCmBgYAoKCiMgT3RoZXIgY29vbCB0aGluZ3MKCiMjIE1vcmUgaW5mbyBhYm91dCBzdGFja2luZyBtdWx0aXBsZSBnZW9tcwoKT25lIHJlYWxseSBwb3dlcmZ1bCBhcHBsaWNhdGlvbiBvZiB0aGlzIGlzIHRoYXQgd2UgY2FuIGFjdHVhbGx5IG1ha2UgZWFjaCBnZW9tKCApIHJlcHJlc2VudCBhIGRpZmZlcmVudCBhc3BlY3Qgb2YgdGhlIHNhbWUgZGF0YS4gTGV0J3Mgc2F5IHdlJ2QgbGlrZSBvdXIgZGF0YXBvaW50cyB0byBiZSBjb2xvcmVkIGJ5IHNwZWNpZXMsIGJ1dCB3ZSdkIGFsc28gbGlrZSB0byBzZWUgYSBjb250b3VyIHBsb3Qgb2YgYmlsbCBsZW5ndGggdnMgZGVwdGggKmFjcm9zcyBhbGwgdGhlIHNwZWNpZXMqLiBUbyBkbyB0aGlzLCB3ZSdyZSBnb2luZyB0byBoYXZlIHRvIG1vdmUgb3VyICoqbWFwcGluZyoqIGNhbGxzIGluc2lkZSB0aGUgZ2VvbXMsIHNpbmNlIHdlIG5vdyB3YW50IGVhY2ggZ2VvbSB0byBtYXAgdGhlIGRhdGEgZGlmZmVyZW50bHk6CmBgYHtyfQojIFJlbW92ZWQgYWxwaGEgZm9yIHNpbXBsaWNpdHkKIyBNYWRlIGNvbnRvdXIgcGxvdCBsaW5lIGNvbG9yIGJsYWNrIChkZWZhdWx0IGlzIGJsdWUpCmdncGxvdChkYXRhID0gcGVuZ3VpbnMpICsKICBnZW9tX2RlbnNpdHkyZChtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pLCBjb2xvciA9ICdibGFjaycpICsKICBnZW9tX3BvaW50KG1hcHBpbmcgPSBhZXMoeCA9IGJpbGxfbGVuZ3RoX21tLCB5ID0gYmlsbF9kZXB0aF9tbSwgY29sb3IgPSBzcGVjaWVzKSkKYGBgCgpgYGB7ciBldmFsPUZ9CiMgY2FuIGFsc28gYmUgd3JpdHRlbiBhcwpnZ3Bsb3QoZGF0YSA9IHBlbmd1aW5zLCBtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSwgeSA9IGJpbGxfZGVwdGhfbW0pKSArCiAgZ2VvbV9kZW5zaXR5MmQoY29sb3IgPSAnYmxhY2snKSArCiAgZ2VvbV9wb2ludChtYXBwaW5nID0gYWVzKGNvbG9yID0gc3BlY2llcykpCmBgYApUaGlzIHBsb3Qgc2hvd3MgdGhhdCAqKm1hcHBpbmcqKiBhY3R1YWxseSBjb250cm9scyBub3QganVzdCB3aGVyZSB0byBwbG90IHRoZSBkYXRhIHBvaW50cyBhbmQgaG93IHRoZXkgc2hvdWxkIGxvb2sgYWVzdGhldGljYWxseSwgYnV0IGFsc28gaG93IHRoZSBkYXRhIGlzIGdyb3VwZWQgd2hlbiBpdCdzIHJlcHJlc2VudGVkIGluIHRoZSBwbG90LiBOb3RpY2UgdGhhdCBpbiB0aGUgZmlyc3QgY29udG91ciBwbG90LCB0aGUgc3RhdGlzdGljcyBuZWVkZWQgdG8gcGxvdCB0aGUgY29udG91cnMgd2VyZSBjb21wdXRlZCBzZXBhcmF0ZWx5IGZvciBlYWNoIHNwZWNpZXMuIEhvd2V2ZXIsIHdoZW4gd2UgcmVtb3ZlZCBzcGVjaWVzIGZyb20gdGhlIGFlcyggKSBiZWluZyB1c2VkIGJ5IGdlb21fZGVuc2l0eTJkLCB0aGUgZGF0YSB3YXMgbm8gbG9uZ2VyIHNlcGFyYXRlZCBieSBzcGVjaWVzIGZvciBhbnkgb2YgdGhlIHN0YXRzIGNhbGN1bGF0ZWQgZm9yIHRoaXMgZ2VvbSwgYW5kIHRoZXkncmUgaW5zdGVhZCBjYWxjdWxhdGVkIGFjcm9zcyBhbGwgdGhlIHBvaW50cyBpbiB0aGUgZGF0YXNldC4KCkxldCdzIHRyeSBhbiBleGVyY2lzZS4gQSByZWFsbHkgdXNlZnVsIGtpbmQgb2YgcGxvdCB5b3UgY2FuIG1ha2Ugd2hpbGUgZXhwbG9yaW5nIGRhdGEgaXMgYSAqZGVuc2l0eSogcGxvdCwgd2hpY2ggc2hvd3MgcHJldHR5IG11Y2ggYSBub3JtYWxpemVkLCBzbW9vdGhlZCBoaXN0b2dyYW0gb2YgeW91ciBkYXRhIHVzaW5nICoqZ2VvbV9kZW5zaXR5KiouIEZvciBleGFtcGxlLCBpZiB3ZSB3YW50IHRvIGdldCBhbiBpZGVhIG9mIHdoYXQgdGhlIGRpc3RyaWJ1dGlvbiBvZiBiaWxsIGxlbmd0aHMgaW4gb3VyIGRhdGFzZXQgaXMsIHdlIGNhbiBydW46CmBgYHtyfQojIERlbnNpdHkgcGxvdCB0byBzZWUgdGhlIGRpc3RyaWJ1dGlvbiBvZiBiaWxsIGxlbmd0aHMgaW4gb3VyIGRhdGEKZ2dwbG90KGRhdGEgPSBwZW5ndWlucykgKwogIGdlb21fZGVuc2l0eShtYXBwaW5nID0gYWVzKHggPSBiaWxsX2xlbmd0aF9tbSkpCmBgYAoKTm93IHJlcGVhdCB0aGlzIHBsb3QsIGJ1dCBvdmVybGF5aW5nIHRoZSBkZW5zaXR5IHBsb3QgZm9yIGVhY2ggc3BlY2llcyBvbiB0aGlzIHBsb3QgdGhhdCBzaG93cyB0aGUgZGlzdHJpYnV0aW9uIGFjcm9zcyBhbGwgMyBzcGVjaWVzJyBkYXRhOgpgYGB7cn0KIyBNYWtlIGEgZGVuc2l0eSBwbG90IHRoYXQgc2hvd3MgYm90aCB0aGUgZGlzdHJpYnV0aW9uIG9mIGJpbGxfbGVuZ3RoX21tIGluIGFsbAojIHRoZSBkYXRhIHRvZ2V0aGVyIGluIG9uZSBjb2xvciwgYW5kIHRoZSBkaXN0cmlidXRpb24gZm9yIGVhY2ggc3BlY2llcycKIyBiaWxsX2xlbmdoX21tIGVhY2ggaW4gaXRzIG93biBjb2xvcgoKIyBCb251czogQ2hhbmdlIHRoZSBsaW5ldHlwZSBvZiB0aGUgc3BlY2llcycgZGVuc2l0eSBwbG90cyBzbyB0aGF0IGVhY2ggc3BlY2llcwojIGhhcyB0aGUgc2FtZSBkYXNoZWQgbGluZSwgYnV0IHRoZSBsaW5lIHJlcHJlc2VudGluZyByZXN1bHRzIGFjcm9zcyBhbGwgdGhlCiMgZGF0YSBpcyBzb2xpZApgYGAKCiMjIGNvbWJpbmluZyBtdWx0aXBsZSBkYXRhIGZyYW1lcyBvbiBvbmUgcGxvdAoKZ2dwbG90IG1ha2VzIGl0IHN1cGVyIGVhc3kgdG8gY29tYmluZSBtdWx0aXBsZSBkYXRhc2V0cyBvbiBvbmUgcGxvdCwgYXNzdW1pbmcgdGhleSBoYXZlIHRoZSByZWxldmFudCB2YXJpYWJsZXMgKGRhdGFmcmFtZSBjb2x1bW5zKSBpbiBjb21tb24uIExldCdzIGJyZWFrIHVwIHRoZSBwZW5ndWlucyBkYXRhZnJhbWUgdG8gc2VlIGhvdyB0aGlzIHdvcmtzOgpgYGB7cn0KcGVuZ3VpbnNfbm9uY2hpbnN0cmFwIDwtIHN1YnNldChwZW5ndWlucywgc3BlY2llcyAhPSAnQ2hpbnN0cmFwJykKcGVuZ3Vpbl9jaGluc3RyYXBfbWFzcyA8LSBzdWJzZXQocGVuZ3VpbnMsIHNwZWNpZXMgPT0gJ0NoaW5zdHJhcCcpWywgYygnYm9keV9tYXNzX2cnLCAnc3BlY2llcycpXQpwcmludChwZW5ndWluc19ub25jaGluc3RyYXApCnByaW50KHBlbmd1aW5fY2hpbnN0cmFwX21hc3MpCmBgYApXZSBub3cgaGF2ZSB0d28gZGF0YWZyYW1lcywgY29udGFpbmluZyBkYXRhIG9uIGRpZmZlcmVudCBzcGVjaWVzLCBhbmQgd2l0aCBvbmx5IGEgc3Vic2V0IG9mIHRoZSBkYXRhIGluIG9uZSB0aGF0IGlzIGNvbnRhaW5lZCBpbiB0aGUgb3RoZXIgKHRoZSBwZXRhbCB3aWR0aHMgYW5kIHNwZWNpZXMpLiBCdXQgaWYgcGV0YWwgd2lkdGggYW5kIHNwZWNpZXMgaXMgd2hhdCB3ZSB3YW50IHRvIHBsb3QsIHRoaXMgaXNuJ3QgYSBwcm9ibGVtIGZvciBnZ3Bsb3Q6CmBgYHtyfQpnZ3Bsb3QoKSArCiAgZ2VvbV9ib3hwbG90KGRhdGEgPSBwZW5ndWluc19ub25jaGluc3RyYXAsIGFlcyh4ID0gc3BlY2llcywgeSA9IGJvZHlfbWFzc19nLCBjb2xvciA9IHNwZWNpZXMpKSArCiAgZ2VvbV9ib3hwbG90KGRhdGEgPSBwZW5ndWluX2NoaW5zdHJhcF9tYXNzLCBhZXMoeCA9IHNwZWNpZXMsIHkgPSBib2R5X21hc3NfZywgY29sb3IgPSBzcGVjaWVzKSkKYGBgCgojIyBmYWNldHMKCkFub3RoZXIgZ3JlYXQgdG9vbCBnZ3Bsb3QgcHJvdmlkZXMgaXMgZmFjZXRpbmcuIFRoaXMgYWxsb3dzIHlvdSB0byBzZXBhcmF0ZSBkYXRhIGludG8gc3VicGxvdHMgYmFzZWQgb24gYSBjb2x1bW4gKG9yIG11bHRpcGxlIGNvbHVtbnMpOgpgYGB7cn0KYmFzaWNfcGVuZ3Vpbl9wbG90ICsKICBmYWNldF93cmFwKCB+IHNwZWNpZXMpCmBgYApOb3RpY2UgdGhhdCB0aGUgeC1heGVzIGFyZSBjb25zaXN0ZW50IGFtb25nIHRoZXNlIHBsb3RzLgoKIyMgTG90cyBvZiBhZGRpdGlvbmFsIHBhY2thZ2VzIQoKQmVjYXVzZSBnZ3Bsb3QgaXMgc28gcG9wdWxhciwgdGhlcmUncyBiZWVuIGEgdG9uIG9mIGFkZGl0aW9uYWwgcGFja2FnZXMgd3JpdHRlbiB0aGF0IGJ1aWxkIG9uIHRvcCBvZiBpdC4gSGVyZSBhcmUgdHdvIGV4YW1wbGVzLgoKIyMjIGdnYW5pbWF0ZQoKQWRkIGFuaW1hdGlvbnMgdG8gcGxvdHMKYGBge3Igd2FybmluZz1GQUxTRSwgbWVzc2FnZT1GQUxTRSwgcmVzdWx0cyA9IEZBTFNFfQppbnN0YWxsLnBhY2thZ2VzKCdnaWZza2knKQppbnN0YWxsLnBhY2thZ2VzKCdnZ2FuaW1hdGUnKQpsaWJyYXJ5KGdnYW5pbWF0ZSkKYW5pbWF0ZWRfcGVnbnVpbl9wbG90IDwtCiAgYmFzaWNfcGVuZ3Vpbl9wbG90ICsgdHJhbnNpdGlvbl9zdGF0ZXMoc3BlY2llcykKIyBzYXZlIHBsb3Qgd2l0aCAzIGZyYW1lcywgcGxheSBhdCAxIGZyYW1lIHBlciBzZWNvbmQKYW5pbV9zYXZlKCJhbmltYXRlZF9wZW5ndWluX3Bsb3QuZ2lmIiwgYW5pbWF0ZWRfcGVuZ3Vpbl9wbG90LCBuZnJhbWVzID0gNCwgZnBzID0gMSkKIyByZW5kZXIgcGxvdCB1c2luZyAhW10ocGxvdF9wYXRoKSBvdXRzaWRlIG9mIGNvZGUgY2h1bmsKYGBgCg==</div>
 
 
 
